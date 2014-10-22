@@ -1,0 +1,37 @@
+<container>
+	<testcase>
+		<meta-data>
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/12</date>
+			<input>$_GET['action']</input>
+		</meta-data>
+		
+		<file path="Action_Access_Control/no_Control.php" language="PHP">
+			<flaw line="43" name="CWE-862: Missing Authorization"/>
+		</file>
+		
+		<file path="Action_Access_Control/control_OK.php" language="PHP"/>
+	</testcase>
+	
+	<testcase>
+		<meta-data>
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/12</date>
+			<input></input>
+		</meta-data>
+		
+		<file path="Page_Access_Control/Access_Control_OK/mainPage.php" language="PHP"/>
+		<file path="Page_Access_Control/Access_Control_OK/admin_mainPage.php" language="PHP"/>
+		<file path="Page_Access_Control/Access_Control_OK/user_mainPage.php" language="PHP"/>
+
+		<file path="Page_Access_Control/No_Access_Control/mainPage.php" language="PHP">		
+			<flaw line="0" name="CWE-862: Missing Authorization"/>
+		</file>
+		<file path="Page_Access_Control/No_Access_Control/admin_mainPage.php" language="PHP">		
+			<flaw line="0" name="CWE-862: Missing Authorization"/>
+		</file>
+		<file path="Page_Access_Control/No_Access_Control/user_mainPage.php" language="PHP">		
+			<flaw line="0" name="CWE-862: Missing Authorization"/>
+		</file>
+	</testcase>
+</container>

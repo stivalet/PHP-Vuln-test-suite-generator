@@ -1,0 +1,189 @@
+<!-- The full directory l-->
+<container>
+<!-- password hardcoded and session fixation -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="check_hardcoded/checkin.php" language="PHP">
+			<flaw line="103" name="CWE-287: Improper Authentication"/>
+			<flaw line="104" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<file path="check_hardcoded/connect.php" language="PHP">
+			<flaw line="87" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+<!-- session fixation -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="check_hashed/checkin.php" language="PHP">
+			<flaw line="107" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<file path="check_hashed/connect.php" language="PHP">
+			<flaw line="89" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+
+<!-- session fixation and hash deprecated-->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="check_hashed_deprecated/checkin.php" language="PHP">
+			<flaw line="105" name="CWE-287: Improper Authentication"/>
+			<flaw line="106" name="CWE-384: Session Fixation"/>
+			
+		</file>
+
+		<file path="check_hashed_deprecated/connect.php" language="PHP">
+			<flaw line="89" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+
+<!-- session fixation, weak password and password hardcoded -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="no_check_hardcoded/checkin.php" language="PHP">
+			<flaw line="96" name="CWE-287: Improper Authentication"/>
+			<flaw line="97" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<file path="no_check_hardcoded/connect.php" language="PHP">
+			<flaw line="86" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+
+<!-- session fixation, weak password -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="no_check_hashed/checkin.php" language="PHP">
+			<flaw line="97" name="CWE-287: Improper Authentication"/>
+			<flaw line="98" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<file path="no_check_hashed/connect.php" language="PHP">
+			<flaw line="89" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+
+<!-- session fixation, weak password, deprecated hash -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="no_check_hashed_deprecated/checkin.php" language="PHP">
+			<flaw line="97" name="CWE-287: Improper Authentication"/>
+			<flaw line="98" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<file path="no_check_hashed_deprecated/connect.php" language="PHP">
+			<flaw line="89" name="CWE-384: Session Fixation"/>
+		</file>
+
+		<!-- Simple file without associated flaw -->
+		<file path="session_hijack/checkin.php" language="PHP"/>
+		<file path="session_hijack/connect.php" language="PHP"/>
+		<file path="session_hijack/disconnect.php" language="PHP"/>
+
+	</testcase>
+	
+
+</container>

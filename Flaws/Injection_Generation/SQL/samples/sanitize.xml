@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+
+<sanitize>
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>email_filter</dir>
+		</path>
+		<comment>Uses an email_filter via filter_var function</comment>
+		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_EMAIL);
+if (filter_var($sanitized, FILTER_VALIDATE_EMAIL)) 
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>full_special_chars_filter</dir>
+		</path>
+		<comment>Uses a full_special_chars_filter via filter_var function</comment>
+		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>magic_quotes_filter</dir>
+		</path>
+		<comment>Uses a magic_quotes_filter via filter_var function</comment>
+		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>number_float_filter</dir>
+		</path>
+		<comment>Uses a number_float_filter via filter_var function</comment>
+		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
+if (filter_var($sanitized, FILTER_VALIDATE_FLOAT)) 
+$checked_data = $sanitized ;
+else
+$checked_data = "0" ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>number_int_filter</dir>
+		</path>
+		<comment>Uses a number_int_filter via filter_var function</comment>
+		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
+if (filter_var($sanitized, FILTER_VALIDATE_INT)) 
+$checked_data = $sanitized ;
+else
+$checked_data = "0" ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>CLEANING</dir>
+			<dir>special_chars_filter</dir>
+		</path>
+		<comment>Uses a special_chars_filter via filter_var function</comment>
+		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>VALIDATION</dir>
+			<dir>email_filter</dir>
+		</path>
+		<comment>Flushes content of $sanitized if the filter email_filter is not applied</comment>
+		<code>if (filter_var($tainted, FILTER_VALIDATE_EMAIL)) 
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+		<constraint type = "string" field=""/>
+		<isSafe safe = "0" needQuote = "0"/>
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>VALIDATION</dir>
+			<dir>number_float_filter</dir>
+		</path>
+		<comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
+		<code>if (filter_var($tainted, FILTER_VALIDATE_FLOAT)) 
+$checked_data = $tainted ;
+else
+$checked_data = "0" ;</code>
+		<constraint type = "int" field=""/>
+		<isSafe safe = "1" neeQuote = "0"/>
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>FILTER</dir>
+			<dir>VALIDATION</dir>
+			<dir>number_int_filter</dir>
+		</path>
+		<comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
+		<code>if (filter_var($tainted, FILTER_VALIDATE_INT)) 
+$checked_data = $tainted ;
+else
+$checked_data = "0" ;</code>
+		<constraint type = "int" field=""/>
+		<isSafe safe = "1" neeQuote = "0"/>
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>cast_float</dir>
+		</path>
+		<comment>sanitize : cast in float</comment>
+		<code>$checked_data =  (float) $tainted ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>cast_float_sort_of</dir>
+		</path>
+		<comment>sanitize : cast via += 0.0</comment>
+		<code>$checked_data =  $tainted ;
+$checked_data += 0.0 ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>cast_int</dir>
+		</path>
+		<comment>sanitize : cast into int</comment>
+		<code>$checked_data =  (int) $tainted ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>cast_int_sort_of</dir>
+		</path>
+		<comment>sanitize : cast via += 0</comment>
+		<code>$checked_data =  $tainted ;
+$checked_data += 0 ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>cast_int_sort_of2</dir>
+		</path>
+		<comment>sanitize : cast via += 0</comment>
+		<code>$checked_data =  $tainted + 0;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>settype_float</dir>
+		</path>
+		<comment>sanitize : settype (float)</comment>
+		<code>if(settype($tainted, "float"))
+$checked_data = $tainted ;
+else
+$checked_data = 0.0 ;</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>CAST</dir>
+			<dir>settype_int</dir>
+		</path>
+		<comment>sanitize : use of floatval</comment>
+		<code>if (settype($tainted, "integer"))
+$checked_data = $tainted ;
+else
+$checked_data = 0 ;
+</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>addslashes</dir>
+		</path>
+		<comment>sanitize : use of the function addslashes</comment>
+		<code>$checked_data = addslashes($tainted);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>no_sanitizing</dir>
+		</path>
+		<comment>sanitize : none</comment>
+		<code>$checked_data = $tainted;</code>
+		<constraint type = "" field = ""/>
+		<isSafe safe = "0" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>floatval</dir>
+		</path>
+		<comment>sanitize : use of floatval</comment>
+		<code>$checked_data = floatval($tainted);</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>htmlentities</dir>
+		</path>
+		<comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
+		<code>$checked_data = htmlentities($tainted, ENT_QUOTES);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.25</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>htmlspecialchars</dir>
+		</path>
+		<comment>sanitize : use of the function htmlspecialchars. Sanitizes the query but has a high chance to produce unexpected results</comment>
+		<code>$checked_data = htmlspecialchars($tainted, ENT_QUOTES);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.25</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>intval</dir>
+		</path>
+		<comment>sanitize : use of intval</comment>
+		<code>$checked_data = intval($tainted);</code>
+		<constraint type = "int" field = ""/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>mysql_real_escape_string</dir>
+		</path>
+		<comment>SANITIZE : use of mysql_real_escape string</comment>
+		<code>$checked_data = mysql_real_escape_string($tainted);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>preg_replace</dir>
+		</path>
+		<comment>SANITIZE : use of preg_replace</comment>
+		<code>$checked_data = preg_replace('/\'/', '', $tainted);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>preg_replace2</dir>
+		</path>
+		<comment>SANITIZE : use of  with another regex</comment>
+		<code>$checked_data = preg_replace('/\W/si','',$tainted);</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "1" needQuote = "1" />
+		<relevancy>0.5</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>ternary_white_list</dir>
+		</path>
+		<comment>sanitize : use of ternary condition</comment>
+		<code>$checked_data = $tainted == 'DESC' ? 'DESC' : 'ASC';</code>
+		<constraint type = "string" field = "ORDER_DIRECTION"/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>whitelist_using_array</dir>
+		</path>
+		<comment>SANITIZE : use in_array to check if $tainted is in the white list</comment>
+		<code>$legal_table =  array("users", "connexions");
+if (in_array($tainted, $legal_table, true)) {
+$checked_data = $tainted;
+} else {
+	$checked_data = $legal_table[0];
+}</code>
+		<constraint type = "string" field = "FROM"/>
+		<isSafe safe = "1" needQuote = "0" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>object</dir>
+			<dir>mysql_real_escape_string</dir>
+		</path>
+		<comment>sanitize : use mysql_real_escape_string via an object</comment>
+		<code>class Sanitize{
+	public function sanitize($input){
+		return mysql_real_escape_string($input) ;
+}
+}
+$temp = new Sanitize() ;
+$checked_data =  $temp->sanitize($tainted);	</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>object</dir>
+			<dir>mysql_real_escape_stringGetter</dir>
+		</path>
+		<comment>sanitize : use mysql_real_escape_string via an object and a classic getter</comment>
+		<code>class Sanitize{
+	
+	private $data;
+		
+	public function __construct($input){
+		$this->data = $input ;
+		}
+		
+	public function getData(){
+		return $this->data;
+		}
+		
+	public function sanitize(){
+		$this->data =  mysql_real_escape_string($this->data) ;
+	}
+}
+
+$sanitizer = new Sanitize($tainted) ;
+$sanitizer->sanitize();
+$checked_data =  $sanitizer->getData();	</code>
+		<constraint type = "string" field = ""/>
+		<isSafe safe = "0" needQuote = "1" />
+		<relevancy>1</relevancy>
+	</sample>
+	
+	
+</sanitize>
