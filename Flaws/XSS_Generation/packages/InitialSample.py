@@ -11,8 +11,9 @@ integer = "int"
 
 
 #Manages initial samples, which are created to generate final samples by combination
-class InitialSample :
-    def __init__(self, initialSample) :
+
+class InitialSample : #Initialize path,comment and relevancy parameters
+    def __init__(self, initialSample) : #XML tree in parameter
         self.path = []
         tree_path = initialSample.find("path").findall("dir")
         for dir in tree_path :
@@ -21,14 +22,14 @@ class InitialSample :
         self.comment = initialSample.find("comment").text
         self.relevancy = float(initialSample.find("relevancy").text)
 
-class InputSample(InitialSample) :
-    def __init__(self, initialSample) :
+class InputSample(InitialSample) : #Initialize the type of input and the code parameters of the class
+    def __init__(self, initialSample) : #XML tree in parameter
         InitialSample.__init__(self,initialSample)
         self.inputType = initialSample.find("inputType").text
         self.code = initialSample.find("code").text
 
-class Sanitize(InitialSample) :
-    def __init__(self, initialSample) :
+class Sanitize(InitialSample) : #Initialize rules, safety, code and escape
+    def __init__(self, initialSample) : #XML tree in parameter
         InitialSample.__init__(self,initialSample)
         self.code = initialSample.find("code").text
 
@@ -40,7 +41,7 @@ class Sanitize(InitialSample) :
             self.safe = int(safety.get("safe"))
 
             
-        #Rule that can be always be sanitize (/!\ Format)
+        #Rule that can be always sanitize (/!\ Format)
         self.rule1 = 0
         self.rule2 = 0
         self.rule3 = 0
@@ -94,18 +95,18 @@ class Sanitize(InitialSample) :
             self.property_CSS_context = int(safety.get("property_CSS_context"))
                 
 
-class File(InitialSample): 
-    def __init__(self, initialSample) :
+class File(InitialSample): #Load parameters and code beginning and end
+    def __init__(self, initialSample) : #Add parameters showing the beginning and the end of the sample
         InitialSample.__init__(self,initialSample)
         #print(os.getcwd())
         start = initialSample.find("start").text
         fileStart = open("samples/" + start, 'r')
-        self.start = fileStart.readlines()
+        self.start = fileStart.readlines() #Add start of the sample
         fileStart.close()
 
         end = initialSample.find("end").text
         fileEnd = open("samples/" + end, 'r')
-        self.end = fileEnd.readlines()
+        self.end = fileEnd.readlines() #Add end of the sample
         fileEnd.close()
 
 

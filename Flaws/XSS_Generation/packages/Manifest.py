@@ -17,7 +17,7 @@ class Manifest :
 
         path = "./generation"        
         if not os.path.exists(path):
-            os.makedirs(path)
+            os.makedirs(path) #Create the folder if not exist
             
         self.manifest = open("./generation/manifest.xml","w")
         self.manifest.write("<container>\n")
@@ -30,7 +30,7 @@ class Manifest :
                     "\t\t\t<date>" + date + "</date> \n" +
                     "\t\t\t<input>" + Input + "</input>\n" +
                     "\t\t</meta-data> \n \n")
-        self.manifest.write(metaData)
+        self.manifest.write(metaData) #Add metadata in the manifest
 
     def addFileToTestCase(self, path, flawLine) :
         if(flawLine == 0) :            

@@ -133,7 +133,7 @@ class FinalSample :
       FinalSample.unsafe_Sample +=1
       return 0
    
-   def findFlaw(self, fileName) :
+   def findFlaw(self, fileName) : #Find if a line in the file start by //flaw
       sample = open(fileName, 'r')
       i = 0
       for line in sample.readlines() :
