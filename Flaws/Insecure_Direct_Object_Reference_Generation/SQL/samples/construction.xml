@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<construction>
+  <sample>
+    <path>
+      <dir>non_prepared_query</dir>
+      <dir>no_right_verification</dir>
+    </path>
+    <comment>construction : no right verification</comment>
+    <code>$query = "SELECT * FROM COURSE where id=' $checked_data '";</code>
+    <isSafe safe = "0"/>
+    <isPrepared prepared = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>non_prepared_query</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : right verification</comment>
+    <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
+    <isSafe safe = "1"/>
+    <isPrepared prepared = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>prepared_query</dir>
+      <dir>no_right_verification</dir>
+    </path>
+    <comment>construction : prepared query and no right verification</comment>
+    <code>$query = "SELECT * FROM COURSE WHERE id=?";</code>
+    <isSafe safe = "0"/>
+    <isPrepared prepared = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>prepared_query</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : prepared query and right verification</comment>
+    <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
+    <isSafe safe = "1"/>
+    <isPrepared prepared = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+</construction>

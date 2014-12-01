@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<input>
+  <sample>
+    <path>
+      <dir>GET</dir>
+    </path>
+    <comment>input : reads the field UserData from the variable $_GET</comment>
+    <code>$taintedId = $_GET['id'];</code>
+    <inputType>variable : $_GET['UserData']</inputType>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>GET</dir>
+      <dir>CAST</dir>
+    </path>
+    <comment>input : reads the field UserData from the variable $_GET and uses intval() function</comment>
+    <code>$taintedId = intval($_GET[‘id’]);</code>
+    <inputType>variable : $_GET['UserData']</inputType>
+    <relevancy>1</relevancy>
+  </sample>
+</input>
