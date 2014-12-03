@@ -55,7 +55,7 @@ def generation(root,i):
         options[root[i].tag](root,i+1)
     else:
         sample = FinalSample(params)
-        path = sample.generate(manifest,params) 
+        path = sample.generate(manifest) 
 
 def main(argv) :
     #Constants
