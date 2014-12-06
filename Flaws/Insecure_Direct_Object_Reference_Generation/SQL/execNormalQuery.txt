@@ -1,0 +1,3 @@
+$conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); // Connection to the database (address, user, password)
+$res = mysql_query($query); 
+mysql_close($conn);

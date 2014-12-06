@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<sanitize>
+  <sample>
+    <path>
+      <dir>CAST</dir>
+    </path>
+    <comment>sanitize : cast into int</comment>
+    <code>$checked_data =  (int) $tainted ;</code>
+    <isSafe safe = "0"/>
+    <isBlock block = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>NONE</dir>
+    </path>
+    <comment>sanitize : NONE</comment>
+    <code> </code>
+    <isSafe safe = "0"/>
+    <isBlock block = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>ESAPI</dir>
+    </path>
+    <comment>sanitize : uses of ESAPI, an OWASP API</comment>
+    <code>$ESAPI = new ESAPI();
+ESAPI::setEncoder(new DefaultEncoder());
+ESAPI::setValidator(new DefaultValidator());
+
+//verifying the data with ESAPI
+if($ESAPI->validator->isValidNumber("Course ID", $taintedId, 18, 25, false)) {
+    $checked_data=$taintedId;
+// query + connexion/execute/deco
+//}</code>
+    <isSafe safe = "1"/>
+    <isBlock block = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>Indirect_reference</dir>
+    </path>
+    <comment>sanitize : uses indirect reference</comment>
+    <code>$course_array=array();
+//get the user id
+$user_id = intval($_SESSION[‘user_id’]);
+
+//creation of the references with only data allowed to the user
+$result = mysql_query("SELECT * FROM COURSE where course.allowed = {$user_id}");
+
+while ($row = mysql_fetch_array($result)){
+  $course_array[] = $result[‘id’];
+}
+
+$_SESSION[‘course_array’] = $course_array;
+if (isset($_SESSION[‘course_array’])){
+  $course_array = $_SESSION[‘course_array’];
+
+  if (isset($course_array[$taintedId])){
+
+    //indirect reference > get the right id
+    $checked_data = $course_array[$taintedId];
+// query + connexion/execute/deco
+//}</code>
+    <isSafe safe = "1"/>
+    <isBlock block = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>Whitelist</dir>
+    </path>
+    <comment>sanitize : uses a whitelist</comment>
+    <code>$whitelist =  array("4", "8", "15", "16", "23", "42");
+if (in_array($tainted, $whitelist, true)) {
+  $checked_data = $tainted;
+} else {
+  $checked_data = $whitelist[0];
+}</code>
+    <isSafe safe = "1"/>
+    <isBlock block = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+</sanitize>
