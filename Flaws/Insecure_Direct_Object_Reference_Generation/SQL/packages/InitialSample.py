@@ -8,7 +8,6 @@ noPrepared = "noPrepared"
 
 
 
-
 #Manages initial samples, which are created to generate final samples by combination
 class InitialSample :
     def __init__(self, initialSample) :

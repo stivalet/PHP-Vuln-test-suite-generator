@@ -1,8 +1,8 @@
 import os
 
-#select = 0
-#order = 0
-#order = "safety"
+select = 0
+order = 0
+safety = "safety"
 
 #Constants
 safe = "safe"
@@ -27,14 +27,14 @@ filePreparedQuery = open("./execPreparedQuery.txt", "r")
 execPreparedQuery = filePreparedQuery.readlines()
 filePreparedQuery.close()
 
-#def setRelevancy(R) :
-#   global select
-#   select = int(R)
+def setRelevancy(R) :
+   global select
+   select = int(R)
 
-#def setOrder(O) :
-#   if O==1 :
-#      global order
-#      order = safety
+def setOrder(O) :
+   if O==1 :
+      global order
+      order = safety
 
 
 #Manages final samples, by a combination of 3 initialSample
@@ -57,14 +57,14 @@ class FinalSample :
         FinalSample.unsafe_Sample +=1
         return 0
 
-    #def findFlaw(self, fileName) :
-    #   sample = open(fileName, 'r')
-    #   i = 0
-    #   for line in sample.readlines() :
-    #      i += 1
-    #      if line[:6] == "//flaw" :
-    #         break
-    #   return i + 1
+    def findFlaw(self, fileName) :
+       sample = open(fileName, 'r')
+       i = 0
+       for line in sample.readlines() :
+          i += 1
+          if line[:6] == "//flaw" :
+             break
+       return i + 1
 
     def testIsBlock(self) :
         if self.sanitize.isBlock == block :
@@ -77,16 +77,16 @@ class FinalSample :
         return 0
 
     #Generates final sample
-    def generate(self) :
+    def generate(self, manifest) :
 
         #test if the samples need to be generated
-        #input_R = self.input.relevancy
-        #sanitize_R = self.sanitize.relevancy
-        #construct_R = self.construct.relevancy
+        input_R = self.input.relevancy
+        sanitize_R = self.sanitize.relevancy
+        construct_R = self.construct.relevancy
 
         #Relevancy test
-        #if(input_R * sanitize_R * construct_R < select) :
-        #    return 0
+        if(input_R * sanitize_R * construct_R < select) :
+            return 0
 
         #Coherence test
         #if ( self.sanitize.constraintType != ""
@@ -97,10 +97,10 @@ class FinalSample :
         #     and self.sanitize.constraintField != self.construct.constraintField ) :
         #    return 0
 
-
-        safe = self.testSafety(); #1 : safe ,0 : unsafe
-        block = self.testIsBlock(); #1 : block, 0 : noBlock
-        prepared = self.testIsPrepared(); #1 : prepared, 0 : noPrepared
+        #Build constraints
+        safe = self.testSafety() #1 : safe ,0 : unsafe
+        block = self.testIsBlock() #1 : block, 0 : noBlock
+        prepared = self.testIsPrepared() #1 : prepared, 0 : noPrepared
 
 
         #Creates folder tree and sample files if they don't exists
@@ -109,11 +109,11 @@ class FinalSample :
             os.makedirs(path)
 
         #sort by safe/unsafe
-        #if order == safety :
-        #   if safe :
-        #      path = path + "/safe"
-        #   else :
-        #      path = path + "/unsafe"
+        if order == safety :
+           if safe :
+              path = path + "/safe"
+           else :
+              path = path + "/unsafe"
 
         if not os.path.exists(path):
            os.makedirs(path)
@@ -202,12 +202,12 @@ class FinalSample :
             for line in execNormalQuery :
                 sample.write(line)
 
-        sample.write("\n ?>")
+        sample.write("\n?>")
         sample.close()
 
-        #if safe :
-        #    flawLine = 0
-        #else :
-        #    flawLine = self.findFlaw(name)
+        if safe :
+            flawLine = 0
+        else :
+            flawLine = self.findFlaw(name)
 
-        #manifest.addFileToTestCase(name, flawLine)
+        manifest.addFileToTestCase(name, flawLine)
