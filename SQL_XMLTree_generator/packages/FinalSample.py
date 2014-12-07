@@ -169,12 +169,19 @@ class FinalSample :
         
         file_name=""
         for param in self.params:
-           for dir in self.params[param].path :
-              path = path + "/" + dir
-              if not os.path.exists(path):
-                 os.makedirs(path)
            if(isinstance(self.params[param],Sanitize)):
+              if(len(self.params[param].path)>1):
+                 for i in range(len(self.params[param].path)-1) :
+                    dir = self.params[param].path[i]
+                    path = path + "/" + dir
+                    if not os.path.exists(path):
+                       os.makedirs(path)
               file_name=self.params[param].path[-1]
+           else:
+              for dir in self.params[param].path :
+                 path = path + "/" + dir
+                 if not os.path.exists(path):
+                    os.makedirs(path)
 
         name = path + "/" + file_name + ".php"
         sample = open(name, "w")
