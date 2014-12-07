@@ -7,7 +7,7 @@ class FileManager :
         if not os.path.exists(file.path):
             os.makedirs(file.path)
 
-        createdFile = open(path+"/"+name,"w")
+        createdFile = open(file.path+"/"+file.name,"w")
         createdFile.write(file.content)
         createdFile.close()
 

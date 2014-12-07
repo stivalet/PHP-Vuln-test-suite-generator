@@ -101,7 +101,7 @@ class Sanitize(InitialSample) : #Initialize rules, safety, code and escape
         if safety.get("rule5") != None :
             self.rule5 = int(safety.get("rule5"))
             
-        addSafetyAttributes(self,initialSample)
+        self.addSafetyAttributes(initialSample)
 
 
 class Flaws(InitialSample): #Load parameters and code beginning and end
@@ -118,6 +118,6 @@ class Flaws(InitialSample): #Load parameters and code beginning and end
         self.end = fileEnd.readlines() #Add end of the sample
         fileEnd.close()
 
-        addSafetyAttributes(self,initialSample)
+        self.addSafetyAttributes(initialSample)
         
         
