@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <sanitize>
+	
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -13,11 +14,12 @@ if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
 $checked_data = $sanitized ;
 else
 $checked_data = "" ;</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "0" />
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+		<!-- Remove all characters except letters, digits and ! # $ % & ' * + - / = ? ^ _ ` { | } ~ @ . [ ]
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -26,11 +28,17 @@ $checked_data = "" ;</code>
 		</path>
 		<comment>Uses a full_special_chars_filter via filter_var function</comment>
 		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>0.5</relevancy>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- Equivalent to calling htmlspecialchars() with ENT_QUOTES set		
+		& -> &amp; 
+		" -> &quot; when ENT_NOQUOTES is not set.
+		' -> &#039; (or &apos;) only when ENT_QUOTES is set.
+		< -> &lt;
+		> -> &gt;
+		-->
+		<relevancy>1</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -39,11 +47,13 @@ $checked_data = "" ;</code>
 		</path>
 		<comment>Uses a magic_quotes_filter via filter_var function</comment>
 		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
+		<safety doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0"/>
+		<!-- Apply addslashes
+		Add \ before ' " \ NULL		
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -56,11 +66,13 @@ if (filter_var($sanitized, FILTER_VALIDATE_FLOAT))
 $checked_data = $sanitized ;
 else
 $checked_data = "0" ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
+		<!-- Remove all characters except digits, +- and optionally .,eE. 
+		- can be dangerous
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -73,11 +85,13 @@ if (filter_var($sanitized, FILTER_VALIDATE_INT))
 $checked_data = $sanitized ;
 else
 $checked_data = "0" ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
+		<!--  	Remove all characters except digits, + and -
+		- can be dangerous
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>FILTER</dir>
@@ -86,8 +100,10 @@ $checked_data = "0" ;</code>
 		</path>
 		<comment>Uses a special_chars_filter via filter_var function</comment>
 		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
+		<safety doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- HTML-escape ' " < > & and characters with ASCII value less than 32, 
+		optionally strip or encode other special characters. 
+		-->		
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -102,8 +118,9 @@ $checked_data = "0" ;</code>
 $checked_data = $sanitized ;
 else
 $checked_data = "" ;</code>
-		<constraint type = "string" field=""/>
-		<isSafe safe = "0" needQuote = "0"/>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+		<!-- Remove all characters except letters, digits and ! # $ % & ' * + - / = ? ^ _ ` { | } ~ @ . [ ]
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -118,8 +135,10 @@ $checked_data = "" ;</code>
 $checked_data = $tainted ;
 else
 $checked_data = "0" ;</code>
-		<constraint type = "int" field=""/>
-		<isSafe safe = "1" neeQuote = "0"/>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
+		<!-- Remove all characters except digits, +- and optionally .,eE. 
+		- can be dangerous
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -134,8 +153,10 @@ $checked_data = "0" ;</code>
 $checked_data = $tainted ;
 else
 $checked_data = "0" ;</code>
-		<constraint type = "int" field=""/>
-		<isSafe safe = "1" neeQuote = "0"/>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
+		<!--  	Remove all characters except digits, + and -
+		- can be dangerous
+		-->
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -146,9 +167,8 @@ $checked_data = "0" ;</code>
 		</path>
 		<comment>sanitize : cast in float</comment>
 		<code>$checked_data =  (float) $tainted ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe = "1"/>
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
@@ -159,8 +179,7 @@ $checked_data = "0" ;</code>
 		<comment>sanitize : cast via += 0.0</comment>
 		<code>$checked_data =  $tainted ;
 $checked_data += 0.0 ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
+		<safety safe = "1"/>
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -171,9 +190,8 @@ $checked_data += 0.0 ;</code>
 		</path>
 		<comment>sanitize : cast into int</comment>
 		<code>$checked_data =  (int) $tainted ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe = "1"/>
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
@@ -184,8 +202,7 @@ $checked_data += 0.0 ;</code>
 		<comment>sanitize : cast via += 0</comment>
 		<code>$checked_data =  $tainted ;
 $checked_data += 0 ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
+		<safety safe = "1"/>
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -196,8 +213,7 @@ $checked_data += 0 ;</code>
 		</path>
 		<comment>sanitize : cast via += 0</comment>
 		<code>$checked_data =  $tainted + 0;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
+		<safety safe = "1"/>
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -211,9 +227,8 @@ $checked_data += 0 ;</code>
 $checked_data = $tainted ;
 else
 $checked_data = 0.0 ;</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe = "1"/>
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
@@ -227,21 +242,21 @@ $checked_data = $tainted ;
 else
 $checked_data = 0 ;
 </code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe = "1"/>
+		<relevancy>0.5</relevancy>
 	</sample>
-	
+
 	<sample>
 		<path>
 			<dir>addslashes</dir>
 		</path>
 		<comment>sanitize : use of the function addslashes</comment>
 		<code>$checked_data = addslashes($tainted);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>1</relevancy>
-	</sample>
+		<safety doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0"/>
+		<!-- Add \ before ' " \ NULL		
+		-->
+		<relevancy>0.5</relevancy>
+	</sample>	
 	
 	<sample>
 		<path>
@@ -249,8 +264,7 @@ $checked_data = 0 ;
 		</path>
 		<comment>sanitize : none</comment>
 		<code>$checked_data = $tainted;</code>
-		<constraint type = "" field = ""/>
-		<isSafe safe = "0" needQuote = "0" />
+		<safety />
 		<relevancy>1</relevancy>
 	</sample>
 	
@@ -260,9 +274,8 @@ $checked_data = 0 ;
 		</path>
 		<comment>sanitize : use of floatval</comment>
 		<code>$checked_data = floatval($tainted);</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe = "1" />
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
@@ -271,20 +284,28 @@ $checked_data = 0 ;
 		</path>
 		<comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
 		<code>$checked_data = htmlentities($tainted, ENT_QUOTES);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>0.25</relevancy>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- This function is identical to htmlspecialchars() in all ways, except with htmlentities(),
+		all characters which have HTML character entity equivalents are translated into these entities. 
+		-->
+		<relevancy>1</relevancy>
 	</sample>
 	
 	<sample>
 		<path>
 			<dir>htmlspecialchars</dir>
 		</path>
-		<comment>sanitize : use of the function htmlspecialchars. Sanitizes the query but has a high chance to produce unexpected results</comment>
+		<comment>sanitize : use of the function htmlspecialchars.</comment>
 		<code>$checked_data = htmlspecialchars($tainted, ENT_QUOTES);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>0.25</relevancy>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- translations performed : 
+		& -> &amp; 
+		" -> &quot; when ENT_NOQUOTES is not set.
+		' -> &#039; (or &apos;) only when ENT_QUOTES is set.
+		< -> &lt;
+		> -> &gt;
+		-->	
+		<relevancy>1</relevancy>
 	</sample>
 	
 	<sample>
@@ -293,9 +314,8 @@ $checked_data = 0 ;
 		</path>
 		<comment>sanitize : use of intval</comment>
 		<code>$checked_data = intval($tainted);</code>
-		<constraint type = "int" field = ""/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<safety safe= "1"/>
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
@@ -304,9 +324,19 @@ $checked_data = 0 ;
 		</path>
 		<comment>SANITIZE : use of mysql_real_escape string</comment>
 		<code>$checked_data = mysql_real_escape_string($tainted);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>1</relevancy>
+		<safety escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0"/>
+		<!--
+		mysql_real_escape_string() calls MySQL's library function mysql_real_escape_string,
+		which prepends backslashes to the following characters:
+		\x00
+		\n 
+		\r
+		\
+		'
+		"
+		\x1a 
+		-->
+		<relevancy>0.25</relevancy>
 	</sample>
 	
 	<sample>
@@ -315,8 +345,8 @@ $checked_data = 0 ;
 		</path>
 		<comment>SANITIZE : use of preg_replace</comment>
 		<code>$checked_data = preg_replace('/\'/', '', $tainted);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
+		<safety simpleQuote = "1" />
+		<!-- delete all ' -->
 		<relevancy>0.5</relevancy>
 	</sample>
 	
@@ -326,86 +356,51 @@ $checked_data = 0 ;
 		</path>
 		<comment>SANITIZE : use of  with another regex</comment>
 		<code>$checked_data = preg_replace('/\W/si','',$tainted);</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "1" needQuote = "1" />
+		<safety safe="1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5 ="1" />
+		<!-- delete all but alphanumeric character and _ (seems ok for OWASP)
+		\W Match a non-word character (a "word" character is alphanumeric plus "_")
+		-->
+		<relevancy>0.5</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>urlencode</dir>
+		</path>
+		<comment>SANITIZE : use of urlencode</comment>
+		<code>$checked_data = urlencode($tainted);</code>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- replace all non-alphanumeric characters except -_. by %HH and space are remplaced by +
+		"-" can break out from unquoted attributes (rule 2->5) Pending for test... -->
 		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
 		<path>
-			<dir>ternary_white_list</dir>
+			<dir>rawurlencode</dir>
 		</path>
-		<comment>sanitize : use of ternary condition</comment>
-		<code>$checked_data = $tainted == 'DESC' ? 'DESC' : 'ASC';</code>
-		<constraint type = "string" field = "ORDER_DIRECTION"/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<comment>SANITIZE : use of rawurlencode</comment>
+		<code>$checked_data = rawurlencode($tainted);</code>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+		<!-- replace all non-alphanumeric characters except -_.~ (~ are no longer encode in 5.3.4) by %HH
+		"-" can break out from unquoted attributes (rule 5) Pending for test... -->
+		<relevancy>0.5</relevancy>
 	</sample>
 	
 	<sample>
 		<path>
-			<dir>whitelist_using_array</dir>
+			<dir>http_build_query</dir>
 		</path>
-		<comment>SANITIZE : use in_array to check if $tainted is in the white list</comment>
-		<code>$legal_table =  array("users", "connexions");
-if (in_array($tainted, $legal_table, true)) {
-$checked_data = $tainted;
-} else {
-	$checked_data = $legal_table[0];
-}</code>
-		<constraint type = "string" field = "FROM"/>
-		<isSafe safe = "1" needQuote = "0" />
-		<relevancy>1</relevancy>
+		<comment>SANITIZE : use of http_build_query</comment>
+		<code>$checked_data = http_build_query($tainted);</code>
+		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1" />
+		<!-- Generates a URL-encoded query string from the associative (or indexed) array provided. 
+		Pending for test
+		-->
+		<relevancy>0.5</relevancy>
 	</sample>
 	
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>mysql_real_escape_string</dir>
-		</path>
-		<comment>sanitize : use mysql_real_escape_string via an object</comment>
-		<code>class Sanitize{
-	public function sanitize($input){
-		return mysql_real_escape_string($input) ;
-}
-}
-$temp = new Sanitize() ;
-$checked_data =  $temp->sanitize($tainted);	</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>1</relevancy>
-	</sample>
 	
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>mysql_real_escape_stringGetter</dir>
-		</path>
-		<comment>sanitize : use mysql_real_escape_string via an object and a classic getter</comment>
-		<code>class Sanitize{
-	
-	private $data;
-		
-	public function __construct($input){
-		$this->data = $input ;
-		}
-		
-	public function getData(){
-		return $this->data;
-		}
-		
-	public function sanitize(){
-		$this->data =  mysql_real_escape_string($this->data) ;
-	}
-}
-
-$sanitizer = new Sanitize($tainted) ;
-$sanitizer->sanitize();
-$checked_data =  $sanitizer->getData();	</code>
-		<constraint type = "string" field = ""/>
-		<isSafe safe = "0" needQuote = "1" />
-		<relevancy>1</relevancy>
-	</sample>
 	
 	
 </sanitize>

@@ -79,6 +79,7 @@ def generateFlaw(kind, relevancy, order) :
         for Input in tab_input :
             manifest.beginTestCase(Input.inputType)
             for sanitize in tab_sanitize :
+                sample.kind = kind
                 sample = FinalSample(construct, Input, sanitize)
                 path = sample.generate(manifest)            
             manifest.endTestCase()

@@ -1,4 +1,5 @@
 import os
+from .InitialSample import *
 
 select = 0
 order = 0
@@ -10,9 +11,7 @@ unsafe = "unsafe"
 needQuote = "needQuote"
 quote = "quote"
 noQuote = "noQuote"
-
 integer = "int"
-
 safety = "safety"
 
 
@@ -44,27 +43,48 @@ class FinalSample :
     unsafe_Sample = 0
     
     def __init__(self, params) :
-        self.construct = params["construction"]
-        self.input = params["input"]
-        self.sanitize = params["sanitize"]
+        #self.construct = params["construction"]
+        #self.input = params["input"]
+        #self.sanitize = params["sanitize"]
+        self.params=params
 
     def testSafety(self) :
-        if self.sanitize.isSafe == safe :
-            FinalSample.safe_Sample +=1
-            return 1
-        if self.construct.isSafe == safe :
-            FinalSample.safe_Sample +=1
-            return 1
-        if self.sanitize.isSafe == needQuote and self.construct.isSafe == quote :
-            FinalSample.safe_Sample +=1
-            return 1
-        #case of pg_escape_literal
-        if self.sanitize.isSafe == noQuote and self.construct.isSafe == 0 :
-            FinalSample.safe_Sample +=1
-            return 1
-
-        FinalSample.unsafe_Sample +=1
-        return 0
+       #if self.sanitize.isSafe == safe :
+       #    FinalSample.safe_Sample +=1
+       #    return 1
+       #if self.construct.isSafe == safe :
+       #    FinalSample.safe_Sample +=1
+       #    return 1
+       #if self.sanitize.isSafe == needQuote and self.construct.isSafe == quote :
+       #    FinalSample.safe_Sample +=1
+       #    return 1
+       ##case of pg_escape_literal
+       #if self.sanitize.isSafe == noQuote and self.construct.isSafe == 0 :
+       #    FinalSample.safe_Sample +=1
+       #    return 1
+       for param in self.params:
+          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == safe):
+              FinalSample.safe_Sample +=1
+              #print("ok1\n")
+              return 1
+          if(isinstance(self.params[param],Construction) and self.params[param].isSafe == safe):
+              FinalSample.safe_Sample +=1
+              #print("ok2\n")
+              return 1
+          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == needQuote):
+              for param2 in self.params:
+                 if(isinstance(self.params[param2],Construction) and self.params[param2].isSafe == quote):
+                    FinalSample.safe_Sample +=1
+                    #print("ok3\n")
+                    return 1
+          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == noQuote):
+              for param2 in self.params:
+                 if(isinstance(self.params[param],Construction) and self.params[param] and self.params[param].isSafe == 0):
+                    FinalSample.safe_Sample +=1
+                    #print("ok4\n")
+                    return 1
+       FinalSample.unsafe_Sample +=1
+       return 0 
 
     def findFlaw(self, fileName) :
        sample = open(fileName, 'r')
@@ -77,26 +97,40 @@ class FinalSample :
 
 
     #Generates final sample
-    def generate(self, manifest, params) :
+    def generate(self, manifest) :
 
-        #test if the samples need to be generated
-        input_R = self.input.relevancy
-        sanitize_R = self.sanitize.relevancy
-        construct_R = self.construct.relevancy
+        ##test if the samples need to be generated
+        #input_R = self.input.relevancy
+        #sanitize_R = self.sanitize.relevancy
+        #construct_R = self.construct.relevancy
 
-        #Relevancy test
-        if(input_R * sanitize_R * construct_R < select) :
-            return 0
+        ##Relevancy test
+        #if(input_R * sanitize_R * construct_R < select) :
+        #    return 0
+        relevancy=1
+        for param in self.params:
+            relevancy*=self.params[param].relevancy
+            if(relevancy<select):
+                return 0 
 
-        #Coherence test
-        if ( self.sanitize.constraintType != ""
-             and self.sanitize.constraintType != self.construct.constraintType ) :
-            return 0
+        ##Coherence test
+        #if ( self.sanitize.constraintType != ""
+        #     and self.sanitize.constraintType != self.construct.constraintType ) :
+        #    return 0
 
-        if ( self.sanitize.constraintField != ""
-             and self.sanitize.constraintField != self.construct.constraintField ) :
-            return 0
+        #if ( self.sanitize.constraintField != ""
+        #     and self.sanitize.constraintField != self.construct.constraintField ) :
+        #    return 0
 
+        for param in self.params:
+            if(isinstance(self.params[param],Sanitize) and self.params[param].constraintType != ""):
+                for param2 in self.params:
+                    if(isinstance(self.params[param2],Construction) and (self.params[param].constraintType != self.params[param2].constraintType)):
+                        return 0
+            if(isinstance(self.params[param],Sanitize) and self.params[param].constraintField != ""):
+                for param2 in self.params:
+                    if(isinstance(self.params[param2],Construction) and (self.params[param].constraintField != self.params[param2].constraintField)):
+                        return 0
 
         safe = self.testSafety();
 
@@ -117,23 +151,39 @@ class FinalSample :
            os.makedirs(path)
 
         
-        for dir in self.construct.path :
-            path = path + "/" + dir
-            if not os.path.exists(path):
-               os.makedirs(path)
+        #for dir in self.construct.path :
+        #    path = path + "/" + dir
+        #    if not os.path.exists(path):
+        #       os.makedirs(path)
 
-        for dir in self.input.path:
-            path = path + "/" + dir
-            if not os.path.exists(path):
-               os.makedirs(path)
+        #for dir in self.input.path:
+        #    path = path + "/" + dir
+        #    if not os.path.exists(path):
+        #       os.makedirs(path)
 
-        for i in range(len(self.sanitize.path)-1) :
-            dir = self.sanitize.path[i]
-            path = path + "/" + dir
-            if not os.path.exists(path):
-               os.makedirs(path)
-            
-        name = path + "/" + self.sanitize.path[-1] + ".php"
+        #for i in range(len(self.sanitize.path)-1) :
+        #    dir = self.sanitize.path[i]
+        #    path = path + "/" + dir
+        #    if not os.path.exists(path):
+        #       os.makedirs(path)
+        
+        file_name=""
+        for param in self.params:
+           if(isinstance(self.params[param],Sanitize)):
+              if(len(self.params[param].path)>1):
+                 for i in range(len(self.params[param].path)-1) :
+                    dir = self.params[param].path[i]
+                    path = path + "/" + dir
+                    if not os.path.exists(path):
+                       os.makedirs(path)
+              file_name=self.params[param].path[-1]
+           else:
+              for dir in self.params[param].path :
+                 path = path + "/" + dir
+                 if not os.path.exists(path):
+                    os.makedirs(path)
+
+        name = path + "/" + file_name + ".php"
         sample = open(name, "w")
 
         #Adds comments
@@ -144,12 +194,10 @@ class FinalSample :
         
 
         sample.write("<?php \n")
-        comment = ( "/*"
-                       + commentSafe + "\n"
-                       + self.construct.comment + "\n"
-                       + self.input.comment + "\n"
-                       + self.sanitize.comment 
-                       + " */")
+        comment = "/*" + commentSafe + "\n"
+        for param in self.params:
+            comment+=self.params[param].comment+"\n"               
+        comment += " */"
         sample.write(comment)
 
         #Writes copyright statement in the sample file
@@ -161,8 +209,8 @@ class FinalSample :
         sample.write("\n\n")
         
         code=""
-        for param in params:
-               	code+=(params[param].code+"\n")
+        for param in self.params:
+               	code+=(self.params[param].code+"\n")
         sample.write(code)
 
         #Adds the code for query execution
