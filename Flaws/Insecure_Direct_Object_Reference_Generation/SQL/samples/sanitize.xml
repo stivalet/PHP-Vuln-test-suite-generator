@@ -5,7 +5,7 @@
       <dir>CAST</dir>
     </path>
     <comment>sanitize : cast into int</comment>
-    <code>$checked_data =  (int) $tainted ;</code>
+    <code>$checked_data =  (int) $tainted;</code>
     <isSafe safe = "0"/>
     <isBlock block = "0"/>
     <relevancy>1</relevancy>
@@ -16,7 +16,7 @@
       <dir>NONE</dir>
     </path>
     <comment>sanitize : NONE</comment>
-    <code> </code>
+    <code>$checked_data = $tainted</code>
     <isSafe safe = "0"/>
     <isBlock block = "0"/>
     <relevancy>1</relevancy>
@@ -32,8 +32,8 @@ ESAPI::setEncoder(new DefaultEncoder());
 ESAPI::setValidator(new DefaultValidator());
 
 //verifying the data with ESAPI
-if($ESAPI->validator->isValidNumber("Course ID", $taintedId, 18, 25, false)) {
-    $checked_data=$taintedId;
+if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
+    $checked_data=$tainted;
 // query + connexion/execute/deco
 //}</code>
     <isSafe safe = "1"/>
@@ -64,7 +64,7 @@ if (isset($_SESSION[‘course_array’])){
   if (isset($course_array[$taintedId])){
 
     //indirect reference > get the right id
-    $checked_data = $course_array[$taintedId];
+    $checked_data = $course_array[$tainted];
 // query + connexion/execute/deco
 //}</code>
     <isSafe safe = "1"/>
