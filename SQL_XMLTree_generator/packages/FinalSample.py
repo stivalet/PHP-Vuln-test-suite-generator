@@ -29,10 +29,9 @@ def setRelevancy(R) :
    global select
    select = int(R)
    
-def setOrder(O) :
-   if O==1 :
-      global order
-      order = safety
+def setOrder() :
+   global order
+   order = safety
 
 
 #Manages final samples, by a combination of 3 initialSample        
@@ -167,23 +166,13 @@ class FinalSample :
         #    if not os.path.exists(path):
         #       os.makedirs(path)
         
-        file_name=""
         for param in self.params:
-           if(isinstance(self.params[param],Sanitize)):
-              if(len(self.params[param].path)>1):
-                 for i in range(len(self.params[param].path)-1) :
-                    dir = self.params[param].path[i]
-                    path = path + "/" + dir
-                    if not os.path.exists(path):
-                       os.makedirs(path)
-              file_name=self.params[param].path[-1]
-           else:
-              for dir in self.params[param].path :
-                 path = path + "/" + dir
-                 if not os.path.exists(path):
-                    os.makedirs(path)
+           for dir in self.params[param].path :
+              path = path + "/" + dir
+              if not os.path.exists(path):
+                 os.makedirs(path)
 
-        name = path + "/" + file_name + ".php"
+        name = path + ".php"
         sample = open(name, "w")
 
         #Adds comments

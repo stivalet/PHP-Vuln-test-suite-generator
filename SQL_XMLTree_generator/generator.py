@@ -76,7 +76,7 @@ def main(argv) :
         if opt in ("-r", "--relevancy"):
             setRelevancy(arg)
         elif opt in ("-o", "--order") :
-            setOrder(arg)
+            setOrder()
 
     root=ET.parse('output.xml').getroot()
     initialization(root,0)
