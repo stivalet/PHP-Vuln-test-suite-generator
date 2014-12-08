@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<construction>
+  <sample>
+    <path>
+      <dir>concatenation</dir>
+    </path>
+    <comment>construction : concatenation</comment>
+    <code>$query="//Course[@id=". $checked_data . "]";</code>
+    <isSafe safe = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>concatenation</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : concatenation and checks if the user is allowed to see this data</comment>
+    <code>$query="//Course[@id=". $checked_data . "and @allowed=". $_SESSION[userid] . "]";</code>
+    <isSafe safe = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+</construction>

@@ -1,0 +1,3 @@
+$xml = simplexml_load_file("users.xml");
+//flaw
+$res=$xml->xpath($query);

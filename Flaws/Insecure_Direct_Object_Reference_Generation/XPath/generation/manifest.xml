@@ -1,0 +1,122 @@
+<container>
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_GET['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/GET/CAST/NONE.php" language="PHP"> 
+			<flaw line="17" name = "Failure to Secure Direct Object Reference"/> 
+		</file> 
+
+		<file path="./generation/concatenation/GET/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_GET['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/GET/CAST/NONE.php" language="PHP"> 
+			<flaw line="16" name = "Failure to Secure Direct Object Reference"/> 
+		</file> 
+
+		<file path="./generation/concatenation/GET/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_POST['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/POST/CAST/NONE.php" language="PHP"> 
+			<flaw line="17" name = "Failure to Secure Direct Object Reference"/> 
+		</file> 
+
+		<file path="./generation/concatenation/POST/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_POST['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/POST/CAST/NONE.php" language="PHP"> 
+			<flaw line="16" name = "Failure to Secure Direct Object Reference"/> 
+		</file> 
+
+		<file path="./generation/concatenation/POST/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_GET['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/right_verification/GET/CAST/NONE.php" language="PHP"/> 
+
+		<file path="./generation/concatenation/right_verification/GET/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_GET['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/right_verification/GET/CAST/NONE.php" language="PHP"/> 
+
+		<file path="./generation/concatenation/right_verification/GET/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_POST['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/right_verification/POST/CAST/NONE.php" language="PHP"/> 
+
+		<file path="./generation/concatenation/right_verification/POST/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+	<testcase> 
+		<meta-data> 
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> 
+			<date>08/12/14</date> 
+			<input>variable : $_POST['UserData']</input>
+		</meta-data> 
+ 
+		<file path="./generation/concatenation/right_verification/POST/CAST/NONE.php" language="PHP"/> 
+
+		<file path="./generation/concatenation/right_verification/POST/CAST/WhiteList.php" language="PHP"/> 
+
+	</testcase> 
+
+
+</container>

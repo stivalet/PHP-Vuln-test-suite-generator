@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<sanitize>
+  <sample>
+    <path>
+      <dir>NONE</dir>
+    </path>
+    <comment>sanitize : NONE</comment>
+    <code>$checked_data = $tainted</code>
+    <isSafe safe = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>WhiteList</dir>
+    </path>
+    <comment>sanitize : uses of a WhiteList</comment>
+    <code>$whitelist =  array("4", "8", "15", "16", "23", "42");
+if (in_array($tainted, $whitelist, true)) {
+$checked_data = $tainted;
+} else {
+$checked_data = $whitelist[0];
+}</code>
+    <isSafe safe = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+</sanitize>
