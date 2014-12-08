@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<sanitize>
+  <sample>
+    <path>
+      <dir>NONE</dir>
+    </path>
+    <comment>sanitize : NONE</comment>
+    <code>$checked_data = $tainted</code>
+    <isSafe safe = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>FUNCTION preg_replace</dir>
+    </path>
+    <comment>sanitize : uses of the function preg_replace</comment>
+    <code>$checked_data = preg_replace("/[^a-z0-9_-]/i", "_", $tainted);</code>
+    <isSafe safe = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <path>
+      <dir>WHITELIST</dir>
+    </path>
+    <comment>sanitize : uses of a whitelist</comment>
+    <code>$whitelist =  array("file1", "file2");
+if (in_array($tainted, $whitelist, true)) {
+$checked_data = $tainted;
+} else {
+$checked_data = $whitelist[0];
+}</code>
+    <isSafe safe = "1"/>
+    <relevancy>1</relevancy>
+  </sample>
+</sanitize>
