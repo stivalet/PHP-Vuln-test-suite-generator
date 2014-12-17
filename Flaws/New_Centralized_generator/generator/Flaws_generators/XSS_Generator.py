@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 import sys
 from .InitializeSample import *
+from Classes.File import *
 
 header = open("./rights.txt", "r")
 copyright = header.readlines()
@@ -116,13 +117,15 @@ class GeneratorXSS :
 
         #Generates final sample
     def generate(self) :
-        for f in ET.parse('./XML/file.xml').getroot():
+        for f in ET.parse(self.fileManager.getXML("flaw")).getroot():
             flaw=Flaws(f)
-            for i in ET.parse('./XML/input.xml').getroot():
+            for i in ET.parse(self.fileManager.getXML("input")).getroot():
                 Input=InputSample(i)
                 self.manifest.beginTestCase(Input.inputType)
-                for s in ET.parse('./XML/sanitize.xml').getroot():
+                for s in ET.parse(self.fileManager.getXML("sanitize")).getroot():
                     sanitize=Sanitize(s)
+
+                    file=File()
 
                     #test if the samples need to be generated
                     input_R = Input.relevancy
@@ -136,78 +139,61 @@ class GeneratorXSS :
                     safe = self.testSafety(flaw,sanitize);
 
                     #Creates folder tree and sample files if they don't exists
-                    path = "./generation"
-
+                    file.addPath("generation")
 
                     #sort by safe/unsafe
                     if self.ordered == True :
                      if safe :
-                        path = path + "/safe"
+                        file.addPath("safe")
                      else :
-                        path = path + "/unsafe"
-
-                    if not os.path.exists(path):
-                     os.makedirs(path)
+                        file.addPath("unsafe")
 
                     for dir in flaw.path :
-                     path = path + "/" + dir
-                     if not os.path.exists(path):
-                        os.makedirs(path)
+                     file.addPath(dir)
 
                     for dir in Input.path:
-                     path = path + "/" + dir
-                     if not os.path.exists(path):
-                        os.makedirs(path)
+                     file.addPath(dir)
 
                     for i in range(len(sanitize.path)-1) :
                      dir = sanitize.path[i]
-                     path = path + "/" + dir
-                     if not os.path.exists(path):
-                        os.makedirs(path)
+                     file.addPath(dir)
 
-                    name = path + "/" + sanitize.path[-1] + ".php"
-                    sample = open(name, "w")
+                    file.setName(sanitize.path[-1])
 
+                    file.addContent("<!-- \n")
+                    
                     #Adds comments
                     if safe :
-                     commentSafe = "Safe sample"
+                     file.addContent("Safe sample")
                     else :
-                     commentSafe = "Unsafe sample"
+                     file.addContent("Unsafe sample")
 
-
-                    sample.write("<!-- \n")
-                    comment = ( commentSafe + "\n"
-                              + flaw.comment + "\n"
-                              + Input.comment + "\n"
-                              + sanitize.comment
-                              + " -->")
-                    sample.write(comment)
+                    file.addContent(flaw.comment+"\n"+Input.comment+"\n"+sanitize.comment+"\n"+" -->")
 
                     #Writes copyright statement in the sample file
-                    sample.write("\n\n")
+                    file.addContent("\n\n")
                     for line in copyright :
-                     sample.write(line)
+                     file.addContent(line)
 
                     #Writes the code in the sample file
-                    sample.write("\n\n")
+                    file.addContent("\n\n")
 
                     for line in flaw.start :
-                     sample.write(line)
+                     file.addContent(line)
 
-                    code  = (Input.code + "\n"
-                           + sanitize.code + "\n")
-                    sample.write(code)
+                    file.addContent(Input.code + "\n")
+                    file.addContent(sanitize.code + "\n")
 
                     for line in flaw.end :
-                     sample.write(line)
+                     file.addContent(line)
 
-                    sample.close()
+                    self.fileManager.createFile(file)
 
                     if safe :
                      flawLine = 0
                     else :
-                     flawLine = self.findFlaw(name)
+                     flawLine = self.findFlaw(file.getPath()+"/"+file.getName())
 
-                    self.manifest.addFileToTestCase(name, flawLine)
+                    self.manifest.addFileToTestCase(file.getPath()+"/"+file.getName(), flawLine)
                 self.manifest.endTestCase()
         self.manifest.close()

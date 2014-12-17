@@ -169,7 +169,7 @@ class FinalSample :
         for param in self.params:
            for dir in self.params[param].path :
               path = path + "/" + dir
-              if not os.path.exists(path):
+              if not os.path.exists(path) and dir!=self.params[next(reversed(self.params))].path[-1]:
                  os.makedirs(path)
 
         name = path + ".php"
