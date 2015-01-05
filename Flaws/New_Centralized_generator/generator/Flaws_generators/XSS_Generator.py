@@ -9,13 +9,14 @@ copyright = header.readlines()
 
 class GeneratorXSS :
 
+    safe_Sample=0
+    unsafe_Sample=0
+
     def __init__(self,manifest,fileManager,select,ordered):
         self.select = select
         self.ordered = ordered
         self.manifest = manifest
         self.fileManager = fileManager
-        self.safe_Sample=0
-        self.unsafe_Sample=0
 
     def testSafety(self,flaw,sanitize) :
         #TO improve
@@ -140,6 +141,7 @@ class GeneratorXSS :
 
                     #Creates folder tree and sample files if they don't exists
                     file.addPath("generation")
+                    file.addPath("XSS")
 
                     #sort by safe/unsafe
                     if self.ordered == True :

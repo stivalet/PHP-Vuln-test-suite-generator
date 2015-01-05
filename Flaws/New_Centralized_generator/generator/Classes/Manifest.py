@@ -15,12 +15,12 @@ integer = "int"
 class Manifest :
     def __init__(self,flaw) :
 
-        path = "./generation"        
+        path = "./generation/"+flaw
         if not os.path.exists(path):
             os.makedirs(path) #Create the folder if not exist
 
         self.flaw = flaw
-        self.manifest = open("./generation/manifest.xml","w")
+        self.manifest = open(path+"/manifest.xml","w")
         self.manifest.write("<container>\n")
         
     def beginTestCase(self,Input) :

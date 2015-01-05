@@ -49,9 +49,10 @@ def main(argv) :
             manifest = Manifest(flaw)
             xssGen = GeneratorXSS(manifest,fileManager,select,ordered)
             xssGen.generate()
-        #if flaw == "Injection" :
-        #    xssInj = GeneratorInjection(manifest,fileManager,select,ordered)
-        #    xssInj.generate()
+        if flaw == "Injection" :
+            manifest = Manifest(flaw)
+            xssInj = GeneratorInjection(manifest,fileManager,select,ordered)
+            xssInj.generate()
 
     
 def usage() :

@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<construction>
+	<sample>
+		<path>
+			<dir>username_text</dir>
+			<dir>concatenation_simple_quote</dir>
+		</path>
+		<comment>construction : concatenation with simple quote</comment>
+		<code>$query = "//User[username/text()='". $checked_data . "']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username_text</dir>
+			<dir>interpretation_simple_quote</dir>
+		</path>
+		<comment>construction : interpretation with simple quote</comment>
+		<code>$query = "//User[username/text()=' $checked_data ']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username_text</dir>
+			<dir>sprintf_%s_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %s with simple quote</comment>
+		<code>$query = sprintf("//User[username/text()='%s']", $data_checked);</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username_at</dir>
+			<dir>concatenation_simple_quote</dir>
+		</path>
+		<comment>construction : concatenation with simple quote</comment>
+		<code>$query = "//User[@username='". $checked_data . "']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username_at</dir>
+			<dir>interpretation_simple_quote</dir>
+		</path>
+		<comment>construction : interpretation with simple quote</comment>
+		<code>$query = "//User[@username=' $checked_data ']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username_at</dir>
+			<dir>sprintf_%s_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %s with simple quote</comment>
+		<code>$query = sprintf("//User[@username='%s']", $data_checked);</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>data</dir>
+			<dir>concatenation_simple_quote</dir>
+		</path>
+		<comment>construction : concatenation with simple quote</comment>
+		<code>$query = "'". $checked_data . "'";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>data</dir>
+			<dir>interpretation_simple_quote</dir>
+		</path>
+		<comment>construction : interpretation with simple quote</comment>
+		<code>$query = "' $checked_data '";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>data</dir>
+			<dir>sprintf_%s_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %s with simple quote</comment>
+		<code>$query = sprintf("'%s'", $data_checked);</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username</dir>
+			<dir>concatenation_simple_quote</dir>
+		</path>
+		<comment>construction : concatenation with simple quote</comment>
+		<code>$query = "user[username='". $checked_data . "']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username</dir>
+			<dir>interpretation_simple_quote</dir>
+		</path>
+		<comment>construction : interpretation with simple quote</comment>
+		<code>$query = "user[username=' $checked_data ']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>username</dir>
+			<dir>sprintf_%s_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %s with simple quote</comment>
+		<code>$query = sprintf("user[username='%s']", $data_checked);</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "string" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>concatenation</dir>
+		</path>
+		<comment>construction : concatenation</comment>
+		<code>$query = "//User[@id=". $checked_data . "]";</code>
+		<isSafe quote = "0" safe = "0" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>concatenation_simple_quote</dir>
+		</path>
+		<comment>construction : concatenation with simple quote</comment>
+		<code>$query = "//User[@id='". $checked_data . "']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>interpretation</dir>
+		</path>
+		<comment>construction : interpretation</comment>
+		<code>$query = "//User[@id= $checked_data ]";</code>
+		<isSafe quote = "0" safe = "0" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>interpretation_simple_quote</dir>
+		</path>
+		<comment>construction : interpretation with simple quote</comment>
+		<code>$query = "//User[@id=' $checked_data ']";</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>sprintf_%d</dir>
+		</path>
+		<comment>construction : use of sprintf via a %d</comment>
+		<code>$query = sprintf("//User[@id=%d]", $data_checked);</code>
+		<isSafe quote = "0" safe = "1" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>sprintf_%d_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %d with simple quote</comment>
+		<code>$query = sprintf("//User[@id='%d']", $data_checked);</code>
+		<isSafe quote = "1" safe = "1" />
+		<constraint type = "int" field = ""/>
+		<relevancy>0.5</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>sprintf_%s_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %s with simple quote</comment>
+		<code>$query = sprintf("//User[@id='%s']", $data_checked);</code>
+		<isSafe quote = "1" safe = "0" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>sprintf_%u</dir>
+		</path>
+		<comment>construction : use of sprintf via a %u</comment>
+		<code>$query = sprintf("//User[@id=%u]", $data_checked);</code>
+		<isSafe quote = "0" safe = "1" />
+		<constraint type = "int" field = ""/>
+		<relevancy>1</relevancy>
+	</sample>
+
+	<sample>
+		<path>
+			<dir>ID_test</dir>
+			<dir>sprintf_%u_simple_quote</dir>
+		</path>
+		<comment>construction : use of sprintf via a %u with simple quote</comment>
+		<code>$query = sprintf("//User[@id='%u']", $data_checked);</code>
+		<isSafe quote = "0" safe = "1" />
+		<constraint type = "int" field = ""/>
+		<relevancy>0.5</relevancy>
+	</sample>
+
+</construction>
+

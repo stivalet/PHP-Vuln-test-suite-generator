@@ -3,6 +3,15 @@ import sys
 import time
 import getopt
 
+#Constants
+safe = "safe"
+unsafe = "unsafe"
+needQuote = "needQuote"
+quote = "quote"
+noQuote = "noQuote"
+integer = "int"
+safety = "safety"
+
 class InitialSample : #Initialize path,comment and relevancy parameters
     def __init__(self, initialSample) : #XML tree in parameter
         self.path = []
@@ -120,4 +129,35 @@ class Flaws(InitialSample): #Load parameters and code beginning and end
 
         self.addSafetyAttributes(initialSample)
         
-        
+class Injection(InitialSample):
+    def __init__(self, initialSample) :
+        InitialSample.__init__(self,initialSample)
+        safety = initialSample.find("isSafe")
+
+        if safety.get("safe") == "1":
+            self.isSafe = safe
+        elif safety.get("quote") == "1" :
+            self.isSafe = quote
+        else :
+            self.isSafe = 0
+        self.code = initialSample.find("code").text
+        constraint = initialSample.find("constraint")
+        self.constraintType = constraint.get("type")
+        self.constraintField = constraint.get("field")
+
+class Sanitize_injection(InitialSample) :
+    def __init__(self, initialSample) :
+        InitialSample.__init__(self,initialSample)
+        safety = initialSample.find("isSafe")
+        if safety.get("safe") == "1" :
+            self.isSafe = safe
+        elif safety.get("needQuote") == "1" :
+            self.isSafe = needQuote
+        elif safety.get("needQuote") == "-1" :
+            self.isSafe = noQuote
+        else :
+            self.isSafe = unsafe
+        self.code = initialSample.find("code").text
+        constraint = initialSample.find("constraint")
+        self.constraintType = constraint.get("type")
+        self.constraintField = constraint.get("field")
