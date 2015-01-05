@@ -62,23 +62,23 @@ class FinalSample :
        #    FinalSample.safe_Sample +=1
        #    return 1
        for param in self.params:
-          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == safe):
+          if(isinstance(param,Sanitize) and param.isSafe == safe):
               FinalSample.safe_Sample +=1
               #print("ok1\n")
               return 1
-          if(isinstance(self.params[param],Construction) and self.params[param].isSafe == safe):
+          if(isinstance(param,Construction) and param.isSafe == safe):
               FinalSample.safe_Sample +=1
               #print("ok2\n")
               return 1
-          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == needQuote):
+          if(isinstance(param,Sanitize) and param.isSafe == needQuote):
               for param2 in self.params:
-                 if(isinstance(self.params[param2],Construction) and self.params[param2].isSafe == quote):
+                 if(isinstance(param2,Construction) and param2.isSafe == quote):
                     FinalSample.safe_Sample +=1
                     #print("ok3\n")
                     return 1
-          if(isinstance(self.params[param],Sanitize) and self.params[param].isSafe == noQuote):
+          if(isinstance(param,Sanitize) and param.isSafe == noQuote):
               for param2 in self.params:
-                 if(isinstance(self.params[param],Construction) and self.params[param] and self.params[param].isSafe == 0):
+                 if(isinstance(param,Construction) and param and param.isSafe == 0):
                     FinalSample.safe_Sample +=1
                     #print("ok4\n")
                     return 1
@@ -108,7 +108,7 @@ class FinalSample :
         #    return 0
         relevancy=1
         for param in self.params:
-            relevancy*=self.params[param].relevancy
+            relevancy*=param.relevancy
             if(relevancy<select):
                 return 0 
 
@@ -122,13 +122,13 @@ class FinalSample :
         #    return 0
 
         for param in self.params:
-            if(isinstance(self.params[param],Sanitize) and self.params[param].constraintType != ""):
+            if(isinstance(param,Sanitize) and param.constraintType != ""):
                 for param2 in self.params:
-                    if(isinstance(self.params[param2],Construction) and (self.params[param].constraintType != self.params[param2].constraintType)):
+                    if(isinstance(param2,Construction) and (param.constraintType != param2.constraintType)):
                         return 0
-            if(isinstance(self.params[param],Sanitize) and self.params[param].constraintField != ""):
+            if(isinstance(param,Sanitize) and param.constraintField != ""):
                 for param2 in self.params:
-                    if(isinstance(self.params[param2],Construction) and (self.params[param].constraintField != self.params[param2].constraintField)):
+                    if(isinstance(param2,Construction) and (param.constraintField != param2.constraintField)):
                         return 0
 
         safe = self.testSafety();
@@ -167,9 +167,9 @@ class FinalSample :
         #       os.makedirs(path)
         
         for param in self.params:
-           for dir in self.params[param].path :
+           for dir in param.path :
               path = path + "/" + dir
-              if not os.path.exists(path) and dir!=self.params[next(reversed(self.params))].path[-1]:
+              if not os.path.exists(path) and dir!=self.params[-1].path[-1]:
                  os.makedirs(path)
 
         name = path + ".php"
@@ -185,7 +185,7 @@ class FinalSample :
         sample.write("<?php \n")
         comment = "/*" + commentSafe + "\n"
         for param in self.params:
-            comment+=self.params[param].comment+"\n"               
+            comment+=param.comment+"\n"               
         comment += " */"
         sample.write(comment)
 
@@ -199,7 +199,7 @@ class FinalSample :
         
         code=""
         for param in self.params:
-               	code+=(self.params[param].code+"\n")
+               	code+=(param.code+"\n")
         sample.write(code)
 
         #Adds the code for query execution

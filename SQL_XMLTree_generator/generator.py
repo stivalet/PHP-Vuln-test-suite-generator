@@ -12,27 +12,21 @@ from packages.Manifest import *
 def f_construction(root,i):
     tree_construction = ET.parse('samples/construction.xml').getroot()
     for construct in tree_construction:
-        global construction_param
-        construction_param=Construction(construct)
-        params["construction"]=construction_param
-        generation(root,i)
+        params[i]=Construction(construct)
+        generation(root,i+1)
 
 def f_sanitize(root,i):
     tree_sanitize = ET.parse('samples/sanitize.xml').getroot()
     for sanitize in tree_sanitize:
-        global sanitize_param
-        sanitize_param=Sanitize(sanitize)
-        params["sanitize"]=sanitize_param
-        generation(root,i)
+        params[i]=Sanitize(sanitize)
+        generation(root,i+1)
 
 def f_input(root,i):
     tree_input = ET.parse('samples/input.xml').getroot()
     for inputt in tree_input:
-        global input_param
-        input_param=InputSample(inputt)
-        params["input"]=input_param
-        manifest.beginTestCase(input_param.inputType)
-        generation(root,i)
+        params[i]=InputSample(inputt)
+        manifest.beginTestCase(params[i].inputType)
+        generation(root,i+1)
         manifest.endTestCase()
 
 options={
@@ -45,14 +39,14 @@ def initialization(root,i):
     global manifest
     manifest = Manifest()
     global params
-    params=collections.OrderedDict()
+    params=[None]*len(root)
     generation(root,i)
     manifest.close()
 
 
 def generation(root,i):
     if(i<len(root)):
-        options[root[i].tag](root,i+1)
+        options[root[i].tag](root,i)
     else:
         sample = FinalSample(params)
         path = sample.generate(manifest) 
