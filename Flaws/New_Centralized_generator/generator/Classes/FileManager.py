@@ -20,6 +20,9 @@ class FileManager :
         "SQL_injection":"SQL_injection.xml",
         "LDAP_injection":"LDAP_injection.xml",
         "XPath_injection":"XPath_injection.xml",
+		"fopen_IDOR":"fopen_IDOR.xml"
+		"SQL_IDOR":"SQL_IDOR.xml",
+        "XPath_IDOR":"XPath_IDOR.xml",
     }
     def getXML(self,xmlfile):
         return "XML/"+self.xml[xmlfile]
