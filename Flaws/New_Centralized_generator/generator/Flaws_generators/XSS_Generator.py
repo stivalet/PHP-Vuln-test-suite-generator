@@ -135,7 +135,7 @@ class GeneratorXSS :
 
                     #Relevancy test
                     if(input_R * sanitize_R * file_R < self.select) :
-                     return 0
+                     continue
 
                     safe = self.testSafety(flaw,sanitize);
 

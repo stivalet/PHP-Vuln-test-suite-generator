@@ -46,7 +46,6 @@ class GeneratorInjection:
             return 1
 
         self.unsafe_Sample += 1
-        return 0
 
     def findFlaw(self, fileName):
         sample = open(fileName, 'r')
@@ -86,16 +85,16 @@ class GeneratorInjection:
 
                     #Relevancy test
                     if (input_R * sanitize_R * file_R < self.select):
-                        return 0
+                        continue
 
                     #Coherence test
                     if ( sanitize.constraintType != ""
                          and sanitize.constraintType != flaw.constraintType ):
-                        return 0
+                        continue
 
                     if ( sanitize.constraintField != ""
                          and sanitize.constraintField != flaw.constraintField ):
-                        return 0
+                        continue
 
                     safe = self.testSafety(sanitize, flaw)
 
