@@ -1,0 +1,125 @@
+#construction.xml
+<construction>
+  <sample>
+    <flaws>
+      <flaw>IDOR SQL</flaw>
+    </flaws>
+    <path>
+      <dir>non_prepared_query</dir>
+      <dir>no_right_verification</dir>
+    </path>
+    <comment>construction : no right verification</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE where id=' $checked_data '";</code>
+    </codes>
+    <safety safe = "0"/>
+    <constraint prepared = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+  <sample>
+    <flaws>
+      <flaw>IDOR SQL</flaw>
+    </flaws>
+    <path>
+      <dir>non_prepared_query</dir>
+      <dir>no_right_verification</dir>
+    </path>
+    <comment>construction : no right verification</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE where id=' $checked_data '";</code>
+      <code>echo $query;</code>
+    </codes>
+    <safety safe = "0"/>
+    <constraint prepared = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+</construction>
+
+#Safety attributs list (binary)
+-safe
+-quote
+-rule {"1", "2", "3", "4"}
+-simpleQuote
+-doubleQUote
+-unsafe
+-escape
+-scriptBlock
+-styleBlock
+-URL_CSS_context
+-property_CSS_context
+
+#Constraint attributs list
+-type {"string", "int"}
+-field {"name", "cn", "mail", "FROM", "WHERE", ""}
+-prepared binary
+
+#sanitize.xml
+<sanitize>
+  <sample>
+    <flaws>
+      <flaw>IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+    </path>
+    <comment>sanitize : cast into int</comment>
+    <codes>
+      <code>$checked_data =  (int) $tainted;</code>
+      <code>echp $checked_data;</code>
+    </codes>
+    <safety safe = "0"/>
+    <constraint block = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+  <sample>
+    <flaws>
+      <flaw>IDOR XPath</flaw>
+      <flaw>IDOR SQL</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>INT</dir>
+    </path>
+    <comment>sanitize : cast into int</comment>
+    <codes>
+      <code>$checked_data =  (int) $tainted;</code>
+    </codes>
+    <safety safe = "0"/>
+    <constraint block = "0"/>
+    <relevancy>1</relevancy>
+  </sample>
+</sanitize>
+
+#Safety attributs list (binary)
+-safe
+-needQuote
+-doubleQuote
+-scriptBlock
+-styleBlock
+-simpleQuote
+-rule1
+-rule2
+-rule3
+-rule4
+-rule5
+-escape
+-URL_CSS_context
+-property_CSS_context
+
+#Constraint attributs list
+-type {"string", "int", ""}
+-field {"", "ORDER_DIRECTION", "FROM"}
+-block binary
+
+#Unique sanitize methods
+-ESAPI IDOR SQL
+-Indirect_references IDOR SQL
+-pg_escape_literal Inj LDAP
+-pg_escape_string Inj LDAP
+-preg_replace_ldap_char_white_list Inj LDAP
+-str_replace_ldap_char_black_list Inj LDAP
+-mysql_real_escape_string Inj SQL / XPath
+-mysql_real_escape_stringGetter Inj SQL / XPath
+-urlencode XSS
+-rawurlencode XSS
+-http_build_query XSS
