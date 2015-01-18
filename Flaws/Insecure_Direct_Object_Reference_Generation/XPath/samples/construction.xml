@@ -5,8 +5,12 @@
       <dir>concatenation</dir>
     </path>
     <comment>construction : concatenation</comment>
-    <code>$query="//Course[@id=". $checked_data . "]";</code>
-    <isSafe safe = "0"/>
+    <code>$query="//Course[@id=". $checked_data . "]";
+$xml = simplexml_load_file("users.xml");
+//flaw
+$res=$xml->xpath($query);</code>
+    <safety safe = "0"/>
+    <constrant />
     <relevancy>1</relevancy>
   </sample>
 
@@ -16,8 +20,12 @@
       <dir>right_verification</dir>
     </path>
     <comment>construction : concatenation and checks if the user is allowed to see this data</comment>
-    <code>$query="//Course[@id=". $checked_data . "and @allowed=". $_SESSION[userid] . "]";</code>
-    <isSafe safe = "1"/>
+    <code>$query="//Course[@id=". $checked_data . "and @allowed=". $_SESSION[userid] . "]";
+$xml = simplexml_load_file("users.xml");
+//flaw
+$res=$xml->xpath($query);</code>
+    <safety safe = "1"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 </construction>

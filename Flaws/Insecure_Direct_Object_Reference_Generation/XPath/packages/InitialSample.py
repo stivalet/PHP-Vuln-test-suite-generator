@@ -22,7 +22,7 @@ class InputSample(InitialSample) :
 class Sanitize(InitialSample) :
     def __init__(self, initialSample) :
         InitialSample.__init__(self,initialSample)
-        safety = initialSample.find("isSafe")
+        safety = initialSample.find("safety")
         if safety.get("safe") == "1" :
             self.isSafe = safe
         else :
@@ -31,9 +31,7 @@ class Sanitize(InitialSample) :
 class Construction(InitialSample):
     def __init__(self, initialSample) :
         InitialSample.__init__(self,initialSample)
-        safety = initialSample.find("isSafe")
-
-        safety = initialSample.find("isSafe")
+        safety = initialSample.find("safety")
         if safety.get("safe") == "1" :
             self.isSafe = safe
         else :

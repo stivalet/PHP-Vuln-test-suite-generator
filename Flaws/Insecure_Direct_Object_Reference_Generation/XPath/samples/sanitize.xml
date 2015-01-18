@@ -2,13 +2,26 @@
 <sanitize>
   <sample>
     <path>
+      <dir>CAST</dir>
+    </path>
+    <comment>sanitize : cast into int</comment>
+    <code>$checked_data =  (int) $tainted;</code>
+    <safety safe = "0"/>
+    <constraint />
+    <relevancy>1</relevancy>
+  </sample>
+
+  <!-- This kind of flaw is different from the injection flaw, in fact we need to prevent injections in the samples -->
+  <!-- <sample>
+    <path>
       <dir>NONE</dir>
     </path>
     <comment>sanitize : NONE</comment>
     <code>$checked_data = $tainted</code>
-    <isSafe safe = "0"/>
+    <safety safe = "0"/>
+    <constraint />
     <relevancy>1</relevancy>
-  </sample>
+  </sample> -->
 
   <sample>
     <path>
@@ -21,7 +34,8 @@ $checked_data = $tainted;
 } else {
 $checked_data = $whitelist[0];
 }</code>
-    <isSafe safe = "1"/>
+    <safety safe = "1"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 </sanitize>

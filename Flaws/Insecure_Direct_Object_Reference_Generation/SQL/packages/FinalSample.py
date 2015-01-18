@@ -7,10 +7,10 @@ safety = "safety"
 #Constants
 safe = "safe"
 unsafe = "unsafe"
-block = "block"
-noBlock = "noBlock"
-prepared = "prepared"
-noPrepared = "noPrepared"
+#block = "block"
+#noBlock = "noBlock"
+#prepared = "prepared"
+#noPrepared = "noPrepared"
 
 
 #Gets copyright header from file
@@ -18,14 +18,15 @@ header = open("./rights.txt", "r")
 copyright = header.readlines()
 header.close()
 
+#Part ExecQuery is tranfered to the construction samples
 #Gets query execution code
-fileNormalQuery = open("./execNormalQuery.txt", "r")
-execNormalQuery = fileNormalQuery.readlines()
-fileNormalQuery.close()
+#fileNormalQuery = open("./execNormalQuery.txt", "r")
+#execNormalQuery = fileNormalQuery.readlines()
+#fileNormalQuery.close()
 
-filePreparedQuery = open("./execPreparedQuery.txt", "r")
-execPreparedQuery = filePreparedQuery.readlines()
-filePreparedQuery.close()
+#filePreparedQuery = open("./execPreparedQuery.txt", "r")
+#execPreparedQuery = filePreparedQuery.readlines()
+#filePreparedQuery.close()
 
 def setRelevancy(R) :
    global select
@@ -66,15 +67,16 @@ class FinalSample :
              break
        return i + 1
 
-    def testIsBlock(self) :
-        if self.sanitize.isBlock == block :
-            return 1
-        return 0
+    #NO need in this version
+    #def testIsBlock(self) :
+    #    if self.sanitize.isBlock == block :
+    #        return 1
+    #    return 0
 
-    def testIsPrepared(self) :
-        if self.construct.isPrepared == prepared :
-          return 1
-        return 0
+    #def testIsPrepared(self) :
+    #    if self.construct.isPrepared == prepared :
+    #      return 1
+    #    return 0
 
     #Generates final sample
     def generate(self, manifest) :
@@ -97,10 +99,11 @@ class FinalSample :
         #     and self.sanitize.constraintField != self.construct.constraintField ) :
         #    return 0
 
+        # No need in this version
         #Build constraints
-        safe = self.testSafety() #1 : safe ,0 : unsafe
-        block = self.testIsBlock() #1 : block, 0 : noBlock
-        prepared = self.testIsPrepared() #1 : prepared, 0 : noPrepared
+        #safe = self.testSafety() #1 : safe ,0 : unsafe
+        #block = self.testIsBlock() #1 : block, 0 : noBlock
+        #prepared = self.testIsPrepared() #1 : prepared, 0 : noPrepared
 
 
         #Creates folder tree and sample files if they don't exists
@@ -162,45 +165,52 @@ class FinalSample :
         #Writes the code in the sample file
         sample.write("\n\n")
 
-        if block and prepared :
-            code  = (self.input.code + "\n"
+        #No need specifics tests to generate the page in this version
+        #if block and prepared :
+        #    code  = (self.input.code + "\n"
+        #                 + self.sanitize.code + "\n"
+        #                 + self.construct.code + "\n\n")
+        #    sample.write(code)
+
+        #    for line in execPreparedQuery :
+        #        sample.write(line)
+
+        #    sample.write("}\n")
+
+        #elif block :
+        #    code  = (self.input.code + "\n"
+        #                 + self.sanitize.code + "\n"
+        #                 + self.construct.code + "\n\n")
+        #    sample.write(code)
+
+        #    for line in execNormalQuery :
+        #        sample.write(line)
+
+        #    sample.write("}\n")
+
+        #elif prepared :
+        #    code  = (self.input.code + "\n"
+        #                 + self.sanitize.code + "\n"
+        #                 + self.construct.code + "\n\n")
+        #    sample.write(code)
+
+        #    for line in execPreparedQuery :
+        #        sample.write(line)
+
+        #else :
+        #    code  = (self.input.code + "\n"
+        #                 + self.sanitize.code + "\n"
+        #                 + self.construct.code + "\n\n")
+        #    sample.write(code)
+
+        #    for line in execNormalQuery :
+        #        sample.write(line)
+
+        #New version
+        code  = (self.input.code + "\n"
                          + self.sanitize.code + "\n"
                          + self.construct.code + "\n\n")
-            sample.write(code)
-
-            for line in execPreparedQuery :
-                sample.write(line)
-
-            sample.write("}\n")
-
-        elif block :
-            code  = (self.input.code + "\n"
-                         + self.sanitize.code + "\n"
-                         + self.construct.code + "\n\n")
-            sample.write(code)
-
-            for line in execNormalQuery :
-                sample.write(line)
-
-            sample.write("}\n")
-
-        elif prepared :
-            code  = (self.input.code + "\n"
-                         + self.sanitize.code + "\n"
-                         + self.construct.code + "\n\n")
-            sample.write(code)
-
-            for line in execPreparedQuery :
-                sample.write(line)
-
-        else :
-            code  = (self.input.code + "\n"
-                         + self.sanitize.code + "\n"
-                         + self.construct.code + "\n\n")
-            sample.write(code)
-
-            for line in execNormalQuery :
-                sample.write(line)
+        sample.write(code)
 
         sample.write("\n?>")
         sample.close()

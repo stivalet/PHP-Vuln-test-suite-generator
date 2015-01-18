@@ -6,38 +6,41 @@
     </path>
     <comment>sanitize : cast into int</comment>
     <code>$checked_data =  (int) $tainted;</code>
-    <isSafe safe = "0"/>
-    <isBlock block = "0"/>
+    <safety safe = "0"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 
-  <sample>
+  <!-- This kind of flaw is different from the injection flaw, in fact we need to prevent injections in the samples -->
+  <!-- <sample>
     <path>
       <dir>NONE</dir>
     </path>
     <comment>sanitize : NONE</comment>
     <code>$checked_data = $tainted</code>
-    <isSafe safe = "0"/>
-    <isBlock block = "0"/>
+    <safety safe = "0"/>
+    <constraint block = "0"/>
     <relevancy>1</relevancy>
-  </sample>
+  </sample> -->
 
   <sample>
     <path>
       <dir>ESAPI</dir>
     </path>
     <comment>sanitize : uses of ESAPI, an OWASP API</comment>
-    <code>$ESAPI = new ESAPI();
+    <code>//cast in int to prevent injections
+$tainted = (int) $tainted;
+
+$ESAPI = new ESAPI();
 ESAPI::setEncoder(new DefaultEncoder());
 ESAPI::setValidator(new DefaultValidator());
 
 //verifying the data with ESAPI
 if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
     $checked_data=$tainted;
-// query + connexion/execute/deco
-//}</code>
-    <isSafe safe = "1"/>
-    <isBlock block = "1"/>
+}</code>
+    <safety safe = "1"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 
@@ -46,7 +49,10 @@ if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
       <dir>Indirect_reference</dir>
     </path>
     <comment>sanitize : uses indirect reference</comment>
-    <code>$course_array=array();
+    <code>//cast in int to prevent injections
+$tainted = (int) $tainted;
+
+$course_array=array();
 //get the user id
 $user_id = intval($_SESSION[‘user_id’]);
 
@@ -61,14 +67,13 @@ $_SESSION[‘course_array’] = $course_array;
 if (isset($_SESSION[‘course_array’])){
   $course_array = $_SESSION[‘course_array’];
 
-  if (isset($course_array[$taintedId])){
+  if (isset($course_array[$tainted])){
 
     //indirect reference > get the right id
     $checked_data = $course_array[$tainted];
-// query + connexion/execute/deco
-//}</code>
-    <isSafe safe = "1"/>
-    <isBlock block = "1"/>
+}</code>
+    <safety safe = "1"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 
@@ -83,8 +88,8 @@ if (in_array($tainted, $whitelist, true)) {
 } else {
   $checked_data = $whitelist[0];
 }</code>
-    <isSafe safe = "1"/>
-    <isBlock block = "0"/>
+    <safety safe = "1"/>
+    <constraint />
     <relevancy>1</relevancy>
   </sample>
 </sanitize>

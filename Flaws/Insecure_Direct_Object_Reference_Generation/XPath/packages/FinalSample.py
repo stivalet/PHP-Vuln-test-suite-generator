@@ -13,10 +13,11 @@ header = open("./rights.txt", "r")
 copyright = header.readlines()
 header.close()
 
+#No need in this version the part ExecQuery in concatenated with the construction samples
 #Gets query execution code
-fileQuery = open("./execQuery.txt", "r")
-execQuery = fileQuery.readlines()
-fileQuery.close()
+#fileQuery = open("./execQuery.txt", "r")
+#execQuery = fileQuery.readlines()
+#fileQuery.close()
 
 def setRelevancy(R) :
    global select
@@ -145,8 +146,8 @@ class FinalSample :
                      + self.construct.code + "\n\n")
         sample.write(code)
 
-        for line in execQuery :
-            sample.write(line)
+        #for line in execQuery :
+        #    sample.write(line)
 
         sample.write("\n?>")
         sample.close()

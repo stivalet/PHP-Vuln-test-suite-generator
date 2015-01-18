@@ -1,10 +1,10 @@
 #constante
 safe = "safe"
 unsafe = "unsafe"
-block = "block"
-noBlock = "noBlock"
-prepared = "prepared"
-noPrepared = "noPrepared"
+#block = "block"
+#noBlock = "noBlock"
+#prepared = "prepared"
+#noPrepared = "noPrepared"
 
 
 
@@ -28,32 +28,18 @@ class InputSample(InitialSample) :
 class Sanitize(InitialSample) :
     def __init__(self, initialSample) :
         InitialSample.__init__(self,initialSample)
-        safety = initialSample.find("isSafe")
+        safety = initialSample.find("safety")""
         if safety.get("safe") == "1" :
             self.isSafe = safe
         else :
             self.isSafe = unsafe
-
-        blockConstraint = initialSample.find("isBlock")
-        if blockConstraint.get("block") == "1" :
-            self.isBlock = block
-        else :
-            self.isBlock = noBlock
-
 
 class Construction(InitialSample):
     def __init__(self, initialSample) :
         InitialSample.__init__(self,initialSample)
-        safety = initialSample.find("isSafe")
 
-        safety = initialSample.find("isSafe")
+        safety = initialSample.find("safety")
         if safety.get("safe") == "1" :
             self.isSafe = safe
         else :
             self.isSafe = unsafe
-
-        preparedConstraint = initialSample.find("isPrepared")
-        if preparedConstraint.get("prepared") == "1" :
-            self.isPrepared = prepared
-        else :
-            self.isPrepared = noPrepared

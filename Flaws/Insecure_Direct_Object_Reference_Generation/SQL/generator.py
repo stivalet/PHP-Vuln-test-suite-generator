@@ -11,10 +11,10 @@ def main(argv) :
     #Constants
     safe = "safe"
     unsafe = "unsafe"
-    prepared = "prepared"
-    noPrepared = "noPrepared"
-    block = "block"
-    noBlock = "noBlock"
+    #prepared = "prepared"
+    #noPrepared = "noPrepared"
+    #block = "block"
+    #noBlock = "noBlock"
 
     #Gets options & arguments
     try:
