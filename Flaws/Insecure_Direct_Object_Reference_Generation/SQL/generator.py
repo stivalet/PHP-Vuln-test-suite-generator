@@ -63,6 +63,7 @@ def main(argv) :
 
     safe = FinalSample.safe_Sample ;
     unsafe = FinalSample.unsafe_Sample
+
     print(str(safe) + " safe sample ( " + str(safe / (safe + unsafe)) + " )"  )
     print(str(unsafe) + " unsafe sample ( " + str(unsafe / (safe + unsafe)) + " )")
     print(str(unsafe + safe) + "total" )

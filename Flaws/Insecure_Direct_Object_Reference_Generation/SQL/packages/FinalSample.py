@@ -99,9 +99,8 @@ class FinalSample :
         #     and self.sanitize.constraintField != self.construct.constraintField ) :
         #    return 0
 
-        # No need in this version
         #Build constraints
-        #safe = self.testSafety() #1 : safe ,0 : unsafe
+        safe = self.testSafety() #1 : safe ,0 : unsafe
         #block = self.testIsBlock() #1 : block, 0 : noBlock
         #prepared = self.testIsPrepared() #1 : prepared, 0 : noPrepared
 
