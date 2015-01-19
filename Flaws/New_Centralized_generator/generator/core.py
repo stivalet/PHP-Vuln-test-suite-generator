@@ -49,10 +49,22 @@ def main(argv) :
             manifest = Manifest(flaw)
             xssGen = GeneratorXSS(manifest,fileManager,select,ordered)
             xssGen.generate()
+            safe=xssGen.safe_Sample
+            unsafe=xssGen.unsafe_Sample
+            print("XSS generation report:")
+            print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+            print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+            print(str(unsafe + safe) + " total\n" )
         if flaw == "Injection" :
             manifest = Manifest(flaw)
             xssInj = GeneratorInjection(manifest,fileManager,select,ordered)
             xssInj.generate()
+            safe=xssInj.safe_Sample
+            unsafe=xssInj.unsafe_Sample
+            print("Injection generation report:")
+            print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+            print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+            print(str(unsafe + safe) + " total\n" )
 
     
 def usage() :

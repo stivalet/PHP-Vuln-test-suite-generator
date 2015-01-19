@@ -1,406 +1,1235 @@
 <?xml version="1.0"?>
 
 <sanitize>
-	
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>email_filter</dir>
-		</path>
-		<comment>Uses an email_filter via filter_var function</comment>
-		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_EMAIL);
-if (filter_var($sanitized, FILTER_VALIDATE_EMAIL)) 
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>email_filter</dir>
+    </path>
+    <comment>Uses an email_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_EMAIL);
+if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
 $checked_data = $sanitized ;
 else
 $checked_data = "" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
-		<!-- Remove all characters except letters, digits and ! # $ % & ' * + - / = ? ^ _ ` { | } ~ @ . [ ]
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
 
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>full_special_chars_filter</dir>
-		</path>
-		<comment>Uses a full_special_chars_filter via filter_var function</comment>
-		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- Equivalent to calling htmlspecialchars() with ENT_QUOTES set		
-		& -> &amp; 
-		" -> &quot; when ENT_NOQUOTES is not set.
-		' -> &#039; (or &apos;) only when ENT_QUOTES is set.
-		< -> &lt;
-		> -> &gt;
-		-->
-		<relevancy>1</relevancy>
-	</sample>
-
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>magic_quotes_filter</dir>
-		</path>
-		<comment>Uses a magic_quotes_filter via filter_var function</comment>
-		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);</code>
-		<safety doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0"/>
-		<!-- Apply addslashes
-		Add \ before ' " \ NULL		
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>number_float_filter</dir>
-		</path>
-		<comment>Uses a number_float_filter via filter_var function</comment>
-		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
-if (filter_var($sanitized, FILTER_VALIDATE_FLOAT)) 
-$checked_data = $sanitized ;
-else
-$checked_data = "0" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
-		<!-- Remove all characters except digits, +- and optionally .,eE. 
-		- can be dangerous
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>number_int_filter</dir>
-		</path>
-		<comment>Uses a number_int_filter via filter_var function</comment>
-		<code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
-if (filter_var($sanitized, FILTER_VALIDATE_INT)) 
-$checked_data = $sanitized ;
-else
-$checked_data = "0" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
-		<!--  	Remove all characters except digits, + and -
-		- can be dangerous
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>CLEANING</dir>
-			<dir>special_chars_filter</dir>
-		</path>
-		<comment>Uses a special_chars_filter via filter_var function</comment>
-		<code>$checked_data = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- HTML-escape ' " < > & and characters with ASCII value less than 32, 
-		optionally strip or encode other special characters. 
-		-->		
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>VALIDATION</dir>
-			<dir>email_filter</dir>
-		</path>
-		<comment>Flushes content of $sanitized if the filter email_filter is not applied</comment>
-		<code>if (filter_var($tainted, FILTER_VALIDATE_EMAIL)) 
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>full_special_chars_filter</dir>
+    </path>
+    <comment>Uses a full_special_chars_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
 $checked_data = $sanitized ;
 else
 $checked_data = "" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
-		<!-- Remove all characters except letters, digits and ! # $ % & ' * + - / = ? ^ _ ` { | } ~ @ . [ ]
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>VALIDATION</dir>
-			<dir>number_float_filter</dir>
-		</path>
-		<comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
-		<code>if (filter_var($tainted, FILTER_VALIDATE_FLOAT)) 
-$checked_data = $tainted ;
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>magic_quotes_filter</dir>
+    </path>
+    <comment>Uses a magic_quotes_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);
+if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
+$checked_data = $sanitized ;
 else
-$checked_data = "0" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
-		<!-- Remove all characters except digits, +- and optionally .,eE. 
-		- can be dangerous
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>FILTER</dir>
-			<dir>VALIDATION</dir>
-			<dir>number_int_filter</dir>
-		</path>
-		<comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
-		<code>if (filter_var($tainted, FILTER_VALIDATE_INT)) 
-$checked_data = $tainted ;
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>number_float_filter</dir>
+    </path>
+    <comment>Uses a number_float_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
+if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
+$checked_data = $sanitized ;
 else
-$checked_data = "0" ;</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1"/>
-		<!--  	Remove all characters except digits, + and -
-		- can be dangerous
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>cast_float</dir>
-		</path>
-		<comment>sanitize : cast in float</comment>
-		<code>$checked_data =  (float) $tainted ;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>cast_float_sort_of</dir>
-		</path>
-		<comment>sanitize : cast via += 0.0</comment>
-		<code>$checked_data =  $tainted ;
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
+    </safeties>
+    <safety safe = "1" needQuote = "0" />
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>number_int_filter</dir>
+    </path>
+    <comment>Uses a number_int_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
+if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>CLEANING</dir>
+      <dir>special_chars_filter</dir>
+    </path>
+    <comment>Uses a special_chars_filter via filter_var function</comment>
+    <codes>
+      <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);
+if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>email_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter email_filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>full_special_chars_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter full_special_chars__filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type = "string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>magic_quotes_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter magic_quotes_filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type = "string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>number_float_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>number_int_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>FILTER</dir>
+      <dir>VALIDATION</dir>
+      <dir>special_chars_filter</dir>
+    </path>
+    <comment>Flushes content of $sanitized if the filter special_chars_filter is not applied</comment>
+    <codes>
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
+$checked_data = $sanitized ;
+else
+$checked_data = "" ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>cast_float</dir>
+    </path>
+    <comment>sanitize : cast in float</comment>
+    <codes>
+      <code>$checked_data =  (float) $tainted ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>cast_float_sort_of</dir>
+    </path>
+    <comment>sanitize : cast via += 0.0</comment>
+    <codes>
+      <code>$checked_data =  $tainted ;
 $checked_data += 0.0 ;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>cast_int</dir>
-		</path>
-		<comment>sanitize : cast into int</comment>
-		<code>$checked_data =  (int) $tainted ;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>cast_int_sort_of</dir>
-		</path>
-		<comment>sanitize : cast via += 0</comment>
-		<code>$checked_data =  $tainted ;
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>cast_int</dir>
+    </path>
+    <comment>sanitize : cast into int</comment>
+    <codes>
+      <code>$checked_data =  (int) $tainted ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+      <constraint flawType="SQL_IDOR" block="0"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+      <safety flawType="SQL_IDOR" safe="0" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>cast_int_sort_of</dir>
+    </path>
+    <comment>sanitize : cast via += 0</comment>
+    <codes>
+      <code>$checked_data =  $tainted ;
 $checked_data += 0 ;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>cast_int_sort_of2</dir>
-		</path>
-		<comment>sanitize : cast via += 0</comment>
-		<code>$checked_data =  $tainted + 0;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>settype_float</dir>
-		</path>
-		<comment>sanitize : settype (float)</comment>
-		<code>if(settype($tainted, "float"))
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>cast_int_sort_of2</dir>
+    </path>
+    <comment>sanitize : cast via += 0</comment>
+    <codes>
+      <code>$checked_data =  $tainted + 0;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>settype_float</dir>
+    </path>
+    <comment>sanitize : settype (float)</comment>
+    <codes>
+      <code>if(settype($tainted, "float"))
 $checked_data = $tainted ;
 else
 $checked_data = 0.0 ;</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>CAST</dir>
-			<dir>settype_int</dir>
-		</path>
-		<comment>sanitize : use of floatval</comment>
-		<code>if (settype($tainted, "integer"))
-$checked_data = $tainted ;
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>CAST</dir>
+      <dir>settype_int</dir>
+    </path>
+    <comment>sanitize : use of settype_int</comment>
+    <codes>
+      <code>if (settype($tainted, "integer"))
+$checked_data = $integer ;
 else
-$checked_data = 0 ;
-</code>
-		<safety safe = "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
+$checked_data = 0 ;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe = "1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
 
-	<sample>
-		<path>
-			<dir>addslashes</dir>
-		</path>
-		<comment>sanitize : use of the function addslashes</comment>
-		<code>$checked_data = addslashes($tainted);</code>
-		<safety doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0"/>
-		<!-- Add \ before ' " \ NULL		
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>	
-	
-	<sample>
-		<path>
-			<dir>no_sanitizing</dir>
-		</path>
-		<comment>sanitize : none</comment>
-		<code>$checked_data = $tainted;</code>
-		<safety />
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>floatval</dir>
-		</path>
-		<comment>sanitize : use of floatval</comment>
-		<code>$checked_data = floatval($tainted);</code>
-		<safety safe = "1" />
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>htmlentities</dir>
-		</path>
-		<comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
-		<code>$checked_data = htmlentities($tainted, ENT_QUOTES);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- This function is identical to htmlspecialchars() in all ways, except with htmlentities(),
-		all characters which have HTML character entity equivalents are translated into these entities. 
-		-->
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>htmlspecialchars</dir>
-		</path>
-		<comment>sanitize : use of the function htmlspecialchars.</comment>
-		<code>$checked_data = htmlspecialchars($tainted, ENT_QUOTES);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- translations performed : 
-		& -> &amp; 
-		" -> &quot; when ENT_NOQUOTES is not set.
-		' -> &#039; (or &apos;) only when ENT_QUOTES is set.
-		< -> &lt;
-		> -> &gt;
-		-->	
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>intval</dir>
-		</path>
-		<comment>sanitize : use of intval</comment>
-		<code>$checked_data = intval($tainted);</code>
-		<safety safe= "1"/>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>mysql_real_escape_string</dir>
-		</path>
-		<comment>SANITIZE : use of mysql_real_escape string</comment>
-		<code>$checked_data = mysql_real_escape_string($tainted);</code>
-		<safety escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0"/>
-		<!--
-		mysql_real_escape_string() calls MySQL's library function mysql_real_escape_string,
-		which prepends backslashes to the following characters:
-		\x00
-		\n 
-		\r
-		\
-		'
-		"
-		\x1a 
-		-->
-		<relevancy>0.25</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>preg_replace</dir>
-		</path>
-		<comment>SANITIZE : use of preg_replace</comment>
-		<code>$checked_data = preg_replace('/\'/', '', $tainted);</code>
-		<safety simpleQuote = "1" />
-		<!-- delete all ' -->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>preg_replace2</dir>
-		</path>
-		<comment>SANITIZE : use of  with another regex</comment>
-		<code>$checked_data = preg_replace('/\W/si','',$tainted);</code>
-		<safety safe="1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5 ="1" />
-		<!-- delete all but alphanumeric character and _ (seems ok for OWASP)
-		\W Match a non-word character (a "word" character is alphanumeric plus "_")
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>addslashes</dir>
+    </path>
+    <comment>sanitize : use of the function addslashes</comment>
+    <codes>
+      <code>$checked_data = addslashes($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
 
-	<sample>
-		<path>
-			<dir>urlencode</dir>
-		</path>
-		<comment>SANITIZE : use of urlencode</comment>
-		<code>$checked_data = urlencode($tainted);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- replace all non-alphanumeric characters except -_. by %HH and space are remplaced by +
-		"-" can break out from unquoted attributes (rule 2->5) Pending for test... -->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>rawurlencode</dir>
-		</path>
-		<comment>SANITIZE : use of rawurlencode</comment>
-		<code>$checked_data = rawurlencode($tainted);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
-		<!-- replace all non-alphanumeric characters except -_.~ (~ are no longer encode in 5.3.4) by %HH
-		"-" can break out from unquoted attributes (rule 5) Pending for test... -->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>http_build_query</dir>
-		</path>
-		<comment>SANITIZE : use of http_build_query</comment>
-		<code>$checked_data = http_build_query($tainted);</code>
-		<safety doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1" />
-		<!-- Generates a URL-encoded query string from the associative (or indexed) array provided. 
-		Pending for test
-		-->
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	
-	
-	
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+      <flaw>Fopen_IDOR</flaw>
+      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety to handle IDOR-->
+      <flaw>XPath_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>no_sanitizing</dir>
+    </path>
+    <comment>sanitize : none</comment>
+    <codes>
+      <code>$checked_data = $tainted;</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "s" field = ""/>
+      <constraint flawType="XPath_Injection" type = "" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "" field = ""/>
+      <constraint flawType="XSS"/>
+      <constraint flawType="Fopen_IDOR" />
+      <constraint flawType="SQL_IDOR" />
+      <constraint flawType="XPath_IDOR" />
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" />
+      <safety flawType="Fopen_IDOR" safe="0"/>
+      <safety flawType="SQL_IDOR" safe="0" block="0"/>
+      <safety flawType="XPath_IDOR" safe="0"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>floatval</dir>
+    </path>
+    <comment>sanitize : use of floatval</comment>
+    <codes>
+      <code>$checked_data = floatval($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe="1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>htmlentities</dir>
+    </path>
+    <comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
+    <codes>
+      <code>$checked_data = htmlentities($tainted, ENT_QUOTES);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+    </safeties>
+    <relevancy>0.25</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>htmlspecialchars</dir>
+    </path>
+    <comment>sanitize : use of the function htmlspecialchars. Sanitizes the query but has a high chance to produce unexpected results</comment>
+    <codes>
+      <code>$checked_data = htmlspecialchars($tainted, ENT_QUOTES);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+    </safeties>
+    <relevancy>0.25</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>intval</dir>
+    </path>
+    <comment>sanitize : use of intval</comment>
+    <codes>
+      <code>$checked_data = intval($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" safe="1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>mysql_real_escape_string</dir>
+    </path>
+    <comment>SANITIZE : use of mysql_real_escape string</comment>
+    <codes>
+      <code>$data_checked = mysql_real_escape_string($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+      <flaw>Fopen_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>preg_replace</dir>
+    </path>
+    <comment>SANITIZE : use of preg_replace</comment>
+    <codes>
+      <code>$checked_data = preg_replace('/\'/', '', $tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+      <constraint flawType="Fopen_IDOR"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" simpleQuote="1" />
+      <safety flawType="Fopen_IDOR" safe="0"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>preg_replace2</dir>
+    </path>
+    <comment>SANITIZE : use of preg_replace with another regex</comment>
+    <codes>
+      <code>$checked_data = preg_replace('/\W/si','',$tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "1" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "1" />
+      <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="XSS" safe="1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5 ="1" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ternary_white_list</dir>
+    </path>
+    <comment>sanitize : use of ternary condition</comment>
+    <codes>
+      <code>$checked_data = $tainted == 'DESC' ? 'DESC' : 'ASC';</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = "ORDER_DIRECTION"/>
+      <constraint flawType="XPath_Injection" type = "string" field = "ORDER_DIRECTION"/>
+      <constraint flawType="LDAP_Injection" type = "string" field = "ORDER_DIRECTION"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>XSS</flaw>
+      <flaw>Fopen_IDOR</flaw> <!-- Add an attribute to safety to make a difference between safety against injections and against insecure direct object reference -->
+      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+      <flaw>XPath_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>whitelist_using_array</dir>
+    </path>
+    <comment>SANITIZE : use in_array to check if $tainted is in the white list</comment>
+    <codes>
+      <code>$legal_table =  array("users", "connexions");
+if (in_array($tainted, $legal_table, true)) {
+$data_checked = $tainted;
+} else {
+$data_checked = $legal_table[0];
+}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="XPath_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="LDAP_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="XSS"/>
+      <constraint flawType="Fopen_IDOR"/>
+      <constraint flawType="SQL_IDOR" block="0"/>
+      <constraint flawType="XPath_IDOR"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XSS" simpleQuote="1" />
+      <safety flawType="Fopen_IDOR" safe="1"/>
+      <safety flawType="SQL_IDOR" safe="1"/>
+      <safety flawType="Xapth_IDOR" safe="1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+    </flaws>
+    <path>
+      <dir>ESAPI</dir>
+    </path>
+    <comment>SANITIZE : uses of ESAPI, an OWASP API</comment>
+    <codes>
+      <code>$ESAPI = new ESAPI();
+ESAPI::setEncoder(new DefaultEncoder());
+ESAPI::setValidator(new DefaultValidator());
+//verifying the data with ESAPI
+if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
+$checked_data=$tainted;
+// query + connexion/execute/deco
+//}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_IDOR" block="1"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_IDOR" safe="1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+    </flaws>
+    <path>
+      <dir>Indirect_reference</dir>
+    </path>
+    <comment>SANITIZE : uses indirect reference</comment>
+    <codes>
+      <code>$course_array=array();
+//get the user id
+$user_id = intval($_SESSION[‘user_id’]);
+//creation of the references with only data allowed to the user
+$result = mysql_query("SELECT * FROM COURSE where course.allowed = {$user_id}");
+while ($row = mysql_fetch_array($result)){
+  $course_array[] = $result[‘id’];
+}
+$_SESSION[‘course_array’] = $course_array;
+if (isset($_SESSION[‘course_array’])){
+  $course_array = $_SESSION[‘course_array’];
+  if (isset($course_array[$taintedId])){
+    //indirect reference > get the right id
+    $checked_data = $course_array[$tainted];
+// query + connexion/execute/deco
+//}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_IDOR" block="1"/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_IDOR" safe="1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>preg_replace_ldap_char_white_list</dir>
+    </path>
+    <comment>SANITIZE : use preg_replace to keep only char, number and _ ,\, -</comment>
+    <codes>
+      <code>$checked_data = preg_replace( "/[^a-zA-Z0-9_\ -]/", "", $tainted );</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe="1" needQuote = "0"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>str_replace_ldap_char_black_list</dir>
+    </path>
+    <comment>SANITIZE : use str_replace to escape special chars -</comment>
+    <codes>
+      <code>$replace_tab=array('\\' => '\5c',
+'*' => '\2a',
+'(' => '\28',
+')' => '\29',
+"\x00" => '\00');
+$checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),$tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe="1" needQuote = "0"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>pg_escape_literal</dir>
+    </path>
+    <comment>SANITIZE : use of pg_escape_literal</comment>
+    <codes>
+      <code>$checked_data = pg_escape_literal($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe="0" needQuote = "0"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>LDAP_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>pg_escape_string</dir>
+    </path>
+    <comment>SANITIZE : use of pg_escape_string</comment>
+    <codes>
+      <code>$checked_data = pg_escape_string($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="LDAP_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="LDAP_Injection" safe="0" needQuote = "0"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>object</dir>
+      <dir>mysql_real_escape_string</dir>
+    </path>
+    <comment>sanitize : use mysql_real_escape_string via an object</comment>
+    <codes>
+      <code>class Sanitize{
+public function sanitize($input){
+return mysql_real_escape_string($input);
+}
+}
+$temp = new Sanitize();
+$checked_data =  $temp->sanitize($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type="string" field=""/>
+      <constraint flawType="XPath_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe="0" needQuote = "1"/>
+      <safety flawType="XPath_Injection" safe="0" needQuote = "1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>object</dir>
+      <dir>mysql_real_escape_stringGetter</dir>
+    </path>
+    <comment>sanitize : use mysql_real_escape_string via an object and a classic getter</comment>
+    <codes>
+      <code>class Sanitize{
+private $data;
+public function __construct($input){
+$this->data = $input ;
+}
+public function getData(){
+return $this->data;
+}
+public function sanitize(){
+$this->data =  mysql_real_escape_string($this->data) ;
+}
+}
+$sanitizer = new Sanitize($tainted) ;
+$sanitizer->sanitize();
+$checked_data =  $sanitizer->getData();	</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type="string" field=""/>
+      <constraint flawType="XPath_Injection" type="string" field=""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe="0" needQuote = "1"/>
+      <safety flawType="XPath_Injection" safe="0" needQuote = "1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>urlencode</dir>
+    </path>
+    <comment>SANITIZE : use of urlencode</comment>
+    <codes>
+      <code>$checked_data = urlencode($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>rawurlencode</dir>
+    </path>
+    <comment>SANITIZE : use of rawurlencode</comment>
+    <codes>
+      <code>$checked_data = rawurlencode($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>XSS</flaw>
+    </flaws>
+    <path>
+      <dir>http_build_query</dir>
+    </path>
+    <comment>SANITIZE : use of http_build_query</comment>
+    <codes>
+      <code>$checked_data = http_build_query($tainted);</code>
+    </codes>
+    <constraints>
+      <constraint flawType="XSS"/>
+    </constraints>
+    <safeties>
+      <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1"/>
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
 </sanitize>

@@ -14,13 +14,14 @@ class FileManager :
     xml={
         "input":"input.xml",
         "sanitize":"sanitize.xml",
+        "construction":"construction.xml",
         "flaw":"file.xml",
         "input_injection":"input_injection.xml",
         "sanitize_injection":"sanitize_injection.xml",
         "SQL_injection":"SQL_injection.xml",
         "LDAP_injection":"LDAP_injection.xml",
         "XPath_injection":"XPath_injection.xml",
-		"fopen_IDOR":"fopen_IDOR.xml"
+		"fopen_IDOR":"fopen_IDOR.xml",
 		"SQL_IDOR":"SQL_IDOR.xml",
         "XPath_IDOR":"XPath_IDOR.xml",
     }

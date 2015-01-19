@@ -68,95 +68,97 @@ class GeneratorInjection:
         footer = open("./execQuery_" + injection + ".txt", "r")
         execQuery = footer.readlines()
         footer.close()
-        for f in ET.parse(self.fileManager.getXML(injection + "_injection")).getroot():
-            flaw = Injection(f)
-            for i in ET.parse(self.fileManager.getXML("input_injection")).getroot():
-                Input = InputSample(i)
-                self.manifest.beginTestCase(Input.inputType)
-                for s in ET.parse(self.fileManager.getXML("sanitize_injection")).getroot():
-                    sanitize = Sanitize_injection(s)
+        for f in ET.parse(self.fileManager.getXML("construction")).getroot():
+            flaw = Flaws(f)
+            if injection+"_Injection" in flaw.flaws:
+                for s in ET.parse(self.fileManager.getXML("sanitize")).getroot():
+                    sanitize = Sanitize(s)
+                    if injection+"_Injection" in sanitize.flaws:
+                        for i in ET.parse(self.fileManager.getXML("input")).getroot():
+                            Input = InputSample(i)
+                            self.manifest.beginTestCase(Input.inputType)
 
-                    file = File()
+                            file = File()
 
-                    # test if the samples need to be generated
-                    input_R = Input.relevancy
-                    sanitize_R = sanitize.relevancy
-                    file_R = flaw.relevancy
+                            # test if the samples need to be generated
+                            input_R = Input.relevancy
+                            sanitize_R = sanitize.relevancy
+                            file_R = flaw.relevancy
 
-                    #Relevancy test
-                    if (input_R * sanitize_R * file_R < self.select):
-                        continue
+                            #Relevancy test
+                            if (input_R * sanitize_R * file_R < self.select):
+                                continue
 
-                    #Coherence test
-                    if ( sanitize.constraintType != ""
-                         and sanitize.constraintType != flaw.constraintType ):
-                        continue
+                            #Coherence test
+                            if ( sanitize.constraintType != ""
+                                 and sanitize.constraintType != flaw.constraintType ):
+                                continue
 
-                    if ( sanitize.constraintField != ""
-                         and sanitize.constraintField != flaw.constraintField ):
-                        continue
+                            if ( sanitize.constraintField != ""
+                                 and sanitize.constraintField != flaw.constraintField ):
+                                continue
 
-                    safe = self.testSafety(sanitize, flaw)
-
-
-                    #Creates folder tree and sample files if they don't exists
-                    file.addPath("generation")
-                    file.addPath("Injection")
-                    file.addPath(injection)
-
-                    #sort by safe/unsafe
-                    if self.ordered == True:
-                        if safe:
-                            file.addPath("safe")
-                        else:
-                            file.addPath("unsafe")
-
-                    for dir in flaw.path:
-                        file.addPath(dir)
-
-                    for dir in Input.path:
-                        file.addPath(dir)
-
-                    for i in range(len(sanitize.path) - 1):
-                        dir = sanitize.path[i]
-                        file.addPath(dir)
-
-                    file.setName(sanitize.path[-1])
-                    file.addContent("<?php\n")
-                    file.addContent("/*\n")
-
-                    #Adds comments
-                    if safe:
-                        file.addContent("Safe sample")
-                    else:
-                        file.addContent("Unsafe sample")
-
-                    file.addContent(flaw.comment + "\n" + Input.comment + "\n" + sanitize.comment + "\n" + " */")
+                            safe = self.testSafety(sanitize, flaw)
 
 
-                    #Writes copyright statement in the sample file
-                    file.addContent("\n\n")
-                    for line in copyright:
-                        file.addContent(line)
+                            #Creates folder tree and sample files if they don't exists
+                            file.addPath("generation")
+                            file.addPath("Injection")
+                            file.addPath(injection)
 
-                    #Writes the code in the sample file
-                    file.addContent("\n\n")
-                    file.addContent(Input.code + "\n"
-                                    + sanitize.code + "\n"
-                                    + flaw.code + "\n\n")
+                            #sort by safe/unsafe
+                            if self.ordered == True:
+                                if safe:
+                                    file.addPath("safe")
+                                else:
+                                    file.addPath("unsafe")
 
-                    #Adds the code for query execution
-                    for line in execQuery:
-                        file.addContent(line)
+                            for dir in flaw.path:
+                                file.addPath(dir)
 
-                    file.addContent("\n ?>")
+                            for dir in Input.path:
+                                file.addPath(dir)
 
-                    self.fileManager.createFile(file)
+                            for i in range(len(sanitize.path) - 1):
+                                dir = sanitize.path[i]
+                                file.addPath(dir)
 
-                    if safe:
-                        flawLine = 0
-                    else:
-                        flawLine = self.findFlaw(file.getPath() + "/" + file.getName())
+                            file.setName(sanitize.path[-1])
+                            file.addContent("<?php\n")
+                            file.addContent("/*\n")
 
-                    self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
-                self.manifest.endTestCase()
+                            #Adds comments
+                            if safe:
+                                file.addContent("Safe sample")
+                            else:
+                                file.addContent("Unsafe sample")
+
+                            file.addContent(flaw.comment + "\n" + Input.comment + "\n" + sanitize.comment + "\n" + " */")
+
+
+                            #Writes copyright statement in the sample file
+                            file.addContent("\n\n")
+                            for line in copyright:
+                                file.addContent(line)
+
+                            #Writes the code in the sample file
+                            file.addContent("\n\n")
+                            file.addContent(Input.code + "\n"
+                                            + sanitize.code[0] + "\n"
+                                            + flaw.code[0] + "\n\n")
+
+                            #Adds the code for query execution
+                            for line in execQuery:
+                                file.addContent(line)
+
+                            file.addContent("\n ?>")
+
+                            self.fileManager.createFile(file)
+
+                            if safe:
+                                flawLine = 0
+                            else:
+                                flawLine = self.findFlaw(file.getPath() + "/" + file.getName())
+
+                            self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
+                            self.manifest.endTestCase()

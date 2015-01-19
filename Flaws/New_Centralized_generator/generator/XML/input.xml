@@ -1,257 +1,257 @@
 <?xml version="1.0"?>
 <input>
-	<sample>
-		<path>
-			<dir>backticks</dir>
-		</path>
-		<comment>input : backticks interpretation, reading the file /tmp/tainted.txt</comment>
-		<code>$tainted = `cat /tmp/tainted.txt`;</code>
-		<inputType>file : /tmp/tainted.txt</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>exec</dir>
-		</path>
-		<comment>input : use exec to execute the script /tmp/tainted.php and store the output in $tainted</comment>
-		<code>$script = "/tmp/tainted.php" ;
-exec($script, $result, $return) ;
+  <sample>
+    <path>
+      <dir>backticks</dir>
+    </path>
+    <comment>input : backticks interpretation, reading the file /tmp/tainted.txt</comment>
+    <code>$tainted = `cat /tmp/tainted.txt`;</code>
+    <inputType>file : /tmp/tainted.txt</inputType>
+    <relevancy>0.5</relevancy>
+  </sample>
 
-$tainted = $result[0];</code>
-		<inputType>script : /tmp/tainted.php</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
+  <sample>
+    <path>
+      <dir>exec</dir>
+    </path>
+    <comment>input : use exec to execute the script /tmp/tainted.php and store the output in $tainted</comment>
+    <code>$script = "/tmp/tainted.php" ;
+      exec($script, $result, $return) ;
 
-	<sample>
-		<path>
-			<dir>fopen</dir>
-		</path>
-		<comment>input : use fopen to read /tmp/tainted.txt and put the first line in $tainted</comment>
-		<code>$handle = @fopen("/tmp/tainted.txt", "r");
+      $tainted = $result[0];</code>
+      <inputType>script : /tmp/tainted.php</inputType>
+      <relevancy>0.5</relevancy>
+    </sample>
 
-if ($handle) {
-if(($tainted = fgets($handle, 4096)) == false) {
-	$tainted = "";
-}	
-fclose($handle);
-}else{
-$tainted = "";
-}</code>
-		<inputType>file : /tmp/tainted.txt</inputType>
-		<relevancy>1</relevancy>
-		
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>GET</dir>
-		</path>
-		<comment>input : reads the field UserData from the variable $_GET</comment>
-		<code>$tainted = $_GET['UserData'];</code>
-		<inputType>variable : $_GET['UserData']</inputType>
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>popen</dir>
-		</path>
-		<comment>input : Uses popen to read the file /tmp/tainted.txt using cat command</comment>
-		<code>$handle = popen('/bin/cat /tmp/tainted.txt', 'r');
-$tainted = fread($handle, 4096);
-pclose($handle);</code>
-		<inputType>file : /tmp/tainted.txt</inputType>
-		<relevancy>0.25</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>POST</dir>
-		</path>
-		<comment>input : get the field UserData from the variable $_POST</comment>
-		<code>$tainted = $_POST['UserData'];</code>
-		<inputType>variable : $_POST['UserData']</inputType>
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>proc_open</dir>
-		</path>
-		<comment>input : use proc_open to read /tmp/tainted.txt</comment>
-		<code>$descriptorspec = array(
-0 => array("pipe", "r"),
-1 => array("pipe", "w"),
-2 => array("file", "/tmp/error-output.txt", "a")
-);
-$cwd = '/tmp';
-$process = proc_open('more /tmp/tainted.txt', $descriptorspec, $pipes, $cwd, NULL);
-if (is_resource($process)) {
-fclose($pipes[0]);
-$tainted = stream_get_contents($pipes[1]);
-fclose($pipes[1]);
-$return_value = proc_close($process);
-}</code>
-		<inputType>file : /tmp/tainted.txt</inputType>
-		<relevancy>0.25</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>SESSION</dir>
-		</path>
-		<comment>input : get the UserData field of $_SESSION</comment>
-		<code>$tainted = $_SESSION['UserData'];</code>
-		<inputType>variable : $_SESSION['UserData']</inputType>
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>shell_exec</dir>
-		</path>
-		<comment>input : use shell_exec to cat /tmp/tainted.txt</comment>
-		<code>$tainted = shell_exec('cat /tmp/tainted.txt');</code>
-		<inputType>file : /tmp/tainted.txt</inputType>
-		<relevancy>0.25</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>system</dir>
-		</path>
-		<comment>input : execute a ls command using the function system, and put the last result in $tainted</comment>
-		<code>$tainted = system('ls', $retval);</code>
-		<inputType>variable : $retval</inputType>
-		<relevancy>0.25</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>unserialize</dir>
-		</path>
-		<comment>input : Get a serialize string in POST and unserialize it</comment>
-		<code>
-$string = $_POST['UserData'] ;
-$tainted = unserialize($string);
-</code>
-		<inputType>serialized string in POST['UserData']</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
+    <sample>
+      <path>
+        <dir>fopen</dir>
+      </path>
+      <comment>input : use fopen to read /tmp/tainted.txt and put the first line in $tainted</comment>
+      <code>$handle = @fopen("/tmp/tainted.txt", "r");
 
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>directGet</dir>
-		</path>
-		<comment>input : get the field userData from the variable $_GET via an object</comment>
-		<code>class Input{
-	public function getInput(){
-		return $_GET['UserData'] ;
-	}
-}
+        if ($handle) {
+        if(($tainted = fgets($handle, 4096)) == false) {
+        $tainted = "";
+        }
+        fclose($handle);
+        }else{
+        $tainted = "";
+        }</code>
+        <inputType>file : /tmp/tainted.txt</inputType>
+        <relevancy>1</relevancy>
 
-$temp = new Input();
-$tainted =  $temp->getInput();		
-		</code>
-		<inputType>variable : $_GET['userData']</inputType>
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>classicGet</dir>
-		</path>
-		<comment>input : get the field userData from the variable $_GET via an object</comment>
-		<code>class Input{
-	private $input;
+      </sample>
 
-	public function getInput(){
-		return $this->input;
-	}
-	
-	public  function __construct(){
-		$this->input = $_GET['UserData'] ;
-	}
-}
-$temp = new Input();
-$tainted =  $temp->getInput();		
-		</code>
-		<inputType>variable : $_GET['userData']</inputType>
-		<relevancy>1</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>Array</dir>
-		</path>
-		<comment>input : get the field userData from the variable $_GET via an object, which store it in a array</comment>
-		<code>class Input{
-	private $input;
+      <sample>
+        <path>
+          <dir>GET</dir>
+        </path>
+        <comment>input : reads the field UserData from the variable $_GET</comment>
+        <code>$tainted = $_GET['UserData'];</code>
+        <inputType>variable : $_GET['UserData']</inputType>
+        <relevancy>1</relevancy>
+      </sample>
 
-	public function getInput(){
-		return $this->input[1];
-	}
-	
-	public  function __construct(){
-		$this->input = array();
-		$this->input[0]= 'safe' ;
-		$this->input[1]= $_GET['UserData'] ;
-		$this->input[2]= 'safe' ;
-	}
-}
-$temp = new Input();
-$tainted =  $temp->getInput();		
-		</code>
-		<inputType>variable : $_GET['userData']</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>object</dir>
-			<dir>indexArray</dir>
-		</path>
-		<comment>input : get the field userData from the variable $_GET via an object, which store it in a array</comment>
-		<code>class Input{
-	private $input;
+      <sample>
+        <path>
+          <dir>popen</dir>
+        </path>
+        <comment>input : Uses popen to read the file /tmp/tainted.txt using cat command</comment>
+        <code>$handle = popen('/bin/cat /tmp/tainted.txt', 'r');
+          $tainted = fread($handle, 4096);
+          pclose($handle);</code>
+          <inputType>file : /tmp/tainted.txt</inputType>
+          <relevancy>0.25</relevancy>
+        </sample>
 
-	public function getInput(){
-		return $this->input['realOne'];
-	}
-	
-	public  function __construct(){
-		$this->input = array();
-		$this->input['test']= 'safe' ;
-		$this->input['realOne']= $_GET['UserData'] ;
-		$this->input['trap']= 'safe' ;
-	}
-}
-$temp = new Input();
-$tainted =  $temp->getInput();		
-		</code>
-		<inputType>variable : $_GET['userData']</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	<sample>
-		<path>
-			<dir>array</dir>
-			<dir>GET</dir>
-		</path>
-		<comment>input : get the $_GET['userData'] in an array</comment>
-		<code>$array = array();
-$array[] = 'safe' ;
-$array[] = $_GET['userData'] ;
-$array[] = 'safe' ;
-$tainted = $array[1] ;	
-		</code>
-		<inputType>variable : $_GET['userData']</inputType>
-		<relevancy>0.5</relevancy>
-	</sample>
-	
-	
-</input>
+        <sample>
+          <path>
+            <dir>POST</dir>
+          </path>
+          <comment>input : get the field UserData from the variable $_POST</comment>
+          <code>$tainted = $_POST['UserData'];</code>
+          <inputType>variable : $_POST['UserData']</inputType>
+          <relevancy>1</relevancy>
+        </sample>
+
+        <sample>
+          <path>
+            <dir>proc_open</dir>
+          </path>
+          <comment>input : use proc_open to read /tmp/tainted.txt</comment>
+          <code>$descriptorspec = array(
+            0 => array("pipe", "r"),
+            1 => array("pipe", "w"),
+            2 => array("file", "/tmp/error-output.txt", "a")
+            );
+            $cwd = '/tmp';
+            $process = proc_open('more /tmp/tainted.txt', $descriptorspec, $pipes, $cwd, NULL);
+            if (is_resource($process)) {
+            fclose($pipes[0]);
+            $tainted = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+            $return_value = proc_close($process);
+            }</code>
+            <inputType>file : /tmp/tainted.txt</inputType>
+            <relevancy>0.25</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>SESSION</dir>
+            </path>
+            <comment>input : get the UserData field of $_SESSION</comment>
+            <code>$tainted = $_SESSION['UserData'];</code>
+            <inputType>variable : $_SESSION['UserData']</inputType>
+            <relevancy>1</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>shell_exec</dir>
+            </path>
+            <comment>input : use shell_exec to cat /tmp/tainted.txt</comment>
+            <code>$tainted = shell_exec('cat /tmp/tainted.txt');</code>
+            <inputType>file : /tmp/tainted.txt</inputType>
+            <relevancy>0.25</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>system</dir>
+            </path>
+            <comment>input : execute a ls command using the function system, and put the last result in $tainted</comment>
+            <code>$tainted = system('ls', $retval);</code>
+            <inputType>variable : $retval</inputType>
+            <relevancy>0.25</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>unserialize</dir>
+            </path>
+            <comment>input : Get a serialize string in POST and unserialize it</comment>
+            <code>
+              $string = $_POST['UserData'] ;
+              $tainted = unserialize($string);
+            </code>
+            <inputType>serialized string in POST['UserData']</inputType>
+            <relevancy>0.5</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>object</dir>
+              <dir>directGet</dir>
+            </path>
+            <comment>input : get the field userData from the variable $_GET via an object</comment>
+            <code>class Input{
+              public function getInput(){
+              return $_GET['UserData'] ;
+              }
+              }
+
+              $temp = new Input();
+              $tainted =  $temp->getInput();
+            </code>
+            <inputType>variable : $_GET['userData']</inputType>
+            <relevancy>1</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>object</dir>
+              <dir>classicGet</dir>
+            </path>
+            <comment>input : get the field userData from the variable $_GET via an object</comment>
+            <code>class Input{
+              private $input;
+
+              public function getInput(){
+              return $this->input;
+              }
+
+              public  function __construct(){
+              $this->input = $_GET['UserData'] ;
+              }
+              }
+              $temp = new Input();
+              $tainted =  $temp->getInput();
+            </code>
+            <inputType>variable : $_GET['userData']</inputType>
+            <relevancy>1</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>object</dir>
+              <dir>Array</dir>
+            </path>
+            <comment>input : get the field userData from the variable $_GET via an object, which store it in a array</comment>
+            <code>class Input{
+              private $input;
+
+              public function getInput(){
+              return $this->input[1];
+              }
+
+              public  function __construct(){
+              $this->input = array();
+              $this->input[0]= 'safe' ;
+              $this->input[1]= $_GET['UserData'] ;
+              $this->input[2]= 'safe' ;
+              }
+              }
+              $temp = new Input();
+              $tainted =  $temp->getInput();
+            </code>
+            <inputType>variable : $_GET['userData']</inputType>
+            <relevancy>0.5</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>object</dir>
+              <dir>indexArray</dir>
+            </path>
+            <comment>input : get the field userData from the variable $_GET via an object, which store it in a array</comment>
+            <code>class Input{
+              private $input;
+
+              public function getInput(){
+              return $this->input['realOne'];
+              }
+
+              public  function __construct(){
+              $this->input = array();
+              $this->input['test']= 'safe' ;
+              $this->input['realOne']= $_GET['UserData'] ;
+              $this->input['trap']= 'safe' ;
+              }
+              }
+              $temp = new Input();
+              $tainted =  $temp->getInput();
+            </code>
+            <inputType>variable : $_GET['userData']</inputType>
+            <relevancy>0.5</relevancy>
+          </sample>
+
+          <sample>
+            <path>
+              <dir>array</dir>
+              <dir>GET</dir>
+            </path>
+            <comment>input : get the $_GET['userData'] in an array</comment>
+            <code>$array = array();
+              $array[] = 'safe' ;
+              $array[] = $_GET['userData'] ;
+              $array[] = 'safe' ;
+              $tainted = $array[1] ;
+            </code>
+            <inputType>variable : $_GET['userData']</inputType>
+            <relevancy>0.5</relevancy>
+          </sample>
+
+
+        </input>
