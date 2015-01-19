@@ -13,7 +13,7 @@ integer = "int"
 
 
 class Manifest :
-    def __init__(self,flaw) :
+    def __init__(self,flaw="Not define") :
 
         path = "./generation/"+flaw
         if not os.path.exists(path):
