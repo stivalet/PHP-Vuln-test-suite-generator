@@ -1404,8 +1404,8 @@
     </path>
     <comment>construction : fopen</comment>
     <codes>
-      <code>//flaw</code>
-      <code>fopen($checked_data, "r");</code>
+      <code>//flaw
+fopen($checked_data, "r");</code>
     </codes>
     <safeties>
       <safety typeFlaw="Fopen_IDOR" safe = "0"/>
@@ -1426,8 +1426,8 @@
     </path>
     <comment>construction : right verification</comment>
     <codes>
-      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";</code>
-      <code>$query .= "AND course.allowed=$_SESSION[userid]";</code>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
       <safety typeFlaw="SQL_IDOR" safe = "1"/>
@@ -1469,8 +1469,8 @@
     </path>
     <comment>construction : prepared query and right verification</comment>
     <codes>
-      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";</code>
-      <code>$query .= "AND course.allowed=$_SESSION[userid]";</code>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
       <safety typeFlaw="SQL_IDOR" safe = "1"/>
