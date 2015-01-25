@@ -139,6 +139,7 @@ class GeneratorXSS(Generator):
         #Creates folder tree and sample files if they don't exists
         file.addPath("generation")
         file.addPath("XSS")
+        file.addPath("CWE 79")
 
         #sort by safe/unsafe
         if self.ordered:

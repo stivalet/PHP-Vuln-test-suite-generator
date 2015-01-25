@@ -105,10 +105,15 @@ class GeneratorInjection:
                         safe = self.testSafety(param, param2)
 
 
+        flawCwe={"XPath":"CWE 91",
+             "LDAP":"CWE 90",
+             "SQL":"CWE 89"
+        }
+
         #Creates folder tree and sample files if they don't exists
         file.addPath("generation")
         file.addPath("Injection")
-        file.addPath(injection)
+        file.addPath(flawCwe[injection])
 
        #sort by safe/unsafe
         if self.ordered:

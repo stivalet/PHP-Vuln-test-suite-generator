@@ -148,7 +148,7 @@
             <comment>input : get the field userData from the variable $_GET via an object</comment>
             <code>class Input{
               public function getInput(){
-              return $_GET['UserData'] ;
+              return $_GET['UserData'];
               }
               }
 
