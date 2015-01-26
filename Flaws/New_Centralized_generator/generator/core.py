@@ -68,6 +68,16 @@ def main(argv):
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
                 print(str(unsafe + safe) + " total\n")
+            if flaw == "IDOR":
+                manifest = Manifest(flaw)
+                IDORGen = GeneratorIDOR(manifest,fileManager,select,ordered)
+                IDORGen.generate()
+                safe=IDORGen.safe_Sample
+                unsafe=IDORGen.unsafe_Sample
+                print("IDOR generation report:")
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n" )
     else if CWElist != None :
 
 

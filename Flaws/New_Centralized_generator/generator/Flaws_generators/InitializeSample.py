@@ -11,8 +11,8 @@ quote = "quote"
 noQuote = "noQuote"
 integer = "int"
 safety = "safety"
-block = "block"
-noBlock = "noBlock"
+#block = "block"
+#noBlock = "noBlock"
 prepared = "prepared"
 noPrepared = "noPrepared"
 
@@ -201,7 +201,7 @@ class Flaws(InitialSample):  # Load parameters and code beginning and end
                 else:
                     self.isSafe = unsafe
             elif "IDOR" in safety.get("flawType"):
-                self.isSafe = safe if safety.get("safe") == "1" else unsafe
+                self.safe = safe if safety.get("safe") == "1" else unsafe
 
         constraints = initialSample.find("constraints").findall("constraint")
         for constraint in constraints:
@@ -209,4 +209,4 @@ class Flaws(InitialSample):  # Load parameters and code beginning and end
                 self.constraintType = constraint.get("type")
                 self.constraintField = constraint.get("field")
             if "IDOR" in constraint.get("flawType"):
-                self.isBlock = block if safety.find("block") == "1" else noBlock
+                self.prepared = prepared if constraint.find("prepared") == "1" else noPrepared
