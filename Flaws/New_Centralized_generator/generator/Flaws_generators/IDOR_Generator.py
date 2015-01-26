@@ -1,5 +1,9 @@
 import os
 
+from .Generator_Abstract_Class import *
+from .InitializeSample import *
+from Classes.File import *
+
 select = 0
 order = 0
 safety = "safety"
@@ -24,17 +28,23 @@ def setOrder(O) :
 
 
 #Manages final samples, by a combination of 3 initialSample
-class IDOR_generator :
+class GeneratorIDOR(Generator) :
 
-    #Initializes counters
-    safe_Sample = 0
-    unsafe_Sample = 0
+    ##Initializes counters
+    #safe_Sample = 0
+    #unsafe_Sample = 0
 
     def __init__(self, manifest, fileManager, select, ordered):
-        self.select = select
-        self.ordered = ordered
-        self.manifest = manifest
-        self.fileManager = fileManager
+        Generator.__init__(self, manifest, fileManager, select, ordered)
+
+    #def __init__(self, manifest, fileManager, select, ordered):
+    #    self.select = select
+    #    self.ordered = ordered
+    #    self.manifest = manifest
+    #    self.fileManager = fileManager
+
+    def getType(self):
+        return ['SQL_IDOR', 'XPath_IDOR', 'Fopen']
 
     def testSafety(self) :
         if self.sanitize.isSafe == safe or self.construct.isSafe == safe :
@@ -53,10 +63,10 @@ class IDOR_generator :
              break
        return i + 1
 	   
-	def testIsBlock(self) :
-        if self.sanitize.isBlock == block :
-            return 1
-        return 0
+	#def testIsBlock(self) :
+    #    if self.sanitize.isBlock == block :
+    #        return 1
+    #    return 0
 
     def testIsPrepared(self) :
         if self.construct.isPrepared == prepared :
@@ -70,11 +80,13 @@ class IDOR_generator :
         self.manifest.close()   
 	   
     #Generates final sample
-    def generate(self, IDOR) :
+    def generateWithType(self, IDOR) :
         #Gets query execution code
+        #2 types normal query and prepared query
         fileQuery = open("./execQuery_"+IDOR+ ".txt", "r")
         execQuery = fileQuery.readlines()
         fileQuery.close()
+        
 		for f in ET.parse(self.fileManager.getXML(IDOR + "_IDOR")).getroot():
             flaw = IDOR(f)
             for i in ET.parse(self.fileManager.getXML("input_IDOR")).getroot():

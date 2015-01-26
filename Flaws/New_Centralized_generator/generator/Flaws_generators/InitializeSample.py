@@ -145,8 +145,8 @@ class Sanitize(InitialSample):  # Initialize rules, safety, code and escape
             if "Injection" in constraint.get("flawType"):
                 self.constraintType = constraint.get("type")
                 self.constraintField = constraint.get("field")
-            if "IDOR" in constraint.get("flawType"):
-                self.isBlock = block if safety.find("block") == "1" else noBlock
+            #if "IDOR" in constraint.get("flawType"):
+            #    self.isBlock = block if safety.find("block") == "1" else noBlock
 
 
 class Flaws(InitialSample):  # Load parameters and code beginning and end
