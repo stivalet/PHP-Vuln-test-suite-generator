@@ -14,10 +14,10 @@
       <code>$query = "name='". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -35,10 +35,10 @@
       <code>$query = "name=' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -56,10 +56,10 @@
       <code>$query = sprintf("name='%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -77,10 +77,10 @@
       <code>$query = "!name='". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -98,10 +98,10 @@
       <code>$query = "!name=' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFLaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -119,10 +119,10 @@
       <code>$query = sprintf("!name='%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -140,10 +140,10 @@
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='". $checked_data . "'))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -161,10 +161,10 @@
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn=' $checked_data '))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -182,10 +182,10 @@
       <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='%s'))", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -203,10 +203,10 @@
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='". $checked_data . "'))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -224,10 +224,10 @@
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail=' $checked_data '))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -245,10 +245,10 @@
       <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='%s'))", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="LDAP_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint typeFlaw="LDAP_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -266,10 +266,10 @@
       <code>$query = "SELECT * FROM '". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -287,10 +287,10 @@
       <code>$query = "SELECT * FROM ' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -308,10 +308,10 @@
       <code>$query = sprintf("SELECT * FROM '%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -329,10 +329,10 @@
       <code>$query = "SELECT * FROM student where id=". $checked_data . "";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -350,10 +350,10 @@
       <code>$query = "SELECT * FROM student where id='". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -371,10 +371,10 @@
       <code>$query = "SELECT * FROM student where id= $checked_data ";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -395,12 +395,12 @@
       <code>$query = "SELECT * FROM student where id=' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
-      <safety flawType="SQL_IDOR" safe = "0"/>
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
-      <constraint flawType="SQL_IDOR" prepared = "0"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_IDOR" prepared = "0"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -418,10 +418,10 @@
       <code>$query = sprintf("SELECT * FROM student where id=%d", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -439,10 +439,10 @@
       <code>$query = sprintf("SELECT * FROM student where id='%d'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -460,10 +460,10 @@
       <code>$query = sprintf("SELECT * FROM student where id='%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -481,10 +481,10 @@
       <code>$query = sprintf("SELECT * FROM student where id=%u", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -502,10 +502,10 @@
       <code>$query = sprintf("SELECT * FROM student where id='%u'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -523,10 +523,10 @@
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=". $checked_data . ")";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -544,10 +544,10 @@
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='". $checked_data . "')";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -565,10 +565,10 @@
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent= $checked_data )";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -586,10 +586,10 @@
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=' $checked_data ')";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -607,10 +607,10 @@
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -628,10 +628,10 @@
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -649,10 +649,10 @@
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -670,10 +670,10 @@
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -691,10 +691,10 @@
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -712,10 +712,10 @@
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=". $checked_data . "";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -733,10 +733,10 @@
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -754,10 +754,10 @@
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor= $checked_data ";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -775,10 +775,10 @@
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -796,10 +796,10 @@
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%d", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -817,10 +817,10 @@
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%d'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -838,10 +838,10 @@
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -859,10 +859,10 @@
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%u", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -880,10 +880,10 @@
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%u'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="SQL_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -901,10 +901,10 @@
       <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -922,10 +922,10 @@
       <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag=' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -943,10 +943,10 @@
       <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="SQL_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint typeFlaw="SQL_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -964,10 +964,10 @@
       <code>$query = "//User[username/text()='". $checked_data . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -985,10 +985,10 @@
       <code>$query = "//User[username/text()=' $checked_data ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1006,10 +1006,10 @@
       <code>$query = sprintf("//User[username/text()='%s']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1028,12 +1028,12 @@
       <code>$query = "//User[@username='". $checked_data . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
-      <safety flawType="XPath_IDOR" safe = "0"/>
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
-      <constraint flawType="XPath_IDOR"/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_IDOR"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1051,10 +1051,10 @@
       <code>$query = "//User[@username=' $checked_data ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1072,10 +1072,10 @@
       <code>$query = sprintf("//User[@username='%s']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1093,10 +1093,10 @@
       <code>$query = "'". $checked_data . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1114,10 +1114,10 @@
       <code>$query = "' $checked_data '";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1135,10 +1135,10 @@
       <code>$query = sprintf("'%s'", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1156,10 +1156,10 @@
       <code>$query = "user[username='". $checked_data . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1177,10 +1177,10 @@
       <code>$query = "user[username=' $checked_data ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1198,10 +1198,10 @@
       <code>$query = sprintf("user[username='%s']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1219,10 +1219,10 @@
       <code>$query = "//User[@id=". $checked_data . "]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1240,10 +1240,10 @@
       <code>$query = "//User[@id='". $checked_data . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1261,10 +1261,10 @@
       <code>$query = "//User[@id= $checked_data ]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1282,10 +1282,10 @@
       <code>$query = "//User[@id=' $checked_data ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1303,10 +1303,10 @@
       <code>$query = sprintf("//User[@id=%d]", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="XPath_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1324,10 +1324,10 @@
       <code>$query = sprintf("//User[@id='%d']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "1" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -1345,10 +1345,10 @@
       <code>$query = sprintf("//User[@id='%s']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety typeFlaw="XPath_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1366,10 +1366,10 @@
       <code>$query = sprintf("//User[@id=%u]", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="XPath_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1387,10 +1387,10 @@
       <code>$query = sprintf("//User[@id='%u']", $data_checked);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety typeFlaw="XPath_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint typeFlaw="XPath_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
@@ -1404,14 +1404,14 @@
     </path>
     <comment>construction : fopen</comment>
     <codes>
-      <code>//flaw</code>
-      <code>fopen($checked_data, "r");</code>
+      <code>//flaw
+fopen($checked_data, "r");</code>
     </codes>
     <safeties>
-      <safety flawType="Fopen_IDOR" safe = "0"/>
+      <safety typeFlaw="Fopen_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Fopen_IDOR" />
+      <constraint typeFlaw="Fopen_IDOR" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1426,14 +1426,14 @@
     </path>
     <comment>construction : right verification</comment>
     <codes>
-      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";</code>
-      <code>$query .= "AND course.allowed=$_SESSION[userid]";</code>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "1"/>
+      <safety typeFlaw="SQL_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "0"/>
+      <constraint typeFlaw="SQL_IDOR" prepared = "0"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1451,10 +1451,10 @@
       <code>$query = "SELECT * FROM COURSE WHERE id=?";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "0"/>
+      <safety typeFlaw="SQL_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "1"/>
+      <constraint typeFlaw="SQL_IDOR" prepared = "1"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1469,14 +1469,14 @@
     </path>
     <comment>construction : prepared query and right verification</comment>
     <codes>
-      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";</code>
-      <code>$query .= "AND course.allowed=$_SESSION[userid]";</code>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "1"/>
+      <safety typeFlaw="SQL_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "1"/>
+      <constraint typeFlaw="SQL_IDOR" prepared = "1"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1494,10 +1494,10 @@
       <code>$query="//Course[@id=". $checked_data . "and @allowed=". $_SESSION[userid] . "]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_IDOR" safe = "1"/>
+      <safety typeFlaw="XPath_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XPath_IDOR" />
+      <constraint typeFlaw="XPath_IDOR" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1516,10 +1516,10 @@
       <code>fileSample/xss01_Script_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS"/>
+      <safety typeFlaw="XSS"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1538,10 +1538,10 @@
       <code>fileSample/xss02_Comment_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS"/>
+      <safety typeFlaw="XSS"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1560,10 +1560,10 @@
       <code>fileSample/xss03_Attribute_Name_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS"/>
+      <safety typeFlaw="XSS"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>  
   </sample>
@@ -1582,10 +1582,10 @@
       <code>fileSample/xss04_Tag_Name_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS"/>
+      <safety typeFlaw="XSS"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1604,10 +1604,10 @@
       <code>fileSample/xss05_Style_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS"/>
+      <safety typeFlaw="XSS"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy> 
   </sample>
@@ -1626,10 +1626,10 @@
       <code>fileSample/xss11_Body_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="1"/>
+      <safety typeFlaw="XSS" rule="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1648,10 +1648,10 @@
       <code>fileSample/xss12_Div_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="1"/>
+      <safety typeFlaw="XSS" rule="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1670,10 +1670,10 @@
       <code>fileSample/xss21_Unquoted_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2"/>
+      <safety typeFlaw="XSS" rule="2"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1692,10 +1692,10 @@
       <code>fileSample/xss22_Simple_Quote_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2" simpleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="2" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1714,10 +1714,10 @@
       <code>fileSample/xss23_Double_Quote_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2" doubleQuote="1"/>
+      <safety typeFlaw="XSS" rule="2" doubleQuote="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1736,10 +1736,10 @@
       <code>fileSample/xss31_Quoted_String_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1758,10 +1758,10 @@
       <code>fileSample/xss31_DoubleQuoted_String_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1780,10 +1780,10 @@
       <code>fileSample/xss32_Side_Quoted_Expr_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1802,10 +1802,10 @@
       <code>fileSample/xss32_Side_DoubleQuoted_Expr_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1824,10 +1824,10 @@
       <code>fileSample/xss33_Quoted_Event_Handler_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1846,10 +1846,10 @@
       <code>fileSample/xss33_DoubleQuoted_Event_Handler_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety typeFlaw="XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1868,10 +1868,10 @@
       <code>fileSample/xss340_Window_setInterval_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" unsafe ="1" />
+      <safety typeFlaw="XSS" rule="3" unsafe ="1" />
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1890,10 +1890,10 @@
       <code>fileSample/xss41_Property_Value_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety typeFlaw="XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1912,10 +1912,10 @@
       <code>fileSample/xss42_Double_Quote_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety typeFlaw="XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1934,10 +1934,10 @@
       <code>fileSample/xss42_Quote_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety typeFlaw="XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -1956,10 +1956,10 @@
       <code>fileSample/xss43_Span_Style_Value_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety typeFlaw="XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint typeFlaw="XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>

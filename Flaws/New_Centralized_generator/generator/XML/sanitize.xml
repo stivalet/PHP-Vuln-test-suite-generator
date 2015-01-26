@@ -17,9 +17,9 @@
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_EMAIL);
 if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -52,9 +52,9 @@ $checked_data = "" ;</code>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -87,9 +87,9 @@ $checked_data = "" ;</code>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);
 if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -122,9 +122,9 @@ $checked_data = "" ;</code>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
 if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -158,9 +158,9 @@ $checked_data = "" ;</code>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
 if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -193,9 +193,9 @@ $checked_data = "" ;</code>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);
 if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -227,9 +227,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter email_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -258,9 +258,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter full_special_chars__filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type = "string" field=""/>
@@ -283,9 +283,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter magic_quotes_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type = "string" field=""/>
@@ -311,9 +311,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -345,9 +345,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -378,9 +378,9 @@ $checked_data = "" ;</code>
     <comment>Flushes content of $sanitized if the filter special_chars_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
-$checked_data = $sanitized ;
+  $checked_data = $sanitized ;
 else
-$checked_data = "" ;</code>
+  $checked_data = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -462,7 +462,8 @@ $checked_data += 0.0 ;</code>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
       <flaw>XSS</flaw>
-      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+      <flaw>SQL_IDOR</flaw>
+      <flaw>XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -477,7 +478,8 @@ $checked_data += 0.0 ;</code>
       <constraint flawType="XPath_Injection" type = "int" field = ""/>
       <constraint flawType="LDAP_Injection" type = "int" field = ""/>
       <constraint flawType="XSS"/>
-      <constraint flawType="SQL_IDOR" block="0"/>
+      <constraint flawType="SQL_IDOR"/>
+      <constraint flawType="XPath_IDOR"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
@@ -485,6 +487,7 @@ $checked_data += 0.0 ;</code>
       <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XSS" safe = "1" />
       <safety flawType="SQL_IDOR" safe="0" />
+      <safety flawType="XPath_IDOR" safe="0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -564,9 +567,9 @@ $checked_data += 0 ;</code>
     <comment>sanitize : settype (float)</comment>
     <codes>
       <code>if(settype($tainted, "float"))
-$checked_data = $tainted ;
+  $checked_data = $tainted ;
 else
-$checked_data = 0.0 ;</code>
+  $checked_data = 0.0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -597,9 +600,9 @@ $checked_data = 0.0 ;</code>
     <comment>sanitize : use of settype_int</comment>
     <codes>
       <code>if (settype($tainted, "integer"))
-$checked_data = $integer ;
+  $checked_data = $integer ;
 else
-$checked_data = 0 ;</code>
+  $checked_data = 0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -652,8 +655,6 @@ $checked_data = 0 ;</code>
       <flaw>LDAP_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
-      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety to handle IDOR-->
-      <flaw>XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>no_sanitizing</dir>
@@ -663,13 +664,11 @@ $checked_data = 0 ;</code>
       <code>$checked_data = $tainted;</code>
     </codes>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "s" field = ""/>
+      <constraint flawType="SQL_Injection" type = "" field = ""/>
       <constraint flawType="XPath_Injection" type = "" field = ""/>
       <constraint flawType="LDAP_Injection" type = "" field = ""/>
       <constraint flawType="XSS"/>
       <constraint flawType="Fopen_IDOR" />
-      <constraint flawType="SQL_IDOR" />
-      <constraint flawType="XPath_IDOR" />
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
@@ -677,8 +676,6 @@ $checked_data = 0 ;</code>
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XSS" />
       <safety flawType="Fopen_IDOR" safe="0"/>
-      <safety flawType="SQL_IDOR" safe="0" block="0"/>
-      <safety flawType="XPath_IDOR" safe="0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -921,8 +918,8 @@ $checked_data = 0 ;</code>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
       <flaw>XSS</flaw>
-      <flaw>Fopen_IDOR</flaw> <!-- Add an attribute to safety to make a difference between safety against injections and against insecure direct object reference -->
-      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+      <flaw>Fopen_IDOR</flaw> 
+      <flaw>SQL_IDOR</flaw> 
       <flaw>XPath_IDOR</flaw>
     </flaws>
     <path>
@@ -932,9 +929,9 @@ $checked_data = 0 ;</code>
     <codes>
       <code>$legal_table =  array("users", "connexions");
 if (in_array($tainted, $legal_table, true)) {
-$data_checked = $tainted;
+  $data_checked = $tainted;
 } else {
-$data_checked = $legal_table[0];
+  $data_checked = $legal_table[0];
 }</code>
     </codes>
     <constraints>
@@ -943,7 +940,7 @@ $data_checked = $legal_table[0];
       <constraint flawType="LDAP_Injection" type = "string" field = "FROM"/>
       <constraint flawType="XSS"/>
       <constraint flawType="Fopen_IDOR"/>
-      <constraint flawType="SQL_IDOR" block="0"/>
+      <constraint flawType="SQL_IDOR"/>
       <constraint flawType="XPath_IDOR"/>
     </constraints>
     <safeties>
@@ -960,7 +957,7 @@ $data_checked = $legal_table[0];
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+      <flaw>SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>ESAPI</dir>
@@ -972,12 +969,13 @@ ESAPI::setEncoder(new DefaultEncoder());
 ESAPI::setValidator(new DefaultValidator());
 //verifying the data with ESAPI
 if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
-$checked_data=$tainted;
-// query + connexion/execute/deco
-//}</code>
+  $checked_data=$tainted;
+} else {
+  $checked_data=0; //default value
+}</code>
     </codes>
     <constraints>
-      <constraint flawType="SQL_IDOR" block="1"/>
+      <constraint flawType="SQL_IDOR"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_IDOR" safe="1"/>
@@ -987,7 +985,7 @@ $checked_data=$tainted;
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw> <!-- Add an attribute to safety -->
+      <flaw>SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>Indirect_reference</dir>
@@ -997,22 +995,28 @@ $checked_data=$tainted;
       <code>$course_array=array();
 //get the user id
 $user_id = intval($_SESSION[‘user_id’]);
+
 //creation of the references with only data allowed to the user
 $result = mysql_query("SELECT * FROM COURSE where course.allowed = {$user_id}");
+
 while ($row = mysql_fetch_array($result)){
   $course_array[] = $result[‘id’];
 }
+
 $_SESSION[‘course_array’] = $course_array;
 if (isset($_SESSION[‘course_array’])){
   $course_array = $_SESSION[‘course_array’];
   if (isset($course_array[$taintedId])){
     //indirect reference > get the right id
     $checked_data = $course_array[$tainted];
-// query + connexion/execute/deco
-//}</code>
+  }
+}
+else {
+  $checked_data=0; //default value
+}</code>
     </codes>
     <constraints>
-      <constraint flawType="SQL_IDOR" block="1"/>
+      <constraint flawType="SQL_IDOR"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_IDOR" safe="1"/>
@@ -1050,10 +1054,10 @@ if (isset($_SESSION[‘course_array’])){
     <comment>SANITIZE : use str_replace to escape special chars -</comment>
     <codes>
       <code>$replace_tab=array('\\' => '\5c',
-'*' => '\2a',
-'(' => '\28',
-')' => '\29',
-"\x00" => '\00');
+  '*' => '\2a',
+  '(' => '\28',
+  ')' => '\29',
+  "\x00" => '\00');
 $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),$tainted);</code>
     </codes>
     <constraints>
@@ -1117,9 +1121,9 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
     <comment>sanitize : use mysql_real_escape_string via an object</comment>
     <codes>
       <code>class Sanitize{
-public function sanitize($input){
-return mysql_real_escape_string($input);
-}
+  public function sanitize($input){
+    return mysql_real_escape_string($input);
+  }
 }
 $temp = new Sanitize();
 $checked_data =  $temp->sanitize($tainted);</code>
@@ -1147,16 +1151,16 @@ $checked_data =  $temp->sanitize($tainted);</code>
     <comment>sanitize : use mysql_real_escape_string via an object and a classic getter</comment>
     <codes>
       <code>class Sanitize{
-private $data;
-public function __construct($input){
-$this->data = $input ;
-}
-public function getData(){
-return $this->data;
-}
-public function sanitize(){
-$this->data =  mysql_real_escape_string($this->data) ;
-}
+  private $data;
+  public function __construct($input){
+    $this->data = $input ;
+  }
+  public function getData(){
+    return $this->data;
+  }
+  public function sanitize(){
+    $this->data =  mysql_real_escape_string($this->data) ;
+  }
 }
 $sanitizer = new Sanitize($tainted) ;
 $sanitizer->sanitize();
