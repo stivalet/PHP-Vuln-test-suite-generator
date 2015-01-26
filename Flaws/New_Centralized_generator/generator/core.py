@@ -9,6 +9,8 @@ from Flaws_generators.Generation_functions import *
 def main(argv):
     # List of flaws
     flaws = ["XSS", "AC", "IDOR", "Injection", "BASV"]
+    cwe = {"XSS":"",
+        }
     #Generation of files with a relevancy greater or equals to select
     global select
     select = 0
@@ -16,10 +18,11 @@ def main(argv):
     ordered = False
 
     generation = []
-
+    CWElist = []
+    rang = 0
     #Gets options & arguments
     try:
-        opts, args = getopt.getopt(argv, "f:r:o:h", ["flaws=", "relevancy=", "order", "help"])
+        opts, args = getopt.getopt(argv, "f:r:o:h:cwe", ["flaws=", "relevancy=", "order", "help","commonweaknessenumeration="])
     except getopt.GetoptError:
         print('Invalid argument')
         sys.exit(2)
@@ -28,8 +31,12 @@ def main(argv):
             select = int(arg)
         elif opt in ("-o", "--order"):  #Option allowing separate safe and unsafe samples
             ordered = True
-        elif opt in ("-f", "--flaws"):  #Selecting flaws to create
+        elif (rang == 0 and (opt in ("-f", "--flaws"))):  #Selecting flaws to create
+            rang = 1
             generation = arg.split(',')
+        elif (rang == 0 and (opt in ("-cwe","--commonweaknessenumeration"))):
+            rang = 1
+            CWElist = arg.split(",")
         elif opt in ("-h", "--help"):  #Show usage
             usage()
             return 0
@@ -43,23 +50,26 @@ def main(argv):
     generator = Generator_factory()
     root=ET.parse('output.xml').getroot()
 
-    for flaw in generation:
-        if flaw == "XSS":
-            manifest = Manifest(flaw)
-            [safe, unsafe] = initialization(generator.makeXSS_Generator(manifest, fileManager, select, ordered), root)
-            manifest.close()
-            print("XSS generation report:")
-            print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
-            print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
-            print(str(unsafe + safe) + " total\n")
-        if flaw == "Injection":
-            manifest = Manifest(flaw)
-            [safe, unsafe] = initialization(generator.makeInjection_Generator(manifest, fileManager, select, ordered), root)
-            manifest.close()
-            print("Injection generation report:")
-            print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
-            print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
-            print(str(unsafe + safe) + " total\n")
+    if generation != None :
+        for flaw in generation:
+            if flaw == "XSS":
+                manifest = Manifest(flaw)
+                [safe, unsafe] = initialization(generator.makeXSS_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
+                print("XSS generation report:")
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n")
+            if flaw == "Injection":
+                manifest = Manifest(flaw)
+                [safe, unsafe] = initialization(generator.makeInjection_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
+                print("Injection generation report:")
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n")
+    else if CWElist != None :
+
 
 
 def usage():

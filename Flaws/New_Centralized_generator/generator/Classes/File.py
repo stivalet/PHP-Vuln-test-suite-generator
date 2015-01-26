@@ -1,7 +1,7 @@
 class File :
 #Class containing informations abour generated files
     def __init__ (self):
-        self.path="."
+        self.path=".."
         self.content=""
         self.name=""
 
