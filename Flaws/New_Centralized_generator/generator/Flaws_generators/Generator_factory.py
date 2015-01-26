@@ -1,6 +1,6 @@
 from .XSS_Generator import *
 from .Injection_Generator import *
-#from .IDOR_Generator import *
+from .IDOR_Generator import *
 
 
 class Generator_factory:
@@ -13,5 +13,5 @@ class Generator_factory:
     def makeInjection_Generator(self, manifest, fileManager, select, ordered):
         return GeneratorInjection(manifest, fileManager, select, ordered)
 
-    #def makeIDOR_Generator(self, manifest, fileManager, select, ordered):
-    #    return GeneratorIDOR(manifest, fileManager, select, ordered) #V2
+    def makeIDOR_Generator(self, manifest, fileManager, select, ordered):
+        return GeneratorIDOR(manifest, fileManager, select, ordered)

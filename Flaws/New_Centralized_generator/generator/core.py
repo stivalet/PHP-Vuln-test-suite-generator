@@ -10,7 +10,7 @@ def main(argv):
     # List of flaws
     flaws = ["XSS", "AC", "IDOR", "Injection", "BASV"]
     cwe = {"XSS":"",
-        }
+           }
     #Generation of files with a relevancy greater or equals to select
     global select
     select = 0
@@ -70,15 +70,14 @@ def main(argv):
                 print(str(unsafe + safe) + " total\n")
             if flaw == "IDOR":
                 manifest = Manifest(flaw)
-                IDORGen = GeneratorIDOR(manifest,fileManager,select,ordered)
-                IDORGen.generate()
-                safe=IDORGen.safe_Sample
-                unsafe=IDORGen.unsafe_Sample
+                [safe, unsafe] = initialization(generator.makeIDOR_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
                 print("IDOR generation report:")
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
-                print(str(unsafe + safe) + " total\n" )
-    else if CWElist != None :
+                print(str(unsafe + safe) + " total\n")
+    elif CWElist != None :
+        pass
 
 
 

@@ -15,7 +15,7 @@ integer = "int"
 class Manifest :
     def __init__(self,flaw="Not define") :
 
-        path = "./generation/"+flaw
+        path = "../generation/"+flaw
         if not os.path.exists(path):
             os.makedirs(path) #Create the folder if not exist
 
@@ -34,11 +34,18 @@ class Manifest :
         self.manifest.write(metaData) #Add metadata in the manifest
 
     def addFileToTestCase(self, path, flawLine) :
-        if(flawLine == 0) :            
-            file = "\t\t<file path=\""+ path +"\" language=\"PHP\"/> \n\n"
+        tmp=""
+        for s in path.split("/"):
+            if s in ["..", "generation"]:
+                continue
+            else:
+                tmp+=s+"/"
+        #print(tmp)
+        if(flawLine == 0) :
+            file = "\t\t<file path=\""+ tmp +"\" language=\"PHP\"/> \n\n"
         else :
             flawLine = str(flawLine)
-            file = ("\t\t<file path=\"" + path + "\" language=\"PHP\"> \n" +
+            file = ("\t\t<file path=\"" + tmp + "\" language=\"PHP\"> \n" +
                     "\t\t\t<flaw line=\""+flawLine+"\" name =\""+self.flaw+"\"/> \n" +
                     "\t\t</file> \n\n" )
             

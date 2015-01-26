@@ -62,7 +62,7 @@ class GeneratorInjection:
              "SQL_Injection":self.generateWithType("SQL", params)
         }
         for param in params:
-            if isinstance(param, Flaws):
+            if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
@@ -89,17 +89,17 @@ class GeneratorInjection:
         for param in params:
             if(isinstance(param,Sanitize) and param.constraintType != ""):
                 for param2 in params:
-                    if(isinstance(param2,Flaws) and (param.constraintType != param2.constraintType)):
+                    if(isinstance(param2,Construction) and (param.constraintType != param2.constraintType)):
                         return 0
             if(isinstance(param,Sanitize) and param.constraintField != ""):
                 for param2 in params:
-                    if(isinstance(param2,Flaws) and (param.constraintField != param2.constraintField)):
+                    if(isinstance(param2,Construction) and (param.constraintField != param2.constraintField)):
                         return 0
 
         #retreve parameters for safety test
         safe=None
         for param in params:
-            if isinstance(param, Flaws):
+            if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)

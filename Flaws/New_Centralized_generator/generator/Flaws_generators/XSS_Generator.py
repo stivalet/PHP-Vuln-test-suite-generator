@@ -12,6 +12,7 @@ copyright = header.readlines()
 class GeneratorXSS(Generator):
     def __init__(self, manifest, fileManager, select, ordered):
         Generator.__init__(self, manifest, fileManager, select, ordered)
+        self.z=0
 
     def getType(self):
         return ["XSS"]
@@ -131,7 +132,7 @@ class GeneratorXSS(Generator):
         #retreve parameters for safety test
         safe=None
         for param in params:
-            if isinstance(param, Flaws):
+            if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
@@ -169,7 +170,7 @@ class GeneratorXSS(Generator):
         out=""
         tmp=""
         for param in params:
-            if isinstance(param, Flaws):
+            if isinstance(param, Construction):
                 for line in open(param.code[0], "r").readlines():
                     tmp+=line
                 out=tmp+out

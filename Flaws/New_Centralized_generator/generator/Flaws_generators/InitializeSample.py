@@ -138,7 +138,7 @@ class Sanitize(InitialSample):  # Initialize rules, safety, code and escape
                 else:
                     self.isSafe = unsafe
             elif "IDOR" in safety.get("flawType"):
-                self.isSafe = safe if safety.get("safe") == "1" else unsafe
+                self.safe = safe if safety.get("safe") == "1" else unsafe
 
         constraints = initialSample.find("constraints").findall("constraint")
         for constraint in constraints:
@@ -149,7 +149,7 @@ class Sanitize(InitialSample):  # Initialize rules, safety, code and escape
             #    self.isBlock = block if safety.find("block") == "1" else noBlock
 
 
-class Flaws(InitialSample):  # Load parameters and code beginning and end
+class Construction(InitialSample):  # Load parameters and code beginning and end
     #new version for new XML
     def __init__(self, initialSample):  # Add parameters showing the beginning and the end of the sample
         InitialSample.__init__(self, initialSample)

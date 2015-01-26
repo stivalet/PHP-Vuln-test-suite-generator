@@ -5,7 +5,7 @@ from .InitializeSample import *
 def f_construction(generator, root, params, i):
     tree_construction = ET.parse(generator.fileManager.getXML("construction")).getroot()
     for c in tree_construction:
-        params[i] = Flaws(c)
+        params[i] = Construction(c)
         if set(generator.getType()).intersection(params[i].flaws):
             generation(generator, root, params, i + 1)
 
