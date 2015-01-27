@@ -1,6 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 import sys
+from .Generator_Abstract_Class import *
 from .InitializeSample import *
 from Classes.File import *
 
@@ -14,7 +15,7 @@ integer = "int"
 safety = "safety"
 
 # Manages final samples, by a combination of 3 initialSample
-class GeneratorInjection:
+class GeneratorInjection(Generator):
     # Initializes counters
     safe_Sample = 0
     unsafe_Sample = 0
@@ -23,10 +24,7 @@ class GeneratorInjection:
         return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection']
 
     def __init__(self, manifest, fileManager, select, ordered):
-        self.select = select
-        self.ordered = ordered
-        self.manifest = manifest
-        self.fileManager = fileManager
+        Generator.__init__(self, manifest, fileManager, select, ordered)
 
     def testSafety(self, sanitize, flaw):
         if sanitize.isSafe == safe:
@@ -55,19 +53,18 @@ class GeneratorInjection:
         return i + 1
 
 
-
     def generate(self, params):
-        options={"XPath_Injection":self.generateWithType("XPath", params),
-             "LDAP_Injection":self.generateWithType("LDAP", params),
-             "SQL_Injection":self.generateWithType("SQL", params)
-        }
         for param in params:
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value in options:
-                                options[value]
+                            if value == "XPath_Injection":
+                                self.generateWithType("XPath", params)
+                            elif value == "LDAP_Injection":
+                                self.generateWithType("LDAP", params)
+                            elif value == "SQL_Injection":
+                                self.generateWithType("SQL", params)
 
     # Generates final sample
     def generateWithType(self, injection, params):
@@ -79,35 +76,34 @@ class GeneratorInjection:
         file = File()
 
         # test if the samples need to be generated
-        relevancy=1
+        relevancy = 1
         for param in params:
-            relevancy*=param.relevancy
-            if(relevancy<self.select):
-                return 0
+            relevancy *= param.relevancy
+            if (relevancy < self.select):
+                return
 
-        #Coherence test
+        # Coherence test
         for param in params:
-            if(isinstance(param,Sanitize) and param.constraintType != ""):
+            if (isinstance(param, Sanitize) and param.constraintType != ""):
                 for param2 in params:
-                    if(isinstance(param2,Construction) and (param.constraintType != param2.constraintType)):
-                        return 0
-            if(isinstance(param,Sanitize) and param.constraintField != ""):
+                    if (isinstance(param2, Construction) and (param.constraintType != param2.constraintType)):
+                        return
+            if (isinstance(param, Sanitize) and param.constraintField != ""):
                 for param2 in params:
-                    if(isinstance(param2,Construction) and (param.constraintField != param2.constraintField)):
-                        return 0
+                    if (isinstance(param2, Construction) and (param.constraintField != param2.constraintField)):
+                        return
 
-        #retreve parameters for safety test
-        safe=None
+        # retreve parameters for safety test
+        safe = None
         for param in params:
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
 
-
-        flawCwe={"XPath":"CWE 91",
-             "LDAP":"CWE 90",
-             "SQL":"CWE 89"
+        flawCwe = {"XPath": "CWE 91",
+                   "LDAP": "CWE 90",
+                   "SQL": "CWE 89"
         }
 
         #Creates folder tree and sample files if they don't exists
@@ -115,7 +111,7 @@ class GeneratorInjection:
         file.addPath("Injection")
         file.addPath(flawCwe[injection])
 
-       #sort by safe/unsafe
+        #sort by safe/unsafe
         if self.ordered:
             file.addPath("safe" if safe else "unsafe")
 
@@ -130,10 +126,10 @@ class GeneratorInjection:
         file.addContent("/*\n")
 
         #Adds comments
-        file.addContent("/* \n"+("Safe sample\n" if safe else "Unsafe sample\n"))
+        file.addContent("/* \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
 
         for param in params:
-            file.addContent(param.comment+"\n")
+            file.addContent(param.comment + "\n")
         file.addContent("*/\n\n")
 
         # Gets copyright header from file

@@ -12,7 +12,7 @@ copyright = header.readlines()
 class GeneratorXSS(Generator):
     def __init__(self, manifest, fileManager, select, ordered):
         Generator.__init__(self, manifest, fileManager, select, ordered)
-        self.z=0
+        self.z = 0
 
     def getType(self):
         return ["XSS"]
@@ -22,7 +22,7 @@ class GeneratorXSS(Generator):
 
         #########################################################################
         # Special case (Order mater !!!!)
-        #Universal safe sanitizing (Cast & co)
+        # Universal safe sanitizing (Cast & co)
         #Ok in every case
         if sanitize.safe == 1:
             self.safe_Sample += 1
@@ -123,14 +123,14 @@ class GeneratorXSS(Generator):
         file = File()
 
         # test if the samples need to be generated
-        relevancy=1
+        relevancy = 1
         for param in params:
-            relevancy*=param.relevancy
-            if(relevancy<self.select):
+            relevancy *= param.relevancy
+            if (relevancy < self.select):
                 return 0
 
-        #retreve parameters for safety test
-        safe=None
+        # retreve parameters for safety test
+        safe = None
         for param in params:
             if isinstance(param, Construction):
                 for param2 in params:
@@ -154,10 +154,10 @@ class GeneratorXSS(Generator):
                     file.setName(dir)
 
         #Adds comments
-        file.addContent("<!-- \n"+("Safe sample\n" if safe else "Unsafe sample\n"))
+        file.addContent("<!-- \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
 
         for param in params:
-            file.addContent(param.comment+"\n")
+            file.addContent(param.comment + "\n")
         file.addContent("-->\n\n")
 
         #Writes copyright statement in the sample file
@@ -167,20 +167,20 @@ class GeneratorXSS(Generator):
         #Writes the code in the sample file
         file.addContent("\n\n")
 
-        out=""
-        tmp=""
+        out = ""
+        tmp = ""
         for param in params:
             if isinstance(param, Construction):
                 for line in open(param.code[0], "r").readlines():
-                    tmp+=line
-                out=tmp+out
-                tmp=""
+                    tmp += line
+                out = tmp + out
+                tmp = ""
                 for line in open(param.code[1], "r").readlines():
-                    tmp+=line
+                    tmp += line
             else:
                 for line in param.code:
-                    out+=line
-        file.addContent(out+tmp)
+                    out += line
+        file.addContent(out + tmp)
         self.fileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
