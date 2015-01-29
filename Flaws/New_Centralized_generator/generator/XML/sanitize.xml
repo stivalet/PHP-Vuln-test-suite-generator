@@ -9,7 +9,7 @@
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>email_filter</dir>
     </path>
@@ -44,7 +44,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>full_special_chars_filter</dir>
     </path>
@@ -79,7 +79,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>magic_quotes_filter</dir>
     </path>
@@ -114,7 +114,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>number_float_filter</dir>
     </path>
@@ -150,7 +150,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>number_int_filter</dir>
     </path>
@@ -185,7 +185,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>CLEANING</dir>
       <dir>special_chars_filter</dir>
     </path>
@@ -220,7 +220,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>email_filter</dir>
     </path>
@@ -251,7 +251,7 @@ else
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>full_special_chars_filter</dir>
     </path>
@@ -276,7 +276,7 @@ else
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>magic_quotes_filter</dir>
     </path>
@@ -304,7 +304,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>number_float_filter</dir>
     </path>
@@ -338,7 +338,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>number_int_filter</dir>
     </path>
@@ -371,7 +371,7 @@ else
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>FILTER</dir>
+      <dir>func_FILTER</dir>
       <dir>VALIDATION</dir>
       <dir>special_chars_filter</dir>
     </path>
@@ -562,7 +562,7 @@ $checked_data += 0 ;</code>
     </flaws>
     <path>
       <dir>CAST</dir>
-      <dir>settype_float</dir>
+      <dir>func_settype_float</dir>
     </path>
     <comment>sanitize : settype (float)</comment>
     <codes>
@@ -595,7 +595,7 @@ else
     </flaws>
     <path>
       <dir>CAST</dir>
-      <dir>settype_int</dir>
+      <dir>func_settype_int</dir>
     </path>
     <comment>sanitize : use of settype_int</comment>
     <codes>
@@ -627,7 +627,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>addslashes</dir>
+      <dir>func_addslashes</dir>
     </path>
     <comment>sanitize : use of the function addslashes</comment>
     <codes>
@@ -688,7 +688,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>floatval</dir>
+      <dir>func_floatval</dir>
     </path>
     <comment>sanitize : use of floatval</comment>
     <codes>
@@ -717,7 +717,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>htmlentities</dir>
+      <dir>func_htmlentities</dir>
     </path>
     <comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
     <codes>
@@ -746,7 +746,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>htmlspecialchars</dir>
+      <dir>func_htmlspecialchars</dir>
     </path>
     <comment>sanitize : use of the function htmlspecialchars. Sanitizes the query but has a high chance to produce unexpected results</comment>
     <codes>
@@ -775,7 +775,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>intval</dir>
+      <dir>func_intval</dir>
     </path>
     <comment>sanitize : use of intval</comment>
     <codes>
@@ -804,7 +804,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>mysql_real_escape_string</dir>
+      <dir>func_mysql_real_escape_string</dir>
     </path>
     <comment>SANITIZE : use of mysql_real_escape string</comment>
     <codes>
@@ -834,7 +834,7 @@ else
       <flaw>Fopen_IDOR</flaw>
     </flaws>
     <path>
-      <dir>preg_replace</dir>
+      <dir>func_preg_replace</dir>
     </path>
     <comment>SANITIZE : use of preg_replace</comment>
     <codes>
@@ -865,7 +865,7 @@ else
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>preg_replace2</dir>
+      <dir>func_preg_replace2</dir>
     </path>
     <comment>SANITIZE : use of preg_replace with another regex</comment>
     <codes>
@@ -1029,7 +1029,7 @@ else {
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>preg_replace_ldap_char_white_list</dir>
+      <dir>func_preg_replace_ldap_char_white_list</dir>
     </path>
     <comment>SANITIZE : use preg_replace to keep only char, number and _ ,\, -</comment>
     <codes>
@@ -1049,7 +1049,7 @@ else {
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>str_replace_ldap_char_black_list</dir>
+      <dir>func_str_replace_ldap_char_black_list</dir>
     </path>
     <comment>SANITIZE : use str_replace to escape special chars -</comment>
     <codes>
@@ -1074,7 +1074,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>pg_escape_literal</dir>
+      <dir>func_pg_escape_literal</dir>
     </path>
     <comment>SANITIZE : use of pg_escape_literal</comment>
     <codes>
@@ -1094,7 +1094,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>
-      <dir>pg_escape_string</dir>
+      <dir>func_pg_escape_string</dir>
     </path>
     <comment>SANITIZE : use of pg_escape_string</comment>
     <codes>
@@ -1116,7 +1116,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
     </flaws>
     <path>
       <dir>object</dir>
-      <dir>mysql_real_escape_string</dir>
+      <dir>func_mysql_real_escape_string</dir>
     </path>
     <comment>sanitize : use mysql_real_escape_string via an object</comment>
     <codes>
@@ -1146,7 +1146,7 @@ $checked_data =  $temp->sanitize($tainted);</code>
     </flaws>
     <path>
       <dir>object</dir>
-      <dir>mysql_real_escape_stringGetter</dir>
+      <dir>func_mysql_real_escape_stringGetter</dir>
     </path>
     <comment>sanitize : use mysql_real_escape_string via an object and a classic getter</comment>
     <codes>
@@ -1182,7 +1182,7 @@ $checked_data =  $sanitizer->getData();	</code>
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>urlencode</dir>
+      <dir>func_urlencode</dir>
     </path>
     <comment>SANITIZE : use of urlencode</comment>
     <codes>
@@ -1202,7 +1202,7 @@ $checked_data =  $sanitizer->getData();	</code>
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>rawurlencode</dir>
+      <dir>func_rawurlencode</dir>
     </path>
     <comment>SANITIZE : use of rawurlencode</comment>
     <codes>
@@ -1222,7 +1222,7 @@ $checked_data =  $sanitizer->getData();	</code>
       <flaw>XSS</flaw>
     </flaws>
     <path>
-      <dir>http_build_query</dir>
+      <dir>func_http_build_query</dir>
     </path>
     <comment>SANITIZE : use of http_build_query</comment>
     <codes>
