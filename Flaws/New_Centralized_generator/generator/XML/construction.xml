@@ -3,6 +3,132 @@
   
   <sample>
     <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "ls '". $checked_data . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "ls ' $checked_data '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("ls '%s'", $data_checked);</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "cat '". $checked_data . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "cat ' $checked_data '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("cat '%s'", $data_checked);</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
       <flaw>LDAP_Injection</flaw>
     </flaws>
     <path>

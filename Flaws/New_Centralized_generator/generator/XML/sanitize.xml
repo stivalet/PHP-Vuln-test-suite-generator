@@ -6,6 +6,7 @@
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -41,6 +42,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -76,6 +78,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -111,6 +114,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -147,6 +151,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -182,6 +187,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -217,6 +223,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -301,6 +308,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -335,6 +343,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -369,6 +378,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -400,6 +410,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -430,6 +441,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -461,6 +473,7 @@ $checked_data += 0.0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>SQL_IDOR</flaw>
       <flaw>XPath_IDOR</flaw>
@@ -497,6 +510,7 @@ $checked_data += 0.0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -528,6 +542,7 @@ $checked_data += 0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -558,6 +573,7 @@ $checked_data += 0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -591,6 +607,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -624,6 +641,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -653,6 +671,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
     </flaws>
@@ -685,6 +704,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -714,6 +734,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -743,6 +764,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -772,6 +794,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -801,6 +824,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -830,6 +854,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
     </flaws>
@@ -862,6 +887,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -891,6 +917,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
     </flaws>
     <path>
       <dir>ternary_white_list</dir>
@@ -917,6 +944,7 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw> 
       <flaw>SQL_IDOR</flaw> 

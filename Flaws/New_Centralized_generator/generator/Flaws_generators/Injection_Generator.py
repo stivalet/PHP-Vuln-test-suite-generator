@@ -21,7 +21,7 @@ class GeneratorInjection(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection']
+        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection','OSCommand_Injection']
 
     def __init__(self, manifest, fileManager, select, ordered):
         Generator.__init__(self, manifest, fileManager, select, ordered)
@@ -65,6 +65,8 @@ class GeneratorInjection(Generator):
                                 self.generateWithType("LDAP", params)
                             elif value == "SQL_Injection":
                                 self.generateWithType("SQL", params)
+                            elif value == "OSCommand_Injection":
+                                self.generateWithType("OSCommand", params)
 
     # Generates final sample
     def generateWithType(self, injection, params):
@@ -101,9 +103,10 @@ class GeneratorInjection(Generator):
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
 
-        flawCwe = {"XPath": "CWE 91",
-                   "LDAP": "CWE 90",
-                   "SQL": "CWE 89"
+        flawCwe = {"OSCommand":"CWE_78"
+                   "XPath": "CWE_91",
+                   "LDAP": "CWE_90",
+                   "SQL": "CWE_89"
         }
 
         #Creates folder tree and sample files if they don't exists
@@ -120,7 +123,7 @@ class GeneratorInjection(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(dir)
+                    file.setName(flawCwe[injection]+"_"+dir)
 
         file.addContent("<?php\n")
         file.addContent("/*\n")
