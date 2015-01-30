@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <program>
 	<input/>
-	<sanitize/>
-	<construction/>
+	<function>
+		<sanitize/>
+	</function>
+	<function>
+		<construction/>
+	</function>
 </program>
