@@ -513,8 +513,6 @@
     <path>
       <dir>select_from_where</dir> <!-- Injection -->
       <dir>interpretation_simple_quote</dir> <!-- Injection -->
-      <dir>non_prepared_query</dir> <!-- IDOR -->
-      <dir>no_right_verification</dir> <!-- IDOR -->
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>

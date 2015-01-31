@@ -111,6 +111,43 @@ def f_function(generator, root, params, i):
         generation(generator, root, params, i + 1)
         f_function_cpt-=1
 
+def f_class(generator, root, params, i):
+    global f_class_cpt
+    type = {"construction": lambda sample: Construction(sample),
+            "sanitize": lambda sample: Sanitize(sample),
+    }
+    if root[i][0].tag not in type:
+        options[root[i][0].tag](generator, root, params, i)
+        return
+    # print(root[i][0].tag)
+    tree = ET.parse(generator.fileManager.getXML(root[i][0].tag)).getroot()
+    for leaf in tree:
+        params[i] = type[root[i][0].tag](leaf)
+        #print("source: "+str(params[i].code[-1]))
+        var = re.search("^(\$[^ ]+)", params[i].code[-1], re.I)
+        #print("sortie: "+str(var)+"\n\n")
+        params[i].code[0] = "\nclass f_class" + str(f_class_cpt) + "{" + \
+                            "\n\tprivate $_data;" + \
+                            "\n\tpublic function __construct($data){" + \
+                            "\n\t\t$this->setData($data);" + \
+                            "\n\t}" + \
+                            "\n\tpublic function setData($data){" + \
+                            "\n\t\t$this->_data = $data;" + \
+                            "\n\t}" + \
+                            "\n\tpublic function a(){" + \
+                            "\n\t\t" + params[i].code[0]
+        if var is not None:
+            var=var.group(1)
+            params[i].code[-1] += "\n\t\treturn " + str(var) + ";\n\t}\n}\n" + "$a = new f_class" + str(f_class_cpt) + "($tainted);\n" + str(var) + " = $a->a();\n"
+        else:
+            params[i].code[-1] = "\n\t\treturn " + params[i].code[-1] + "\n\t}\n}\n" + "$f_class_var = f_class" + str(f_class_cpt) + "($tainted);\n"
+        #for line in params[i].code:
+        #    print(line)
+        #print("\n")
+        f_class_cpt+=1
+        generation(generator, root, params, i + 1)
+        f_class_cpt-=1
+
 
 options = {
     "construction": f_construction,
@@ -119,6 +156,7 @@ options = {
     "if": f_if,
     "loop": f_loop,
     "function": f_function,
+    "class": f_class,
 }
 
 
@@ -128,6 +166,8 @@ def initialization(generator, root):
     f_loop_alert=0
     global f_function_cpt
     f_function_cpt=1
+    global f_class_cpt
+    f_class_cpt=1
     generation(generator, root, params)
     return [generator.safe_Sample, generator.unsafe_Sample]
 
