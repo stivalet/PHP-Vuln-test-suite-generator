@@ -6,11 +6,7 @@
       <dir>no_right_verification</dir>
     </path>
     <comment>construction : no right verification</comment>
-    <code>$query = "SELECT * FROM COURSE where id=' $checked_data '";
-$conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); // Connection to the database (address, user, password)
-//flaw
-$res = mysql_query($query);
-mysql_close($conn);</code>
+    <code>$query = "SELECT * FROM COURSE where id=' $checked_data '";</code>
     <safety safe = "0"/>
     <constarint />
     <relevancy>1</relevancy>
@@ -23,11 +19,7 @@ mysql_close($conn);</code>
     </path>
     <comment>construction : right verification</comment>
     <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$checked_data'";
-$query .= "AND course.allowed=$_SESSION[userid]";$query = "SELECT * FROM COURSE where id=' $checked_data '";
-$conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); // Connection to the database (address, user, password)
-//flaw
-$res = mysql_query($query);
-mysql_close($conn);</code>
+$query .= "AND course.allowed=$_SESSION[userid]";$query = "SELECT * FROM COURSE where id=' $checked_data '";</code>
     <safety safe = "1"/>
     <constraint />
     <relevancy>1</relevancy>
@@ -39,13 +31,7 @@ mysql_close($conn);</code>
       <dir>no_right_verification</dir>
     </path>
     <comment>construction : prepared query and no right verification</comment>
-    <code>$query = "SELECT * FROM COURSE WHERE id=?";
-$conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); // Connection to the database (address, user, password)
-$stmt = $conn->prepare($query);
-//flaw
-$stmt->bind_param("i", $checked_data)
-$stmt->execute()
-mysql_close($conn);</code>
+    <code>$query = "SELECT * FROM COURSE WHERE id=?";</code>
     <safety safe = "0"/>
     <constraint />
     <relevancy>1</relevancy>
@@ -58,13 +44,7 @@ mysql_close($conn);</code>
     </path>
     <comment>construction : prepared query and right verification</comment>
     <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";
-$query .= "AND course.allowed=$_SESSION[userid]";
-$conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); // Connection to the database (address, user, password)
-$stmt = $conn->prepare($query);
-//flaw
-$stmt->bind_param("i", $checked_data)
-$stmt->execute()
-mysql_close($conn);</code>
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
     <safety safe = "1"/>
     <constraint />
     <relevancy>1</relevancy>
