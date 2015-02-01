@@ -22,7 +22,7 @@ def main(argv):
     rang = 0
     #Gets options & arguments
     try:
-        opts, args = getopt.getopt(argv, "f:r:o:h:cwe", ["flaws=", "relevancy=", "order", "help","commonweaknessenumeration="])
+        opts, args = getopt.getopt(argv, "f:r:o:h:c", ["flaws=", "relevancy=", "order", "help","cwe="])
     except getopt.GetoptError:
         print('Invalid argument')
         sys.exit(2)
@@ -34,7 +34,7 @@ def main(argv):
         elif (rang == 0 and (opt in ("-f", "--flaws"))):  #Selecting flaws to create
             rang = 1
             generation = arg.split(',')
-        elif (rang == 0 and (opt in ("-cwe","--commonweaknessenumeration"))):
+        elif (rang == 0 and (opt in ("-c","--cwe"))):
             rang = 1
             CWElist = arg.split(",")
         elif opt in ("-h", "--help"):  #Show usage

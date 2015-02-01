@@ -1,6 +1,114 @@
 <?xml version="1.0"?>
 
 <sanitize>
+    <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>func_preg_match</dir>
+      <dir>only_letters</dir>
+    </path>
+    <comment>sanitize : check if there only letters/comment>
+    <codes>
+      <code>$re = "/^[a-zA-Z]*$/"; 
+if(preg_match($re, $tainted)==1){
+$checked_data=$tained;
+}
+else{
+$checked_data="";
+}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "String" field = ""/>
+      <constraint flawType="XPath_Injection" type = "String" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "String" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "String" field = ""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>func_preg_match</dir>
+      <dir>only_numbers</dir>
+    </path>
+    <comment>sanitize : check if there only letters/comment>
+    <codes>
+      <code>$re = « /^[0-9]*$/"; 
+if(preg_match($re, $tainted)==1){
+$checked_data=$tained;
+}
+else{
+$checked_data="";
+}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "int" field = ""/>
+      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "int" field = ""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>SQL_Injection</flaw>
+      <flaw>XPath_Injection</flaw>
+      <flaw>LDAP_Injection</flaw>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>func_preg_match</dir>
+      <dir>letters_numbers</dir>
+    </path>
+    <comment>sanitize : check if there only letters/comment>
+    <codes>
+      <code>$re = « /^[a-zA-Z0-9]*$/"; 
+if(preg_match($re, $tainted)==1){
+$checked_data=$tained;
+}
+else{
+$checked_data="";
+}</code>
+    </codes>
+    <constraints>
+      <constraint flawType="SQL_Injection" type = "String" field = ""/>
+      <constraint flawType="XPath_Injection" type = "String" field = ""/>
+      <constraint flawType="LDAP_Injection" type = "String" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "String" field = ""/>
+    </constraints>
+    <safeties>
+      <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
   <sample>
     <flaws>
       <flaw>SQL_Injection</flaw>
@@ -24,6 +132,7 @@ else
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
@@ -32,6 +141,7 @@ else
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -42,7 +152,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -78,7 +187,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -134,12 +242,14 @@ else
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
       <constraint flawType="XPath_Injection" type = "int" field = ""/>
       <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
@@ -171,12 +281,14 @@ else
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
       <constraint flawType="XPath_Injection" type = "int" field = ""/>
       <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -187,7 +299,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -223,7 +334,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -308,7 +418,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -343,7 +452,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -378,7 +486,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -410,7 +517,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -441,7 +547,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -473,7 +578,6 @@ $checked_data += 0.0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>SQL_IDOR</flaw>
       <flaw>XPath_IDOR</flaw>
@@ -510,7 +614,6 @@ $checked_data += 0.0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -542,7 +645,6 @@ $checked_data += 0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -573,7 +675,6 @@ $checked_data += 0 ;</code>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -607,7 +708,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -641,7 +741,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -671,7 +770,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
     </flaws>
@@ -704,7 +802,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -734,7 +831,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -764,7 +860,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -794,7 +889,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -824,7 +918,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -854,7 +947,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
     </flaws>
@@ -887,7 +979,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -917,7 +1008,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
     </flaws>
     <path>
       <dir>ternary_white_list</dir>
@@ -944,7 +1034,6 @@ else
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
       <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw> 
       <flaw>SQL_IDOR</flaw> 
