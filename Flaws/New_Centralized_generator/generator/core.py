@@ -12,9 +12,7 @@ def main(argv):
     cwe = {"XSS":"",
            }
     #Generation of files with a relevancy greater or equals to select
-    global select
     select = 0
-    global ordered
     ordered = False
 
     generation = []
@@ -47,36 +45,35 @@ def main(argv):
             return 1
 
     fileManager = FileManager()
-    generator = Generator_factory()
     root=ET.parse('output.xml').getroot()
 
-    if generation != None :
+    if generation is not None:
         for flaw in generation:
             if flaw == "XSS":
-                manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(generator.makeXSS_Generator(manifest, fileManager, select, ordered), root)
-                manifest.close()
                 print("XSS generation report:")
+                manifest = Manifest(flaw)
+                [safe, unsafe] = initialization(Generator_factory.makeXSS_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
                 print(str(unsafe + safe) + " total\n")
             if flaw == "Injection":
-                manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(generator.makeInjection_Generator(manifest, fileManager, select, ordered), root)
-                manifest.close()
                 print("Injection generation report:")
+                manifest = Manifest(flaw)
+                [safe, unsafe] = initialization(Generator_factory.makeInjection_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
                 print(str(unsafe + safe) + " total\n")
             if flaw == "IDOR":
-                manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(generator.makeIDOR_Generator(manifest, fileManager, select, ordered), root)
-                manifest.close()
                 print("IDOR generation report:")
+                manifest = Manifest(flaw)
+                [safe, unsafe] = initialization(Generator_factory.makeIDOR_Generator(manifest, fileManager, select, ordered), root)
+                manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
                 print(str(unsafe + safe) + " total\n")
-    elif CWElist != None :
+    elif CWElist is not None:
         pass
 
 

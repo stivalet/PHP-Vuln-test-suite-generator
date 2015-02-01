@@ -8,14 +8,18 @@ class Generator_factory:
     def __init__(self):
         pass
 
-    def makeXSS_Generator(self, manifest, fileManager, select, ordered):
+    @staticmethod
+    def makeXSS_Generator(manifest, fileManager, select, ordered):
         return GeneratorXSS(manifest, fileManager, select, ordered)
 
-    def makeInjection_Generator(self, manifest, fileManager, select, ordered):
+    @staticmethod
+    def makeInjection_Generator(manifest, fileManager, select, ordered):
         return GeneratorInjection(manifest, fileManager, select, ordered)
 
-    def makeIDOR_Generator(self, manifest, fileManager, select, ordered):
+    @staticmethod
+    def makeIDOR_Generator(manifest, fileManager, select, ordered):
         return GeneratorIDOR(manifest, fileManager, select, ordered)
 
-    def makeDangerous_Functions_Generator(self, manifest, fileManager, select, ordered):
+    @staticmethod
+    def makeDangerous_Functions_Generator(manifest, fileManager, select, ordered):
         return GeneratorDangerousFunctions(manifest, fileManager, select, ordered)

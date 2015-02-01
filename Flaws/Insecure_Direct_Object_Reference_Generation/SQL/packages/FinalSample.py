@@ -9,8 +9,8 @@ safe = "safe"
 unsafe = "unsafe"
 #block = "block"
 #noBlock = "noBlock"
-#prepared = "prepared"
-#noPrepared = "noPrepared"
+prepared = "prepared"
+noPrepared = "noPrepared"
 
 
 #Gets copyright header from file
@@ -18,15 +18,14 @@ header = open("./rights.txt", "r")
 copyright = header.readlines()
 header.close()
 
-#Part ExecQuery is tranfered to the construction samples
 #Gets query execution code
-#fileNormalQuery = open("./execNormalQuery.txt", "r")
-#execNormalQuery = fileNormalQuery.readlines()
-#fileNormalQuery.close()
+fileNormalQuery = open("./execNormalQuery.txt", "r")
+execNormalQuery = fileNormalQuery.readlines()
+fileNormalQuery.close()
 
-#filePreparedQuery = open("./execPreparedQuery.txt", "r")
-#execPreparedQuery = filePreparedQuery.readlines()
-#filePreparedQuery.close()
+filePreparedQuery = open("./execPreparedQuery.txt", "r")
+execPreparedQuery = filePreparedQuery.readlines()
+filePreparedQuery.close()
 
 def setRelevancy(R) :
    global select

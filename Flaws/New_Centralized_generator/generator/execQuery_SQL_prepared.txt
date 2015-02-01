@@ -1,6 +1,6 @@
 $conn = mysql_connect('localhost', 'mysql_user', 'mysql_password'); //Connection to the database (address, user, password)
 $stmt = $conn->prepare($query);
 //flaw
-$stmt->bind_param("i", $checked_data)
-$stmt->execute()
+$stmt->bind_param("i", $checked_data);
+$stmt->execute();
 mysql_close($conn);

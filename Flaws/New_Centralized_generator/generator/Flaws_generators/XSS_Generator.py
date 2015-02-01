@@ -23,12 +23,12 @@ class GeneratorXSS(Generator):
         #########################################################################
         # Special case (Order mater !!!!)
         # Universal safe sanitizing (Cast & co)
-        #Ok in every case
+        # Ok in every case
         if sanitize.safe == 1:
             self.safe_Sample += 1
             return 1
 
-        #TODO : replace by test on the format
+        # TODO : replace by test on the format
         # 3 :Escaping (" -> \" ) with rule 3 can lead to XSS (HTML parser first... blablabla... Read the OWASP doc thx)
         if flaw.rule == 3 and sanitize.escape == 1:
             self.unsafe_Sample += 1
@@ -54,30 +54,30 @@ class GeneratorXSS(Generator):
             self.unsafe_Sample += 1
             return 0
 
-        #Universal unsafe file (Unsafe function & co)
+        # Universal unsafe file (Unsafe function & co)
         if flaw.unsafe == 1:
             self.unsafe_Sample += 1
             return 0
 
-        #Simple quote escape is enough (Rule 2,3,4)
+        # Simple quote escape is enough (Rule 2,3,4)
         if flaw.simpleQuote == 1 and sanitize.simpleQuote == 1:
             self.safe_Sample += 1
             return 1
 
-        #Double quote escape is enough (Rule 2,3,4)
+        # Double quote escape is enough (Rule 2,3,4)
         if flaw.doubleQuote == 1 and sanitize.doubleQuote == 1:
             self.safe_Sample += 1
             return 1
 
         #########################################################################
-        #General Case
-        #Rule 1 : escape & < > " '     (and / ideally)
+        # General Case
+        # Rule 1 : escape & < > " '     (and / ideally)
         if flaw.rule == 1 and sanitize.rule1 == 1:
             self.safe_Sample += 1
             return 1
 
-        #Rule 2 : escape ASCII < 256 (format : &#xHH ) ideally
-        #properly quoted attribute only need corresponding quote
+        # Rule 2 : escape ASCII < 256 (format : &#xHH ) ideally
+        # properly quoted attribute only need corresponding quote
         if flaw.rule == 2 and sanitize.rule2 == 1:
             self.safe_Sample += 1
             return 1
@@ -104,15 +104,6 @@ class GeneratorXSS(Generator):
         self.unsafe_Sample += 1
         return 0
 
-    def findFlaw(self, fileName):  # Find if a line in the file start by //flaw
-        sample = open(fileName, 'r')
-        i = 0
-        for line in sample.readlines():
-            i += 1
-            if line[:6] == "//flaw":
-                break
-        return i + 1
-
     # Generates final sample
     def generate(self, params):
         for param in params:
@@ -137,12 +128,12 @@ class GeneratorXSS(Generator):
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
 
-        #Creates folder tree and sample files if they don't exists
+        # Creates folder tree and sample files if they don't exists
         file.addPath("generation")
         file.addPath("XSS")
         file.addPath("CWE 79")
 
-        #sort by safe/unsafe
+        # sort by safe/unsafe
         if self.ordered:
             file.addPath("safe" if safe else "unsafe")
 
@@ -153,18 +144,18 @@ class GeneratorXSS(Generator):
                 else:
                     file.setName(dir)
 
-        #Adds comments
+        # Adds comments
         file.addContent("<!-- \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
 
         for param in params:
             file.addContent(param.comment + "\n")
         file.addContent("-->\n\n")
 
-        #Writes copyright statement in the sample file
+        # Writes copyright statement in the sample file
         for line in copyright:
             file.addContent(line)
 
-        #Writes the code in the sample file
+        # Writes the code in the sample file
         file.addContent("\n\n")
 
         out = ""

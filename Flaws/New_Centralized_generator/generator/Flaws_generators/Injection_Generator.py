@@ -14,6 +14,7 @@ noQuote = "noQuote"
 integer = "int"
 safety = "safety"
 
+
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorInjection(Generator):
     # Initializes counters
@@ -21,7 +22,7 @@ class GeneratorInjection(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection','OSCommand_Injection']
+        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection']
 
     def __init__(self, manifest, fileManager, select, ordered):
         Generator.__init__(self, manifest, fileManager, select, ordered)
@@ -42,15 +43,6 @@ class GeneratorInjection(Generator):
             return 1
 
         self.unsafe_Sample += 1
-
-    def findFlaw(self, fileName):
-        sample = open(fileName, 'r')
-        i = 0
-        for line in sample.readlines():
-            i += 1
-            if line[:6] == "//flaw":
-                break
-        return i + 1
 
 
     def generate(self, params):
@@ -103,18 +95,18 @@ class GeneratorInjection(Generator):
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
 
-        flawCwe = {"OSCommand":"CWE_78"
+        flawCwe = {"OSCommand": "CWE_78",
                    "XPath": "CWE_91",
                    "LDAP": "CWE_90",
                    "SQL": "CWE_89"
         }
 
-        #Creates folder tree and sample files if they don't exists
+        # Creates folder tree and sample files if they don't exists
         file.addPath("generation")
         file.addPath("Injection")
         file.addPath(flawCwe[injection])
 
-        #sort by safe/unsafe
+        # sort by safe/unsafe
         if self.ordered:
             file.addPath("safe" if safe else "unsafe")
 
@@ -123,12 +115,12 @@ class GeneratorInjection(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[injection]+"_"+dir)
+                    file.setName(flawCwe[injection] + "_" + dir)
 
         file.addContent("<?php\n")
         file.addContent("/*\n")
 
-        #Adds comments
+        # Adds comments
         file.addContent("/* \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
 
         for param in params:
@@ -140,12 +132,12 @@ class GeneratorInjection(Generator):
         copyright = header.readlines()
         header.close()
 
-        #Writes copyright statement in the sample file
+        # Writes copyright statement in the sample file
         file.addContent("\n\n")
         for line in copyright:
             file.addContent(line)
 
-        #Writes the code in the sample file
+        # Writes the code in the sample file
         file.addContent("\n\n")
         for param in params:
             for line in param.code:

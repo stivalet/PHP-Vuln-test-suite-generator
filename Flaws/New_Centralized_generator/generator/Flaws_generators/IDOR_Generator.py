@@ -7,17 +7,17 @@ from Classes.File import *
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorIDOR(Generator):
     ##Initializes counters
-    #safe_Sample = 0
-    #unsafe_Sample = 0
+    # safe_Sample = 0
+    # unsafe_Sample = 0
 
     def __init__(self, manifest, fileManager, select, ordered):
         Generator.__init__(self, manifest, fileManager, select, ordered)
 
-    #def __init__(self, manifest, fileManager, select, ordered):
-    #    self.select = select
-    #    self.ordered = ordered
-    #    self.manifest = manifest
-    #    self.fileManager = fileManager
+    # def __init__(self, manifest, fileManager, select, ordered):
+    # self.select = select
+    # self.ordered = ordered
+    # self.manifest = manifest
+    # self.fileManager = fileManager
 
     def getType(self):
         return ["SQL_IDOR", "XPath_IDOR", "Fopen_IDOR"]
@@ -29,19 +29,10 @@ class GeneratorIDOR(Generator):
         self.unsafe_Sample += 1
         return 0
 
-    def findFlaw(self, fileName):
-        sample = open(fileName, 'r')
-        i = 0
-        for line in sample.readlines():
-            i += 1
-            if line[:6] == "//flaw":
-                break
-        return i + 1
-
-    #def testIsBlock(self) :
-    #    if self.sanitize.isBlock == block :
-    #        return 1
-    #    return 0
+    # def testIsBlock(self) :
+    # if self.sanitize.isBlock == block :
+    # return 1
+    # return 0
 
     def generate(self, params):
         for param in params:
@@ -56,7 +47,7 @@ class GeneratorIDOR(Generator):
                             elif value == "SQL_IDOR":
                                 self.generateWithType("SQL", params)
 
-    #Generates final sample
+    # Generates final sample
     def generateWithType(self, IDOR, params):
         #Gets query execution code
         #2 types normal query and prepared query
@@ -91,7 +82,7 @@ class GeneratorIDOR(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)  #1 : safe ,0 : unsafe
+                        safe = self.testSafety(param, param2)  # 1 : safe ,0 : unsafe
 
 
         #Creates folder tree and sample files if they don't exists
