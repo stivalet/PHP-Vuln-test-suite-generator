@@ -26,12 +26,14 @@ else
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -62,12 +64,14 @@ else
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -98,12 +102,14 @@ else
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "1" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "1" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -134,12 +140,14 @@ else
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
       <constraint flawType="XPath_Injection" type = "int" field = ""/>
       <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
@@ -171,12 +179,14 @@ else
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
       <constraint flawType="XPath_Injection" type = "int" field = ""/>
       <constraint flawType="LDAP_Injection" type = "int" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "1" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1 ="1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -207,12 +217,14 @@ else
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "1" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -242,12 +254,14 @@ else
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
       <constraint flawType="XPath_Injection" type = "string" field = ""/>
       <constraint flawType="LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType="OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType="XSS"/>
     </constraints>
     <safeties>
       <safety flawType="SQL_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XPath_Injection" safe = "0" needQuote = "0" />
       <safety flawType="LDAP_Injection" safe = "0" needQuote = "0" />
+      <safety flawType="OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType="XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -832,7 +846,7 @@ else
     </path>
     <comment>SANITIZE : use of mysql_real_escape string</comment>
     <codes>
-      <code>$data_checked = mysql_real_escape_string($tainted);</code>
+      <code>$checked_data = mysql_real_escape_string($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -957,9 +971,9 @@ else
     <codes>
       <code>$legal_table =  array("users", "connexions");
 if (in_array($tainted, $legal_table, true)) {
-  $data_checked = $tainted;
+  $checked_data = $tainted;
 } else {
-  $data_checked = $legal_table[0];
+  $checked_data = $legal_table[0];
 }</code>
     </codes>
     <constraints>

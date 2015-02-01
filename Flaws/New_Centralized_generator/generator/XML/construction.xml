@@ -53,13 +53,139 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("ls '%s'", $data_checked);</code>
+      <code>$query = sprintf("ls '%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
       <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+<sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size '". $checked_data . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size ' $checked_data '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("find / size '%d'", $checked_data);</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size '". $checked_data . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size ' $checked_data '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>OSCommand_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("find / size '%d'", $checked_data);</code>
+    </codes>
+    <safeties>
+      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
@@ -116,7 +242,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("cat '%s'", $data_checked);</code>
+      <code>$query = sprintf("cat '%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
@@ -179,7 +305,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("name='%s'", $data_checked);</code>
+      <code>$query = sprintf("name='%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
@@ -242,7 +368,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("!name='%s'", $data_checked);</code>
+      <code>$query = sprintf("!name='%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
@@ -305,7 +431,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='%s'))", $data_checked);</code>
+      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='%s'))", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
@@ -368,7 +494,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='%s'))", $data_checked);</code>
+      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='%s'))", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
@@ -431,7 +557,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM '%s'", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM '%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "0" />
@@ -539,7 +665,7 @@
     </path>
     <comment>construction : use of sprintf via a %d</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM student where id=%d", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM student where id=%d", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -560,7 +686,7 @@
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM student where id='%d'", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM student where id='%d'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "1" />
@@ -581,7 +707,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM student where id='%s'", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM student where id='%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "0" />
@@ -602,7 +728,7 @@
     </path>
     <comment>construction : use of sprintf via a %u</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM student where id=%u", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM student where id=%u", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -623,7 +749,7 @@
     </path>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM student where id='%u'", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM student where id='%u'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -728,7 +854,7 @@
     </path>
     <comment>construction : use of sprintf via a %d</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -749,7 +875,7 @@
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "1" />
@@ -770,7 +896,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "0" />
@@ -791,7 +917,7 @@
     </path>
     <comment>construction : use of sprintf via a %u</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -812,7 +938,7 @@
     </path>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", $data_checked);</code>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -917,7 +1043,7 @@
     </path>
     <comment>construction : use of sprintf via a %d</comment>
     <codes>
-      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%d", $data_checked);</code>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%d", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -938,7 +1064,7 @@
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%d'", $data_checked);</code>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%d'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "1" />
@@ -959,7 +1085,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%s'", $data_checked);</code>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "0" />
@@ -980,7 +1106,7 @@
     </path>
     <comment>construction : use of sprintf via a %u</comment>
     <codes>
-      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%u", $data_checked);</code>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%u", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -1001,7 +1127,7 @@
     </path>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%u'", $data_checked);</code>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%u'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "0" safe = "1" />
@@ -1064,7 +1190,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", $data_checked);</code>
+      <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="SQL_Injection" quote = "1" safe = "0" />
@@ -1127,7 +1253,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("//User[username/text()='%s']", $data_checked);</code>
+      <code>$query = sprintf("//User[username/text()='%s']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "0" />
@@ -1193,7 +1319,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("//User[@username='%s']", $data_checked);</code>
+      <code>$query = sprintf("//User[@username='%s']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "0" />
@@ -1256,7 +1382,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("'%s'", $data_checked);</code>
+      <code>$query = sprintf("'%s'", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "0" />
@@ -1319,7 +1445,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("user[username='%s']", $data_checked);</code>
+      <code>$query = sprintf("user[username='%s']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "0" />
@@ -1424,7 +1550,7 @@
     </path>
     <comment>construction : use of sprintf via a %d</comment>
     <codes>
-      <code>$query = sprintf("//User[@id=%d]", $data_checked);</code>
+      <code>$query = sprintf("//User[@id=%d]", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "0" safe = "1" />
@@ -1445,7 +1571,7 @@
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$query = sprintf("//User[@id='%d']", $data_checked);</code>
+      <code>$query = sprintf("//User[@id='%d']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "1" />
@@ -1466,7 +1592,7 @@
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$query = sprintf("//User[@id='%s']", $data_checked);</code>
+      <code>$query = sprintf("//User[@id='%s']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "1" safe = "0" />
@@ -1487,7 +1613,7 @@
     </path>
     <comment>construction : use of sprintf via a %u</comment>
     <codes>
-      <code>$query = sprintf("//User[@id=%u]", $data_checked);</code>
+      <code>$query = sprintf("//User[@id=%u]", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "0" safe = "1" />
@@ -1508,7 +1634,7 @@
     </path>
     <comment>construction : use of sprintf via a %u with simple quote</comment>
     <codes>
-      <code>$query = sprintf("//User[@id='%u']", $data_checked);</code>
+      <code>$query = sprintf("//User[@id='%u']", $checked_data);</code>
     </codes>
     <safeties>
       <safety flawType="XPath_Injection" quote = "0" safe = "1" />
