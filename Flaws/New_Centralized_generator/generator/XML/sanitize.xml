@@ -16,10 +16,10 @@
     <codes>
       <code>$re = "/^[a-zA-Z]*$/"; 
 if(preg_match($re, $tainted)==1){
-$checked_data=$tained;
+$tainted=$tainted;
 }
 else{
-$checked_data="";
+$tainted="";
 }</code>
     </codes>
     <constraints>
@@ -52,10 +52,10 @@ $checked_data="";
     <codes>
       <code>$re = « /^[0-9]*$/"; 
 if(preg_match($re, $tainted)==1){
-$checked_data=$tained;
+$tainted=$tainted;
 }
 else{
-$checked_data="";
+$tainted="";
 }</code>
     </codes>
     <constraints>
@@ -88,10 +88,10 @@ $checked_data="";
     <codes>
       <code>$re = « /^[a-zA-Z0-9]*$/"; 
 if(preg_match($re, $tainted)==1){
-$checked_data=$tained;
+$tainted=$tainted;
 }
 else{
-$checked_data="";
+$tainted="";
 }</code>
     </codes>
     <constraints>
@@ -124,10 +124,10 @@ $checked_data="";
     <codes>
       <code>$re = « /^.*$/"; 
 if(preg_match($re, $tainted)==1){
-$checked_data=$tained;
+$tainted=$tainted;
 }
 else{
-$checked_data="";
+$tainted="";
 }</code>
     </codes>
     <constraints>
@@ -162,9 +162,9 @@ $checked_data="";
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_EMAIL);
 if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -200,9 +200,9 @@ else
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -238,9 +238,9 @@ else
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);
 if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -276,9 +276,9 @@ else
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
 if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -315,9 +315,9 @@ else
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
 if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -353,9 +353,9 @@ else
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);
 if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -390,9 +390,9 @@ else
     <comment>Flushes content of $sanitized if the filter email_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_EMAIL))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -423,9 +423,9 @@ else
     <comment>Flushes content of $sanitized if the filter full_special_chars__filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type = "string" field=""/>
@@ -448,9 +448,9 @@ else
     <comment>Flushes content of $sanitized if the filter magic_quotes_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type = "string" field=""/>
@@ -477,9 +477,9 @@ else
     <comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -512,9 +512,9 @@ else
     <comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -546,9 +546,9 @@ else
     <comment>Flushes content of $sanitized if the filter special_chars_filter is not applied</comment>
     <codes>
       <code>if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
-  $checked_data = $sanitized ;
+  $tainted = $sanitized ;
 else
-  $checked_data = "" ;</code>
+  $tainted = "" ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -577,7 +577,7 @@ else
     </path>
     <comment>sanitize : cast in float</comment>
     <codes>
-      <code>$checked_data =  (float) $tainted ;</code>
+      <code>$tainted =  (float) $tainted ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -608,8 +608,8 @@ else
     </path>
     <comment>sanitize : cast via += 0.0</comment>
     <codes>
-      <code>$checked_data =  $tainted ;
-$checked_data += 0.0 ;</code>
+      <code>$tainted =  $tainted ;
+$tainted += 0.0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -642,7 +642,7 @@ $checked_data += 0.0 ;</code>
     </path>
     <comment>sanitize : cast into int</comment>
     <codes>
-      <code>$checked_data =  (int) $tainted ;</code>
+      <code>$tainted =  (int) $tainted ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -677,8 +677,8 @@ $checked_data += 0.0 ;</code>
     </path>
     <comment>sanitize : cast via += 0</comment>
     <codes>
-      <code>$checked_data =  $tainted ;
-$checked_data += 0 ;</code>
+      <code>$tainted =  $tainted ;
+$tainted += 0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -709,7 +709,7 @@ $checked_data += 0 ;</code>
     </path>
     <comment>sanitize : cast via += 0</comment>
     <codes>
-      <code>$checked_data =  $tainted + 0;</code>
+      <code>$tainted =  $tainted + 0;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -741,9 +741,9 @@ $checked_data += 0 ;</code>
     <comment>sanitize : settype (float)</comment>
     <codes>
       <code>if(settype($tainted, "float"))
-  $checked_data = $tainted ;
+  $tainted = $tainted ;
 else
-  $checked_data = 0.0 ;</code>
+  $tainted = 0.0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -775,9 +775,9 @@ else
     <comment>sanitize : use of settype_int</comment>
     <codes>
       <code>if (settype($tainted, "integer"))
-  $checked_data = $integer ;
+  $tainted = $integer ;
 else
-  $checked_data = 0 ;</code>
+  $tainted = 0 ;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -807,7 +807,7 @@ else
     </path>
     <comment>sanitize : use of the function addslashes</comment>
     <codes>
-      <code>$checked_data = addslashes($tainted);</code>
+      <code>$tainted = addslashes($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -838,7 +838,7 @@ else
     </path>
     <comment>sanitize : none</comment>
     <codes>
-      <code>$checked_data = $tainted;</code>
+      <code>$tainted = $tainted;</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "" field = ""/>
@@ -870,7 +870,7 @@ else
     </path>
     <comment>sanitize : use of floatval</comment>
     <codes>
-      <code>$checked_data = floatval($tainted);</code>
+      <code>$tainted = floatval($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -900,7 +900,7 @@ else
     </path>
     <comment>sanitize : use of the function htmlentities. Sanitizes the query but has a high chance to produce unexpected results</comment>
     <codes>
-      <code>$checked_data = htmlentities($tainted, ENT_QUOTES);</code>
+      <code>$tainted = htmlentities($tainted, ENT_QUOTES);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -930,7 +930,7 @@ else
     </path>
     <comment>sanitize : use of the function htmlspecialchars. Sanitizes the query but has a high chance to produce unexpected results</comment>
     <codes>
-      <code>$checked_data = htmlspecialchars($tainted, ENT_QUOTES);</code>
+      <code>$tainted = htmlspecialchars($tainted, ENT_QUOTES);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -960,7 +960,7 @@ else
     </path>
     <comment>sanitize : use of intval</comment>
     <codes>
-      <code>$checked_data = intval($tainted);</code>
+      <code>$tainted = intval($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -990,7 +990,7 @@ else
     </path>
     <comment>SANITIZE : use of mysql_real_escape string</comment>
     <codes>
-      <code>$checked_data = mysql_real_escape_string($tainted);</code>
+      <code>$tainted = mysql_real_escape_string($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "int" field = ""/>
@@ -1021,7 +1021,7 @@ else
     </path>
     <comment>SANITIZE : use of preg_replace</comment>
     <codes>
-      <code>$checked_data = preg_replace('/\'/', '', $tainted);</code>
+      <code>$tainted = preg_replace('/\'/', '', $tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -1053,7 +1053,7 @@ else
     </path>
     <comment>SANITIZE : use of preg_replace with another regex</comment>
     <codes>
-      <code>$checked_data = preg_replace('/\W/si','',$tainted);</code>
+      <code>$tainted = preg_replace('/\W/si','',$tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = ""/>
@@ -1081,7 +1081,7 @@ else
     </path>
     <comment>sanitize : use of ternary condition</comment>
     <codes>
-      <code>$checked_data = $tainted == 'DESC' ? 'DESC' : 'ASC';</code>
+      <code>$tainted = $tainted == 'DESC' ? 'DESC' : 'ASC';</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type = "string" field = "ORDER_DIRECTION"/>
@@ -1113,9 +1113,9 @@ else
     <codes>
       <code>$legal_table =  array("users", "connexions");
 if (in_array($tainted, $legal_table, true)) {
-  $checked_data = $tainted;
+  $tainted = $tainted;
 } else {
-  $checked_data = $legal_table[0];
+  $tainted = $legal_table[0];
 }</code>
     </codes>
     <constraints>
@@ -1153,9 +1153,9 @@ ESAPI::setEncoder(new DefaultEncoder());
 ESAPI::setValidator(new DefaultValidator());
 //verifying the data with ESAPI
 if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
-  $checked_data=$tainted;
+  $tainted=$tainted;
 } else {
-  $checked_data=0; //default value
+  $tainted=0; //default value
 }</code>
     </codes>
     <constraints>
@@ -1192,11 +1192,11 @@ if (isset($_SESSION[‘course_array’])){
   $course_array = $_SESSION[‘course_array’];
   if (isset($course_array[$taintedId])){
     //indirect reference > get the right id
-    $checked_data = $course_array[$tainted];
+    $tainted = $course_array[$tainted];
   }
 }
 else {
-  $checked_data=0; //default value
+  $tainted=0; //default value
 }</code>
     </codes>
     <constraints>
@@ -1217,7 +1217,7 @@ else {
     </path>
     <comment>SANITIZE : use preg_replace to keep only char, number and _ ,\, -</comment>
     <codes>
-      <code>$checked_data = preg_replace( "/[^a-zA-Z0-9_\ -]/", "", $tainted );</code>
+      <code>$tainted = preg_replace( "/[^a-zA-Z0-9_\ -]/", "", $tainted );</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type="string" field=""/>
@@ -1242,7 +1242,7 @@ else {
   '(' => '\28',
   ')' => '\29',
   "\x00" => '\00');
-$checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),$tainted);</code>
+$tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type="string" field=""/>
@@ -1262,7 +1262,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
     </path>
     <comment>SANITIZE : use of pg_escape_literal</comment>
     <codes>
-      <code>$checked_data = pg_escape_literal($tainted);</code>
+      <code>$tainted = pg_escape_literal($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type="string" field=""/>
@@ -1282,7 +1282,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
     </path>
     <comment>SANITIZE : use of pg_escape_string</comment>
     <codes>
-      <code>$checked_data = pg_escape_string($tainted);</code>
+      <code>$tainted = pg_escape_string($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="LDAP_Injection" type="string" field=""/>
@@ -1310,7 +1310,7 @@ $checked_data = str_replace(array_keys($replace_tab),array_values($replace_tab),
   }
 }
 $temp = new Sanitize();
-$checked_data =  $temp->sanitize($tainted);</code>
+$tainted =  $temp->sanitize($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type="string" field=""/>
@@ -1348,7 +1348,7 @@ $checked_data =  $temp->sanitize($tainted);</code>
 }
 $sanitizer = new Sanitize($tainted) ;
 $sanitizer->sanitize();
-$checked_data =  $sanitizer->getData();	</code>
+$tainted =  $sanitizer->getData();	</code>
     </codes>
     <constraints>
       <constraint flawType="SQL_Injection" type="string" field=""/>
@@ -1370,7 +1370,7 @@ $checked_data =  $sanitizer->getData();	</code>
     </path>
     <comment>SANITIZE : use of urlencode</comment>
     <codes>
-      <code>$checked_data = urlencode($tainted);</code>
+      <code>$tainted = urlencode($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="XSS"/>
@@ -1390,7 +1390,7 @@ $checked_data =  $sanitizer->getData();	</code>
     </path>
     <comment>SANITIZE : use of rawurlencode</comment>
     <codes>
-      <code>$checked_data = rawurlencode($tainted);</code>
+      <code>$tainted = rawurlencode($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="XSS"/>
@@ -1410,7 +1410,7 @@ $checked_data =  $sanitizer->getData();	</code>
     </path>
     <comment>SANITIZE : use of http_build_query</comment>
     <codes>
-      <code>$checked_data = http_build_query($tainted);</code>
+      <code>$tainted = http_build_query($tainted);</code>
     </codes>
     <constraints>
       <constraint flawType="XSS"/>

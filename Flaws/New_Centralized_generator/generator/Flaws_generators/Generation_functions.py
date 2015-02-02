@@ -129,7 +129,7 @@ def f_class(generator, root, params, i):
         params[i] = type[root[i][0].tag](leaf)
         print("source: "+str(params[i].code[-1]))
         var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
-        params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
+        params[i].code[0] = params[i].code[0].replace("\n", "\n\t\t")
         #print("sortie: "+str(var)+"\n\n")
         params[i].code[0] = "\nclass f_class" + str(f_class_cpt) + "{" + \
                             "\n\tprivate $_data;" + \

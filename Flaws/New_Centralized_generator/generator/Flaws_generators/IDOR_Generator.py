@@ -138,6 +138,7 @@ class GeneratorIDOR(Generator):
                     fileQuery.close()
                     for line in execQueryPrepared:
                         file.addContent(line)
+                break
 
         file.addContent("\n ?>")
         self.fileManager.createFile(file)
