@@ -42,10 +42,10 @@ class GeneratorIDOR(Generator):
                         for value in set(param.flaws).intersection(param2.flaws):
                             if value == "SQL_IDOR":
                                 self.generateWithType("SQL", params)
-                            elif value == "SQL_IDOR":
-                                self.generateWithType("SQL", params)
-                            elif value == "SQL_IDOR":
-                                self.generateWithType("SQL", params)
+                            elif value == "Fopen_IDOR":
+                                self.generateWithType("fopen", params)
+                            elif value == "XPath_IDOR":
+                                self.generateWithType("XPath", params)
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
@@ -129,15 +129,15 @@ class GeneratorIDOR(Generator):
 
         if IDOR in ["SQL", "XPath"]:
             for param in params:
-                if isinstance(param, Construction) and (param.prepared == 0 or IDOR == "XPath"):
+                if (isinstance(param, Construction) and param.prepared == 0) or IDOR == "XPath":
                     for line in execQuery:
                         file.addContent(line)
-            else:
-                fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
-                execQueryPrepared = fileQuery.readlines()
-                fileQuery.close()
-                for line in execQueryPrepared:
-                    file.addContent(line)
+                else:
+                    fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
+                    execQueryPrepared = fileQuery.readlines()
+                    fileQuery.close()
+                    for line in execQueryPrepared:
+                        file.addContent(line)
 
         file.addContent("\n ?>")
         self.fileManager.createFile(file)

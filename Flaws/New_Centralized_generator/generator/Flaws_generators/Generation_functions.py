@@ -67,9 +67,11 @@ def f_loop(generator, root, params, i):
             continue
         else:
             if root[i].get("type")=="while":
+                params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
                 params[i].code[0] = "\n$loop_cpt=0;\nwhile($loop_cpt++<10){\n\t" + params[i].code[0]
                 params[i].code[-1] += "\n}\n"
             elif root[i].get("type")=="for":
+                params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
                 params[i].code[0] = "\nfor($loop_cpt=0;$loop_cpt<10;$loop_cpt++){\n\t" + params[i].code[0]
                 params[i].code[-1] += "\n}\n"
             else:
@@ -96,11 +98,13 @@ def f_function(generator, root, params, i):
     for leaf in tree:
         params[i] = type[root[i][0].tag](leaf)
         #print("source: "+str(params[i].code[-1]))
-        var = re.search("^(\$[^ ]+)", params[i].code[-1], re.I)
+        var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
         #print("sortie: "+str(var)+"\n\n")
+        params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
         params[i].code[0] = "\nfunction f_function" + str(f_function_cpt) + "(){\n\t" + params[i].code[0]
-        if var is not None:
-            var=var.group(1)
+        if len(var) > 0:
+            print("sortie: "+str(var[-1])+"\n\n")
+            var = var[-1]
             params[i].code[-1] += "\n\treturn " + str(var) + ";\n}\n" + str(var) + " = f_function" + str(f_function_cpt) + "();\n"
         else:
             params[i].code[-1] = "\n\treturn " + params[i].code[-1] + "\n}\n" + "$f_function_var = f_function" + str(f_function_cpt) + "();\n"
@@ -123,8 +127,9 @@ def f_class(generator, root, params, i):
     tree = ET.parse(generator.fileManager.getXML(root[i][0].tag)).getroot()
     for leaf in tree:
         params[i] = type[root[i][0].tag](leaf)
-        #print("source: "+str(params[i].code[-1]))
-        var = re.search("^(\$[^ ]+)", params[i].code[-1], re.I)
+        print("source: "+str(params[i].code[-1]))
+        var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
+        params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
         #print("sortie: "+str(var)+"\n\n")
         params[i].code[0] = "\nclass f_class" + str(f_class_cpt) + "{" + \
                             "\n\tprivate $_data;" + \
@@ -136,8 +141,9 @@ def f_class(generator, root, params, i):
                             "\n\t}" + \
                             "\n\tpublic function a(){" + \
                             "\n\t\t" + params[i].code[0]
-        if var is not None:
-            var=var.group(1)
+        if len(var) > 0:
+            print(var)
+            var=var[-1]
             params[i].code[-1] += "\n\t\treturn " + str(var) + ";\n\t}\n}\n" + "$a = new f_class" + str(f_class_cpt) + "($tainted);\n" + str(var) + " = $a->a();\n"
         else:
             params[i].code[-1] = "\n\t\treturn " + params[i].code[-1] + "\n\t}\n}\n" + "$f_class_var = f_class" + str(f_class_cpt) + "($tainted);\n"
