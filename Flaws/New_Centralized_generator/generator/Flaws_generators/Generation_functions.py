@@ -140,6 +140,7 @@ def f_class(generator, root, params, i):
                             "\n\t\t$this->_data = $data;" + \
                             "\n\t}" + \
                             "\n\tpublic function a(){" + \
+                            "\n\t\t$tainted = $this->_data;" + \
                             "\n\t\t" + params[i].code[0]
         if len(var) > 0:
             print(var)

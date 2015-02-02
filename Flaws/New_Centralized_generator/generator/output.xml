@@ -4,7 +4,7 @@
 	<function>
 		<sanitize/>
 	</function>
-	<class>
-		<construction/>
-    </class>
+    <function>
+        <construction/>
+    </function>
 </program>
