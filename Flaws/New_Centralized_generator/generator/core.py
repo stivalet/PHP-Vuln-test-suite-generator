@@ -1,5 +1,6 @@
 from Flaws_generators.Injection_Generator import *
 from Flaws_generators.XSS_Generator import *
+import time
 from Classes.FileManager import *
 from Classes.Manifest import *
 from Flaws_generators.Generator_factory import *
@@ -44,7 +45,7 @@ def main(argv):
             usage()
             return 1
 
-    fileManager = FileManager()
+    date=time.strftime("%m-%d-%Y_%H:%M:%S")
     root=ET.parse('output.xml').getroot()
 
     if generation is not None:
@@ -52,7 +53,7 @@ def main(argv):
             if flaw == "XSS":
                 print("XSS generation report:")
                 manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(Generator_factory.makeXSS_Generator(manifest, fileManager, select, ordered), root)
+                safe, unsafe = initialization(Generator_factory.makeXSS_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
@@ -60,7 +61,7 @@ def main(argv):
             if flaw == "Injection":
                 print("Injection generation report:")
                 manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(Generator_factory.makeInjection_Generator(manifest, fileManager, select, ordered), root)
+                safe, unsafe = initialization(Generator_factory.makeInjection_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
@@ -68,7 +69,7 @@ def main(argv):
             if flaw == "IDOR":
                 print("IDOR generation report:")
                 manifest = Manifest(flaw)
-                [safe, unsafe] = initialization(Generator_factory.makeIDOR_Generator(manifest, fileManager, select, ordered), root)
+                safe, unsafe = initialization(Generator_factory.makeIDOR_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")

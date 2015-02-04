@@ -1,9 +1,9 @@
 import os
-import sys
 
 
 class FileManager:
-    def createFile(self, file):
+    @staticmethod
+    def createFile(file):
         if not os.path.exists(file.path):
             os.makedirs(file.path)
 
@@ -11,11 +11,12 @@ class FileManager:
         createdFile.write(file.content)
         createdFile.close()
 
-    xml = {
+    _xml = {
         "input": "input.xml",
         "sanitize": "sanitize.xml",
         "construction": "construction.xml",
     }
 
-    def getXML(self, xmlfile):
-        return "XML/" + self.xml[xmlfile]
+    @classmethod
+    def getXML(cls, xmlfile):
+        return "XML/" + cls._xml[xmlfile]

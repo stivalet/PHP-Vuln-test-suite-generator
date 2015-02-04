@@ -3,6 +3,7 @@ import os
 from .Generator_Abstract_Class import *
 from .InitializeSample import *
 from Classes.File import *
+from Classes.FileManager import *
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorIDOR(Generator):
@@ -10,8 +11,8 @@ class GeneratorIDOR(Generator):
     # safe_Sample = 0
     # unsafe_Sample = 0
 
-    def __init__(self, manifest, fileManager, select, ordered):
-        Generator.__init__(self, manifest, fileManager, select, ordered)
+    def __init__(self, date, manifest, select, ordered):
+        Generator.__init__(self, date, manifest, select, ordered)
 
     # def __init__(self, manifest, fileManager, select, ordered):
     # self.select = select
@@ -49,19 +50,6 @@ class GeneratorIDOR(Generator):
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
-        #Gets query execution code
-        #2 types normal query and prepared query
-        if IDOR != "fopen":
-            fileQuery = open("./execQuery_" + IDOR + ".txt", "r")
-            execQuery = fileQuery.readlines()
-            fileQuery.close()
-
-        execQueryPrepared = ""
-        if IDOR == "SQL":
-            fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
-            execQueryPrepared = fileQuery.readlines()
-            fileQuery.close()
-
         for param in params:
             if isinstance(param, InputSample):
                 self.manifest.beginTestCase(param.inputType)
@@ -86,7 +74,7 @@ class GeneratorIDOR(Generator):
 
 
         #Creates folder tree and sample files if they don't exists
-        file.addPath("generation")
+        file.addPath("generation_"+self.date)
         file.addPath("IDOR")
         file.addPath(IDOR)
 
@@ -127,21 +115,24 @@ class GeneratorIDOR(Generator):
             for line in param.code:
                 file.addContent(line)
 
-        if IDOR in ["SQL", "XPath"]:
+        if IDOR != "fopen":
             for param in params:
-                if (isinstance(param, Construction) and param.prepared == 0) or IDOR == "XPath":
-                    for line in execQuery:
-                        file.addContent(line)
-                else:
-                    fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
-                    execQueryPrepared = fileQuery.readlines()
-                    fileQuery.close()
-                    for line in execQueryPrepared:
-                        file.addContent(line)
-                break
+                if isinstance(param, Construction):
+                    if param.prepared == 0 or IDOR == "XPath":
+                        fileQuery = open("./execQuery_" + IDOR + ".txt", "r")
+                        execQuery = fileQuery.readlines()
+                        fileQuery.close()
+                        for line in execQuery:
+                            file.addContent(line)
+                    else:
+                        fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
+                        execQueryPrepared = fileQuery.readlines()
+                        fileQuery.close()
+                        for line in execQueryPrepared:
+                            file.addContent(line)
 
         file.addContent("\n ?>")
-        self.fileManager.createFile(file)
+        FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
 

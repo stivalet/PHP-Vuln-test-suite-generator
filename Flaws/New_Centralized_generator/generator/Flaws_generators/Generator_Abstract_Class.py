@@ -2,16 +2,16 @@ from abc import ABCMeta, abstractmethod
 
 
 class Generator(metaclass=ABCMeta):
-    def __init__(self, manifest, fileManager, select, ordered):
+    def __init__(self, date, manifest, select, ordered):
         self.select = select
         self.ordered = ordered
+        self.date = date
         self.manifest = manifest
-        self.fileManager = fileManager
         self.safe_Sample = 0
         self.unsafe_Sample = 0
 
-    @classmethod
-    def findFlaw(cls, fileName):
+    @staticmethod
+    def findFlaw(fileName):
         sample = open(fileName, 'r')
         i = 0
         for line in sample.readlines():

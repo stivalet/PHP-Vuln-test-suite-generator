@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 from .Generator_Abstract_Class import *
-
+from Classes.FileManager import *
 from .InitializeSample import *
 from Classes.File import *
 
@@ -10,8 +10,8 @@ copyright = header.readlines()
 
 
 class GeneratorXSS(Generator):
-    def __init__(self, manifest, fileManager, select, ordered):
-        Generator.__init__(self, manifest, fileManager, select, ordered)
+    def __init__(self, date, manifest, select, ordered):
+        Generator.__init__(self, date, manifest, select, ordered)
         self.z = 0
 
     def getType(self):
@@ -129,7 +129,7 @@ class GeneratorXSS(Generator):
                         safe = self.testSafety(param, param2)
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation")
+        file.addPath("generation_"+self.date)
         file.addPath("XSS")
         file.addPath("CWE 79")
 
@@ -172,7 +172,7 @@ class GeneratorXSS(Generator):
                 for line in param.code:
                     out += line
         file.addContent(out + tmp)
-        self.fileManager.createFile(file)
+        FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
 

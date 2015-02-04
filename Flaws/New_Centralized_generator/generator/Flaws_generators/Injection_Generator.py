@@ -1,6 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 import sys
+from Classes.FileManager import *
 from .Generator_Abstract_Class import *
 from .InitializeSample import *
 from Classes.File import *
@@ -24,8 +25,8 @@ class GeneratorInjection(Generator):
     def getType(self):
         return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection']
 
-    def __init__(self, manifest, fileManager, select, ordered):
-        Generator.__init__(self, manifest, fileManager, select, ordered)
+    def __init__(self, date, manifest, select, ordered):
+        Generator.__init__(self, date, manifest, select, ordered)
 
     def testSafety(self, sanitize, flaw):
         if sanitize.isSafe == safe:
@@ -102,7 +103,7 @@ class GeneratorInjection(Generator):
         }
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation")
+        file.addPath("generation_"+self.date)
         file.addPath("Injection")
         file.addPath(flawCwe[injection])
 
@@ -154,7 +155,7 @@ class GeneratorInjection(Generator):
 
         file.addContent("\n ?>")
 
-        self.fileManager.createFile(file)
+        FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
 

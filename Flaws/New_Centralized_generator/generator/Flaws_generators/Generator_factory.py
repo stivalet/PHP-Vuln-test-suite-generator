@@ -9,17 +9,17 @@ class Generator_factory:
         pass
 
     @staticmethod
-    def makeXSS_Generator(manifest, fileManager, select, ordered):
-        return GeneratorXSS(manifest, fileManager, select, ordered)
+    def makeXSS_Generator(date, manifest, select, ordered):
+        return GeneratorXSS(date, manifest, select, ordered)
 
     @staticmethod
-    def makeInjection_Generator(manifest, fileManager, select, ordered):
-        return GeneratorInjection(manifest, fileManager, select, ordered)
+    def makeInjection_Generator(date, manifest, select, ordered):
+        return GeneratorInjection(date, manifest, select, ordered)
 
     @staticmethod
-    def makeIDOR_Generator(manifest, fileManager, select, ordered):
-        return GeneratorIDOR(manifest, fileManager, select, ordered)
+    def makeIDOR_Generator(date, manifest, select, ordered):
+        return GeneratorIDOR(date, manifest, select, ordered)
 
     @staticmethod
-    def makeDangerous_Functions_Generator(manifest, fileManager, select, ordered):
-        return GeneratorDangerousFunctions(manifest, fileManager, select, ordered)
+    def makeDangerous_Functions_Generator(date, manifest, select, ordered):
+        return GeneratorDangerousFunctions(date, manifest, select, ordered)

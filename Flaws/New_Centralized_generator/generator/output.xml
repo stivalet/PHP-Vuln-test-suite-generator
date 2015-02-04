@@ -4,7 +4,13 @@
 	<function>
 		<sanitize/>
 	</function>
-    <class>
-        <construction/>
-    </class>
+	<loop type="for">
+		<class>
+			<function>
+				<if>
+					<construction/>
+    			</if>
+			</function>
+		</class>
+	</loop>
 </program>
