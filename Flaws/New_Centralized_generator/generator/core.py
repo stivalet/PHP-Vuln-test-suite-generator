@@ -45,7 +45,7 @@ def main(argv):
             usage()
             return 1
 
-    date=time.strftime("%m-%d-%Y_%H:%M:%S")
+    date=time.strftime("%m-%d-%Y_%Hh%Mm%Ss")
     root=ET.parse('output.xml').getroot()
 
     if generation is not None:
