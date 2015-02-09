@@ -1,6 +1,384 @@
 <?xml version="1.0"?>
 <construction>
-  
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = include("'". $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = require("'". $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = include("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = require("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = include(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = require(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = include("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = require("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = include("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = require("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$var = include(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>include_require_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$var = require(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = eval("'echo $". $tainted . ";'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = eval("echo $'$tainted';");</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = eval(sprintf("echo $'%s';", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = eval("$temp = '". $tainted . "';");</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = eval("$temp = ' $tainted ';");</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>eval_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$var = eval(sprintf("$temp = '%d';", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="eval_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
   <sample>
     <flaws>
       <flaw>OSCommand_Injection</flaw>

@@ -23,7 +23,7 @@ class GeneratorInjection(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection']
+        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection', 'eval_Injection', 'include_require_Injection']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
@@ -60,6 +60,10 @@ class GeneratorInjection(Generator):
                                 self.generateWithType("SQL", params)
                             elif value == "OSCommand_Injection":
                                 self.generateWithType("OSCommand", params)
+                            elif value == "eval_Injection":
+                                self.generateWithType("eval", params)
+                            elif value == "include_require_Injection":
+                                self.generateWithType("include_require", params)
 
     # Generates final sample
     def generateWithType(self, injection, params):
@@ -99,7 +103,9 @@ class GeneratorInjection(Generator):
         flawCwe = {"OSCommand": "CWE_78",
                    "XPath": "CWE_91",
                    "LDAP": "CWE_90",
-                   "SQL": "CWE_89"
+                   "SQL": "CWE_89",
+                   "eval": "CWE_95",
+                   "include_require": "CWE_98"
         }
 
         # Creates folder tree and sample files if they don't exists
@@ -119,7 +125,7 @@ class GeneratorInjection(Generator):
                     file.setName(flawCwe[injection] + "_" + dir)
 
         file.addContent("<?php\n")
-        file.addContent("/*\n")
+        #file.addContent("/*\n")
 
         # Adds comments
         file.addContent("/* \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
@@ -143,17 +149,19 @@ class GeneratorInjection(Generator):
         for param in params:
             for line in param.code:
                 file.addContent(line)
+            file.addContent("\n\n")
 
-        #Gets query execution code
-        footer = open("./execQuery_" + injection + ".txt", "r")
-        execQuery = footer.readlines()
-        footer.close()
+        if injection != "eval" and injection != "include_require":
+            #Gets query execution code
+            footer = open("./execQuery_" + injection + ".txt", "r")
+            execQuery = footer.readlines()
+            footer.close()
 
-        #Adds the code for query execution
-        for line in execQuery:
-            file.addContent(line)
+            #Adds the code for query execution
+            for line in execQuery:
+                file.addContent(line)
 
-        file.addContent("\n ?>")
+        file.addContent("\n\n?>")
 
         FileManager.createFile(file)
 

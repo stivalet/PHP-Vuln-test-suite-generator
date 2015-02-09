@@ -1,16 +1,6 @@
 <?xml version="1.0"?>
 <program>
 	<input/>
-	<function>
-		<sanitize/>
-	</function>
-	<loop type="for">
-		<class>
-			<function>
-				<if>
-					<construction/>
-    			</if>
-			</function>
-		</class>
-	</loop>
+	<sanitize/>
+    <construction/>
 </program>

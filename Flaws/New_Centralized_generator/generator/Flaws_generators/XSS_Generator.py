@@ -120,7 +120,7 @@ class GeneratorXSS(Generator):
             if (relevancy < self.select):
                 return 0
 
-        # retreve parameters for safety test
+        # retrieve parameters for safety test
         safe = None
         for param in params:
             if isinstance(param, Construction):
@@ -131,7 +131,7 @@ class GeneratorXSS(Generator):
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("XSS")
-        file.addPath("CWE 79")
+        file.addPath("CWE_79")
 
         # sort by safe/unsafe
         if self.ordered:
