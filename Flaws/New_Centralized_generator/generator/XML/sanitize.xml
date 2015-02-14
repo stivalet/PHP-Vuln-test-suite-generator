@@ -58,7 +58,7 @@ else{
     </path>
     <comment>sanitize : check if there only letters</comment>
     <codes>
-      <code>$re = « /^[0-9]*$/";
+      <code>$re = "/^[0-9]*$/";
 if(preg_match($re, $tainted) == 1){
   $tainted = $tainted;
 }
@@ -101,7 +101,7 @@ else{
     </path>
     <comment>sanitize : check if there only letters</comment>
     <codes>
-      <code>$re = « /^[a-zA-Z0-9]*$/";
+      <code>$re = "/^[a-zA-Z0-9]*$/";
 if(preg_match($re, $tainted) == 1){
   $tainted = $tainted;
 }
@@ -143,7 +143,7 @@ else{
     </path>
     <comment>sanitize : check if there only letters</comment>
     <codes>
-      <code>$re = « /^.*$/";
+      <code>$re = "/^.*$/";
 if(preg_match($re, $tainted) == 1){
   $tainted = $tainted;
 }
