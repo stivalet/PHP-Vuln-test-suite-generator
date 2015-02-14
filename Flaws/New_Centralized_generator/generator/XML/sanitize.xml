@@ -25,12 +25,12 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "String" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "String" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "String" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "String" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
+      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
+      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -110,12 +110,12 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "String" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "String" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "String" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "String" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
+      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
+      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -152,12 +152,12 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "String" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "String" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "String" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "String" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
+      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
+      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
@@ -198,8 +198,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -242,8 +242,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -286,8 +286,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -419,8 +419,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -462,8 +462,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -961,8 +961,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1078,8 +1078,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1116,8 +1116,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1231,8 +1231,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "Fopen_IDOR"/>
     </constraints>
@@ -1271,8 +1271,8 @@ else
       <constraint flawType = "XPath_Injection" type = "string" field = ""/>
       <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "String" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "String" field = ""/>
+      <constraint flawType = "eval_Injection" type = "string" field = ""/>
+      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1652,7 +1652,7 @@ $tainted = $temp->sanitize($tainted);</code>
 }
 $sanitizer = new Sanitize($tainted) ;
 $sanitizer->sanitize();
-$tainted = $sanitizer->getData();	</code>
+$tainted = $sanitizer->getData(); </code>
     </codes>
     <constraints>
       <constraint flawType = "SQL_Injection" type = "string" field = ""/>
