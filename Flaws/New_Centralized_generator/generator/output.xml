@@ -2,5 +2,7 @@
 <program>
 	<input/>
 	<sanitize/>
-    <construction/>
+	<file>
+    		<construction/>
+	</file>
 </program>

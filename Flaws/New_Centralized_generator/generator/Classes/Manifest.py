@@ -12,9 +12,9 @@ integer = "int"
 
 
 class Manifest:
-    def __init__(self, flaw="Not define"):
-
-        path = "../generation/" + flaw
+    def __init__(self, date, flaw="Not define"):
+        self.date=date
+        path = "../generation_"+self.date+"/" + flaw
         if not os.path.exists(path):
             os.makedirs(path)  # Create the folder if not exist
 
@@ -35,7 +35,7 @@ class Manifest:
     def addFileToTestCase(self, path, flawLine):
         tmp = ""
         for s in path.split("/"):
-            if s in ["..", "generation", "XSS", "Injection", "IDOR"]:
+            if s in ["..", "generation_"+self.date, "XSS", "Injection", "IDOR"]:
                 continue
             else:
                 tmp += s + "/"

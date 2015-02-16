@@ -52,7 +52,7 @@ def main(argv):
         for flaw in generation:
             if flaw == "XSS":
                 print("XSS generation report:")
-                manifest = Manifest(flaw)
+                manifest = Manifest(date,flaw)
                 safe, unsafe = initialization(Generator_factory.makeXSS_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
@@ -60,7 +60,7 @@ def main(argv):
                 print(str(unsafe + safe) + " total\n")
             if flaw == "Injection":
                 print("Injection generation report:")
-                manifest = Manifest(flaw)
+                manifest = Manifest(date,flaw)
                 safe, unsafe = initialization(Generator_factory.makeInjection_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )")
@@ -68,7 +68,7 @@ def main(argv):
                 print(str(unsafe + safe) + " total\n")
             if flaw == "IDOR":
                 print("IDOR generation report:")
-                manifest = Manifest(flaw)
+                manifest = Manifest(date,flaw)
                 safe, unsafe = initialization(Generator_factory.makeIDOR_Generator(date, manifest, select, ordered), root)
                 manifest.close()
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )

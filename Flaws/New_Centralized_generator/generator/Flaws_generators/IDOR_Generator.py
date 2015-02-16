@@ -42,11 +42,11 @@ class GeneratorIDOR(Generator):
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
                             if value == "SQL_IDOR":
-                                self.generateWithType("SQL", params)
+                                return self.generateWithType("SQL", params)
                             elif value == "Fopen_IDOR":
-                                self.generateWithType("fopen", params)
+                                return self.generateWithType("fopen", params)
                             elif value == "XPath_IDOR":
-                                self.generateWithType("XPath", params)
+                                return self.generateWithType("XPath", params)
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
@@ -138,3 +138,4 @@ class GeneratorIDOR(Generator):
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
+        return file

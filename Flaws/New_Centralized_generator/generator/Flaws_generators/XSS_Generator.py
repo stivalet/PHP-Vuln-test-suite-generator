@@ -178,3 +178,4 @@ class GeneratorXSS(Generator):
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
+        return file

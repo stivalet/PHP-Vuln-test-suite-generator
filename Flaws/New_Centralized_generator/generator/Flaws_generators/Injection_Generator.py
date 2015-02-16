@@ -53,17 +53,17 @@ class GeneratorInjection(Generator):
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
                             if value == "XPath_Injection":
-                                self.generateWithType("XPath", params)
+                                return self.generateWithType("XPath", params)
                             elif value == "LDAP_Injection":
-                                self.generateWithType("LDAP", params)
+                                return self.generateWithType("LDAP", params)
                             elif value == "SQL_Injection":
-                                self.generateWithType("SQL", params)
+                                return self.generateWithType("SQL", params)
                             elif value == "OSCommand_Injection":
-                                self.generateWithType("OSCommand", params)
+                                return self.generateWithType("OSCommand", params)
                             elif value == "eval_Injection":
-                                self.generateWithType("eval", params)
+                                return self.generateWithType("eval", params)
                             elif value == "include_require_Injection":
-                                self.generateWithType("include_require", params)
+                                return self.generateWithType("include_require", params)
 
     # Generates final sample
     def generateWithType(self, injection, params):
@@ -169,3 +169,4 @@ class GeneratorInjection(Generator):
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
+        return file
