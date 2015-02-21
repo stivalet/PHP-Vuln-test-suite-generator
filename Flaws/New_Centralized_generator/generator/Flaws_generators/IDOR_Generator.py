@@ -23,7 +23,7 @@ class GeneratorIDOR(Generator):
     def getType(self):
         return ["SQL_IDOR", "XPath_IDOR", "Fopen_IDOR"]
 
-    def testSafety(self, sanitize, construction):
+    def testSafety(self, construction, sanitize):
         if sanitize.safe == safe or construction.safe == safe:
             self.safe_Sample += 1
             return 1

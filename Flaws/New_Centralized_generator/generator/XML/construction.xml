@@ -3,6 +3,612 @@
 
   <sample>
     <flaws>
+      <flaw>UBRCA_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>md5</dir>
+    </path>
+    <comment>construction : encrypt the data using md5</comment>
+    <codes>
+      <code>$var = md5("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="UBRCA_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="UBRCA_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>UBRCA_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha1</dir>
+    </path>
+    <comment>construction : encrypt the data using sha1</comment>
+    <codes>
+      <code>$var = sha1("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="UBRCA_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="UBRCA_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>UBRCA_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha256_crypt_function</dir>
+    </path>
+    <comment>construction : encrypt the data using sha256 with crypt function</comment>
+    <codes>
+      <code>$var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
+    </codes>
+    <safeties>
+      <safety flawType="UBRCA_SDE" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="UBRCA_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>UBRCA_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>password_hash</dir>
+    </path>
+    <comment>construction : encrypt the data using password_hash function</comment>
+    <codes>
+      <code>$var = password_hash("passwod", PASSWORD_DEFAULT);</code>
+    </codes>
+    <safeties>
+      <safety flawType="UBRCA_SDE" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="UBRCA_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>MESD_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>store_in_cookie</dir>
+    </path>
+    <comment>construction : store sensitive data in a cookie</comment>
+    <codes>
+      <code>$data = array("username" => $username, "password"=> $password);
+$var = setcookie("userdata", $data);</code>
+    </codes>
+    <safeties>
+      <safety flawType="MESD_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="MESD_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>MESD_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>store_in_database</dir>
+    </path>
+    <comment>construction : store sensitive data in a database</comment>
+    <codes>
+      <code>$conn = pg_pconnect("dbname=publisher");
+if (!$conn) {
+  echo "Une erreur s'est produite.\n";
+  exit;
+}
+$query  = sprintf("INSERT INTO users(name,pwd) VALUES('%s','%s');",
+            pg_escape_string($username),
+            pg_escape_string($password);
+$result = pg_query($conn, $query);</code>
+    </codes>
+    <safeties>
+      <safety flawType="MESD_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="MESD_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>IETEM_SM</flaw>
+    </flaws>
+    <path>
+      <dir>current_dir_location</dir>
+      <dir>fopen</dir>
+    </path>
+    <comment>construction : fopen</comment>
+    <codes>
+      <code>$file=fopen("welcome.txt","r");</code>
+    </codes>
+    <safeties>
+      <safety flawType="IETEM_SM" safe = "0" needErrorSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="IETEM_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>IETEM_SM</flaw>
+    </flaws>
+    <path>
+      <dir>current_dir_location</dir>
+      <dir>fopen_with_condition</dir>
+    </path>
+    <comment>construction : fopen with condition</comment>
+    <codes>
+      <code>if(!file_exists("welcome.txt")) {
+  die("File not found");
+} else {
+  $file=fopen("welcome.txt","r");
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="IETEM_SM" safe = "1" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="IETEM_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>IETEM_SM</flaw>
+    </flaws>
+    <path>
+      <dir>error_message</dir>
+      <dir>try_catch</dir>
+    </path>
+    <comment>construction : try_catch</comment>
+    <codes>
+      <code>try {
+  openDbConnection();
+}
+catch (Exception $e) {
+  echo 'Safe error message\n';
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="IETEM_SM" safe = "1" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="IETEM_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>IETEM_SM</flaw>
+    </flaws>
+    <path>
+      <dir>config_location</dir>
+      <dir>try_catch</dir>
+    </path>
+    <comment>construction : try_catch</comment>
+    <codes>
+      <code>try {
+  openDbConnection();
+}
+catch (Exception $e) {
+  echo 'Caught exception: ', $e->getMessage(), '\n';
+  echo 'Check credentials in config file at: ', $Mysql_config_location, '\n';
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="IETEM_SM" safe = "0" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="IETEM_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = header("'Location: " . $tainted ."'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("'" . $tainted . "'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = header("location: '$tainted'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("'$tainted'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = header(sprintf("Location: '%s'", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect(sprintf("'%s'", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = header("'Location: " . $tainted .".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("'" . $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = header("Location: '$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = header(sprintf("Location: '%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = header("Location: pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = header("Location: pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>Open_Redirect_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
       <flaw>include_require_Injection</flaw>
     </flaws>
     <path>

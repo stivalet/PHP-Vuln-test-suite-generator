@@ -14,34 +14,42 @@ quote = "quote"
 noQuote = "noQuote"
 integer = "int"
 safety = "safety"
-
+needErrorSafe = "needErrorSafe"
+errorSafe = "errorSafe"
 
 # Manages final samples, by a combination of 3 initialSample
-class GeneratorInjection(Generator):
+class GeneratorSM(Generator):
     # Initializes counters
     safe_Sample = 0
     unsafe_Sample = 0
 
     def getType(self):
-        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection', 'eval_Injection', 'include_require_Injection']
+        return ['IETEM_SM']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
 
     def testSafety(self, flaw, sanitize):
-        if sanitize.isSafe == safe:
-            self.safe_Sample += 1
-            return 1
-        if flaw.isSafe == safe:
-            self.safe_Sample += 1
-            return 1
-        if sanitize.isSafe == needQuote and flaw.isSafe == quote:
-            self.safe_Sample += 1
-            return 1
-        # case of pg_escape_literal
-        if sanitize.isSafe == noQuote and flaw.isSafe == 0:
-            self.safe_Sample += 1
-            return 1
+        if flaw.isSafe == needErrorSafe:
+            if sanitize.isSafe == errorSafe:
+                self.safe_Sample += 1
+                return 1
+
+        else :
+            if sanitize.isSafe == safe:
+                self.safe_Sample += 1
+                return 1
+            if flaw.isSafe == safe:
+                self.safe_Sample += 1
+                return 1
+
+            #if sanitize.isSafe == needQuote and flaw.isSafe == quote:
+            #    self.safe_Sample += 1
+            #    return 1
+            # case of pg_escape_literal
+            #if sanitize.isSafe == noQuote and flaw.isSafe == 0:
+            #    self.safe_Sample += 1
+            #    return 1
 
         self.unsafe_Sample += 1
         return 0
@@ -53,25 +61,16 @@ class GeneratorInjection(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "XPath_Injection":
-                                return self.generateWithType("XPath", params)
-                            elif value == "LDAP_Injection":
-                                return self.generateWithType("LDAP", params)
-                            elif value == "SQL_Injection":
-                                return self.generateWithType("SQL", params)
-                            elif value == "OSCommand_Injection":
-                                return self.generateWithType("OSCommand", params)
-                            elif value == "eval_Injection":
-                                return self.generateWithType("eval", params)
-                            elif value == "include_require_Injection":
-                                return self.generateWithType("include_require", params)
+                            if value == "IETEM_SM":
+                                return self.generateWithType("IETEM", params)
 
     # Generates final sample
-    def generateWithType(self, injection, params):
-        for param in params:
-            if isinstance(param, InputSample):
-                self.manifest.beginTestCase(param.inputType)
-                break
+    def generateWithType(self, sm, params):
+        #for param in params:
+        #    if isinstance(param, InputSample):
+        #        self.manifest.beginTestCase(param.inputType)
+        #        break
+        self.manifest.beginTestCase("Error_message")
 
         file = File()
 
@@ -83,17 +82,17 @@ class GeneratorInjection(Generator):
                 return
 
         # Coherence test
-        for param in params:
-            if (isinstance(param, Sanitize) and param.constraintType != ""):
-                for param2 in params:
-                    if (isinstance(param2, Construction) and (param.constraintType != param2.constraintType)):
-                        return
-            if (isinstance(param, Sanitize) and param.constraintField != ""):
-                for param2 in params:
-                    if (isinstance(param2, Construction) and (param.constraintField != param2.constraintField)):
-                        return
+        #for param in params:
+        #    if (isinstance(param, Sanitize) and param.constraintType != ""):
+        #        for param2 in params:
+        #            if (isinstance(param2, Construction) and (param.constraintType != param2.constraintType)):
+        #                return
+        #    if (isinstance(param, Sanitize) and param.constraintField != ""):
+        #        for param2 in params:
+        #            if (isinstance(param2, Construction) and (param.constraintField != param2.constraintField)):
+        #                return
 
-        # retreve parameters for safety test
+        # retrieve parameters for safety test
         safe = None
         for param in params:
             if isinstance(param, Construction):
@@ -101,18 +100,13 @@ class GeneratorInjection(Generator):
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2)
 
-        flawCwe = {"OSCommand": "CWE_78",
-                   "XPath": "CWE_91",
-                   "LDAP": "CWE_90",
-                   "SQL": "CWE_89",
-                   "eval": "CWE_95",
-                   "include_require": "CWE_98"
+        flawCwe = {"IETEM": "CWE_209"
         }
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
-        file.addPath("Injection")
-        file.addPath(flawCwe[injection])
+        file.addPath("SM")
+        file.addPath(flawCwe[sm])
 
         # sort by safe/unsafe
         if self.ordered:
@@ -123,7 +117,7 @@ class GeneratorInjection(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[injection] + "_" + dir)
+                    file.setName(flawCwe[sm] + "_" + dir)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -152,15 +146,15 @@ class GeneratorInjection(Generator):
                 file.addContent(line)
             file.addContent("\n\n")
 
-        if injection != "eval" and injection != "include_require":
-            #Gets query execution code
-            footer = open("./execQuery_" + injection + ".txt", "r")
-            execQuery = footer.readlines()
-            footer.close()
+        #if injection != "eval" and injection != "include_require":
+        #    #Gets query execution code
+        #    footer = open("./execQuery_" + injection + ".txt", "r")
+        #    execQuery = footer.readlines()
+        #    footer.close()
 
-            #Adds the code for query execution
-            for line in execQuery:
-                file.addContent(line)
+        #    #Adds the code for query execution
+        #    for line in execQuery:
+        #        file.addContent(line)
 
         file.addContent("\n\n?>")
 
@@ -171,3 +165,4 @@ class GeneratorInjection(Generator):
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
         return file
+

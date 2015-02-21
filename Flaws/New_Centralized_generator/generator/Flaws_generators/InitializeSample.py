@@ -15,6 +15,10 @@ safety = "safety"
 # noBlock = "noBlock"
 prepared = "prepared"
 noPrepared = "noPrepared"
+needUrlSafe = "needUrlSafe"
+urlSafe = "urlSafe"
+needErrorSafe = "needErrorSafe"
+errorSafe = "errorSafe"
 
 
 class InitialSample:  # Initialize path,comment and relevancy parameters
@@ -139,10 +143,34 @@ class Sanitize(InitialSample):  # Initialize rules, safety, code and escape
                     self.isSafe = unsafe
             elif "IDOR" in safety.get("flawType"):
                 self.safe = safe if safety.get("safe") == "1" else unsafe
+            elif "URF" in safety.get("flawType"):
+                if safety.get("urlSafe") == "1":
+                    self.isSafe = urlSafe
+                elif safety.get("safe") == "1":
+                    self.isSafe = safe
+                elif safety.get("needQuote") == "1":
+                    self.isSafe = needQuote
+                elif safety.get("needQuote") == "-1":
+                    self.isSafe = noQuote
+                else:
+                    self.isSafe = unsafe
+            elif "SM" in safety.get("flawType"):
+                if safety.get("errorSafe") == "1":
+                    self.isSafe = errorSafe
+                elif safety.get("safe") == "1":
+                    self.isSafe = safe
+                else:
+                    self.isSafe = unsafe
+                #self.isSafe = safe if safety.get("safe") == "1" else unsafe
+            elif "SDE" in safety.get("flawType"):
+                self.isSafe = safe if safety.get("safe") == "1" else unsafe
 
         constraints = initialSample.find("constraints").findall("constraint")
         for constraint in constraints:
             if "Injection" in constraint.get("flawType"):
+                self.constraintType = constraint.get("type")
+                self.constraintField = constraint.get("field")
+            if "URF" in constraint.get("flawType"):
                 self.constraintType = constraint.get("type")
                 self.constraintField = constraint.get("field")
                 # if "IDOR" in constraint.get("flawType"):
@@ -202,6 +230,27 @@ class Construction(InitialSample):  # Load parameters and code beginning and end
                     self.isSafe = unsafe
             elif "IDOR" in safety.get("flawType"):
                 self.safe = safe if safety.get("safe") == "1" else unsafe
+            elif "URF" in safety.get("flawType"):
+                if safety.get("needUrlSafe") == "1":
+                    self.isSafe = needUrlSafe
+                elif safety.get("safe") == "1":
+                    self.isSafe = safe
+                elif safety.get("needQuote") == "1":
+                    self.isSafe = needQuote
+                elif safety.get("needQuote") == "-1":
+                    self.isSafe = noQuote
+                else:
+                    self.isSafe = unsafe
+            elif "SM" in safety.get("flawType"):
+                if safety.get("needErrorSafe") == "1":
+                    self.isSafe = needErrorSafe
+                elif safety.get("safe") == "1":
+                    self.isSafe = safe
+                else:
+                    self.isSafe = unsafe
+                #self.isSafe = safe if safety.get("safe") == "1" else unsafe
+            elif "SDE" in safety.get("flawType"):
+                self.isSafe = safe if safety.get("safe") == "1" else unsafe
 
         constraints = initialSample.find("constraints").findall("constraint")
         for constraint in constraints:
@@ -210,3 +259,6 @@ class Construction(InitialSample):  # Load parameters and code beginning and end
                 self.constraintField = constraint.get("field")
             if "IDOR" in constraint.get("flawType"):
                 self.prepared = prepared if constraint.find("prepared") == "1" else noPrepared
+            if "URF" in constraint.get("flawType"):
+                self.constraintType = constraint.get("type")
+                self.constraintField = constraint.get("field")

@@ -9,7 +9,7 @@ from Flaws_generators.Generation_functions import *
 
 def main(argv):
     # List of flaws
-    flaws = ["XSS", "AC", "IDOR", "Injection", "BASV"]
+    flaws = ["XSS", "AC", "IDOR", "Injection", "BASV", "URF", "SM", "SDE"]
     cwe = {"XSS":"",
            }
     #Generation of files with a relevancy greater or equals to select
@@ -74,6 +74,35 @@ def main(argv):
                 print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
                 print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
                 print(str(unsafe + safe) + " total\n")
+            if flaw == "URF":
+                print("URF generation report:")
+                manifest = Manifest(date,flaw)
+                safe, unsafe = initialization(Generator_factory.makeURF_Generator(date, manifest, select, ordered), root)
+                manifest.close()
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n")
+            if flaw == "SM":
+                print("SM generation report:")
+                manifest = Manifest(date,flaw)
+                for input in root.findall('input'):
+                    root.remove(input)
+                safe, unsafe = initialization(Generator_factory.makeSM_Generator(date, manifest, select, ordered), root)
+                manifest.close()
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n")
+            if flaw == "SDE":
+                print("SDE generation report:")
+                manifest = Manifest(date,flaw)
+                for input in root.findall('input'):
+                    root.remove(input)
+                safe, unsafe = initialization(Generator_factory.makeSDE_Generator(date, manifest, select, ordered), root)
+                manifest.close()
+                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe)) + " )"  )
+                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe)) + " )")
+                print(str(unsafe + safe) + " total\n")
+
     elif CWElist is not None:
         pass
 
@@ -82,7 +111,7 @@ def main(argv):
 def usage():
     order = "-o for classifying vulnerable and non vulnerable programs in different folders"
     relevancy = "-r generate only files with upper or equal relevancy than the parameter"
-    flaw = "-f flaws to generate (flaw1,flaw2,flaw3,...):\n      XSS       : Cross-site Scripting\n      AC        : Wrong access control\n      IDOR      : Insecur Direct Object Reference\n      BASV      : Broken Authentication and Session Violation\n      Injection : Injection (SQL,LDAP,XPATH)"
+    flaw = "-f flaws to generate (flaw1,flaw2,flaw3,...):\n      XSS       : Cross-site Scripting\n      AC        : Wrong access control\n      IDOR      : Insecure Direct Object Reference\n      BASV      : Broken Authentication and Session Violation\n      Injection : Injection (SQL,LDAP,XPATH)\n      URF : URL Redirects and Forwards\n      SM : Security Misconfiguration\n      SDE : Sensitive Data Exposure"
     print("Wrong parameters : \n   ", order, "\n   ", relevancy, "\n   ", flaw)
 
 

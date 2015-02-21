@@ -1,7 +1,71 @@
 <?xml version = "1.0"?>
 
 <sanitize>
-    <sample>
+
+  <sample>
+    <flaws>
+      <flaw>MESD_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha256_with_crypt_function</dir>
+    </path>
+    <comment>sanitize : sha256 with crypt function</comment>
+    <codes>
+      <code>$password = “password”;
+$username = “username”;
+$passeword = crypt($password, "$5$rounds=5000$usesomesillystringforsalt$");</code>
+    </codes>
+    <constraints>
+      <constraint flawType = "MESD_SDE" />
+    </constraints>
+    <safeties>
+      <safety flawType = "MESD_SDE" safe = "1" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>MESD_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>no_encryption</dir>
+    </path>
+    <comment>sanitize : no_encryption</comment>
+    <codes>
+      <code>$password = “password”;
+$username = “username”;</code>
+    </codes>
+    <constraints>
+      <constraint flawType = "MESD_SDE" />
+    </constraints>
+    <safeties>
+      <safety flawType = "MESD_SDE" safe = "0" />
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>IETEM_SM</flaw>
+    </flaws>
+    <path>
+      <dir>error_reporting(0)</dir>
+    </path>
+    <comment>sanitize : error_reporting(0)</comment>
+    <codes>
+      <code>error_reporting(0);</code>
+    </codes>
+    <constraints>
+      <constraint flawType = "IETEM_SM" />
+    </constraints>
+    <safeties>
+      <safety flawType = "IETEM_SM" safe = "0" errorSafe = "1"/>
+    </safeties>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
     <flaws>
       <flaw>SQL_Injection</flaw>
       <flaw>XPath_Injection</flaw>
@@ -9,6 +73,7 @@
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -31,6 +96,7 @@ else{
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -39,6 +105,7 @@ else{
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -51,6 +118,7 @@ else{
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -73,7 +141,8 @@ else{
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -82,6 +151,7 @@ else{
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -94,6 +164,7 @@ else{
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -116,6 +187,7 @@ else{
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -124,6 +196,7 @@ else{
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -136,6 +209,7 @@ else{
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -158,6 +232,7 @@ else{
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
@@ -166,6 +241,7 @@ else{
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -178,6 +254,7 @@ else{
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -200,6 +277,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -209,6 +287,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -222,6 +301,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -244,6 +324,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -253,6 +334,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -266,6 +348,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -288,6 +371,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -297,6 +381,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -310,6 +395,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -332,6 +418,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -341,6 +428,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
@@ -355,6 +443,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -377,6 +466,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -386,6 +476,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -399,6 +490,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -421,6 +513,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -430,6 +523,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -443,6 +537,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -464,6 +559,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -473,6 +569,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -536,6 +633,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -557,6 +655,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -566,6 +665,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -579,6 +679,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -600,6 +701,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -609,6 +711,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -622,6 +725,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -642,6 +746,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
@@ -650,6 +755,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -662,6 +768,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -679,6 +786,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -688,6 +796,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -701,6 +810,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -718,6 +828,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -727,6 +838,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -740,6 +852,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
       <flaw>SQL_IDOR</flaw>
       <flaw>XPath_IDOR</flaw>
@@ -759,6 +872,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "SQL_IDOR"/>
       <constraint flawType = "XPath_IDOR"/>
@@ -770,6 +884,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
       <safety flawType = "SQL_IDOR" safe = "0" />
       <safety flawType = "XPath_IDOR" safe = "0" />
@@ -785,6 +900,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -802,6 +918,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -811,6 +928,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -824,6 +942,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -841,6 +960,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -850,6 +970,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -863,6 +984,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -883,6 +1005,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -892,6 +1015,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -905,6 +1029,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -925,6 +1050,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -934,6 +1060,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -947,6 +1074,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -963,6 +1091,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -972,6 +1101,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>1</relevancy>
@@ -985,15 +1115,19 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
+      <flaw>Open_Redirect_URF</flaw>
+      <flaw>IETEM_SM</flaw>
+      <flaw>UBRCA_SDE</flaw>
     </flaws>
     <path>
       <dir>no_sanitizing</dir>
     </path>
     <comment>sanitize : none</comment>
     <codes>
-      <code>$tainted = $tainted;</code>
+      <code>//no_sanitizing</code>
     </codes>
     <constraints>
       <constraint flawType = "SQL_Injection" type = "" field = ""/>
@@ -1002,8 +1136,12 @@ else
       <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
       <constraint flawType = "eval_Injection" type = "" field = ""/>
       <constraint flawType = "include_require_Injection" type = "" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "Fopen_IDOR" />
+      <constraint flawType = "IETEM_SM" />
+      <constraint flawType = "UBRCA_SDE" />
     </constraints>
     <safeties>
       <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
@@ -1012,8 +1150,11 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" />
       <safety flawType = "Fopen_IDOR" safe = "0"/>
+      <safety flawType = "IETEM_SM" safe = "0"/>
+      <safety flawType = "UBRCA_SDE" safe = "0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1026,6 +1167,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1042,6 +1184,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1051,6 +1194,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1064,6 +1208,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1080,6 +1225,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1089,6 +1235,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
@@ -1102,6 +1249,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1118,6 +1266,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1127,6 +1276,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
@@ -1140,6 +1290,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1156,6 +1307,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1165,6 +1317,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1178,6 +1331,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1194,6 +1348,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
       <constraint flawType = "eval_Injection" type = "int" field = ""/>
       <constraint flawType = "include_require_Injection" type = "int" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1203,6 +1358,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1216,6 +1372,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw>
     </flaws>
@@ -1233,6 +1390,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "Fopen_IDOR"/>
     </constraints>
@@ -1243,6 +1401,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" simpleQuote = "1" />
       <safety flawType = "Fopen_IDOR" safe = "0"/>
     </safeties>
@@ -1257,6 +1416,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1273,6 +1433,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
       <constraint flawType = "eval_Injection" type = "string" field = ""/>
       <constraint flawType = "include_require_Injection" type = "string" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
@@ -1282,6 +1443,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "1" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "1" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -1321,6 +1483,7 @@ else
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw> 
       <flaw>SQL_IDOR</flaw> 
@@ -1340,6 +1503,7 @@ else
       <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
       <constraint flawType = "eval_Injection" type = "" field = ""/>
       <constraint flawType = "include_require_Injection" type = "" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "Fopen_IDOR"/>
       <constraint flawType = "SQL_IDOR"/>
@@ -1352,6 +1516,7 @@ else
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
       <safety flawType = "XSS" simpleQuote = "1" />
       <safety flawType = "Fopen_IDOR" safe = "1"/>
       <safety flawType = "SQL_IDOR" safe = "1"/>
@@ -1399,6 +1564,7 @@ if (in_array($tainted, $legal_table, true)) {
       <flaw>OSCommand_Injection</flaw>
       <flaw>eval_Injection</flaw>
       <flaw>include_require_Injection</flaw>
+      <flaw>Open_Redirect_URF</flaw>
       <flaw>XSS</flaw>
       <flaw>Fopen_IDOR</flaw> 
       <flaw>SQL_IDOR</flaw> 
@@ -1423,6 +1589,7 @@ if (in_array($tainted, $legal_table, true)) {
       <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
       <constraint flawType = "eval_Injection" type = "" field = ""/>
       <constraint flawType = "include_require_Injection" type = "" field = ""/>
+      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
       <constraint flawType = "Fopen_IDOR"/>
       <constraint flawType = "SQL_IDOR"/>
@@ -1435,6 +1602,7 @@ if (in_array($tainted, $legal_table, true)) {
       <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
       <safety flawType = "XSS" simpleQuote = "1" />
       <safety flawType = "Fopen_IDOR" safe = "1"/>
       <safety flawType = "SQL_IDOR" safe = "1"/>
