@@ -23,16 +23,16 @@ class GeneratorSDE(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['MESD_SDE', 'UBRCA_SDE']
+        return ['CWE_311_SDE', 'CWE_327_SDE']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
 
-    def testSafety(self, flaw, sanitize):
-        if sanitize.isSafe == safe:
+    def testSafety(self, construction, sanitize, flaw):
+        if sanitize.safeties[flaw]["safe"] == 1:
             self.safe_Sample += 1
             return 1
-        if flaw.isSafe == safe:
+        if construction.safeties[flaw]["safe"] == 1:
             self.safe_Sample += 1
             return 1
 
@@ -46,18 +46,13 @@ class GeneratorSDE(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "MESD_SDE":
-                                return self.generateWithType("MESD", params)
-                            if value == "UBRCA_SDE":
-                                return self.generateWithType("UBRCA", params)
+                            if value == "CWE_311_SDE":
+                                return self.generateWithType("CWE_311", params)
+                            if value == "CWE_327_SDE":
+                                return self.generateWithType("CWE_327", params)
 
     # Generates final sample
     def generateWithType(self, sde, params):
-        #for param in params:
-        #    if isinstance(param, InputSample):
-        #        self.manifest.beginTestCase(param.inputType)
-        #        break
-        self.manifest.beginTestCase("$password")
 
         file = File()
 
@@ -85,16 +80,16 @@ class GeneratorSDE(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)
+                        safe = self.testSafety(param, param2, sde + "_SDE")
 
-        flawCwe = {"MESD": "CWE_311",
-                   "UBRCA": "CWE_327"
+        flawCwe = {"CWE_311": "MESD",
+                   "CWE_327": "UBRCA"
         }
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("SDE")
-        file.addPath(flawCwe[sde])
+        file.addPath(sde)
 
         # sort by safe/unsafe
         if self.ordered:
@@ -105,7 +100,7 @@ class GeneratorSDE(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[sde] + "_" + dir)
+                    file.setName(sde + "_" + dir)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -149,6 +144,12 @@ class GeneratorSDE(Generator):
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
+
+        #for param in params:
+        #    if isinstance(param, InputSample):
+        #        self.manifest.beginTestCase(param.inputType)
+        #        break
+        self.manifest.beginTestCase("Sensitive_data")
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()

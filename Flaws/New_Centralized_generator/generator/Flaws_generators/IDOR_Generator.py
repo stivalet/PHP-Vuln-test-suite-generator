@@ -21,10 +21,10 @@ class GeneratorIDOR(Generator):
     # self.fileManager = fileManager
 
     def getType(self):
-        return ["SQL_IDOR", "XPath_IDOR", "Fopen_IDOR"]
+        return ["CWE_862_SQL_IDOR", "CWE_862_XPath_IDOR", "CWE_862_Fopen_IDOR"]
 
-    def testSafety(self, construction, sanitize):
-        if sanitize.safe == safe or construction.safe == safe:
+    def testSafety(self, construction, sanitize, flaw):
+        if sanitize.safeties[flaw]["safe"] == 1 or construction.safeties[flaw]["safe"] == 1:
             self.safe_Sample += 1
             return 1
         self.unsafe_Sample += 1
@@ -41,19 +41,15 @@ class GeneratorIDOR(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "SQL_IDOR":
-                                return self.generateWithType("SQL", params)
-                            elif value == "Fopen_IDOR":
-                                return self.generateWithType("fopen", params)
-                            elif value == "XPath_IDOR":
-                                return self.generateWithType("XPath", params)
+                            if value == "CWE_862_SQL_IDOR":
+                                return self.generateWithType("CWE_862_SQL", params)
+                            elif value == "CWE_862_Fopen_IDOR":
+                                return self.generateWithType("CWE_862_Fopen", params)
+                            elif value == "CWE_862_XPath_IDOR":
+                                return self.generateWithType("CWE_862_XPath", params)
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
-        for param in params:
-            if isinstance(param, InputSample):
-                self.manifest.beginTestCase(param.inputType)
-                break
 
         file = File()
 
@@ -70,8 +66,12 @@ class GeneratorIDOR(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)  # 1 : safe ,0 : unsafe
+                        safe = self.testSafety(param, param2, IDOR + "_IDOR")  # 1 : safe ,0 : unsafe
 
+        flawCwe = {"CWE_862_SQL": "SQL",
+                   "CWE_862_Fopen": "fopen",
+                   "CWE_862_XPath": "XPath"
+        }
 
         #Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
@@ -115,17 +115,17 @@ class GeneratorIDOR(Generator):
             for line in param.code:
                 file.addContent(line)
 
-        if IDOR != "fopen":
+        if flawCwe[IDOR] != "fopen":
             for param in params:
                 if isinstance(param, Construction):
-                    if param.prepared == 0 or IDOR == "XPath":
-                        fileQuery = open("./execQuery_" + IDOR + ".txt", "r")
+                    if param.prepared == 0 or flawCwe[IDOR] == "XPath":
+                        fileQuery = open("./execQuery_" + flawCwe[IDOR] + ".txt", "r")
                         execQuery = fileQuery.readlines()
                         fileQuery.close()
                         for line in execQuery:
                             file.addContent(line)
                     else:
-                        fileQuery = open("./execQuery_" + IDOR + "_prepared.txt", "r")
+                        fileQuery = open("./execQuery_" + flawCwe[IDOR] + "_prepared.txt", "r")
                         execQueryPrepared = fileQuery.readlines()
                         fileQuery.close()
                         for line in execQueryPrepared:
@@ -135,6 +135,11 @@ class GeneratorIDOR(Generator):
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
+
+        for param in params:
+            if isinstance(param, InputSample):
+                self.manifest.beginTestCase(param.inputType)
+                break
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()

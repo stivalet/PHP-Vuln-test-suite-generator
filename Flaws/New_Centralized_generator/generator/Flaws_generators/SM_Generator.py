@@ -24,32 +24,24 @@ class GeneratorSM(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['IETEM_SM']
+        return ['CWE_209_SM']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
 
-    def testSafety(self, flaw, sanitize):
-        if flaw.isSafe == needErrorSafe:
-            if sanitize.isSafe == errorSafe:
+    def testSafety(self, construction, sanitize, flaw):
+        if construction.safeties[flaw]["needErrorSafe"] == 1:
+            if sanitize.safeties[flaw]["errorSafe"] == 1:
                 self.safe_Sample += 1
                 return 1
 
         else :
-            if sanitize.isSafe == safe:
+            if sanitize.safeties[flaw]["safe"] == 1:
                 self.safe_Sample += 1
                 return 1
-            if flaw.isSafe == safe:
+            if construction.safeties[flaw]["safe"] == 1:
                 self.safe_Sample += 1
                 return 1
-
-            #if sanitize.isSafe == needQuote and flaw.isSafe == quote:
-            #    self.safe_Sample += 1
-            #    return 1
-            # case of pg_escape_literal
-            #if sanitize.isSafe == noQuote and flaw.isSafe == 0:
-            #    self.safe_Sample += 1
-            #    return 1
 
         self.unsafe_Sample += 1
         return 0
@@ -61,16 +53,11 @@ class GeneratorSM(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "IETEM_SM":
-                                return self.generateWithType("IETEM", params)
+                            if value == "CWE_209_SM":
+                                return self.generateWithType("CWE_209", params)
 
     # Generates final sample
     def generateWithType(self, sm, params):
-        #for param in params:
-        #    if isinstance(param, InputSample):
-        #        self.manifest.beginTestCase(param.inputType)
-        #        break
-        self.manifest.beginTestCase("Error_message")
 
         file = File()
 
@@ -98,15 +85,15 @@ class GeneratorSM(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)
+                        safe = self.testSafety(param, param2, sm + "_SM")
 
-        flawCwe = {"IETEM": "CWE_209"
+        flawCwe = {"CWE_209": "IETEM"
         }
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("SM")
-        file.addPath(flawCwe[sm])
+        file.addPath(sm)
 
         # sort by safe/unsafe
         if self.ordered:
@@ -117,7 +104,7 @@ class GeneratorSM(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[sm] + "_" + dir)
+                    file.setName(sm + "_" + dir)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -161,6 +148,12 @@ class GeneratorSM(Generator):
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
+
+        #for param in params:
+        #    if isinstance(param, InputSample):
+        #        self.manifest.beginTestCase(param.inputType)
+        #        break
+        self.manifest.beginTestCase("Error_message")
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()

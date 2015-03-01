@@ -4,7 +4,7 @@
 
   <sample>
     <flaws>
-      <flaw>MESD_SDE</flaw>
+      <flaw>CWE_311_SDE</flaw>
     </flaws>
     <path>
       <dir>sha256_with_crypt_function</dir>
@@ -16,17 +16,17 @@ $username = “username”;
 $passeword = crypt($password, "$5$rounds=5000$usesomesillystringforsalt$");</code>
     </codes>
     <constraints>
-      <constraint flawType = "MESD_SDE" />
+      <constraint flawType = "CWE_311_SDE" />
     </constraints>
     <safeties>
-      <safety flawType = "MESD_SDE" safe = "1" />
+      <safety flawType = "CWE_311_SDE" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>MESD_SDE</flaw>
+      <flaw>CWE_311_SDE</flaw>
     </flaws>
     <path>
       <dir>no_encryption</dir>
@@ -37,17 +37,17 @@ $passeword = crypt($password, "$5$rounds=5000$usesomesillystringforsalt$");</cod
 $username = “username”;</code>
     </codes>
     <constraints>
-      <constraint flawType = "MESD_SDE" />
+      <constraint flawType = "CWE_311_SDE" />
     </constraints>
     <safeties>
-      <safety flawType = "MESD_SDE" safe = "0" />
+      <safety flawType = "CWE_311_SDE" safe = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>IETEM_SM</flaw>
+      <flaw>CWE_209_SM</flaw>
     </flaws>
     <path>
       <dir>error_reporting(0)</dir>
@@ -57,23 +57,23 @@ $username = “username”;</code>
       <code>error_reporting(0);</code>
     </codes>
     <constraints>
-      <constraint flawType = "IETEM_SM" />
+      <constraint flawType = "CWE_209_SM" />
     </constraints>
     <safeties>
-      <safety flawType = "IETEM_SM" safe = "0" errorSafe = "1"/>
+      <safety flawType = "CWE_209_SM" safe = "0" errorSafe = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -90,35 +90,35 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -135,36 +135,35 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -181,35 +180,35 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>func_preg_match</dir>
@@ -226,35 +225,35 @@ else{
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -271,23 +270,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -295,13 +294,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -318,23 +317,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -342,13 +341,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -365,23 +364,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -389,13 +388,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -412,23 +411,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
@@ -437,13 +436,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -460,23 +459,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -484,13 +483,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -507,23 +506,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -531,13 +530,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -553,23 +552,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -577,7 +576,7 @@ else
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -592,17 +591,17 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -617,23 +616,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -649,23 +648,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -673,13 +672,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -695,23 +694,23 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -719,13 +718,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -740,35 +739,35 @@ else
   $tainted = "" ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -780,23 +779,23 @@ else
       <code>$tainted = (float) $tainted ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -804,13 +803,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -822,23 +821,23 @@ else
       <code>$tainted + = 0.0 ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -846,16 +845,16 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
-      <flaw>SQL_IDOR</flaw>
-      <flaw>XPath_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
+      <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -866,41 +865,41 @@ else
       <code>$tainted = (int) $tainted ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
-      <constraint flawType = "SQL_IDOR"/>
-      <constraint flawType = "XPath_IDOR"/>
+      <constraint flawType = "CWE_862_SQL_IDOR"/>
+      <constraint flawType = "CWE_862_XPath_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
-      <safety flawType = "SQL_IDOR" safe = "0" />
-      <safety flawType = "XPath_IDOR" safe = "0" />
+      <safety flawType = "CWE_862_SQL_IDOR" safe = "0" />
+      <safety flawType = "CWE_862_XPath_IDOR" safe = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -912,23 +911,23 @@ else
       <code>$tainted + = 0 ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -936,13 +935,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -954,23 +953,23 @@ else
       <code>$tainted = $tainted + 0;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -978,13 +977,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -999,23 +998,23 @@ else
   $tainted = 0.0 ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1023,13 +1022,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1044,23 +1043,23 @@ else
   $tainted = 0 ;</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1068,13 +1067,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1085,23 +1084,23 @@ else
       <code>$tainted = addslashes($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1109,18 +1108,18 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
-      <flaw>Fopen_IDOR</flaw>
-      <flaw>Open_Redirect_URF</flaw>
-      <flaw>IETEM_SM</flaw>
-      <flaw>UBRCA_SDE</flaw>
+      <flaw>CWE_862_Fopen_IDOR</flaw>
+      <flaw>CWE_601_URF</flaw>
+      <flaw>CWE_209_SM</flaw>
+      <flaw>CWE_327_SDE</flaw>
     </flaws>
     <path>
       <dir>no_sanitizing</dir>
@@ -1130,44 +1129,44 @@ else
       <code>//no_sanitizing</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
-      <constraint flawType = "eval_Injection" type = "" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
-      <constraint flawType = "Fopen_IDOR" />
-      <constraint flawType = "IETEM_SM" />
-      <constraint flawType = "UBRCA_SDE" />
+      <constraint flawType = "CWE_862_Fopen_IDOR" />
+      <constraint flawType = "CWE_209_SM" />
+      <constraint flawType = "CWE_327_SDE" />
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" />
-      <safety flawType = "Fopen_IDOR" safe = "0"/>
-      <safety flawType = "IETEM_SM" safe = "0"/>
-      <safety flawType = "UBRCA_SDE" safe = "0"/>
+      <safety flawType = "CWE_862_Fopen_IDOR" safe = "0"/>
+      <safety flawType = "CWE_209_SM" safe = "0"/>
+      <safety flawType = "CWE_327_SDE" safe = "0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1178,23 +1177,23 @@ else
       <code>$tainted = floatval($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1202,13 +1201,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1219,23 +1218,23 @@ else
       <code>$tainted = htmlentities($tainted, ENT_QUOTES);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
@@ -1243,13 +1242,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1260,23 +1259,23 @@ else
       <code>$tainted = htmlspecialchars($tainted, ENT_QUOTES);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
@@ -1284,13 +1283,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1301,23 +1300,23 @@ else
       <code>$tainted = intval($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1325,13 +1324,13 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1342,23 +1341,23 @@ else
       <code>$tainted = mysql_real_escape_string($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "int" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "int" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "int" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "int" field = ""/>
-      <constraint flawType = "eval_Injection" type = "int" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "int" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
     </safeties>
     <relevancy>1</relevancy>
@@ -1366,15 +1365,15 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
-      <flaw>Fopen_IDOR</flaw>
+      <flaw>CWE_862_Fopen_IDOR</flaw>
     </flaws>
     <path>
       <dir>func_preg_replace</dir>
@@ -1384,39 +1383,39 @@ else
       <code>$tainted = preg_replace('/\'/', '', $tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
-      <constraint flawType = "Fopen_IDOR"/>
+      <constraint flawType = "CWE_862_Fopen_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "0" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" simpleQuote = "1" />
-      <safety flawType = "Fopen_IDOR" safe = "0"/>
+      <safety flawType = "CWE_862_Fopen_IDOR" safe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
     </flaws>
     <path>
@@ -1427,23 +1426,23 @@ else
       <code>$tainted = preg_replace('/\W/si','',$tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "string" field = ""/>
-      <constraint flawType = "eval_Injection" type = "string" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "string" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
       <constraint flawType = "XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "1" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "1" />
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "1" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "1" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "1" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "1" urlSafe = "0"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "1" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "XSS" safe = "1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
@@ -1451,9 +1450,9 @@ else
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>ternary_white_list_order_direction</dir>
@@ -1463,31 +1462,31 @@ else
       <code>$tainted = $tainted  == 'DESC' ? 'DESC' : 'ASC';</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = "ORDER_DIRECTION"/>
-      <constraint flawType = "XPath_Injection" type = "string" field = "ORDER_DIRECTION"/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = "ORDER_DIRECTION"/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = "ORDER_DIRECTION"/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = "ORDER_DIRECTION"/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = "ORDER_DIRECTION"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
     <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
-      <flaw>Fopen_IDOR</flaw> 
-      <flaw>SQL_IDOR</flaw> 
-      <flaw>XPath_IDOR</flaw>
+      <flaw>CWE_862_Fopen_IDOR</flaw> 
+      <flaw>CWE_862_SQL_IDOR</flaw> 
+      <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>ternary_white_list</dir>
@@ -1497,39 +1496,39 @@ else
       <code>$tainted = $tainted  == 'safe1' ? 'safe1' : 'safe2';</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
-      <constraint flawType = "eval_Injection" type = "" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
-      <constraint flawType = "Fopen_IDOR"/>
-      <constraint flawType = "SQL_IDOR"/>
-      <constraint flawType = "XPath_IDOR"/>
+      <constraint flawType = "CWE_862_Fopen_IDOR"/>
+      <constraint flawType = "CWE_862_SQL_IDOR"/>
+      <constraint flawType = "CWE_862_XPath_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
       <safety flawType = "XSS" simpleQuote = "1" />
-      <safety flawType = "Fopen_IDOR" safe = "1"/>
-      <safety flawType = "SQL_IDOR" safe = "1"/>
-      <safety flawType = "Xapth_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_Fopen_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>whitelist_using_array_from</dir>
@@ -1544,31 +1543,31 @@ if (in_array($tainted, $legal_table, true)) {
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = "FROM"/>
-      <constraint flawType = "XPath_Injection" type = "string" field = "FROM"/>
-      <constraint flawType = "LDAP_Injection" type = "string" field = "FROM"/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = "FROM"/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = "FROM"/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = "FROM"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
     <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
-      <flaw>LDAP_Injection</flaw>
-      <flaw>OSCommand_Injection</flaw>
-      <flaw>eval_Injection</flaw>
-      <flaw>include_require_Injection</flaw>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
+      <flaw>CWE_601_URF</flaw>
       <flaw>XSS</flaw>
-      <flaw>Fopen_IDOR</flaw> 
-      <flaw>SQL_IDOR</flaw> 
-      <flaw>XPath_IDOR</flaw>
+      <flaw>CWE_862_Fopen_IDOR</flaw> 
+      <flaw>CWE_862_SQL_IDOR</flaw> 
+      <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>whitelist_using_array</dir>
@@ -1583,37 +1582,37 @@ if (in_array($tainted, $legal_table, true)) {
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "" field = ""/>
-      <constraint flawType = "LDAP_Injection" type = "" field = ""/>
-      <constraint flawType = "OSCommand_Injection" type = "" field = ""/>
-      <constraint flawType = "eval_Injection" type = "" field = ""/>
-      <constraint flawType = "include_require_Injection" type = "" field = ""/>
-      <constraint flawType = "Open_Redirect_URF" type = "" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_78_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_95_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
+      <constraint flawType = "CWE_601_URF" type = "" field = ""/>
       <constraint flawType = "XSS"/>
-      <constraint flawType = "Fopen_IDOR"/>
-      <constraint flawType = "SQL_IDOR"/>
-      <constraint flawType = "XPath_IDOR"/>
+      <constraint flawType = "CWE_862_Fopen_IDOR"/>
+      <constraint flawType = "CWE_862_SQL_IDOR"/>
+      <constraint flawType = "CWE_862_XPath_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "XPath_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "OSCommand_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "eval_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "include_require_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "Open_Redirect_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
+      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
+      <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
       <safety flawType = "XSS" simpleQuote = "1" />
-      <safety flawType = "Fopen_IDOR" safe = "1"/>
-      <safety flawType = "SQL_IDOR" safe = "1"/>
-      <safety flawType = "Xapth_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_Fopen_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>ESAPI</dir>
@@ -1631,17 +1630,17 @@ if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_IDOR"/>
+      <constraint flawType = "CWE_862_SQL_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>Indirect_reference</dir>
@@ -1672,17 +1671,17 @@ else {
 }</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_IDOR"/>
+      <constraint flawType = "CWE_862_SQL_IDOR"/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_IDOR" safe = "1"/>
+      <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_preg_replace_ldap_char_white_list</dir>
@@ -1692,17 +1691,17 @@ else {
       <code>$tainted = preg_replace( "/[^a-zA-Z0-9_\ -]/", "", $tainted );</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_str_replace_ldap_char_black_list</dir>
@@ -1717,17 +1716,17 @@ else {
 $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "1" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_pg_escape_literal</dir>
@@ -1737,17 +1736,17 @@ $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tain
       <code>$tainted = pg_escape_literal($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "-1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>func_pg_escape_string</dir>
@@ -1757,18 +1756,18 @@ $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tain
       <code>$tainted = pg_escape_string($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "LDAP_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "LDAP_Injection" safe = "0" needQuote = "0"/>
+      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>object</dir>
@@ -1785,20 +1784,20 @@ $temp = new Sanitize();
 $tainted = $temp->sanitize($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1"/>
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1"/>
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>object</dir>
@@ -1823,12 +1822,12 @@ $sanitizer->sanitize();
 $tainted = $sanitizer->getData(); </code>
     </codes>
     <constraints>
-      <constraint flawType = "SQL_Injection" type = "string" field = ""/>
-      <constraint flawType = "XPath_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
+      <constraint flawType = "CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <safeties>
-      <safety flawType = "SQL_Injection" safe = "0" needQuote = "1"/>
-      <safety flawType = "XPath_Injection" safe = "0" needQuote = "1"/>
+      <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1"/>
+      <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1"/>
     </safeties>
     <relevancy>1</relevancy>
   </sample>

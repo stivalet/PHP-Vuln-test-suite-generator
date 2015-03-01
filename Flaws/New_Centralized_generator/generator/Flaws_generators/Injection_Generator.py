@@ -23,27 +23,30 @@ class GeneratorInjection(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['SQL_Injection', 'XPath_Injection', 'LDAP_Injection', 'OSCommand_Injection', 'eval_Injection', 'include_require_Injection']
+        return ['CWE_89_Injection', 'CWE_91_Injection', 'CWE_90_Injection', 'CWE_78_Injection', 'CWE_95_Injection', 'CWE_98_Injection']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
 
-    def testSafety(self, flaw, sanitize):
-        if sanitize.isSafe == safe:
+    def testSafety(self, construction, sanitize, flaw):
+        if sanitize.safeties[flaw]["safe"] == 1:
             self.safe_Sample += 1
             return 1
-        if flaw.isSafe == safe:
+        if construction.safeties[flaw]["safe"] == 1:
             self.safe_Sample += 1
             return 1
-        if sanitize.isSafe == needQuote and flaw.isSafe == quote:
+        if sanitize.safeties[flaw]["needQuote"] == 1 and construction.safeties[flaw]["quote"] == 1:
             self.safe_Sample += 1
             return 1
         # case of pg_escape_literal
-        if sanitize.isSafe == noQuote and flaw.isSafe == 0:
+        if sanitize.safeties[flaw]["needQuote"] == -1 and construction.safeties[flaw]["safe"] == 0:
             self.safe_Sample += 1
             return 1
 
         self.unsafe_Sample += 1
+        #print(sanitize.safe)
+        #print(sanitize.comment)
+        #print("\n")
         return 0
 
 
@@ -53,25 +56,21 @@ class GeneratorInjection(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "XPath_Injection":
-                                return self.generateWithType("XPath", params)
-                            elif value == "LDAP_Injection":
-                                return self.generateWithType("LDAP", params)
-                            elif value == "SQL_Injection":
-                                return self.generateWithType("SQL", params)
-                            elif value == "OSCommand_Injection":
-                                return self.generateWithType("OSCommand", params)
-                            elif value == "eval_Injection":
-                                return self.generateWithType("eval", params)
-                            elif value == "include_require_Injection":
-                                return self.generateWithType("include_require", params)
+                            if value == "CWE_91_Injection":
+                                return self.generateWithType("CWE_91", params)
+                            elif value == "CWE_90_Injection":
+                                return self.generateWithType("CWE_90", params)
+                            elif value == "CWE_89_Injection":
+                                return self.generateWithType("CWE_89", params)
+                            elif value == "CWE_78_Injection":
+                                return self.generateWithType("CWE_78", params)
+                            elif value == "CWE_95_Injection":
+                                return self.generateWithType("CWE_95", params)
+                            elif value == "CWE_98_Injection":
+                                return self.generateWithType("CWE_98", params)
 
     # Generates final sample
     def generateWithType(self, injection, params):
-        for param in params:
-            if isinstance(param, InputSample):
-                self.manifest.beginTestCase(param.inputType)
-                break
 
         file = File()
 
@@ -99,20 +98,20 @@ class GeneratorInjection(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)
+                        safe = self.testSafety(param, param2, injection + "_Injection")
 
-        flawCwe = {"OSCommand": "CWE_78",
-                   "XPath": "CWE_91",
-                   "LDAP": "CWE_90",
-                   "SQL": "CWE_89",
-                   "eval": "CWE_95",
-                   "include_require": "CWE_98"
+        flawCwe = {"CWE_78": "OSCommand",
+                   "CWE_91": "XPath",
+                   "CWE_90": "LDAP",
+                   "CWE_89": "SQL",
+                   "CWE_95": "eval",
+                   "CWE_98": "include_require"
         }
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("Injection")
-        file.addPath(flawCwe[injection])
+        file.addPath(injection)
 
         # sort by safe/unsafe
         if self.ordered:
@@ -123,7 +122,7 @@ class GeneratorInjection(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[injection] + "_" + dir)
+                    file.setName(injection + "_" + dir)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -152,9 +151,9 @@ class GeneratorInjection(Generator):
                 file.addContent(line)
             file.addContent("\n\n")
 
-        if injection != "eval" and injection != "include_require":
+        if injection != "CWE_98":
             #Gets query execution code
-            footer = open("./execQuery_" + injection + ".txt", "r")
+            footer = open("./execQuery_" + flawCwe[injection] + ".txt", "r")
             execQuery = footer.readlines()
             footer.close()
 
@@ -167,6 +166,16 @@ class GeneratorInjection(Generator):
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
+
+        #if safe:
+        #    self.safe_Sample += 1
+        #else:
+        #    self.unsafe_Sample += 1
+
+        for param in params:
+            if isinstance(param, InputSample):
+                self.manifest.beginTestCase(param.inputType)
+                break
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()

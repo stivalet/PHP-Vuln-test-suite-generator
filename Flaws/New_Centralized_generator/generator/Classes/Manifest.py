@@ -39,6 +39,7 @@ class Manifest:
                 continue
             else:
                 tmp += s + "/"
+        tmp = tmp[:-1]
         # print(tmp)
         if (flawLine == 0):
             file = "\t\t<file path=\"" + tmp + "\" language=\"PHP\"/> \n\n"

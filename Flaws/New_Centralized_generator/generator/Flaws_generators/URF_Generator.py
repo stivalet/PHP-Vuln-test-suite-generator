@@ -25,32 +25,32 @@ class GeneratorURF(Generator):
     unsafe_Sample = 0
 
     def getType(self):
-        return ['Open_Redirect_URF']
+        return ['CWE_601_URF']
 
     def __init__(self, date, manifest, select, ordered):
         Generator.__init__(self, date, manifest, select, ordered)
 
-    def testSafety(self, flaw, sanitize):
-        if flaw.isSafe == needUrlSafe:
-            if sanitize.isSafe == urlSafe:
+    def testSafety(self, construction, sanitize, flaw):
+        if construction.safeties[flaw]["needUrlSafe"] == 1:
+            if sanitize.safeties[flaw]["urlSafe"] == 1:
                 self.safe_Sample += 1
                 return 1
 
         else :
-            if sanitize.isSafe == urlSafe:
+            if sanitize.safeties[flaw]["urlSafe"] == 1:
                 self.safe_Sample += 1
                 return 1
-            if sanitize.isSafe == safe:
+            if sanitize.safeties[flaw]["safe"] == 1:
                 self.safe_Sample += 1
                 return 1
-            if flaw.isSafe == safe:
+            if construction.safeties[flaw]["safe"] == 1:
                 self.safe_Sample += 1
                 return 1
-            if sanitize.isSafe == needQuote and flaw.isSafe == quote:
+            if sanitize.safeties[flaw]["needQuote"] == 1 and construction.safeties[flaw]["quote"] == 1:
                 self.safe_Sample += 1
                 return 1
             # case of pg_escape_literal
-            if sanitize.isSafe == noQuote and flaw.isSafe == 0:
+            if sanitize.safeties[flaw]["needQuote"] == -1 and construction.safeties[flaw]["safe"] == 0:
                 self.safe_Sample += 1
                 return 1
 
@@ -64,15 +64,11 @@ class GeneratorURF(Generator):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
                         for value in set(param.flaws).intersection(param2.flaws):
-                            if value == "Open_Redirect_URF":
-                                return self.generateWithType("Open_Redirect", params)
+                            if value == "CWE_601_URF":
+                                return self.generateWithType("CWE_601", params)
 
     # Generates final sample
     def generateWithType(self, urf, params):
-        for param in params:
-            if isinstance(param, InputSample):
-                self.manifest.beginTestCase(param.inputType)
-                break
 
         file = File()
 
@@ -100,15 +96,15 @@ class GeneratorURF(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2)
+                        safe = self.testSafety(param, param2, urf + "_URF")
 
-        flawCwe = {"Open_Redirect": "CWE_601"
+        flawCwe = {"CWE_601": "Open_Redirect"
         }
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("URF")
-        file.addPath(flawCwe[urf])
+        file.addPath(urf)
 
         # sort by safe/unsafe
         if self.ordered:
@@ -119,7 +115,7 @@ class GeneratorURF(Generator):
                 if dir != params[-1].path[-1]:
                     file.addPath(dir)
                 else:
-                    file.setName(flawCwe[urf] + "_" + dir)
+                    file.setName(urf + "_" + dir)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -163,6 +159,11 @@ class GeneratorURF(Generator):
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
+
+        for param in params:
+            if isinstance(param, InputSample):
+                self.manifest.beginTestCase(param.inputType)
+                break
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()

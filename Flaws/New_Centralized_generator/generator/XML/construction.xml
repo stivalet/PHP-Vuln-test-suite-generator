@@ -3,87 +3,112 @@
 
   <sample>
     <flaws>
-      <flaw>UBRCA_SDE</flaw>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>str_rot13</dir>
+    </path>
+    <comment>construction : encrypt the data using str_rot13</comment>
+    <codes>
+      <code>//flaw
+$var = str_rot13("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
     </flaws>
     <path>
       <dir>md5</dir>
     </path>
     <comment>construction : encrypt the data using md5</comment>
     <codes>
-      <code>$var = md5("password");</code>
+      <code>//flaw
+$var = md5("password");</code>
     </codes>
     <safeties>
-      <safety flawType="UBRCA_SDE" safe = "0" />
+      <safety flawType="CWE_327_SDE" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="UBRCA_SDE" />
+      <constraint flawType="CWE_327_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>UBRCA_SDE</flaw>
+      <flaw>CWE_327_SDE</flaw>
     </flaws>
     <path>
       <dir>sha1</dir>
     </path>
     <comment>construction : encrypt the data using sha1</comment>
     <codes>
-      <code>$var = sha1("password");</code>
+      <code>//flaw
+$var = sha1("password");</code>
     </codes>
     <safeties>
-      <safety flawType="UBRCA_SDE" safe = "0" />
+      <safety flawType="CWE_327_SDE" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="UBRCA_SDE" />
+      <constraint flawType="CWE_327_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>UBRCA_SDE</flaw>
+      <flaw>CWE_327_SDE</flaw>
     </flaws>
     <path>
       <dir>sha256_crypt_function</dir>
     </path>
     <comment>construction : encrypt the data using sha256 with crypt function</comment>
     <codes>
-      <code>$var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
+      <code>//flaw
+$var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
     </codes>
     <safeties>
-      <safety flawType="UBRCA_SDE" safe = "1" />
+      <safety flawType="CWE_327_SDE" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="UBRCA_SDE" />
+      <constraint flawType="CWE_327_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>UBRCA_SDE</flaw>
+      <flaw>CWE_327_SDE</flaw>
     </flaws>
     <path>
       <dir>password_hash</dir>
     </path>
     <comment>construction : encrypt the data using password_hash function</comment>
     <codes>
-      <code>$var = password_hash("passwod", PASSWORD_DEFAULT);</code>
+      <code>//flaw
+$var = password_hash("passwod", PASSWORD_DEFAULT);</code>
     </codes>
     <safeties>
-      <safety flawType="UBRCA_SDE" safe = "1" />
+      <safety flawType="CWE_327_SDE" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="UBRCA_SDE" />
+      <constraint flawType="CWE_327_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>MESD_SDE</flaw>
+      <flaw>CWE_311_SDE</flaw>
     </flaws>
     <path>
       <dir>store_in_cookie</dir>
@@ -91,20 +116,21 @@
     <comment>construction : store sensitive data in a cookie</comment>
     <codes>
       <code>$data = array("username" => $username, "password"=> $password);
+//flaw
 $var = setcookie("userdata", $data);</code>
     </codes>
     <safeties>
-      <safety flawType="MESD_SDE" safe = "0" />
+      <safety flawType="CWE_311_SDE" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="MESD_SDE" />
+      <constraint flawType="CWE_311_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>MESD_SDE</flaw>
+      <flaw>CWE_311_SDE</flaw>
     </flaws>
     <path>
       <dir>store_in_database</dir>
@@ -113,26 +139,27 @@ $var = setcookie("userdata", $data);</code>
     <codes>
       <code>$conn = pg_pconnect("dbname=publisher");
 if (!$conn) {
-  echo "Une erreur s'est produite.\n";
+  echo "An error occured.\n";
   exit;
 }
 $query  = sprintf("INSERT INTO users(name,pwd) VALUES('%s','%s');",
             pg_escape_string($username),
             pg_escape_string($password);
+//flaw
 $result = pg_query($conn, $query);</code>
     </codes>
     <safeties>
-      <safety flawType="MESD_SDE" safe = "0" />
+      <safety flawType="CWE_311_SDE" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="MESD_SDE" />
+      <constraint flawType="CWE_311_SDE" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>IETEM_SM</flaw>
+      <flaw>CWE_209_SM</flaw>
     </flaws>
     <path>
       <dir>current_dir_location</dir>
@@ -140,20 +167,21 @@ $result = pg_query($conn, $query);</code>
     </path>
     <comment>construction : fopen</comment>
     <codes>
-      <code>$file=fopen("welcome.txt","r");</code>
+      <code>//flaw
+$file=fopen("welcome.txt","r");</code>
     </codes>
     <safeties>
-      <safety flawType="IETEM_SM" safe = "0" needErrorSafe = "1"/>
+      <safety flawType="CWE_209_SM" safe = "0" needErrorSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="IETEM_SM" />
+      <constraint flawType="CWE_209_SM" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>IETEM_SM</flaw>
+      <flaw>CWE_209_SM</flaw>
     </flaws>
     <path>
       <dir>current_dir_location</dir>
@@ -164,21 +192,22 @@ $result = pg_query($conn, $query);</code>
       <code>if(!file_exists("welcome.txt")) {
   die("File not found");
 } else {
+  //flaw
   $file=fopen("welcome.txt","r");
 }</code>
     </codes>
     <safeties>
-      <safety flawType="IETEM_SM" safe = "1" needErrorSafe = "0"/>
+      <safety flawType="CWE_209_SM" safe = "1" needErrorSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="IETEM_SM" />
+      <constraint flawType="CWE_209_SM" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>IETEM_SM</flaw>
+      <flaw>CWE_209_SM</flaw>
     </flaws>
     <path>
       <dir>error_message</dir>
@@ -190,21 +219,22 @@ $result = pg_query($conn, $query);</code>
   openDbConnection();
 }
 catch (Exception $e) {
+  //flaw
   echo 'Safe error message\n';
 }</code>
     </codes>
     <safeties>
-      <safety flawType="IETEM_SM" safe = "1" needErrorSafe = "0"/>
+      <safety flawType="CWE_209_SM" safe = "1" needErrorSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="IETEM_SM" />
+      <constraint flawType="CWE_209_SM" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>IETEM_SM</flaw>
+      <flaw>CWE_209_SM</flaw>
     </flaws>
     <path>
       <dir>config_location</dir>
@@ -216,22 +246,23 @@ catch (Exception $e) {
   openDbConnection();
 }
 catch (Exception $e) {
+  //flaw
   echo 'Caught exception: ', $e->getMessage(), '\n';
   echo 'Check credentials in config file at: ', $Mysql_config_location, '\n';
 }</code>
     </codes>
     <safeties>
-      <safety flawType="IETEM_SM" safe = "0" needErrorSafe = "0"/>
+      <safety flawType="CWE_209_SM" safe = "0" needErrorSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="IETEM_SM" />
+      <constraint flawType="CWE_209_SM" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_url</dir>
@@ -239,20 +270,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = header("'Location: " . $tainted ."'");</code>
+      <code>//flaw
+$var = header("'Location: " . $tainted ."'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_url</dir>
@@ -260,20 +292,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("'" . $tainted . "'");</code>
+      <code>//flaw
+$var = http_redirect("'" . $tainted . "'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_url</dir>
@@ -281,20 +314,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = header("location: '$tainted'");</code>
+      <code>//flaw
+$var = header("location: '$tainted'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_url</dir>
@@ -302,20 +336,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("'$tainted'");</code>
+      <code>//flaw
+$var = http_redirect("'$tainted'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_url</dir>
@@ -323,20 +358,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = header(sprintf("Location: '%s'", $tainted));</code>
+      <code>//flaw
+$var = header(sprintf("Location: '%s'", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_url</dir>
@@ -344,20 +380,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = http_redirect(sprintf("'%s'", $tainted));</code>
+      <code>//flaw
+$var = http_redirect(sprintf("'%s'", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_name</dir>
@@ -365,20 +402,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = header("'Location: " . $tainted .".php'");</code>
+      <code>//flaw
+$var = header("'Location: " . $tainted .".php'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_name</dir>
@@ -386,20 +424,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("'" . $tainted . ".php'");</code>
+      <code>//flaw
+$var = http_redirect("'" . $tainted . ".php'");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_name</dir>
@@ -407,20 +446,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = header("Location: '$tainted'.php");</code>
+      <code>//flaw
+$var = header("Location: '$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_name</dir>
@@ -428,20 +468,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("'$tainted'.php");</code>
+      <code>//flaw
+$var = http_redirect("'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_name</dir>
@@ -449,20 +490,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = header(sprintf("Location: '%s'.php", $tainted));</code>
+      <code>//flaw
+$var = header(sprintf("Location: '%s'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_name</dir>
@@ -470,20 +512,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = http_redirect(sprintf("'%s'.php", $tainted));</code>
+      <code>//flaw
+$var = http_redirect(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "string" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_id</dir>
@@ -491,20 +534,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = header("Location: pages/'". $tainted . "'.php");</code>
+      <code>//flaw
+$var = header("Location: pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_id</dir>
@@ -512,20 +556,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("pages/'". $tainted . "'.php");</code>
+      <code>//flaw
+$var = http_redirect("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_id</dir>
@@ -533,20 +578,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = header("Location: pages/'$tainted'.php");</code>
+      <code>//flaw
+$var = header("Location: pages/'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_id</dir>
@@ -554,20 +600,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = http_redirect("pages/'$tainted'.php");</code>
+      <code>//flaw
+$var = http_redirect("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>header_file_id</dir>
@@ -575,20 +622,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
+      <code>//flaw
+$var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Open_Redirect_URF</flaw>
+      <flaw>CWE_601_URF</flaw>
     </flaws>
     <path>
       <dir>http_redirect_file_id</dir>
@@ -596,20 +644,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
+      <code>//flaw
+$var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="Open_Redirect_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Open_Redirect_URF" type = "int" field = ""/>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_name</dir>
@@ -617,20 +666,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = include("'". $tainted . ".php'");</code>
+      <code>//flaw
+$var = include("'". $tainted . ".php'");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_name</dir>
@@ -638,20 +688,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = require("'". $tainted . ".php'");</code>
+      <code>//flaw
+$var = require("'". $tainted . ".php'");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_name</dir>
@@ -659,20 +710,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = include("'$tainted'.php");</code>
+      <code>//flaw
+$var = include("'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_name</dir>
@@ -680,20 +732,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = require("'$tainted'.php");</code>
+      <code>//flaw
+$var = require("'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_name</dir>
@@ -701,20 +754,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = include(sprintf("'%s'.php", $tainted));</code>
+      <code>//flaw
+$var = include(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_name</dir>
@@ -722,20 +776,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = require(sprintf("'%s'.php", $tainted));</code>
+      <code>//flaw
+$var = require(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_id</dir>
@@ -743,20 +798,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = include("pages/'". $tainted . "'.php");</code>
+      <code>//flaw
+$var = include("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_id</dir>
@@ -764,20 +820,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = require("pages/'". $tainted . "'.php");</code>
+      <code>//flaw
+$var = require("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_id</dir>
@@ -785,20 +842,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = include("pages/'$tainted'.php");</code>
+      <code>//flaw
+$var = include("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_id</dir>
@@ -806,20 +864,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = require("pages/'$tainted'.php");</code>
+      <code>//flaw
+$var = require("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>include_file_id</dir>
@@ -827,20 +886,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$var = include(sprintf("pages/'%d'.php", $tainted));</code>
+      <code>//flaw
+$var = include(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>include_require_Injection</flaw>
+      <flaw>CWE_98_Injection</flaw>
     </flaws>
     <path>
       <dir>require_file_id</dir>
@@ -848,20 +908,21 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$var = require(sprintf("pages/'%d'.php", $tainted));</code>
+      <code>//flaw
+$var = require(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
-      <safety flawType="include_require_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="include_require_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>echo</dir>
@@ -869,20 +930,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = eval("'echo $". $tainted . ";'");</code>
+      <code>$query = "'echo $". $tainted . ";'";</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>echo</dir>
@@ -890,20 +951,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = eval("echo $'$tainted';");</code>
+      <code>$query = "echo $'$tainted';";</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>echo</dir>
@@ -911,20 +972,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>$var = eval(sprintf("echo $'%s';", $tainted));</code>
+      <code>$query = sprintf("echo $'%s';", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>variable</dir>
@@ -932,20 +993,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>$var = eval("$temp = '". $tainted . "';");</code>
+      <code>$query = "$temp = '". $tainted . "';";</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>variable</dir>
@@ -953,20 +1014,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>$var = eval("$temp = ' $tainted ';");</code>
+      <code>$query = "$temp = ' $tainted ';";</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>eval_Injection</flaw>
+      <flaw>CWE_95_Injection</flaw>
     </flaws>
     <path>
       <dir>variable</dir>
@@ -974,20 +1035,20 @@ catch (Exception $e) {
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>$var = eval(sprintf("$temp = '%d';", $tainted));</code>
+      <code>$query = sprintf("$temp = '%d';", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="eval_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="eval_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>ls</dir>
@@ -998,17 +1059,17 @@ catch (Exception $e) {
       <code>$query = "ls '". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>ls</dir>
@@ -1019,17 +1080,17 @@ catch (Exception $e) {
       <code>$query = "ls ' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>ls</dir>
@@ -1040,17 +1101,17 @@ catch (Exception $e) {
       <code>$query = sprintf("ls '%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
 <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1061,17 +1122,17 @@ catch (Exception $e) {
       <code>$query = "find / size '". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1082,17 +1143,17 @@ catch (Exception $e) {
       <code>$query = "find / size ' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1103,17 +1164,17 @@ catch (Exception $e) {
       <code>$query = sprintf("find / size '%d'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1124,17 +1185,17 @@ catch (Exception $e) {
       <code>$query = "find / size '". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1145,17 +1206,17 @@ catch (Exception $e) {
       <code>$query = "find / size ' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>find_size</dir>
@@ -1166,17 +1227,17 @@ catch (Exception $e) {
       <code>$query = sprintf("find / size '%d'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "int" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>cat</dir>
@@ -1187,17 +1248,17 @@ catch (Exception $e) {
       <code>$query = "cat '". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>cat</dir>
@@ -1208,17 +1269,17 @@ catch (Exception $e) {
       <code>$query = "cat ' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>OSCommand_Injection</flaw>
+      <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
       <dir>cat</dir>
@@ -1229,17 +1290,17 @@ catch (Exception $e) {
       <code>$query = sprintf("cat '%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="OSCommand_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="OSCommand_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>name</dir>
@@ -1250,17 +1311,17 @@ catch (Exception $e) {
       <code>$query = "name='". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>name</dir>
@@ -1271,17 +1332,17 @@ catch (Exception $e) {
       <code>$query = "name=' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>name</dir>
@@ -1292,17 +1353,17 @@ catch (Exception $e) {
       <code>$query = sprintf("name='%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>not_name</dir>
@@ -1313,17 +1374,17 @@ catch (Exception $e) {
       <code>$query = "!name='". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>not_name</dir>
@@ -1334,17 +1395,17 @@ catch (Exception $e) {
       <code>$query = "!name=' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>not_name</dir>
@@ -1355,17 +1416,17 @@ catch (Exception $e) {
       <code>$query = sprintf("!name='%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "name"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByCN</dir>
@@ -1376,17 +1437,17 @@ catch (Exception $e) {
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='". $tainted . "'))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByCN</dir>
@@ -1397,17 +1458,17 @@ catch (Exception $e) {
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn=' $tainted '))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByCN</dir>
@@ -1418,17 +1479,17 @@ catch (Exception $e) {
       <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='%s'))", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "cn"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByMail</dir>
@@ -1439,17 +1500,17 @@ catch (Exception $e) {
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='". $tainted . "'))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByMail</dir>
@@ -1460,17 +1521,17 @@ catch (Exception $e) {
       <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail=' $tainted '))";</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>LDAP_Injection</flaw>
+      <flaw>CWE_90_Injection</flaw>
     </flaws>
     <path>
       <dir>userByMail</dir>
@@ -1481,17 +1542,17 @@ catch (Exception $e) {
       <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='%s'))", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="LDAP_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="LDAP_Injection" type = "string" field = "mail"/>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from</dir>
@@ -1502,17 +1563,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM '". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from</dir>
@@ -1523,17 +1584,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM ' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from</dir>
@@ -1544,17 +1605,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM '%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "FROM"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1565,17 +1626,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM student where id=". $tainted . "";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1586,17 +1647,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM student where id='". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1607,18 +1668,18 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM student where id= $tainted ";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir> <!-- Injection -->
@@ -1629,19 +1690,19 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM student where id=' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
-      <safety flawType="SQL_IDOR" safe = "0"/>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_862_SQL_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
-      <constraint flawType="SQL_IDOR" prepared = "0"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1652,17 +1713,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM student where id=%d", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1673,17 +1734,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM student where id='%d'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1694,17 +1755,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM student where id='%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1715,17 +1776,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM student where id=%u", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>select_from_where</dir>
@@ -1736,17 +1797,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM student where id='%u'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1757,17 +1818,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=". $tainted . ")";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1778,17 +1839,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='". $tainted . "')";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1799,17 +1860,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent= $tainted )";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1820,17 +1881,17 @@ catch (Exception $e) {
       <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=' $tainted ')";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1841,17 +1902,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1862,17 +1923,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1883,17 +1944,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1904,17 +1965,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_select</dir>
@@ -1925,17 +1986,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -1946,17 +2007,17 @@ catch (Exception $e) {
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=". $tainted . "";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -1967,17 +2028,17 @@ catch (Exception $e) {
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -1988,17 +2049,17 @@ catch (Exception $e) {
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor= $tainted ";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2009,17 +2070,17 @@ catch (Exception $e) {
       <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2030,17 +2091,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%d", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2051,17 +2112,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%d'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2072,17 +2133,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2093,17 +2154,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%u", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>multiple_AS</dir>
@@ -2114,17 +2175,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%u'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>join</dir>
@@ -2135,17 +2196,17 @@ catch (Exception $e) {
       <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>join</dir>
@@ -2156,17 +2217,17 @@ catch (Exception $e) {
       <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag=' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_Injection</flaw>
+      <flaw>CWE_89_Injection</flaw>
     </flaws>
     <path>
       <dir>join</dir>
@@ -2177,17 +2238,17 @@ catch (Exception $e) {
       <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="SQL_Injection" type = "string" field = "WHERE"/>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username_text</dir>
@@ -2198,17 +2259,17 @@ catch (Exception $e) {
       <code>$query = "//User[username/text()='". $tainted . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username_text</dir>
@@ -2219,17 +2280,17 @@ catch (Exception $e) {
       <code>$query = "//User[username/text()=' $tainted ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username_text</dir>
@@ -2240,18 +2301,18 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[username/text()='%s']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
-      <flaw>XPath_IDOR</flaw>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>username_at</dir>
@@ -2262,19 +2323,19 @@ catch (Exception $e) {
       <code>$query = "//User[@username='". $tainted . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
-      <safety flawType="XPath_IDOR" safe = "0"/>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_862_XPath_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
-      <constraint flawType="XPath_IDOR"/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_862_XPath_IDOR"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username_at</dir>
@@ -2285,17 +2346,17 @@ catch (Exception $e) {
       <code>$query = "//User[@username=' $tainted ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username_at</dir>
@@ -2306,17 +2367,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@username='%s']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>data</dir>
@@ -2327,17 +2388,17 @@ catch (Exception $e) {
       <code>$query = "'". $tainted . "'";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>data</dir>
@@ -2348,17 +2409,17 @@ catch (Exception $e) {
       <code>$query = "' $tainted '";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>data</dir>
@@ -2369,17 +2430,17 @@ catch (Exception $e) {
       <code>$query = sprintf("'%s'", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username</dir>
@@ -2390,17 +2451,17 @@ catch (Exception $e) {
       <code>$query = "user[username='". $tainted . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username</dir>
@@ -2411,17 +2472,17 @@ catch (Exception $e) {
       <code>$query = "user[username=' $tainted ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>username</dir>
@@ -2432,17 +2493,17 @@ catch (Exception $e) {
       <code>$query = sprintf("user[username='%s']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2453,17 +2514,17 @@ catch (Exception $e) {
       <code>$query = "//User[@id=". $tainted . "]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2474,17 +2535,17 @@ catch (Exception $e) {
       <code>$query = "//User[@id='". $tainted . "']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2495,17 +2556,17 @@ catch (Exception $e) {
       <code>$query = "//User[@id= $tainted ]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2516,17 +2577,17 @@ catch (Exception $e) {
       <code>$query = "//User[@id=' $tainted ']";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2537,17 +2598,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@id=%d]", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_test</dir>
@@ -2558,17 +2619,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@id='%d']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "1" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_at</dir>
@@ -2579,17 +2640,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@id='%s']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_at</dir>
@@ -2600,17 +2661,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@id=%u]", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_Injection</flaw>
+      <flaw>CWE_91_Injection</flaw>
     </flaws>
     <path>
       <dir>ID_at</dir>
@@ -2621,17 +2682,17 @@ catch (Exception $e) {
       <code>$query = sprintf("//User[@id='%u']", $tainted);</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_Injection" quote = "0" safe = "1" />
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
     </safeties>
     <constraints>
-      <constraint flawType="XPath_Injection" type = "int" field = ""/>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>Fopen_IDOR</flaw>
+      <flaw>CWE_862_Fopen_IDOR</flaw>
     </flaws>
     <path>
       <dir>fopen</dir>
@@ -2642,17 +2703,17 @@ catch (Exception $e) {
 $var = fopen($tainted, "r");</code>
     </codes>
     <safeties>
-      <safety flawType="Fopen_IDOR" safe = "0"/>
+      <safety flawType="CWE_862_Fopen_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="Fopen_IDOR" />
+      <constraint flawType="CWE_862_Fopen_IDOR" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>non_prepared_query</dir>
@@ -2664,17 +2725,17 @@ $var = fopen($tainted, "r");</code>
 $query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "1"/>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "0"/>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>prepared_query</dir>
@@ -2685,17 +2746,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>$query = "SELECT * FROM COURSE WHERE id=?";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "0"/>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "0"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "1"/>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>SQL_IDOR</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
     </flaws>
     <path>
       <dir>prepared_query</dir>
@@ -2707,17 +2768,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
 $query .= "AND course.allowed=$_SESSION[userid]";</code>
     </codes>
     <safeties>
-      <safety flawType="SQL_IDOR" safe = "1"/>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="SQL_IDOR" prepared = "1"/>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XPath_IDOR</flaw>
+      <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
     <path>
       <dir>concatenation</dir>
@@ -2728,10 +2789,10 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>$query="//Course[@id=". $tainted . "and @allowed=". $_SESSION[userid] . "]";</code>
     </codes>
     <safeties>
-      <safety flawType="XPath_IDOR" safe = "1"/>
+      <safety flawType="CWE_862_XPath_IDOR" safe = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XPath_IDOR" />
+      <constraint flawType="CWE_862_XPath_IDOR" />
     </constraints>
     <relevancy>1</relevancy>
   </sample>
