@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import re
 from .Generator_Abstract_Class import *
 from Classes.FileManager import *
 from .InitializeSample import *
@@ -10,8 +11,8 @@ copyright = header.readlines()
 
 
 class GeneratorXSS(Generator):
-    def __init__(self, date, manifest, select, ordered):
-        Generator.__init__(self, date, manifest, select, ordered)
+    def __init__(self, date, manifest, select, cwe):
+        Generator.__init__(self, date, manifest, select, cwe)
         self.z = 0
 
     def getType(self):
@@ -106,7 +107,9 @@ class GeneratorXSS(Generator):
 
     # Generates final sample
     def generate(self, params):
-
+        for c in self.cwe:
+            if c not in self.getType():
+                return None
         file = File()
 
         # test if the samples need to be generated
@@ -128,17 +131,15 @@ class GeneratorXSS(Generator):
         file.addPath("generation_"+self.date)
         file.addPath("XSS")
         file.addPath("CWE_79")
+        file.addPath("safe" if safe else "unsafe")
 
-        # sort by safe/unsafe
-        if self.ordered:
-            file.addPath("safe" if safe else "unsafe")
-
+        name="XSS"
         for param in params:
             for dir in param.path:
                 if dir != params[-1].path[-1]:
-                    file.addPath(dir)
-                else:
-                    file.setName(dir)
+                    name+="["+dir+"]"
+
+        file.setName(name)
 
         # Adds comments
         file.addContent("<!-- \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))

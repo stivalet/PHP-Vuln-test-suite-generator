@@ -1,4 +1,4 @@
-import os
+import re
 import xml.etree.ElementTree as ET
 import sys
 from Classes.FileManager import *
@@ -27,8 +27,8 @@ class GeneratorURF(Generator):
     def getType(self):
         return ['CWE_601_URF']
 
-    def __init__(self, date, manifest, select, ordered):
-        Generator.__init__(self, date, manifest, select, ordered)
+    def __init__(self, date, manifest, select, cwe):
+        Generator.__init__(self, date, manifest, select, cwe)
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needUrlSafe"] == 1:
@@ -69,7 +69,12 @@ class GeneratorURF(Generator):
 
     # Generates final sample
     def generateWithType(self, urf, params):
-
+        ok=0 if len(self.cwe)>0 else 1
+        for c in self.cwe:
+            var = re.findall("CWE_("+c+")$", urf, re.I)
+            if len(var)>0:
+                ok=1
+        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
@@ -107,15 +112,15 @@ class GeneratorURF(Generator):
         file.addPath(urf)
 
         # sort by safe/unsafe
-        if self.ordered:
-            file.addPath("safe" if safe else "unsafe")
+        file.addPath("safe" if safe else "unsafe")
 
+        name=urf
         for param in params:
             for dir in param.path:
                 if dir != params[-1].path[-1]:
-                    file.addPath(dir)
-                else:
-                    file.setName(urf + "_" + dir)
+                    name+="["+dir+"]"
+
+        file.setName(name)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")

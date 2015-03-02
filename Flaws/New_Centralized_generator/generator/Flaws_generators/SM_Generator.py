@@ -1,4 +1,4 @@
-import os
+import re
 import xml.etree.ElementTree as ET
 import sys
 from Classes.FileManager import *
@@ -26,8 +26,8 @@ class GeneratorSM(Generator):
     def getType(self):
         return ['CWE_209_SM']
 
-    def __init__(self, date, manifest, select, ordered):
-        Generator.__init__(self, date, manifest, select, ordered)
+    def __init__(self, date, manifest, select, cwe):
+        Generator.__init__(self, date, manifest, select, cwe)
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needErrorSafe"] == 1:
@@ -58,7 +58,12 @@ class GeneratorSM(Generator):
 
     # Generates final sample
     def generateWithType(self, sm, params):
-
+        ok=0 if len(self.cwe)>0 else 1
+        for c in self.cwe:
+            var = re.findall("CWE_("+c+")$", sm, re.I)
+            if len(var)>0:
+                ok=1
+        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
@@ -96,15 +101,14 @@ class GeneratorSM(Generator):
         file.addPath(sm)
 
         # sort by safe/unsafe
-        if self.ordered:
-            file.addPath("safe" if safe else "unsafe")
+        file.addPath("safe" if safe else "unsafe")
 
+        name=sm
         for param in params:
             for dir in param.path:
                 if dir != params[-1].path[-1]:
-                    file.addPath(dir)
-                else:
-                    file.setName(sm + "_" + dir)
+                    name="["+dir+"]"
+        file.setName(name)
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")

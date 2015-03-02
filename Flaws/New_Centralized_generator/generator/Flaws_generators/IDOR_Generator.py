@@ -1,4 +1,4 @@
-import os
+import re
 
 from .Generator_Abstract_Class import *
 from .InitializeSample import *
@@ -11,8 +11,8 @@ class GeneratorIDOR(Generator):
     # safe_Sample = 0
     # unsafe_Sample = 0
 
-    def __init__(self, date, manifest, select, ordered):
-        Generator.__init__(self, date, manifest, select, ordered)
+    def __init__(self, date, manifest, select, cwe):
+        Generator.__init__(self, date, manifest, select, cwe)
 
     # def __init__(self, manifest, fileManager, select, ordered):
     # self.select = select
@@ -50,7 +50,12 @@ class GeneratorIDOR(Generator):
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
-
+        ok=0 if len(self.cwe)>0 else 1
+        for c in self.cwe:
+            var = re.findall("CWE_("+c+")$", IDOR, re.I)
+            if len(var)>0:
+                ok=1
+        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
@@ -79,15 +84,14 @@ class GeneratorIDOR(Generator):
         file.addPath(IDOR)
 
         #sort by safe/unsafe
-        if self.ordered:
-            file.addPath("safe" if safe else "unsafe")
+        file.addPath("safe" if safe else "unsafe")
 
+        name=IDOR
         for param in params:
             for dir in param.path:
                 if dir != params[-1].path[-1]:
-                    file.addPath(dir)
-                else:
-                    file.setName(dir)
+                    name+="["+dir+"]"
+        file.setName(name)
 
         file.addContent("<?php\n")
         file.addContent("/*\n")

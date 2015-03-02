@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 
 
 class Generator(metaclass=ABCMeta):
-    def __init__(self, date, manifest, select, ordered):
+    def __init__(self, date, manifest, select, cwe):
         self.select = select
-        self.ordered = ordered
+        self.cwe = cwe
         self.date = date
         self.manifest = manifest
         self.safe_Sample = 0
