@@ -116,7 +116,7 @@ class GeneratorURF(Generator):
 
         name=urf
         for param in params:
-            name+="["
+            name+="_["
             for dir in param.path:
                 name+="("+dir+")"
             name+="]"
