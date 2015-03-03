@@ -135,7 +135,7 @@ class GeneratorXSS(Generator):
 
         name="XSS"
         for param in params:
-            name+="["
+            name+="_["
             for dir in param.path:
                 name+="("+dir+")"
             name+="]"
