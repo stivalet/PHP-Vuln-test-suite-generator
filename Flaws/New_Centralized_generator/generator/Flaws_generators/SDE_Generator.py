@@ -101,7 +101,7 @@ class GeneratorSDE(Generator):
 
         name=sde
         for param in params:
-            name+="["
+            name+="_["
             for dir in param.path:
                 name+="("+dir+")"
             name+="]"
