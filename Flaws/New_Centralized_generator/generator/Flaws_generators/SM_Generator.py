@@ -105,7 +105,7 @@ class GeneratorSM(Generator):
 
         name=sm
         for param in params:
-            name+="["
+            name+="_["
             for dir in param.path:
                 name="("+dir+")"
             name+="]"
