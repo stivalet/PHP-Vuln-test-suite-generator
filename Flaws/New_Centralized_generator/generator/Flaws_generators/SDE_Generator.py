@@ -101,9 +101,10 @@ class GeneratorSDE(Generator):
 
         name=sde
         for param in params:
+            name+="["
             for dir in param.path:
-                if dir != params[-1].path[-1]:
-                    name+="["+dir+"]"
+                name+="("+dir+")"
+            name+="]"
         file.setName(name)
 
         file.addContent("<?php\n")
