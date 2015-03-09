@@ -155,6 +155,28 @@ else{
     <relevancy>0.5</relevancy>
   </sample>
 
+<sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>func_escapeshellarg</dir>
+    </path>
+    <comment>sanitize : use the function escapeshellarg</comment>
+    <codes>
+      <code>
+        $tained = escapeshellarg($tained);
+      </code>
+    </codes>
+    <constraints>
+      <constraint flawType = "CWE_78_Injection" type = "string" field = ""/>
+    </constraints>
+    <safeties>
+      <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
+    </safeties>
+    <relevancy>0.5</relevancy>
+  </sample>
+
   <sample>
     <flaws>
       <flaw>CWE_89_Injection</flaw>
@@ -1038,7 +1060,7 @@ else
     <comment>sanitize : use of settype_int</comment>
     <codes>
       <code>if (settype($tainted, "integer"))
-  $tainted = $integer ;
+  $tainted = $tained ;
 else
   $tainted = 0 ;</code>
     </codes>
