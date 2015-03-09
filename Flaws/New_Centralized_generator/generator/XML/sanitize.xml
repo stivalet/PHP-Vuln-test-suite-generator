@@ -840,7 +840,7 @@ else
     </path>
     <comment>sanitize : cast via + = 0.0</comment>
     <codes>
-      <code>$tainted + = 0.0 ;</code>
+      <code>$tainted += 0.0 ;</code>
     </codes>
     <constraints>
       <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
@@ -930,7 +930,7 @@ else
     </path>
     <comment>sanitize : cast via + = 0</comment>
     <codes>
-      <code>$tainted + = 0 ;</code>
+      <code>$tainted += 0 ;</code>
     </codes>
     <constraints>
       <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
