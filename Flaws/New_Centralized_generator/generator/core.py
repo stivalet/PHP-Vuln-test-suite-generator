@@ -102,10 +102,10 @@ def main(argv):
                 print(str(unsafe + safe) + " total\n")
 
 def usage():
-    order = "-o for classifying vulnerable and non vulnerable programs in different folders"
     relevancy = "-r generate only files with upper or equal relevancy than the parameter"
     flaw = "-f flaws to generate (flaw1,flaw2,flaw3,...):\n      XSS       : Cross-site Scripting\n      AC        : Wrong access control\n      IDOR      : Insecure Direct Object Reference\n      BASV      : Broken Authentication and Session Violation\n      Injection : Injection (SQL,LDAP,XPATH)\n      URF : URL Redirects and Forwards\n      SM : Security Misconfiguration\n      SDE : Sensitive Data Exposure"
-    print("Wrong parameters : \n   ", order, "\n   ", relevancy, "\n   ", flaw)
+    cweparam = "-c generate particular CWE"
+    print("Wrong parameters : \n   ", relevancy, "\n   ", flaw, "\n   ", cweparam)
 
 
 if __name__ == "__main__":
