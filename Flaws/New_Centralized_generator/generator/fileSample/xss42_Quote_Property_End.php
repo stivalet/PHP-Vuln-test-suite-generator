@@ -1,4 +1,5 @@
-echo "body { color :\'". $checked_data ."\' ; }" ;
+
+echo "body { color :\'". $tainted ."\' ; }" ;
 ?>
 </style> 
 </head>

@@ -1,4 +1,5 @@
-echo "alert('". $checked_data ."')" ;
+
+echo "alert('". $tainted ."')" ;
 ?>
 </script>
 </head>

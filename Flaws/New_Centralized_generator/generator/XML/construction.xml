@@ -144,7 +144,7 @@ if (!$conn) {
 }
 $query  = sprintf("INSERT INTO users(name,pwd) VALUES('%s','%s');",
             pg_escape_string($username),
-            pg_escape_string($password));
+            pg_escape_string($password);
 //flaw
 $result = pg_query($conn, $query);</code>
     </codes>

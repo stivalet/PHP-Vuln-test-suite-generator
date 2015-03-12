@@ -1,4 +1,5 @@
 import re
+import shutil
 
 from .Generator_Abstract_Class import *
 from .InitializeSample import *
@@ -11,8 +12,9 @@ class GeneratorIDOR(Generator):
     # safe_Sample = 0
     # unsafe_Sample = 0
 
-    def __init__(self, date, manifest, select, cwe):
-        Generator.__init__(self, date, manifest, select, cwe)
+    def __init__(self, date, select):
+        super(GeneratorIDOR, self).__init__(date, select)
+        self.manifest = Manifest(self.date, "IDOR")
 
     # def __init__(self, manifest, fileManager, select, ordered):
     # self.select = select
@@ -50,20 +52,11 @@ class GeneratorIDOR(Generator):
 
     # Generates final sample
     def generateWithType(self, IDOR, params):
-        ok=0 if len(self.cwe)>0 else 1
-        for c in self.cwe:
-            var = re.findall("CWE_("+c+")$", IDOR, re.I)
-            if len(var)>0:
-                ok=1
-        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if (relevancy < self.select):
-                return 0
+        if self.revelancyTest(params) == 0:
+            return None
 
         #Build constraints
         safe = None
@@ -86,13 +79,7 @@ class GeneratorIDOR(Generator):
         #sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        name=IDOR
-        for param in params:
-            name+="_["
-            for dir in param.path:
-                name+="("+dir+")"
-            name+="]"
-        file.setName(name)
+        file.setName(self.setFileName(params, IDOR))
 
         file.addContent("<?php\n")
         file.addContent("/*\n")
@@ -150,3 +137,13 @@ class GeneratorIDOR(Generator):
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
         return file
+
+    def __del__(self):
+        self.manifest.close()
+        if self.safe_Sample+self.unsafe_Sample > 0:
+            print("IDOR generation report:")
+            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
+        else:
+            shutil.rmtree("../generation_"+self.date+"/IDOR")

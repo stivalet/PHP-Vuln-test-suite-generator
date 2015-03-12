@@ -1,4 +1,5 @@
 import re
+import shutil
 import xml.etree.ElementTree as ET
 import sys
 from Classes.FileManager import *
@@ -25,8 +26,9 @@ class GeneratorInjection(Generator):
     def getType(self):
         return ['CWE_89_Injection', 'CWE_91_Injection', 'CWE_90_Injection', 'CWE_78_Injection', 'CWE_95_Injection', 'CWE_98_Injection']
 
-    def __init__(self, date, manifest, select, cwe):
-        Generator.__init__(self, date, manifest, select, cwe)
+    def __init__(self, date, select):
+        super(GeneratorInjection, self).__init__(date, select)
+        self.manifest = Manifest(self.date, "Injection")
 
     def testSafety(self, construction, sanitize, flaw):
         if sanitize.safeties[flaw]["safe"] == 1:
@@ -44,9 +46,6 @@ class GeneratorInjection(Generator):
             return 1
 
         self.unsafe_Sample += 1
-        #print(sanitize.safe)
-        #print(sanitize.comment)
-        #print("\n")
         return 0
 
 
@@ -71,20 +70,11 @@ class GeneratorInjection(Generator):
 
     # Generates final sample
     def generateWithType(self, injection, params):
-        ok=0 if len(self.cwe)>0 else 1
-        for c in self.cwe:
-            var = re.findall("CWE_("+c+")$", injection, re.I)
-            if len(var)>0:
-                ok=1
-        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if (relevancy < self.select):
-                return
+        if self.revelancyTest(params) == 0:
+            return None
 
         # Coherence test
         for param in params:
@@ -121,16 +111,9 @@ class GeneratorInjection(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        name=injection
-        for param in params:
-            name+="_["
-            for dir in param.path:
-                name+="("+dir+")"
-            name+="]"
-        file.setName(name)
+        file.setName(self.setFileName(params, injection))
 
         file.addContent("<?php\n")
-        #file.addContent("/*\n")
 
         # Adds comments
         file.addContent("/* \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
@@ -172,11 +155,6 @@ class GeneratorInjection(Generator):
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
 
-        #if safe:
-        #    self.safe_Sample += 1
-        #else:
-        #    self.unsafe_Sample += 1
-
         for param in params:
             if isinstance(param, InputSample):
                 self.manifest.beginTestCase(param.inputType)
@@ -185,3 +163,14 @@ class GeneratorInjection(Generator):
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
         return file
+    
+    def __del__(self):
+        self.manifest.close()
+        if self.safe_Sample+self.unsafe_Sample > 0:
+            print("Injection generation report:")
+            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
+        else:
+            shutil.rmtree("../generation_"+self.date+"/Injection")
+

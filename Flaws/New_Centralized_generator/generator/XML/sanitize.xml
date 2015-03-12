@@ -838,7 +838,7 @@ else
       <dir>CAST</dir>
       <dir>cast_float_sort_of</dir>
     </path>
-    <comment>sanitize : cast via += 0.0</comment>
+    <comment>sanitize : cast via + = 0.0</comment>
     <codes>
       <code>$tainted += 0.0 ;</code>
     </codes>
@@ -928,7 +928,7 @@ else
       <dir>CAST</dir>
       <dir>cast_int_sort_of</dir>
     </path>
-    <comment>sanitize : cast via += 0</comment>
+    <comment>sanitize : cast via + = 0</comment>
     <codes>
       <code>$tainted += 0 ;</code>
     </codes>
@@ -970,7 +970,7 @@ else
       <dir>CAST</dir>
       <dir>cast_int_sort_of2</dir>
     </path>
-    <comment>sanitize : cast via += 0</comment>
+    <comment>sanitize : cast via + = 0</comment>
     <codes>
       <code>$tainted = $tainted + 0;</code>
     </codes>
@@ -1060,7 +1060,7 @@ else
     <comment>sanitize : use of settype_int</comment>
     <codes>
       <code>if (settype($tainted, "integer"))
-  $tainted = $tained ;
+  $tainted = $tainted ;
 else
   $tainted = 0 ;</code>
     </codes>

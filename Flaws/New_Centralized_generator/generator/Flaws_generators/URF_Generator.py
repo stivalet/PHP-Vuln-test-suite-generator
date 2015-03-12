@@ -1,4 +1,5 @@
 import re
+import shutil
 import xml.etree.ElementTree as ET
 import sys
 from Classes.FileManager import *
@@ -27,8 +28,9 @@ class GeneratorURF(Generator):
     def getType(self):
         return ['CWE_601_URF']
 
-    def __init__(self, date, manifest, select, cwe):
-        Generator.__init__(self, date, manifest, select, cwe)
+    def __init__(self, date, select):
+        super(GeneratorURF, self).__init__(date, select)
+        self.manifest = Manifest(self.date, "URF")
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needUrlSafe"] == 1:
@@ -69,20 +71,11 @@ class GeneratorURF(Generator):
 
     # Generates final sample
     def generateWithType(self, urf, params):
-        ok=0 if len(self.cwe)>0 else 1
-        for c in self.cwe:
-            var = re.findall("CWE_("+c+")$", urf, re.I)
-            if len(var)>0:
-                ok=1
-        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if (relevancy < self.select):
-                return
+        if self.revelancyTest(params) == 0:
+            return None
 
         # Coherence test
         for param in params:
@@ -114,14 +107,7 @@ class GeneratorURF(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        name=urf
-        for param in params:
-            name+="_["
-            for dir in param.path:
-                name+="("+dir+")"
-            name+="]"
-
-        file.setName(name)
+        file.setName(self.setFileName(params, urf))
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -175,3 +161,12 @@ class GeneratorURF(Generator):
         self.manifest.endTestCase()
         return file
 
+    def __del__(self):
+        self.manifest.close()
+        if self.safe_Sample+self.unsafe_Sample > 0:
+            print("URF generation report:")
+            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
+        else:
+            shutil.rmtree("../generation_"+self.date+"/URF")

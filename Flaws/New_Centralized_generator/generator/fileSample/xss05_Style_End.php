@@ -1,4 +1,5 @@
-echo $checked_data ;
+
+echo $tainted ;
 ?>
 </style>
 </head>

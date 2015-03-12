@@ -5,6 +5,18 @@ import copy
 from .InitializeSample import *
 from Classes.FileManager import *
 from Classes.File import *
+import global_variables as g
+
+
+def cwe_test(first_intersection):
+    if len(g.cwe_list) == 0:
+        return first_intersection
+    first_intersection_cwe = []
+    for cwe in first_intersection:
+        first_intersection_cwe.append(re.findall("_([0-9]+)_", cwe)[0])
+    if set(g.cwe_list).intersection(first_intersection_cwe):
+        return True
+    return False
 
 
 def f_construction(generator, root, params, i):
@@ -12,7 +24,7 @@ def f_construction(generator, root, params, i):
     tree_construction = ET.parse(FileManager.getXML("construction")).getroot()
     for c in tree_construction:
         params[i] = Construction(c)
-        if set(generator.getType()).intersection(params[i].flaws):
+        if cwe_test(set(generator.getType()).intersection(params[i].flaws)):
             generation(generator, root, params, i + 1)
     decorators[i] = []
 
@@ -22,7 +34,7 @@ def f_sanitize(generator, root, params, i):
     tree_sanitize = ET.parse(FileManager.getXML("sanitize")).getroot()
     for s in tree_sanitize:
         params[i] = Sanitize(s)
-        if set(generator.getType()).intersection(params[i].flaws):
+        if cwe_test(set(generator.getType()).intersection(params[i].flaws)):
             generation(generator, root, params, i + 1)
     decorators[i] = []
 
@@ -55,8 +67,8 @@ def f_decorator(params, decorators, i):
                 continue
             if "function" in params[i].code or "class" in params[i].code:
                 continue
-            params[i].code = params[i].code.replace("\n", "\n\t")
-            params[i].code = "if(True){\n\t" + params[i].code + "\n}\n"
+            params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
+            params[i].code[0] = "if(True){\n\t" + params[i].code[0] + "\n}\n"
         elif d.tag == "loop":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
@@ -85,7 +97,7 @@ def f_decorator(params, decorators, i):
                 continue
             if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
                 continue
-            if previous is not None and previous.tag in ["loop", "if", "function", "class"]:
+            if previous is not None and previous.tag in ["function", "class"]:
                 print("you can't instantiate function in loop/conditional/function/class structures")
                 exit(1)
             else:

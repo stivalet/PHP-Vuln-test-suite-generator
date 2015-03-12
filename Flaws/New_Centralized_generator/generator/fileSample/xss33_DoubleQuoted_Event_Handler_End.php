@@ -1,4 +1,5 @@
-echo "<div onmouseover=\"x=\"". $checked_data ."\"\>";
+
+echo "<div onmouseover=\"x=\"". $tainted ."\"\>";
 ?>
 <h1>Hello World!</h1>
 </div>

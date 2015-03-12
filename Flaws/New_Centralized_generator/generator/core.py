@@ -1,24 +1,19 @@
-from Flaws_generators.Injection_Generator import *
-from Flaws_generators.XSS_Generator import *
-import time
-from Classes.FileManager import *
 from Classes.Manifest import *
 from Flaws_generators.Generator_factory import *
 from Flaws_generators.Generation_functions import *
+import global_variables as g
 
 
 def main(argv):
     # List of flaws
     flaws = ["XSS", "AC", "IDOR", "Injection", "BASV", "URF", "SM", "SDE"]
-    cwe = {"XSS":"",
-           }
+
     #Generation of files with a relevancy greater or equals to select
     select = 0
-    ordered = False
 
     generation = []
-    CWElist = []
     rang = 0
+
     #Gets options & arguments
     try:
         opts, args = getopt.getopt(argv, "c:f:r:h", ["cwe=", "flaws=", "relevancy=", "help"])
@@ -28,10 +23,12 @@ def main(argv):
     for opt, arg in opts:
         if opt in ("-r", "--relevancy"):  #Generate files only with a relevancy better than given
             select = int(arg)
-        elif opt in ("-f", "--flaws"):  #Selecting flaws to create
+        elif opt in ("-f", "--flaws") and rang == 0:  #Selecting flaws to create
             generation = arg.split(',')
-        elif opt in ("-c", "--cwe"):
-            CWElist = arg.split(',')
+            rang = 1
+        elif opt in ("-c", "--cwe") and rang == 0:
+            g.cwe_list = arg.split(',')
+            rang = 1
         elif opt in ("-h", "--help"):  #Show usage
             usage()
             return 0
@@ -41,65 +38,28 @@ def main(argv):
             usage()
             return 1
 
-    date=time.strftime("%m-%d-%Y_%Hh%Mm%S")
-    root=ET.parse('output.xml').getroot()
+    date = time.strftime("%m-%d-%Y_%Hh%Mm%S")
+    root = ET.parse('output.xml').getroot()
 
-    if len(generation)>0 is not None or len(CWElist)>0 :
-        if len(CWElist)>0: generation=flaws
-        elif len(CWElist)>0: CWElist=['']
+    if len(generation) > 0 or len(g.cwe_list) > 0:
+        if len(g.cwe_list) > 0: generation = flaws
         for flaw in generation:
             if flaw == "XSS":
-                print("XSS generation report:")
-                manifest = Manifest(date,flaw)
-                safe, unsafe = initialization(Generator_factory.makeXSS_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeXSS_Generator(date, select), root)
             if flaw == "Injection":
-                print("Injection generation report:")
-                manifest = Manifest(date,flaw)
-                safe, unsafe = initialization(Generator_factory.makeInjection_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeInjection_Generator(date, select), root)
             if flaw == "IDOR":
-                print("IDOR generation report:")
-                manifest = Manifest(date,flaw)
-                safe, unsafe = initialization(Generator_factory.makeIDOR_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )"  )
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeIDOR_Generator(date, select), root)
             if flaw == "URF":
-                print("URF generation report:")
-                manifest = Manifest(date,flaw)
-                safe, unsafe = initialization(Generator_factory.makeURF_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )"  )
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeURF_Generator(date, select), root)
             if flaw == "SM":
-                print("SM generation report:")
-                manifest = Manifest(date,flaw)
                 for input in root.findall('input'):
                     root.remove(input)
-                safe, unsafe = initialization(Generator_factory.makeSM_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )"  )
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeSM_Generator(date, select), root)
             if flaw == "SDE":
-                print("SDE generation report:")
-                manifest = Manifest(date,flaw)
                 for input in root.findall('input'):
                     root.remove(input)
-                safe, unsafe = initialization(Generator_factory.makeSDE_Generator(date, manifest, select, CWElist), root)
-                manifest.close()
-                print(str(safe) + " safe samples ( " + str(safe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )"  )
-                print(str(unsafe) + " unsafe samples ( " + str(unsafe / (safe + unsafe) if (safe + unsafe)>0 else 1) + " )")
-                print(str(unsafe + safe) + " total\n")
+                initialization(Generator_factory.makeSDE_Generator(date, select), root)
 
 def usage():
     relevancy = "-r generate only files with upper or equal relevancy than the parameter"

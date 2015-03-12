@@ -1,4 +1,5 @@
-echo "<div ". $checked_data ."= bob />" ;
+
+echo "<div ". $tainted ."= bob />" ;
 ?>
 <h1>Hello World!</h1>
 </div>

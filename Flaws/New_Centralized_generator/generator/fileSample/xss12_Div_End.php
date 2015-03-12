@@ -1,4 +1,5 @@
-echo $checked_data ;
+
+echo $tainted ;
 ?>
 </div>
 <h1>Hello World!</h1>

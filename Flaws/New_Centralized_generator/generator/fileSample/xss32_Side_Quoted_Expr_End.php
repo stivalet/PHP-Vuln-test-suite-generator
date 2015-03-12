@@ -1,4 +1,5 @@
-echo "x='". $checked_data ."'" ;
+
+echo "x='". $tainted ."'" ;
 ?>
 </script>
 </head>

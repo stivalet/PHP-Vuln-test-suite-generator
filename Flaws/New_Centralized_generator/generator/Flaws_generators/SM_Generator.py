@@ -1,4 +1,5 @@
 import re
+import shutil
 import xml.etree.ElementTree as ET
 import sys
 from Classes.FileManager import *
@@ -26,8 +27,9 @@ class GeneratorSM(Generator):
     def getType(self):
         return ['CWE_209_SM']
 
-    def __init__(self, date, manifest, select, cwe):
-        Generator.__init__(self, date, manifest, select, cwe)
+    def __init__(self, date, select):
+        super(GeneratorSM, self).__init__(date, select)
+        self.manifest = Manifest(self.date, "SM")
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needErrorSafe"] == 1:
@@ -58,31 +60,11 @@ class GeneratorSM(Generator):
 
     # Generates final sample
     def generateWithType(self, sm, params):
-        ok=0 if len(self.cwe)>0 else 1
-        for c in self.cwe:
-            var = re.findall("CWE_("+c+")$", sm, re.I)
-            if len(var)>0:
-                ok=1
-        if ok==0:return None
         file = File()
 
         # test if the samples need to be generated
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if (relevancy < self.select):
-                return
-
-        # Coherence test
-        #for param in params:
-        #    if (isinstance(param, Sanitize) and param.constraintType != ""):
-        #        for param2 in params:
-        #            if (isinstance(param2, Construction) and (param.constraintType != param2.constraintType)):
-        #                return
-        #    if (isinstance(param, Sanitize) and param.constraintField != ""):
-        #        for param2 in params:
-        #            if (isinstance(param2, Construction) and (param.constraintField != param2.constraintField)):
-        #                return
+        if self.revelancyTest(params) == 0:
+            return None
 
         # retrieve parameters for safety test
         safe = None
@@ -92,9 +74,6 @@ class GeneratorSM(Generator):
                     if isinstance(param2, Sanitize):
                         safe = self.testSafety(param, param2, sm + "_SM")
 
-        flawCwe = {"CWE_209": "IETEM"
-        }
-
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
         file.addPath("SM")
@@ -103,16 +82,9 @@ class GeneratorSM(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        name=sm
-        for param in params:
-            name+="_["
-            for dir in param.path:
-                name="("+dir+")"
-            name+="]"
-        file.setName(name)
+        file.setName(self.setFileName(params, sm))
 
         file.addContent("<?php\n")
-        #file.addContent("/*\n")
 
         # Adds comments
         file.addContent("/* \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
@@ -138,29 +110,24 @@ class GeneratorSM(Generator):
                 file.addContent(line)
             file.addContent("\n\n")
 
-        #if injection != "eval" and injection != "include_require":
-        #    #Gets query execution code
-        #    footer = open("./execQuery_" + injection + ".txt", "r")
-        #    execQuery = footer.readlines()
-        #    footer.close()
-
-        #    #Adds the code for query execution
-        #    for line in execQuery:
-        #        file.addContent(line)
-
         file.addContent("\n\n?>")
 
         FileManager.createFile(file)
 
         flawLine = 0 if safe else self.findFlaw(file.getPath() + "/" + file.getName())
 
-        #for param in params:
-        #    if isinstance(param, InputSample):
-        #        self.manifest.beginTestCase(param.inputType)
-        #        break
         self.manifest.beginTestCase("Error_message")
 
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
         return file
 
+    def __del__(self):
+        self.manifest.close()
+        if self.safe_Sample+self.unsafe_Sample > 0:
+            print("SM generation report:")
+            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
+        else:
+            shutil.rmtree("../generation_"+self.date+"/SM")

@@ -1,4 +1,5 @@
-echo "window.setInterval('". $checked_data ."');" ;
+
+echo "window.setInterval('". $tainted ."');" ;
 ?>
  </script>
 </head>

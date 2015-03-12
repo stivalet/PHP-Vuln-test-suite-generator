@@ -1,4 +1,5 @@
-echo "<".  $checked_data ." href= \"/bob\" />" ;
+
+echo "<".  $tainted ." href= \"/bob\" />" ;
 ?>
 <h1>Hello World!</h1>
 </body>

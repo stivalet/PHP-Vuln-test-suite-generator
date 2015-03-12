@@ -1,5 +1,4 @@
-import xml.etree.ElementTree as ET
-import re
+import shutil
 from .Generator_Abstract_Class import *
 from Classes.FileManager import *
 from .InitializeSample import *
@@ -11,8 +10,9 @@ copyright = header.readlines()
 
 
 class GeneratorXSS(Generator):
-    def __init__(self, date, manifest, select, cwe):
-        Generator.__init__(self, date, manifest, select, cwe)
+    def __init__(self, date, select):
+        super(GeneratorXSS, self).__init__(date, select)
+        self.manifest = Manifest(self.date, "XSS")
         self.z = 0
 
     def getType(self):
@@ -107,17 +107,11 @@ class GeneratorXSS(Generator):
 
     # Generates final sample
     def generate(self, params):
-        for c in self.cwe:
-            if c not in self.getType():
-                return None
         file = File()
 
         # test if the samples need to be generated
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if (relevancy < self.select):
-                return 0
+        if self.revelancyTest(params) == 0:
+            return None
 
         # retrieve parameters for safety test
         safe = None
@@ -133,14 +127,7 @@ class GeneratorXSS(Generator):
         file.addPath("CWE_79")
         file.addPath("safe" if safe else "unsafe")
 
-        name="CWE_79"
-        for param in params:
-            name+="_["
-            for dir in param.path:
-                name+="("+dir+")"
-            name+="]"
-
-        file.setName(name)
+        file.setName(self.setFileName(params, "CWE_79"))
 
         # Adds comments
         file.addContent("<!-- \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
@@ -184,3 +171,13 @@ class GeneratorXSS(Generator):
         self.manifest.addFileToTestCase(file.getPath() + "/" + file.getName(), flawLine)
         self.manifest.endTestCase()
         return file
+
+    def __del__(self):
+        self.manifest.close()
+        if self.safe_Sample+self.unsafe_Sample > 0:
+            print("XSS generation report:")
+            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
+            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
+        else:
+            shutil.rmtree("../generation_"+self.date+"/XSS")
