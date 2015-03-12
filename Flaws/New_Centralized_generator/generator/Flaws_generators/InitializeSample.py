@@ -36,7 +36,7 @@ class InitialSample:  # Initialize path,comment and relevancy parameters
         # Classify XSS injection/sanitization by rule of OWASP
         safeties = initialSample.find("safeties").findall("safety")
         for safety in safeties:
-            if safety.get("flawType") == "XSS":
+            if "XSS" in safety.get("flawType"):
                 # Rule of sanitizing needed
                 self.safeties[safety.get("flawType")]["rule"] = 0
                 if safety.get("rule") is not None:
@@ -116,7 +116,7 @@ class Sanitize(InitialSample):  # Initialize rules, safety, code and escape
             self.safeties[safety.get("flawType")]["urlSafe"] = 0
             self.safeties[safety.get("flawType")]["errorSafe"] = 0
 
-            if safety.get("flawType") == "XSS":
+            if "XSS" in safety.get("flawType"):
                 # Universal safe sanitizing (Cast & co)
 
                 if safety.get("safe") is not None:
@@ -224,7 +224,7 @@ class Construction(InitialSample):  # Load parameters and code beginning and end
             self.safeties[safety.get("flawType")]["needUrlSafe"] = 0
             self.safeties[safety.get("flawType")]["needErrorSafe"] = 0
 
-            if safety.get("flawType") == "XSS":
+            if "XSS" in safety.get("flawType"):
                 # Universal safe sanitizing (Cast & co)
                 if safety.get("safe") is not None:
                     self.safeties[safety.get("flawType")]["safe"] = int(safety.get("safe"))

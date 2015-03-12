@@ -2799,7 +2799,7 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Unsafe_use_untrusted_data</dir>
@@ -2811,17 +2811,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss01_Script_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="0"/>
+      <safety flawType="CWE_79_XSS" rule="0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Unsafe_use_untrusted_data</dir>
@@ -2833,17 +2833,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss02_Comment_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="0"/>
+      <safety flawType="CWE_79_XSS" rule="0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Unsafe_use_untrusted_data</dir>
@@ -2855,17 +2855,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss03_Attribute_Name_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="0"/>
+      <safety flawType="CWE_79_XSS" rule="0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>  
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Unsafe_use_untrusted_data</dir>
@@ -2877,17 +2877,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss04_Tag_Name_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="0"/>
+      <safety flawType="CWE_79_XSS" rule="0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Unsafe_use_untrusted_data</dir>
@@ -2899,17 +2899,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss05_Style_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="0"/>
+      <safety flawType="CWE_79_XSS" rule="0"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy> 
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data</dir>
@@ -2921,17 +2921,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss11_Body_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="1"/>
+      <safety flawType="CWE_79_XSS" rule="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data</dir>
@@ -2943,17 +2943,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss12_Div_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="1"/>
+      <safety flawType="CWE_79_XSS" rule="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_attribute</dir>
@@ -2965,17 +2965,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss21_Unquoted_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2"/>
+      <safety flawType="CWE_79_XSS" rule="2"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_attribute</dir>
@@ -2987,17 +2987,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss22_Simple_Quote_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2" simpleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="2" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_attribute</dir>
@@ -3009,17 +3009,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss23_Double_Quote_Attribute_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="2" doubleQuote="1"/>
+      <safety flawType="CWE_79_XSS" rule="2" doubleQuote="1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3031,17 +3031,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss31_Quoted_String_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3053,17 +3053,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss31_DoubleQuoted_String_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3075,17 +3075,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss32_Side_Quoted_Expr_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3097,17 +3097,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss32_Side_DoubleQuoted_Expr_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3119,17 +3119,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss33_Quoted_Event_Handler_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" simpleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3141,17 +3141,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss33_DoubleQuoted_Event_Handler_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" doubleQuote = "1"/>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_script</dir>
@@ -3163,17 +3163,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss340_Window_setInterval_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="3" unsafe ="1" />
+      <safety flawType="CWE_79_XSS" rule="3" unsafe ="1" />
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_propertyValue_CSS</dir>
@@ -3185,17 +3185,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss41_Property_Value_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety flawType="CWE_79_XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_propertyValue_CSS</dir>
@@ -3207,17 +3207,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss42_Double_Quote_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety flawType="CWE_79_XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_propertyValue_CSS</dir>
@@ -3229,17 +3229,17 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss42_Quote_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety flawType="CWE_79_XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>Use_untrusted_data_propertyValue_CSS</dir>
@@ -3251,10 +3251,10 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
       <code>fileSample/xss43_Span_Style_Value_Property_End.php</code>
     </codes>
     <safeties>
-      <safety flawType="XSS" rule="4"/>
+      <safety flawType="CWE_79_XSS" rule="4"/>
     </safeties>
     <constraints>
-      <constraint flawType="XSS"/>
+      <constraint flawType="CWE_79_XSS"/>
     </constraints>
     <relevancy>1</relevancy>
   </sample>

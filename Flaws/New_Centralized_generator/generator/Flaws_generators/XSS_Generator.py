@@ -16,7 +16,7 @@ class GeneratorXSS(Generator):
         self.z = 0
 
     def getType(self):
-        return ["XSS"]
+        return ["CWE_79_XSS"]
 
     def testSafety(self, construction, sanitize, flaw):
         # TO improve
@@ -125,7 +125,7 @@ class GeneratorXSS(Generator):
             if isinstance(param, Construction):
                 for param2 in params:
                     if isinstance(param2, Sanitize):
-                        safe = self.testSafety(param, param2, "XSS")
+                        safe = self.testSafety(param, param2, "CWE_79_XSS")
 
         # Creates folder tree and sample files if they don't exists
         file.addPath("generation_"+self.date)
@@ -133,7 +133,7 @@ class GeneratorXSS(Generator):
         file.addPath("CWE_79")
         file.addPath("safe" if safe else "unsafe")
 
-        name="XSS"
+        name="CWE_79"
         for param in params:
             name+="_["
             for dir in param.path:
@@ -169,6 +169,8 @@ class GeneratorXSS(Generator):
             else:
                 for line in param.code:
                     out += line
+                out += "\n\n"
+            #file.addContent("\n\n")
         file.addContent(out + tmp)
         FileManager.createFile(file)
 

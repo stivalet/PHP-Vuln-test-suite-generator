@@ -276,7 +276,7 @@ else{
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -299,7 +299,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
@@ -309,7 +309,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -323,7 +323,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -346,7 +346,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
@@ -356,7 +356,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -370,7 +370,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -393,7 +393,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
@@ -403,7 +403,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -417,7 +417,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -440,7 +440,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -450,7 +450,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
     <relevancy>0.5</relevancy>
@@ -465,7 +465,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -488,7 +488,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -498,7 +498,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -512,7 +512,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -535,7 +535,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
@@ -545,7 +545,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -559,7 +559,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -581,7 +581,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "0" />
@@ -591,7 +591,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -655,7 +655,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -677,7 +677,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -687,7 +687,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -701,7 +701,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_FILTER</dir>
@@ -723,7 +723,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -733,7 +733,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -790,7 +790,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -808,7 +808,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -818,7 +818,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -832,7 +832,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -850,7 +850,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -860,7 +860,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -874,7 +874,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
       <flaw>CWE_862_SQL_IDOR</flaw>
       <flaw>CWE_862_XPath_IDOR</flaw>
     </flaws>
@@ -894,7 +894,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
       <constraint flawType = "CWE_862_SQL_IDOR"/>
       <constraint flawType = "CWE_862_XPath_IDOR"/>
     </constraints>
@@ -906,7 +906,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
       <safety flawType = "CWE_862_SQL_IDOR" safe = "0" />
       <safety flawType = "CWE_862_XPath_IDOR" safe = "0" />
     </safeties>
@@ -922,7 +922,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -940,7 +940,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -950,7 +950,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -964,7 +964,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -982,7 +982,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -992,7 +992,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -1006,7 +1006,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -1027,7 +1027,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -1037,7 +1037,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1051,7 +1051,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>CAST</dir>
@@ -1072,7 +1072,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -1082,7 +1082,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1096,7 +1096,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_addslashes</dir>
@@ -1113,7 +1113,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
@@ -1123,7 +1123,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1137,7 +1137,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
       <flaw>CWE_862_Fopen_IDOR</flaw>
       <flaw>CWE_601_URF</flaw>
       <flaw>CWE_209_SM</flaw>
@@ -1159,7 +1159,7 @@ else
       <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
       <constraint flawType = "CWE_862_Fopen_IDOR" />
       <constraint flawType = "CWE_209_SM" />
       <constraint flawType = "CWE_327_SDE" />
@@ -1172,7 +1172,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" />
+      <safety flawType = "CWE_79_XSS" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "0"/>
       <safety flawType = "CWE_209_SM" safe = "0"/>
       <safety flawType = "CWE_327_SDE" safe = "0"/>
@@ -1189,7 +1189,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_floatval</dir>
@@ -1206,7 +1206,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -1216,7 +1216,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1230,7 +1230,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_htmlentities</dir>
@@ -1247,7 +1247,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
@@ -1257,7 +1257,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
   </sample>
@@ -1271,7 +1271,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_htmlspecialchars</dir>
@@ -1288,7 +1288,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
@@ -1298,7 +1298,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
     <relevancy>0.25</relevancy>
   </sample>
@@ -1312,7 +1312,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_intval</dir>
@@ -1329,7 +1329,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
@@ -1339,7 +1339,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1353,7 +1353,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_mysql_real_escape_string</dir>
@@ -1370,7 +1370,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1" />
@@ -1380,7 +1380,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
+      <safety flawType = "CWE_79_XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
     </safeties>
     <relevancy>1</relevancy>
   </sample>
@@ -1394,7 +1394,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
       <flaw>CWE_862_Fopen_IDOR</flaw>
     </flaws>
     <path>
@@ -1412,7 +1412,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
       <constraint flawType = "CWE_862_Fopen_IDOR"/>
     </constraints>
     <safeties>
@@ -1423,7 +1423,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" simpleQuote = "1" />
+      <safety flawType = "CWE_79_XSS" simpleQuote = "1" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "0"/>
     </safeties>
     <relevancy>0.5</relevancy>
@@ -1438,7 +1438,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_preg_replace2</dir>
@@ -1455,7 +1455,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "string" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "string" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
       <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "1" />
@@ -1465,7 +1465,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "1" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "1" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "1" urlSafe = "0"/>
-      <safety flawType = "XSS" safe = "1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5  = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5  = "1" />
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
@@ -1505,7 +1505,7 @@ else
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
       <flaw>CWE_862_Fopen_IDOR</flaw> 
       <flaw>CWE_862_SQL_IDOR</flaw> 
       <flaw>CWE_862_XPath_IDOR</flaw>
@@ -1525,7 +1525,7 @@ else
       <constraint flawType = "CWE_95_Injection" type = "" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
       <constraint flawType = "CWE_862_Fopen_IDOR"/>
       <constraint flawType = "CWE_862_SQL_IDOR"/>
       <constraint flawType = "CWE_862_XPath_IDOR"/>
@@ -1538,7 +1538,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
-      <safety flawType = "XSS" simpleQuote = "1" />
+      <safety flawType = "CWE_79_XSS" simpleQuote = "1" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
@@ -1586,7 +1586,7 @@ if (in_array($tainted, $legal_table, true)) {
       <flaw>CWE_95_Injection</flaw>
       <flaw>CWE_98_Injection</flaw>
       <flaw>CWE_601_URF</flaw>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
       <flaw>CWE_862_Fopen_IDOR</flaw> 
       <flaw>CWE_862_SQL_IDOR</flaw> 
       <flaw>CWE_862_XPath_IDOR</flaw>
@@ -1611,7 +1611,7 @@ if (in_array($tainted, $legal_table, true)) {
       <constraint flawType = "CWE_95_Injection" type = "" field = ""/>
       <constraint flawType = "CWE_98_Injection" type = "" field = ""/>
       <constraint flawType = "CWE_601_URF" type = "" field = ""/>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
       <constraint flawType = "CWE_862_Fopen_IDOR"/>
       <constraint flawType = "CWE_862_SQL_IDOR"/>
       <constraint flawType = "CWE_862_XPath_IDOR"/>
@@ -1624,7 +1624,7 @@ if (in_array($tainted, $legal_table, true)) {
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
-      <safety flawType = "XSS" simpleQuote = "1" />
+      <safety flawType = "CWE_79_XSS" simpleQuote = "1" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
@@ -1856,7 +1856,7 @@ $tainted = $sanitizer->getData(); </code>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_urlencode</dir>
@@ -1866,17 +1866,17 @@ $tainted = $sanitizer->getData(); </code>
       <code>$tainted = urlencode($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_rawurlencode</dir>
@@ -1886,17 +1886,17 @@ $tainted = $sanitizer->getData(); </code>
       <code>$tainted = rawurlencode($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
     <flaws>
-      <flaw>XSS</flaw>
+      <flaw>CWE_79_XSS</flaw>
     </flaws>
     <path>
       <dir>func_http_build_query</dir>
@@ -1906,10 +1906,10 @@ $tainted = $sanitizer->getData(); </code>
       <code>$tainted = http_build_query($tainted);</code>
     </codes>
     <constraints>
-      <constraint flawType = "XSS"/>
+      <constraint flawType = "CWE_79_XSS"/>
     </constraints>
     <safeties>
-      <safety flawType = "XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1"/>
+      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1"/>
     </safeties>
     <relevancy>0.5</relevancy>
   </sample>
