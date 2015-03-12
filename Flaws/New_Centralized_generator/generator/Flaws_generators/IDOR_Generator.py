@@ -119,6 +119,7 @@ class GeneratorIDOR(Generator):
         for param in params:
             for line in param.code:
                 file.addContent(line)
+            file.addContent("\n\n")
 
         if flawCwe[IDOR] != "fopen":
             for param in params:
