@@ -62,10 +62,9 @@ def main(argv):
             initialization(Generator_factory.makeSDE_Generator(date, select), root)
 
 def usage():
-    relevancy = "-r generate only files with upper or equal relevancy than the parameter"
     flaw = "-f flaws to generate (flaw1,flaw2,flaw3,...):\n      XSS       : Cross-site Scripting\n      AC        : Wrong access control\n      IDOR      : Insecure Direct Object Reference\n      BASV      : Broken Authentication and Session Violation\n      Injection : Injection (SQL,LDAP,XPATH)\n      URF : URL Redirects and Forwards\n      SM : Security Misconfiguration\n      SDE : Sensitive Data Exposure"
     cweparam = "-c generate particular CWE"
-    print("Wrong parameters : \n   ", relevancy, "\n   ", flaw, "\n   ", cweparam)
+    print("Wrong parameters :\n   ", flaw, "\n   ", cweparam)
 
 
 if __name__ == "__main__":
