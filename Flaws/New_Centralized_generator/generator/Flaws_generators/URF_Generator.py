@@ -21,16 +21,11 @@ urlSafe = "urlSafe"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorURF(Generator):
-    # Initializes counters
-    safe_Sample = 0
-    unsafe_Sample = 0
+    def __init__(self, date, select):
+        super(GeneratorURF, self).__init__(date, select, "URF")
 
     def getType(self):
         return ['CWE_601_URF']
-
-    def __init__(self, date, select):
-        super(GeneratorURF, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "URF")
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needUrlSafe"] == 1:
@@ -107,7 +102,7 @@ class GeneratorURF(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, urf))
+        file.setName(self.generateFileName(params, urf))
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -162,11 +157,4 @@ class GeneratorURF(Generator):
         return file
 
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("URF generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/URF")
+        self.onDestroy("URF")

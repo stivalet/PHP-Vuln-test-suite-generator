@@ -19,16 +19,11 @@ safety = "safety"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorSDE(Generator):
-    # Initializes counters
-    safe_Sample = 0
-    unsafe_Sample = 0
+    def __init__(self, date, select):
+        super(GeneratorSDE, self).__init__(date, select, "SDE")
 
     def getType(self):
         return ['CWE_311_SDE', 'CWE_327_SDE']
-
-    def __init__(self, date, select):
-        super(GeneratorSDE, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "SDE")
 
     def testSafety(self, construction, sanitize, flaw):
         if sanitize.safeties[flaw]["safe"] == 1:
@@ -77,7 +72,7 @@ class GeneratorSDE(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, sde))
+        file.setName(self.generateFileName(params, sde))
 
         file.addContent("<?php\n")
         #file.addContent("/*\n")
@@ -133,11 +128,4 @@ class GeneratorSDE(Generator):
         return file
 
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("SDE generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/SDE")
+        self.onDestroy("SDE")

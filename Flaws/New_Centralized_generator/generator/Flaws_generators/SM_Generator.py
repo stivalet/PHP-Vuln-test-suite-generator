@@ -20,16 +20,11 @@ errorSafe = "errorSafe"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorSM(Generator):
-    # Initializes counters
-    safe_Sample = 0
-    unsafe_Sample = 0
+    def __init__(self, date, select):
+        super(GeneratorSM, self).__init__(date, select, "SM")
 
     def getType(self):
         return ['CWE_209_SM']
-
-    def __init__(self, date, select):
-        super(GeneratorSM, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "SM")
 
     def testSafety(self, construction, sanitize, flaw):
         if construction.safeties[flaw]["needErrorSafe"] == 1:
@@ -82,7 +77,7 @@ class GeneratorSM(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, sm))
+        file.setName(self.generateFileName(params, sm))
 
         file.addContent("<?php\n")
 
@@ -123,11 +118,4 @@ class GeneratorSM(Generator):
         return file
 
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("SM generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/SM")
+        self.onDestroy("SM")

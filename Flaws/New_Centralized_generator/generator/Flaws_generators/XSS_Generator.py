@@ -11,8 +11,7 @@ copyright = header.readlines()
 
 class GeneratorXSS(Generator):
     def __init__(self, date, select):
-        super(GeneratorXSS, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "XSS")
+        super(GeneratorXSS, self).__init__(date, select, "XSS")
         self.z = 0
 
     def getType(self):
@@ -127,7 +126,7 @@ class GeneratorXSS(Generator):
         file.addPath("CWE_79")
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, "CWE_79"))
+        file.setName(self.generateFileName(params, "CWE_79"))
 
         # Adds comments
         file.addContent("<!-- \n" + ("Safe sample\n" if safe else "Unsafe sample\n"))
@@ -173,11 +172,4 @@ class GeneratorXSS(Generator):
         return file
 
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("XSS generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/XSS")
+        self.onDestroy("XSS")

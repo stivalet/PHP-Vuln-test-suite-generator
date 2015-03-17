@@ -41,25 +41,25 @@ def main(argv):
     date = time.strftime("%m-%d-%Y_%Hh%Mm%S")
     root = ET.parse('output.xml').getroot()
 
-    if len(generation) > 0 or len(g.cwe_list) > 0:
-        if len(g.cwe_list) > 0: generation = flaws
-        for flaw in generation:
-            if flaw == "XSS":
-                initialization(Generator_factory.makeXSS_Generator(date, select), root)
-            if flaw == "Injection":
-                initialization(Generator_factory.makeInjection_Generator(date, select), root)
-            if flaw == "IDOR":
-                initialization(Generator_factory.makeIDOR_Generator(date, select), root)
-            if flaw == "URF":
-                initialization(Generator_factory.makeURF_Generator(date, select), root)
-            if flaw == "SM":
-                for input in root.findall('input'):
-                    root.remove(input)
-                initialization(Generator_factory.makeSM_Generator(date, select), root)
-            if flaw == "SDE":
-                for input in root.findall('input'):
-                    root.remove(input)
-                initialization(Generator_factory.makeSDE_Generator(date, select), root)
+    if len(generation) == 0 or len(g.cwe_list) > 0:
+        generation=flaws
+    for flaw in generation:
+        if flaw == "XSS":
+            initialization(Generator_factory.makeXSS_Generator(date, select), root)
+        if flaw == "Injection":
+            initialization(Generator_factory.makeInjection_Generator(date, select), root)
+        if flaw == "IDOR":
+            initialization(Generator_factory.makeIDOR_Generator(date, select), root)
+        if flaw == "URF":
+            initialization(Generator_factory.makeURF_Generator(date, select), root)
+        if flaw == "SM":
+            for input in root.findall('input'):
+                root.remove(input)
+            initialization(Generator_factory.makeSM_Generator(date, select), root)
+        if flaw == "SDE":
+            for input in root.findall('input'):
+                root.remove(input)
+            initialization(Generator_factory.makeSDE_Generator(date, select), root)
 
 def usage():
     relevancy = "-r generate only files with upper or equal relevancy than the parameter"

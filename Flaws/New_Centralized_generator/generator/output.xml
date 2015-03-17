@@ -2,5 +2,11 @@
 <program>
 	<input/>
 	<sanitize/>
-    <construction/>
+	<complexity type="function">
+		<complexity type="file">
+			<complexity type="function">
+				<construction/>
+			</complexity>
+		</complexity>
+	</complexity>
 </program>

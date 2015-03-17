@@ -19,16 +19,11 @@ safety = "safety"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorInjection(Generator):
-    # Initializes counters
-    safe_Sample = 0
-    unsafe_Sample = 0
+    def __init__(self, date, select):
+        super(GeneratorInjection, self).__init__(date, select, "Injection")
 
     def getType(self):
         return ['CWE_89_Injection', 'CWE_91_Injection', 'CWE_90_Injection', 'CWE_78_Injection', 'CWE_95_Injection', 'CWE_98_Injection']
-
-    def __init__(self, date, select):
-        super(GeneratorInjection, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "Injection")
 
     def testSafety(self, construction, sanitize, flaw):
         if sanitize.safeties[flaw]["safe"] == 1:
@@ -111,7 +106,7 @@ class GeneratorInjection(Generator):
         # sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, injection))
+        file.setName(self.generateFileName(params, injection))
 
         file.addContent("<?php\n")
 
@@ -165,12 +160,5 @@ class GeneratorInjection(Generator):
         return file
     
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("Injection generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/Injection")
+        self.onDestroy("Injection")
 

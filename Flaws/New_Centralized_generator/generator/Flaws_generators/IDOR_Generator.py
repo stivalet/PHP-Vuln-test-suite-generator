@@ -8,19 +8,8 @@ from Classes.FileManager import *
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorIDOR(Generator):
-    ##Initializes counters
-    # safe_Sample = 0
-    # unsafe_Sample = 0
-
     def __init__(self, date, select):
-        super(GeneratorIDOR, self).__init__(date, select)
-        self.manifest = Manifest(self.date, "IDOR")
-
-    # def __init__(self, manifest, fileManager, select, ordered):
-    # self.select = select
-    # self.ordered = ordered
-    # self.manifest = manifest
-    # self.fileManager = fileManager
+        super(GeneratorIDOR, self).__init__(date, select, "IDOR")
 
     def getType(self):
         return ["CWE_862_SQL_IDOR", "CWE_862_XPath_IDOR", "CWE_862_Fopen_IDOR"]
@@ -79,7 +68,7 @@ class GeneratorIDOR(Generator):
         #sort by safe/unsafe
         file.addPath("safe" if safe else "unsafe")
 
-        file.setName(self.setFileName(params, IDOR))
+        file.setName(self.generateFileName(params, IDOR))
 
         file.addContent("<?php\n")
         file.addContent("/*\n")
@@ -139,11 +128,4 @@ class GeneratorIDOR(Generator):
         return file
 
     def __del__(self):
-        self.manifest.close()
-        if self.safe_Sample+self.unsafe_Sample > 0:
-            print("IDOR generation report:")
-            print(str(self.safe_Sample) + " safe samples ( " + str(self.safe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample) + " unsafe samples ( " + str(self.unsafe_Sample / (self.safe_Sample + self.unsafe_Sample) if (self.safe_Sample + self.unsafe_Sample)>0 else 1) + " )")
-            print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
-        else:
-            shutil.rmtree("../generation_"+self.date+"/IDOR")
+        self.onDestroy("IDOR")

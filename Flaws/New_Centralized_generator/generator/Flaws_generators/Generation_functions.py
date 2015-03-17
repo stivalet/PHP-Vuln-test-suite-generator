@@ -58,31 +58,31 @@ def f_decorator(params, decorators, i):
     previous=None
     # print(decorators)
     for d in reversed(decorators[i]):
-        if d.tag == "if":
+        if d.get("type") == "if":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
                 continue
             # XSS construction sample codes can't use this decorator
-            if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
+            if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
             if "function" in params[i].code or "class" in params[i].code:
                 continue
             params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
             params[i].code[0] = "if(True){\n\t" + params[i].code[0] + "\n}\n"
-        elif d.tag == "loop":
+        elif d.get("type") == "loop":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
                 continue
             # XSS construction code can't use this decorator
-            if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
+            if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
             if "function" in params[i].code or "class" in params[i].code:
                 continue
-            if d.get("type") == "while":
+            if d.get("kind") == "while":
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
                 params[i].code[0] = "\n$loop_cpt=0;\nwhile($loop_cpt++<10){\n\t" + params[i].code[0]
                 params[i].code[-1] += "\n}\n"
-            elif d.get("type") == "for":
+            elif d.get("kind") == "for":
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
                 params[i].code[0] = "\nfor($loop_cpt=0;$loop_cpt<10;$loop_cpt++){\n\t" + params[i].code[0]
                 params[i].code[-1] += "\n}\n"
@@ -91,11 +91,11 @@ def f_decorator(params, decorators, i):
                     print("loop type not specified so it will be ignored for " + str(
                         type(params[i])) + " (possible options: for,while)")
                     loop_alert = 1
-        elif d.tag == "function":
+        elif d.get("type") == "function":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
                 continue
-            if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
+            if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
             if previous is not None and previous.tag in ["function", "class"]:
                 print("you can't instantiate function in loop/conditional/function/class structures")
@@ -109,21 +109,20 @@ def f_decorator(params, decorators, i):
                     # print("sortie: " + str(var[-1]) + "\n\n")
                     var = var[-1]
                     params[i].code[-1] += "\n\treturn " + str(var) + ";\n}\n" + str(var) + " = f_function" + str(
-                        function_cpt) + "();\n"
-                #else:
-                #    params[i].code[-1] = "\n\treturn " + params[i].code[-1] + "\n}\n" + "$f_function_var = f_function" + str(
-                #        function_cpt) + "();\n"
-                params[i].code[0] = "\nfunction f_function" + str(function_cpt) + "(){\n\t" + params[i].code[0]
+                        function_cpt) + "($tainted);\n"
+                else:
+                    params[i].code[-1] += "\n}\n" + "$f_function_var = f_function" + str(function_cpt) + "($tainted);\n"
+                params[i].code[0] = "\nfunction f_function" + str(function_cpt) + "($tainted){\n\t" + params[i].code[0]
                 # for line in params[i]s[i].code:
                 # print(line)
                 # print("\n")
                 function_cpt += 1
                 function_alert = 1
-        elif d.tag == "class":
+        elif d.get("type") == "class":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
                 continue
-            if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
+            if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
             if previous is not None and previous.tag in ["loop", "if", "function", "class"]:
                 print("you can't instantiate class in loop/conditional/function/class structures")
@@ -149,26 +148,28 @@ def f_decorator(params, decorators, i):
                     var = var[-1]
                     params[i].code[-1] += "\n\t\treturn " + str(var) + ";\n\t}\n}\n" + "$a = new f_class" + str(
                         class_cpt) + "($tainted);\n" + str(var) + " = $a->a();\n"
-                #else:
-                #    params[i].code[-1] = "\n\t\treturn " + params[i].code[-1] + "\n\t}\n}\n" + "$f_class_var = f_class" + str(
-                #        class_cpt) + "($tainted);\n"
-                #for line in params[i]s[i].code:
-                #    print(line)
-                #print("\n")
+                else:
+                    params[i].code[-1] += "\n\t}\n}\n" + "$f_class_var = f_class" + str(class_cpt) + "($tainted);\n"
                 class_cpt += 1
-        elif d.tag == "file":
+        elif d.get("type") == "file":
             types = [Construction, Sanitize, InputSample]
             if type(params[i]) not in types:
                 continue
-            if isinstance(params[i], Construction) and "XSS" in params[i].flaws:
+            if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
             else:
                 file = File()
                 file.addContent("<?php\n")
                 file.addContent(params[i].code[0])
                 file.addContent("\n?>")
-                file.setName(str(params[-1].path[-1]) + "_" + str(file_cpt))
-                params[i].code[0] = "\ninclude(\"" + file.getName() + "\");\n"
+                name=""
+                for param in params:
+                    name+="["
+                    for dir in param.path:
+                        name += "("+dir+")"
+                    name+="]"
+                file.setName(name+"_"+str(file_cpt))
+                params[i].code[0] = "\ninclude_once(\"" + file.getName() + "\");\n"
                 postOp.append(file)
                 file_cpt += 1
         previous = d
@@ -185,12 +186,6 @@ def initialization(generator, root):
     params = [None] * len(root)
     global decorators
     decorators = [[] for x in range(0, len(root))]
-    global function_cpt
-    function_cpt = 2
-    global class_cpt
-    class_cpt = 1
-    global file_cpt
-    file_cpt = 1
     global postOp
     postOp = []
     generation(generator, root, params)
@@ -199,8 +194,13 @@ def initialization(generator, root):
 
 def generation(generator, root, params, i=0):
     global postOp
-    global file_cpt
     global decorators
+    global function_cpt
+    function_cpt = 1
+    global class_cpt
+    class_cpt = 1
+    global file_cpt
+    file_cpt = 1
     if i < len(root):
         pos = root[i]
         while len(pos) > 0:
