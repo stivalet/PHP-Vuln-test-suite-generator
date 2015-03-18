@@ -4,7 +4,6 @@ from .IDOR_Generator import *
 from .URF_Generator import *
 from .SM_Generator import *
 from .SDE_Generator import *
-from .Dangerous_Functions_Generator import *
 
 
 class Generator_factory:

@@ -21,9 +21,7 @@ def main(argv):
         print('Invalid argument')
         sys.exit(2)
     for opt, arg in opts:
-        if opt in ("-r", "--relevancy"):  #Generate files only with a relevancy better than given
-            select = int(arg)
-        elif opt in ("-f", "--flaws") and rang == 0:  #Selecting flaws to create
+        if opt in ("-f", "--flaws") and rang == 0:  #Selecting flaws to create
             generation = arg.split(',')
             rang = 1
         elif opt in ("-c", "--cwe") and rang == 0:
