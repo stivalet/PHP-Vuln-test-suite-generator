@@ -164,10 +164,9 @@ def f_decorator(params, decorators, i):
                 file.addContent("\n?>")
                 name=""
                 for param in params:
-                    name+="["
                     for dir in param.path:
-                        name += "("+dir+")"
-                    name+="]"
+                        name += dir+"-"
+                    name = name[:-1]+"__"
                 file.setName(name+"_"+str(file_cpt))
                 params[i].code[0] = "\ninclude_once(\"" + file.getName() + "\");\n"
                 postOp.append(file)

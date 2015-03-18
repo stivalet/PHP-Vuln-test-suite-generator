@@ -40,10 +40,10 @@ class Generator(metaclass=ABCMeta):
 
     def generateFileName(self, params, name):
         for param in params:
-            name+="_["
+            name+="__"
             for dir in param.path:
-                    name += "("+dir+")"
-            name+="]"
+                    name += dir+"-"
+            name = name[:-1]
         return name
 
     def onDestroy(self, flaw):
