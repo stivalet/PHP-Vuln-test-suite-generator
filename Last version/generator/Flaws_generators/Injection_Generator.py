@@ -130,12 +130,16 @@ class GeneratorInjection(Generator):
         # Writes the code in the sample file
         file.addContent("\n\n")
         for param in params:
+            if not safe and injection == "CWE_98" and isinstance(param, Construction) :
+                file.addContent("//flaw\n") #add this comment if not safe for CWE 98
             for line in param.code:
                 file.addContent(line)
             file.addContent("\n\n")
 
         if injection != "CWE_98":
             #Gets query execution code
+            if not safe :
+                file.addContent("//flaw\n") #add this comment if not safe
             footer = open("./execQuery_" + flawCwe[injection] + ".txt", "r")
             execQuery = footer.readlines()
             footer.close()

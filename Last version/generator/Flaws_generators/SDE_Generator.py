@@ -97,6 +97,8 @@ class GeneratorSDE(Generator):
         # Writes the code in the sample file
         file.addContent("\n\n")
         for param in params:
+            if not safe and isinstance(param, Construction) :
+                file.addContent("//flaw\n") #add this comment if not safe
             for line in param.code:
                 file.addContent(line)
             file.addContent("\n\n")
