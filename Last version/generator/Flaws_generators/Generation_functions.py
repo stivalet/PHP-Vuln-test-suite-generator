@@ -164,10 +164,24 @@ def f_decorator(params, decorators, i):
                 file.addContent("\n?>")
                 name=""
                 for param in params:
+                    if isinstance(param, Construction):
+                        for param2 in params:
+                            if isinstance(param2, Sanitize):
+                                for value in set(param.flaws).intersection(param2.flaws):
+                                    name=value
+                for param in params:
+                    name += "__"
                     for dir in param.path:
                         name += dir+"-"
-                    name = name[:-1]+"__"
-                file.setName(name+"_"+str(file_cpt))
+                    name = name[:-1]
+                type_param=""
+                if isinstance(params[i],InputSample):
+                    type_param="input"
+                elif isinstance(params[i],Sanitize):
+                    type_param="sanitize"
+                elif isinstance(params[i],Construction):
+                    type_param="construction"
+                file.setName(name+"__"+type_param+"_"+str(file_cpt))
                 params[i].code[0] = "\ninclude_once(\"" + file.getName() + "\");\n"
                 postOp.append(file)
                 file_cpt += 1
