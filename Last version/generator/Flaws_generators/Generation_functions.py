@@ -160,6 +160,10 @@ def f_decorator(params, decorators, i):
             else:
                 file = File()
                 file.addContent("<?php\n")
+                header = open("./rights_PHP.txt", "r")
+                copyright = header.readlines()
+                for line in copyright:
+                    file.addContent(line)
                 file.addContent(params[i].code[0])
                 file.addContent("\n?>")
                 name=""
