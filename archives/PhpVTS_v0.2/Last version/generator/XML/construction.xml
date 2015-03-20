@@ -1,0 +1,3262 @@
+<?xml version="1.0"?>
+<construction>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>str_rot13</dir>
+    </path>
+    <comment>construction : encrypt the data using str_rot13</comment>
+    <codes>
+      <code>//flaw
+$var = str_rot13("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>md5</dir>
+    </path>
+    <comment>construction : encrypt the data using md5</comment>
+    <codes>
+      <code>//flaw
+$var = md5("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha1</dir>
+    </path>
+    <comment>construction : encrypt the data using sha1</comment>
+    <codes>
+      <code>//flaw
+$var = sha1("password");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha256_crypt_function</dir>
+    </path>
+    <comment>construction : encrypt the data using sha256 with crypt function</comment>
+    <codes>
+      <code>//flaw
+$var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>password_hash</dir>
+    </path>
+    <comment>construction : encrypt the data using password_hash function</comment>
+    <codes>
+      <code>//flaw
+$var = password_hash("passwod", PASSWORD_DEFAULT);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_311_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>store_in_cookie</dir>
+    </path>
+    <comment>construction : store sensitive data in a cookie</comment>
+    <codes>
+      <code>$data = array("username" => $username, "password"=> $password);
+//flaw
+$var = setcookie("userdata", $data);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_311_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_311_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_311_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>store_in_database</dir>
+    </path>
+    <comment>construction : store sensitive data in a database</comment>
+    <codes>
+      <code>$conn = pg_pconnect("dbname=publisher");
+if (!$conn) {
+  echo "An error occured.\n";
+  exit;
+}
+$query  = sprintf("INSERT INTO users(name,pwd) VALUES('%s','%s');",
+            pg_escape_string($username),
+            pg_escape_string($password));
+//flaw
+$result = pg_query($conn, $query);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_311_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_311_SDE" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_209_SM</flaw>
+    </flaws>
+    <path>
+      <dir>current_dir_location</dir>
+      <dir>fopen</dir>
+    </path>
+    <comment>construction : fopen</comment>
+    <codes>
+      <code>//flaw
+$file=fopen("welcome.txt","r");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_209_SM" safe = "0" needErrorSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_209_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_209_SM</flaw>
+    </flaws>
+    <path>
+      <dir>current_dir_location</dir>
+      <dir>fopen_with_condition</dir>
+    </path>
+    <comment>construction : fopen with condition</comment>
+    <codes>
+      <code>if(!file_exists("welcome.txt")) {
+  die("File not found");
+} else {
+  //flaw
+  $file=fopen("welcome.txt","r");
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_209_SM" safe = "1" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_209_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_209_SM</flaw>
+    </flaws>
+    <path>
+      <dir>error_message</dir>
+      <dir>try_catch</dir>
+    </path>
+    <comment>construction : try_catch</comment>
+    <codes>
+      <code>try {
+  openDbConnection();
+}
+catch (Exception $e) {
+  //flaw
+  echo 'Safe error message\n';
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_209_SM" safe = "1" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_209_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_209_SM</flaw>
+    </flaws>
+    <path>
+      <dir>config_location</dir>
+      <dir>try_catch</dir>
+    </path>
+    <comment>construction : try_catch</comment>
+    <codes>
+      <code>try {
+  openDbConnection();
+}
+catch (Exception $e) {
+  //flaw
+  echo 'Caught exception: ', $e->getMessage(), '\n';
+  echo 'Check credentials in config file at: ', $Mysql_config_location, '\n';
+}</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_209_SM" safe = "0" needErrorSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_209_SM" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("'Location: " . $tainted ."'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("'" . $tainted . "'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("location: '$tainted'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("'$tainted'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_url</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header(sprintf("Location: '%s'", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_url</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect(sprintf("'%s'", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "0" safe = "0" needUrlSafe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("'Location: " . $tainted .".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("'" . $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("Location: '$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header(sprintf("Location: '%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("Location: pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header("Location: pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>header_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_601_URF</flaw>
+    </flaws>
+    <path>
+      <dir>http_redirect_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_601_URF" quote = "1" safe = "0" needUrlSafe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_601_URF" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include("'". $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require("'". $tainted . ".php'");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require("'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require(sprintf("'%s'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require("pages/'". $tainted . "'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require("pages/'$tainted'.php");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>include_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = include(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_98_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>require_file_id</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>//flaw
+$var = require(sprintf("pages/'%d'.php", $tainted));</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_98_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "'echo $". $tainted . ";'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "echo $'$tainted';";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>echo</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("echo $'%s';", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "$temp = '". $tainted . "';";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "$temp = ' $tainted ';";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_95_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>variable</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("$temp = '%d';", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_95_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "ls '". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "ls ' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ls</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("ls '%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+<sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size '". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size ' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("find / size '%d'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size '". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "find / size ' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>find_size</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("find / size '%d'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "cat '". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "cat ' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_78_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>cat</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("cat '%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "name='". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "name=' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("name='%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>not_name</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "!name='". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>not_name</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "!name=' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>not_name</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("!name='%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByCN</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='". $tainted . "'))";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByCN</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn=' $tainted '))";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByCN</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(cn='%s'))", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByMail</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='". $tainted . "'))";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByMail</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail=' $tainted '))";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_90_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>userByMail</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("(<![CDATA[&]]>(objectCategory=person)(objectClass=user)(mail='%s'))", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_90_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM '". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM ' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM '%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>concatenation</dir>
+    </path>
+    <comment>construction : concatenation</comment>
+    <codes>
+      <code>$query = "SELECT * FROM student where id=". $tainted . "";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM student where id='". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>interpretation</dir>
+    </path>
+    <comment>construction : interpretation</comment>
+    <codes>
+      <code>$query = "SELECT * FROM student where id= $tainted ";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+      <flaw>CWE_862_SQL_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir> <!-- Injection -->
+      <dir>interpretation_simple_quote</dir> <!-- Injection -->
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM student where id=' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_862_SQL_IDOR" safe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>sprintf_%d</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM student where id=%d", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM student where id='%d'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM student where id='%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>sprintf_%u</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM student where id=%u", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>select_from_where</dir>
+      <dir>sprintf_%u_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM student where id='%u'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>concatenation</dir>
+    </path>
+    <comment>construction : concatenation</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=". $tainted . ")";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='". $tainted . "')";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>interpretation</dir>
+    </path>
+    <comment>construction : interpretation</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent= $tainted )";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=' $tainted ')";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>sprintf_%d</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%d)", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%d')", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%s')", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>sprintf_%u</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent=%u)", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_select</dir>
+      <dir>sprintf_%u_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT * FROM COURSE c WHERE c.id IN (SELECT idcourse FROM REGISTRATION WHERE idstudent='%u')", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>concatenation</dir>
+    </path>
+    <comment>construction : concatenation</comment>
+    <codes>
+      <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=". $tainted . "";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>interpretation</dir>
+    </path>
+    <comment>construction : interpretation</comment>
+    <codes>
+      <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor= $tainted ";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>sprintf_%d</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d</comment>
+    <codes>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%d", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%d'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>sprintf_%u</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u</comment>
+    <codes>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor=%u", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>multiple_AS</dir>
+      <dir>sprintf_%u_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT Trim(a.FirstName) <![CDATA[&]]> ' ' <![CDATA[&]]> Trim(a.LastName) AS employee_name, a.city, a.street <![CDATA[&]]> (' ' +a.housenum) AS address FROM Employees AS a  WHERE a.supervisor='%u'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>join</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>join</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag=' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_89_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>join</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("SELECT lastname, firstname FROM drivers, vehicles WHERE drivers.id = vehicles.ownerid AND vehicles.tag='%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_89_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username_text</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[username/text()='". $tainted . "']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username_text</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[username/text()=' $tainted ']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username_text</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("//User[username/text()='%s']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+      <flaw>CWE_862_XPath_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>username_at</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[@username='". $tainted . "']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+      <safety flawType="CWE_862_XPath_IDOR" safe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+      <constraint flawType="CWE_862_XPath_IDOR"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username_at</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[@username=' $tainted ']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username_at</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("//User[@username='%s']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>data</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "'". $tainted . "'";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>data</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "' $tainted '";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>data</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("'%s'", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "user[username='". $tainted . "']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "user[username=' $tainted ']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>username</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("user[username='%s']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>concatenation</dir>
+    </path>
+    <comment>construction : concatenation</comment>
+    <codes>
+      <code>$query = "//User[@id=". $tainted . "]";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>concatenation_simple_quote</dir>
+    </path>
+    <comment>construction : concatenation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[@id='". $tainted . "']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>interpretation</dir>
+    </path>
+    <comment>construction : interpretation</comment>
+    <codes>
+      <code>$query = "//User[@id= $tainted ]";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>interpretation_simple_quote</dir>
+    </path>
+    <comment>construction : interpretation with simple quote</comment>
+    <codes>
+      <code>$query = "//User[@id=' $tainted ']";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>sprintf_%d</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d</comment>
+    <codes>
+      <code>$query = sprintf("//User[@id=%d]", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_test</dir>
+      <dir>sprintf_%d_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %d with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("//User[@id='%d']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_at</dir>
+      <dir>sprintf_%s_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %s with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("//User[@id='%s']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "1" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_at</dir>
+      <dir>sprintf_%u</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u</comment>
+    <codes>
+      <code>$query = sprintf("//User[@id=%u]", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_91_Injection</flaw>
+    </flaws>
+    <path>
+      <dir>ID_at</dir>
+      <dir>sprintf_%u_simple_quote</dir>
+    </path>
+    <comment>construction : use of sprintf via a %u with simple quote</comment>
+    <codes>
+      <code>$query = sprintf("//User[@id='%u']", $tainted);</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_91_Injection" quote = "0" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
+    </constraints>
+    <relevancy>0.5</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_862_Fopen_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>fopen</dir>
+    </path>
+    <comment>construction : fopen</comment>
+    <codes>
+      <code>//flaw
+$var = fopen($tainted, "r");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_862_Fopen_IDOR" safe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_862_Fopen_IDOR" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_862_SQL_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>non_prepared_query</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : right verification</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID='$tainted'";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_862_SQL_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>prepared_query</dir>
+      <dir>no_right_verification</dir>
+    </path>
+    <comment>construction : prepared query and no right verification</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE WHERE id=?";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_862_SQL_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>prepared_query</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : prepared query and right verification</comment>
+    <codes>
+      <code>$query = "SELECT * FROM COURSE, USER WHERE courseID=?";
+$query .= "AND course.allowed=$_SESSION[userid]";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_862_SQL_IDOR" safe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_862_XPath_IDOR</flaw>
+    </flaws>
+    <path>
+      <dir>concatenation</dir>
+      <dir>right_verification</dir>
+    </path>
+    <comment>construction : concatenation and checks if the user is allowed to see this data</comment>
+    <codes>
+      <code>$query="//Course[@id=". $tainted . "and @allowed=". $_SESSION[userid] . "]";</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_862_XPath_IDOR" safe = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_862_XPath_IDOR" />
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Unsafe_use_untrusted_data</dir>
+      <dir>script</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss01_Script_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Unsafe_use_untrusted_data</dir>
+      <dir>comment</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in a comment</comment>
+    <codes>
+      <code>fileSample/xss02_Comment_Start.php</code>
+      <code>fileSample/xss02_Comment_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Unsafe_use_untrusted_data</dir>
+      <dir>attribute_Name</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in an attribute name</comment>
+    <codes>
+      <code>fileSample/xss03_Attribute_Name_Start.php</code>
+      <code>fileSample/xss03_Attribute_Name_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>  
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Unsafe_use_untrusted_data</dir>
+      <dir>tag_Name</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in an tag name</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss04_Tag_Name_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Unsafe_use_untrusted_data</dir>
+      <dir>style</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in CSS</comment>
+    <codes>
+      <code>fileSample/xss_Start_Style.php</code>
+      <code>fileSample/xss05_Style_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="0"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy> 
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data</dir>
+      <dir>body</dir>
+    </path>
+    <comment>File : use of untrusted data in the body</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss11_Body_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data</dir>
+      <dir>div</dir>
+    </path>
+    <comment>File : use of untrusted data in a div tag</comment>
+    <codes>
+      <code>fileSample/xss12_Div_Start.php</code>
+      <code>fileSample/xss12_Div_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_attribute</dir>
+      <dir>unquoted_Attr</dir>
+    </path>
+    <comment>File : use of untrusted data in a unquoted attribute</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss21_Unquoted_Attribute_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="2"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_attribute</dir>
+      <dir>simple_Quote_Attr</dir>
+    </path>
+    <comment>File : use of untrusted data in a simple quote attribute</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss22_Simple_Quote_Attribute_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="2" simpleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_attribute</dir>
+      <dir>Double_Quote_Attr</dir>
+    </path>
+    <comment>File : use of untrusted data in a doubled quote attribute</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss23_Double_Quote_Attribute_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="2" doubleQuote="1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>quoted_String</dir>
+    </path>
+    <comment>File : use of untrusted data in a simple quoted string in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss31_Quoted_String_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>doublequoted_String</dir>
+    </path>
+    <comment>File : use of untrusted data in a double quoted string in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss31_DoubleQuoted_String_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>side_Quoted_Expr</dir>
+    </path>
+    <comment>File : use of untrusted data in one side of a quoted expression in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss32_Side_Quoted_Expr_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>side_DoubleQuoted_Expr</dir>
+    </path>
+    <comment>File : use of untrusted data in one side of a double quoted expression in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss32_Side_DoubleQuoted_Expr_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>quoted_Event_Handler</dir>
+    </path>
+    <comment>File : use of untrusted data in a quoted event handler in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss33_Quoted_Event_Handler_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" simpleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>doublequoted_Event_Handler</dir>
+    </path>
+    <comment>File : use of untrusted data in a double quoted event handler in a script</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss33_DoubleQuoted_Event_Handler_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" doubleQuote = "1"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_script</dir>
+      <dir>window_SetInterval</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in the function setInterval</comment>
+    <codes>
+      <code>fileSample/xss_Start_Script.php</code>
+      <code>fileSample/xss340_Window_setInterval_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="3" unsafe ="1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_propertyValue_CSS</dir>
+      <dir>property_Value</dir>
+    </path>
+    <comment>File : use of untrusted data in a property value (CSS)</comment>
+    <codes>
+      <code>fileSample/xss_Start_Style.php</code>
+      <code>fileSample/xss41_Property_Value_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="4"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_propertyValue_CSS</dir>
+      <dir>double_Quoted_Property_Value</dir>
+    </path>
+    <comment>File : use of untrusted data in a double quoted property value (CSS)</comment>
+    <codes>
+      <code>fileSample/xss_Start_Style.php</code>
+      <code>fileSample/xss42_Double_Quote_Property_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="4"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_propertyValue_CSS</dir>
+      <dir>quoted_Property_Value</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in a quoted property value (CSS)</comment>
+    <codes>
+      <code>fileSample/xss_Start_Style.php</code>
+      <code>fileSample/xss42_Quote_Property_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="4"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+  <sample>
+    <flaws>
+      <flaw>CWE_79_XSS</flaw>
+    </flaws>
+    <path>
+      <dir>Use_untrusted_data_propertyValue_CSS</dir>
+      <dir>span_Style_Property_Value</dir>
+    </path>
+    <comment>File : unsafe, use of untrusted data in a property value in a span tag(CSS)</comment>
+    <codes>
+      <code>fileSample/xss_Start_Body.php</code>
+      <code>fileSample/xss43_Span_Style_Value_Property_End.php</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_79_XSS" rule="4"/>
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_79_XSS"/>
+    </constraints>
+    <relevancy>1</relevancy>
+  </sample>
+
+</construction>

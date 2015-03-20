@@ -1,0 +1,75 @@
+<!-- The full directory l-->
+<container>
+<!-- FileOpen -->
+	<testcase>
+	<!--
+			
+			Field for some meta data, the SRD don't
+			really care about that, but it may be useful
+			for the users
+		-->
+		<meta-data>
+			<!-- Sample of meta-data which will not be parsed by our tool -->
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+			<input>$_GET['data']</input>
+		</meta-data>
+		
+		<!-- Basic file structure -->
+		<file path="FileOpen/Unsafe_File_Open.php" language="PHP">
+			<flaw line="54" name="CWE-862: Missing Authorization"/>
+		</file>
+		
+		<!-- Simple file without associated flaw -->
+		<file path="FileOpen/Safe_File_Open_Whitelist.php" language="PHP"/>
+	</testcase>
+	
+<!-- SQL -->
+	<testcase>
+		<meta-data>
+			<author>H. Bühler, L. Butti, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+			<input>$_GET['course_id']</input>
+		</meta-data>
+		
+		<file path="SQL/Unsafe_SQL_Request.php" language="PHP">
+			<flaw line="51" name="CWE-862: Missing Authorization"/>
+		</file>
+		
+		<file path="SQL/Unsafe_SQL_Request_Cast.php" language="PHP">
+			<flaw line="51" name="CWE-862: Missing Authorization"/>
+		</file>
+		
+		<file path="SQL/Unsafe_SQL_Request_Prepared.php" language="PHP">
+			<flaw line="52" name="CWE-862: Missing Authorization"/>
+		</file>
+
+		<file path="SQL/Safe_SQL_Request_ESAPI.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Indirect_Reference.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Prepared_ESAPI.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Prepared_Right_Verification.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Prepared_Whitelist.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Right_Verification.php" language="PHP"/>
+		<file path="SQL/Safe_SQL_Request_Whitelist.php" language="PHP"/>
+		
+	</testcase>
+
+	
+<!-- XPATH -->
+	<testcase>
+		<meta-data>
+			<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author>
+			<date>2014/03/11</date>
+			<input>$_GET['course_id']</input>
+		</meta-data>
+		
+		<file path="XPATH/Unsafe_XPath_Request.php" language="PHP">
+			<flaw line="50" name="CWE-862: Missing Authorization"/>
+		</file>
+
+		<file path="XPATH/Safe_XPath_Request_Whitelist.php" language="PHP"/>
+		
+		<file path="XPATH/Safe_XPath_Request_Right_Verification.php" language="PHP"/>
+		
+	</testcase>
+</container>

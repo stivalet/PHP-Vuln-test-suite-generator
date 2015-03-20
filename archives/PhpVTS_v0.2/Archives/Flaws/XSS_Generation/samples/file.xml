@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<file>
+	<sample>
+		<path>
+			<dir>rule0</dir>
+			<dir>script</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in a script</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss01_Script_End.php</end>
+		<relevancy>1</relevancy>
+		<safety/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule0</dir>
+			<dir>comment</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in a comment</comment>
+		<start>fileSample/xss02_Comment_Start.php</start>
+		<end>fileSample/xss02_Comment_End.php</end>
+		<relevancy>1</relevancy>
+		<safety/>
+	</sample>	
+	
+	<sample>
+		<path>
+			<dir>rule0</dir>
+			<dir>attribute_Name</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in an attribute name</comment>
+		<start>fileSample/xss03_Attribute_Name_Start.php</start>
+		<end>fileSample/xss03_Attribute_Name_End.php</end>
+		<relevancy>1</relevancy>
+		<safety/>
+	</sample>	
+	
+	<sample>
+		<path>
+			<dir>rule0</dir>
+			<dir>tag_Name</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in an tag name</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss04_Tag_Name_End.php</end>
+		<relevancy>1</relevancy>
+		<safety/>
+	</sample>	
+	
+	<sample>
+		<path>
+			<dir>rule0</dir>
+			<dir>style</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in CSS</comment>
+		<start>fileSample/xss_Start_Style.php</start>
+		<end>fileSample/xss05_Style_End.php</end>
+		<relevancy>1</relevancy>
+		<safety/>
+	</sample>
+	
+	
+	<sample>
+		<path>
+			<dir>rule1</dir>
+			<dir>body</dir>
+		</path>
+		<comment>File : use of untrusted data in the body</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss11_Body_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule1</dir>
+			<dir>div</dir>
+		</path>
+		<comment>File : use of untrusted data in a div tag</comment>
+		<start>fileSample/xss12_Div_Start.php</start>
+		<end>fileSample/xss12_Div_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="1"/>
+	</sample>	
+	
+	
+	<sample>
+		<path>
+			<dir>rule2</dir>
+			<dir>unquoted_Attr</dir>
+		</path>
+		<comment>File : use of untrusted data in a unquoted attribute</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss21_Unquoted_Attribute_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="2"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule2</dir>
+			<dir>simple_Quote_Attr</dir>
+		</path>
+		<comment>File : use of untrusted data in a simple quote attribute</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss22_Simple_Quote_Attribute_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="2" simpleQuote = "1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule2</dir>
+			<dir>Double_Quote_Attr</dir>
+		</path>
+		<comment>File : use of untrusted data in a doubled quote attribute</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss23_Double_Quote_Attribute_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="2" doubleQuote="1"/>
+	</sample>
+	
+	
+	<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>quoted_String</dir>
+		</path>
+		<comment>File : use of untrusted data in a simple quoted string in a script</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss31_Quoted_String_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" simpleQuote = "1"/>
+	</sample>
+	
+		<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>doublequoted_String</dir>
+		</path>
+		<comment>File : use of untrusted data in a double quoted string in a script</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss31_DoubleQuoted_String_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" doubleQuote = "1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>side_Quoted_Expr</dir>
+		</path>
+		<comment>File : use of untrusted data in one side of a quoted expression in a script</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss32_Side_Quoted_Expr_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" simpleQuote = "1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>side_DoubleQuoted_Expr</dir>
+		</path>
+		<comment>File : use of untrusted data in one side of a double quoted expression in a script</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss32_Side_DoubleQuoted_Expr_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" doubleQuote = "1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>quoted_Event_Handler</dir>
+		</path>
+		<comment>File : use of untrusted data in a quoted event handler in a script</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss33_Quoted_Event_Handler_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" simpleQuote = "1"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>doublequoted_Event_Handler</dir>
+		</path>
+		<comment>File : use of untrusted data in a double quoted event handler in a script</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss33_DoubleQuoted_Event_Handler_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" doubleQuote = "1"/>
+	</sample>
+	
+		<sample>
+		<path>
+			<dir>rule3</dir>
+			<dir>window_SetInterval</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in the function setInterval</comment>
+		<start>fileSample/xss_Start_Script.php</start>
+		<end>fileSample/xss340_Window_setInterval_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="3" unsafe ="1" />
+	</sample>
+	
+	
+	<sample>
+		<path>
+			<dir>rule4</dir>
+			<dir>property_Value</dir>
+		</path>
+		<comment>File : use of untrusted data in a property value (CSS)</comment>
+		<start>fileSample/xss_Start_Style.php</start>
+		<end>fileSample/xss41_Property_Value_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="4"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule4</dir>
+			<dir>double_Quoted_Property_Value</dir>
+		</path>
+		<comment>File : use of untrusted data in a double quoted property value (CSS)</comment>
+		<start>fileSample/xss_Start_Style.php</start>
+		<end>fileSample/xss42_Double_Quote_Property_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="4"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule4</dir>
+			<dir>quoted_Property_Value</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in a quoted property value (CSS)</comment>
+		<start>fileSample/xss_Start_Style.php</start>
+		<end>fileSample/xss42_Quote_Property_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="4"/>
+	</sample>
+	
+	<sample>
+		<path>
+			<dir>rule4</dir>
+			<dir>span_Style_Property_Value</dir>
+		</path>
+		<comment>File : unsafe, use of untrusted data in a property value in a span tag(CSS)</comment>
+		<start>fileSample/xss_Start_Body.php</start>
+		<end>fileSample/xss43_Span_Style_Value_Property_End.php</end>
+		<relevancy>1</relevancy>
+		<safety rule="4"/>
+	</sample>
+	
+	
+</file>
+
