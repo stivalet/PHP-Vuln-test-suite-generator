@@ -1,4 +1,4 @@
-<!--Copyright 2014 Herve BUHLER, David LUCAS, Fabien NOLLET, Axel RESZETKO
+<!--Copyright 2015 Bertrand STIVALET 
 
 Permission is hereby granted, without written agreement or royalty fee, to
 

@@ -35,9 +35,11 @@ If you want to keep Python 2.7:
 
 ## Basic Usage
 
-Those commands will generate vulnerable and non-vulnerable PHP sample files in a directory called "generation_MM-DD-YYY_HHhMMmSS".
+Those commands will generate vulnerable and non-vulnerable PHP sample files in a directory called "generation_MM-DD-YYYY_HHhMMmSS".
 
-> cd PHP-Vulnerability-test-suite/bin/
+> cd PHP-Vulnerability-test-suite/
+
+> cd bin/
 
 > py core.py
 
@@ -57,4 +59,4 @@ See [doc/User_Guide.pdf](doc/User_Guide.pdf) for setup and documentation.
 
 ## Discussion
 
-For discussion please send me an email.
+For discussion please send me an email at: Bertrand 'dot' STIVALET 'at' gmail.com
