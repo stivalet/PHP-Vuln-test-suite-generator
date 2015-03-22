@@ -56,6 +56,7 @@ def f_decorator(params, decorators, i):
     global file_cpt
     global postOp
     previous=None
+    previous_var=""
     # print(decorators)
     for d in reversed(decorators[i]):
         if d.get("type") == "if":
@@ -97,7 +98,7 @@ def f_decorator(params, decorators, i):
                 continue
             if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
-            if previous is not None and previous.tag in ["function", "class"]:
+            if previous is not None and previous.get("type") in ["function", "class"]:
                 print("you can't instantiate function in loop/conditional/function/class structures")
                 exit(1)
             else:
@@ -115,7 +116,11 @@ def f_decorator(params, decorators, i):
                     params[i].code[-1] += "\n\treturn " + str(var) + ";\n}\n" + str(var) + " = " + name + "_function" + str(
                         function_cpt) + "($tainted);\n"
                 else:
-                    params[i].code[-1] += "\n}\n" + "$f_function_var = " + name + "_function" + str(function_cpt) + "($tainted);\n"
+                    if previous is not None and previous.get("type") == "file" and previous_var != "":
+                        params[i].code[-1] += "\n\treturn " + str(previous_var) + ";\n}\n" + str(previous_var) + " = " + name + "_function" + str(
+                            function_cpt) + "($tainted);\n"
+                    else:
+                        params[i].code[-1] += "\n}\n" + "$f_function_var = " + name + "_function" + str(function_cpt) + "($tainted);\n"
                 params[i].code[0] = "\nfunction "+ name + "_function" + str(function_cpt) + "($tainted){\n\t" + params[i].code[0]
                 # for line in params[i]s[i].code:
                 # print(line)
@@ -128,7 +133,7 @@ def f_decorator(params, decorators, i):
                 continue
             if isinstance(params[i], Construction) and "CWE_79_XSS" in params[i].flaws:
                 continue
-            if previous is not None and previous.tag in ["loop", "if", "function", "class"]:
+            if previous is not None and previous.get("type") in ["loop", "if", "function", "class"]:
                 print("you can't instantiate class in loop/conditional/function/class structures")
                 exit(1)
             else:
@@ -157,7 +162,11 @@ def f_decorator(params, decorators, i):
                     params[i].code[-1] += "\n\t\treturn " + str(var) + ";\n\t}\n}\n" + "$a = new f_class" + str(
                         class_cpt) + "($tainted);\n" + str(var) + " = $a->a();\n"
                 else:
-                    params[i].code[-1] += "\n\t}\n}\n" + "$f_class_var = f_class" + str(class_cpt) + "($tainted);\n"
+                    if previous is not None and previous.get("type") == "file" and previous_var != "":
+                        params[i].code[-1] += "\n\treturn " + str(previous_var) + ";\n}\n" + str(previous_var) + " = " + name + "_function" + str(
+                            function_cpt) + "($tainted);\n"
+                    else:
+                        params[i].code[-1] += "\n\t}\n}\n" + "$f_class_var = f_class" + str(class_cpt) + "($tainted);\n"
                 class_cpt += 1
         elif d.get("type") == "file":
             types = [Construction, Sanitize, InputSample]
@@ -172,6 +181,9 @@ def f_decorator(params, decorators, i):
                 copyright = header.readlines()
                 for line in copyright:
                     file.addContent(line)
+                var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
+                if len(var)>0:
+                    previous_var = var[-1]
                 file.addContent(params[i].code[0])
                 file.addContent("\n?>")
                 name=""
