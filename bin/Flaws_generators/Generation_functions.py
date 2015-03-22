@@ -105,14 +105,18 @@ def f_decorator(params, decorators, i):
                 var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
                 # print("sortie: "+str(var)+"\n\n")
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
+                name = ""
+                for param in params:
+                    for dir in param.path:
+                        name += dir
                 if len(var) > 0:
                     # print("sortie: " + str(var[-1]) + "\n\n")
                     var = var[-1]
-                    params[i].code[-1] += "\n\treturn " + str(var) + ";\n}\n" + str(var) + " = f_function" + str(
+                    params[i].code[-1] += "\n\treturn " + str(var) + ";\n}\n" + str(var) + " = " + name + "_function" + str(
                         function_cpt) + "($tainted);\n"
                 else:
-                    params[i].code[-1] += "\n}\n" + "$f_function_var = f_function" + str(function_cpt) + "($tainted);\n"
-                params[i].code[0] = "\nfunction f_function" + str(function_cpt) + "($tainted){\n\t" + params[i].code[0]
+                    params[i].code[-1] += "\n}\n" + "$f_function_var = " + name + "_function" + str(function_cpt) + "($tainted);\n"
+                params[i].code[0] = "\nfunction "+ name + "_function" + str(function_cpt) + "($tainted){\n\t" + params[i].code[0]
                 # for line in params[i]s[i].code:
                 # print(line)
                 # print("\n")
@@ -132,7 +136,11 @@ def f_decorator(params, decorators, i):
                 var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t\t")
                 #print("sortie: "+str(var)+"\n\n")
-                params[i].code[0] = "\nclass f_class" + str(class_cpt) + "{" + \
+                name = ""
+                for param in params:
+                    for dir in param.path:
+                        name += dir
+                params[i].code[0] = "\nclass " + name + "_class" + str(class_cpt) + "{" + \
                                 "\n\tprivate $_data;" + \
                                 "\n\tpublic function __construct($data){" + \
                                 "\n\t\t$this->setData($data);" + \
