@@ -72,9 +72,7 @@ CWEs (-c option)
 
 OWASP (-f option)
 * XSS  : Cross-site Scripting
-* AC   : Wrong access control
 * IDOR : Insecure Direct Object Reference
-* BASV : Broken Authentication and Session Violation
 * Injection : Injection (SQL, LDAP, XPATH, OS Command, Code)
 * URF : URL Redirects and Forwards
 * SM : Security Misconfiguration
