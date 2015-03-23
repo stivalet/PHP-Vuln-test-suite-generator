@@ -110,7 +110,7 @@ def f_decorator(params, decorators, i):
                             if isinstance(param2, Sanitize):
                                 for value in set(param.flaws).intersection(param2.flaws):
                                     name = value
-                name = "__"
+                name += "__"
                 for param in params:
                     for dir in param.path:
                         name += dir
@@ -150,7 +150,7 @@ def f_decorator(params, decorators, i):
                             if isinstance(param2, Sanitize):
                                 for value in set(param.flaws).intersection(param2.flaws):
                                     name = value
-                name = "__"
+                name += "__"
                 for param in params:
                     for dir in param.path:
                         name += dir
