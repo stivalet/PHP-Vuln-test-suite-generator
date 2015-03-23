@@ -70,7 +70,7 @@ CWEs (-c option)
 * 601 : URL Redirection to Untrusted Site
 * 862 : Insecure Direct Object References
 
-OWASP
+OWASP (-f option)
 * XSS  : Cross-site Scripting
 * AC   : Wrong access control
 * IDOR : Insecure Direct Object Reference
