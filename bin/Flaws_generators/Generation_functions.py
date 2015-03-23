@@ -105,6 +105,13 @@ def f_decorator(params, decorators, i):
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t")
                 name = ""
                 for param in params:
+                    if isinstance(param, Construction):
+                        for param2 in params:
+                            if isinstance(param2, Sanitize):
+                                for value in set(param.flaws).intersection(param2.flaws):
+                                    name = value
+                name = "__"
+                for param in params:
                     for dir in param.path:
                         name += dir
                 if len(var) > 0:
@@ -137,6 +144,13 @@ def f_decorator(params, decorators, i):
                 var = re.findall("(\$[a-zA-Z_]+) ?= ?.*", params[i].code[0], re.I)
                 params[i].code[0] = params[i].code[0].replace("\n", "\n\t\t")
                 name = ""
+                for param in params:
+                    if isinstance(param, Construction):
+                        for param2 in params:
+                            if isinstance(param2, Sanitize):
+                                for value in set(param.flaws).intersection(param2.flaws):
+                                    name = value
+                name = "__"
                 for param in params:
                     for dir in param.path:
                         name += dir
