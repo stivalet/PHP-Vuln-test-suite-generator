@@ -56,29 +56,29 @@ Those commands will generate vulnerable and non-vulnerable PHP sample files in a
 
 ## Available Generation
 
-* CWEs (-c option)
-> 78 : Command OS Injection
-> 79 : XSS
-> 89 : SQL Injection
-> 90 : LDAP Injection
-> 91 : XPath Injection
-> 95 : Code Injection
-> 98 : File Injection
-> 209 : Information Exposure Through an Error Message
-> 311 : Missing Encryption of Sensitive Data
-> 327 : Use of a Broken or Risky Cryptographic Algorithm
-> 601 : URL Redirection to Untrusted Site
-> 862 : Insecure Direct Object References
+CWEs (-c option)
+* 78 : Command OS Injection
+* 79 : XSS
+* 89 : SQL Injection
+* 90 : LDAP Injection
+* 91 : XPath Injection
+* 95 : Code Injection
+* 98 : File Injection
+* 209 : Information Exposure Through an Error Message
+* 311 : Missing Encryption of Sensitive Data
+* 327 : Use of a Broken or Risky Cryptographic Algorithm
+* 601 : URL Redirection to Untrusted Site
+* 862 : Insecure Direct Object References
 
-* OWASP
-> XSS  : Cross-site Scripting
-> AC   : Wrong access control
-> IDOR : Insecure Direct Object Reference
-> BASV : Broken Authentication and Session Violation
-> Injection : Injection (SQL, LDAP, XPATH, OS Command, Code)
-> URF : URL Redirects and Forwards
-> SM : Security Misconfiguration
-> SDE : Sensitive Data Exposure
+OWASP
+* XSS  : Cross-site Scripting
+* AC   : Wrong access control
+* IDOR : Insecure Direct Object Reference
+* BASV : Broken Authentication and Session Violation
+* Injection : Injection (SQL, LDAP, XPATH, OS Command, Code)
+* URF : URL Redirects and Forwards
+* SM : Security Misconfiguration
+* SDE : Sensitive Data Exposure
 
 ## Getting started
 See [doc/User_Guide.pdf](doc/User_Guide.pdf) for setup and documentation.
