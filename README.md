@@ -35,7 +35,7 @@ If you want to keep Python 2.7:
 
 ## Basic Usage
 
-Those commands will generate vulnerable and non-vulnerable PHP sample files in a directory called "generation_MM-DD-YYYY_HHhMMmSS".
+Those commands will generate vulnerable and non-vulnerable PHP sample files in a directory called "PHPTestSuite_MM-DD-YYYY_HHhMMmSS".
 
 > cd PHP-Vulnerability-test-suite/
 
@@ -50,9 +50,11 @@ Those commands will generate vulnerable and non-vulnerable PHP sample files in a
 
 * Generate specific type of flaws
 > py core.py -f XSS,Injection
+> py core.py --flaw=IDOR
 
 * Generate specific type of CWE
-> py core.py -c 79,89
+> py core.py -c 79
+> py core.py --cwe=78,89,90,91
 
 ## Available Generation
 

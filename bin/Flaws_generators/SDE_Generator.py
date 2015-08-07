@@ -65,7 +65,7 @@ class GeneratorSDE(Generator):
                         safe = self.testSafety(param, param2, sde + "_SDE")
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation_"+self.date)
+        file.addPath("PHPTestSuite_"+self.date)
         file.addPath("SDE")
         file.addPath(sde)
 

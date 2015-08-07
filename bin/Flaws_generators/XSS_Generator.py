@@ -121,7 +121,7 @@ class GeneratorXSS(Generator):
                         safe = self.testSafety(param, param2, "CWE_79_XSS")
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation_"+self.date)
+        file.addPath("PHPTestSuite_"+self.date)
         file.addPath("XSS")
         file.addPath("CWE_79")
         file.addPath("safe" if safe else "unsafe")

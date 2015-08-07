@@ -95,7 +95,7 @@ class GeneratorURF(Generator):
         }
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation_"+self.date)
+        file.addPath("PHPTestSuite_"+self.date)
         file.addPath("URF")
         file.addPath(urf)
 

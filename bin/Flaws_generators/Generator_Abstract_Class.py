@@ -54,5 +54,5 @@ class Generator(metaclass=ABCMeta):
             print(str(self.unsafe_Sample) + " unsafe samples")
             print(str(self.unsafe_Sample + self.safe_Sample) + " total\n")
         else:
-            shutil.rmtree("../generation_"+self.date+"/"+flaw)
+            shutil.rmtree("../PHPTestSuite_"+self.date+"/"+flaw)
 

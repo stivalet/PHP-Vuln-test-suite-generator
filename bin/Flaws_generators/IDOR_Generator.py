@@ -61,7 +61,7 @@ class GeneratorIDOR(Generator):
         }
 
         #Creates folder tree and sample files if they don't exists
-        file.addPath("generation_"+self.date)
+        file.addPath("PHPTestSuite_"+self.date)
         file.addPath("IDOR")
         file.addPath(IDOR)
 

@@ -70,7 +70,7 @@ class GeneratorSM(Generator):
                         safe = self.testSafety(param, param2, sm + "_SM")
 
         # Creates folder tree and sample files if they don't exists
-        file.addPath("generation_"+self.date)
+        file.addPath("PHPTestSuite_"+self.date)
         file.addPath("SM")
         file.addPath(sm)
 
