@@ -8,9 +8,6 @@ def main(argv):
     # List of flaws
     flaws = ["XSS", "IDOR", "Injection", "URF", "SM", "SDE"]
 
-    #Generation of files with a relevancy greater or equals to select
-    select = 0
-
     generation = []
     rang = 0
 
@@ -44,21 +41,21 @@ def main(argv):
         generation=flaws
     for flaw in generation:
         if flaw == "XSS":
-            initialization(Generator_factory.makeXSS_Generator(date, select), root)
+            initialization(Generator_factory.makeXSS_Generator(date), root)
         if flaw == "Injection":
-            initialization(Generator_factory.makeInjection_Generator(date, select), root)
+            initialization(Generator_factory.makeInjection_Generator(date), root)
         if flaw == "IDOR":
-            initialization(Generator_factory.makeIDOR_Generator(date, select), root)
+            initialization(Generator_factory.makeIDOR_Generator(date), root)
         if flaw == "URF":
-            initialization(Generator_factory.makeURF_Generator(date, select), root)
+            initialization(Generator_factory.makeURF_Generator(date), root)
         if flaw == "SM":
             for input in root.findall('input'):
                 root.remove(input)
-            initialization(Generator_factory.makeSM_Generator(date, select), root)
+            initialization(Generator_factory.makeSM_Generator(date), root)
         if flaw == "SDE":
             for input in root.findall('input'):
                 root.remove(input)
-            initialization(Generator_factory.makeSDE_Generator(date, select), root)
+            initialization(Generator_factory.makeSDE_Generator(date), root)
 
 def usage():
     flaw = "-f flaws to generate (flaw1,flaw2,flaw3,...):\n\tIDOR :\tInsecure Direct Object Reference\n\tInjection :\tInjection (SQL,LDAP,XPATH)\n\tSDE :\tSensitive Data Exposure\n\tSM :\tSecurity Misconfiguration\n\tURF :\tURL Redirects and Forwards\n\tXSS :\tCross-site Scripting"

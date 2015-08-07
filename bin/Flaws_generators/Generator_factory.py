@@ -11,25 +11,25 @@ class Generator_factory:
         pass
 
     @staticmethod
-    def makeXSS_Generator(date, select):
-        return GeneratorXSS(date, select)
+    def makeXSS_Generator(date):
+        return GeneratorXSS(date)
 
     @staticmethod
-    def makeInjection_Generator(date, select):
-        return GeneratorInjection(date, select)
+    def makeInjection_Generator(date):
+        return GeneratorInjection(date)
 
     @staticmethod
-    def makeIDOR_Generator(date, select):
-        return GeneratorIDOR(date, select)
+    def makeIDOR_Generator(date):
+        return GeneratorIDOR(date)
 
     @staticmethod
-    def makeURF_Generator(date, select):
-        return GeneratorURF(date, select)
+    def makeURF_Generator(date):
+        return GeneratorURF(date)
 
     @staticmethod
-    def makeSM_Generator(date, select):
-        return GeneratorSM(date, select)
+    def makeSM_Generator(date):
+        return GeneratorSM(date)
 
     @staticmethod
-    def makeSDE_Generator(date, select):
-        return GeneratorSDE(date, select)
+    def makeSDE_Generator(date):
+        return GeneratorSDE(date)

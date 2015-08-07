@@ -19,8 +19,8 @@ safety = "safety"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorSDE(Generator):
-    def __init__(self, date, select):
-        super(GeneratorSDE, self).__init__(date, select, "SDE")
+    def __init__(self, date):
+        super(GeneratorSDE, self).__init__(date, "SDE")
 
     def getType(self):
         return ['CWE_311_SDE', 'CWE_327_SDE']
@@ -51,10 +51,6 @@ class GeneratorSDE(Generator):
     # Generates final sample
     def generateWithType(self, sde, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         # retreve parameters for safety test
         safe = None

@@ -5,9 +5,8 @@ from Classes.Manifest import *
 
 class Generator(metaclass=ABCMeta):
 
-    def __init__(self, date, select, flaw):
+    def __init__(self, date, flaw):
         self.date = date
-        self.select = select
         self.manifest = Manifest(date, flaw)
         self.safe_Sample = 0
         self.unsafe_Sample = 0
@@ -29,14 +28,6 @@ class Generator(metaclass=ABCMeta):
     @abstractmethod
     def getType(self):
         pass
-
-    def revelancyTest(self, params):
-        relevancy = 1
-        for param in params:
-            relevancy *= param.relevancy
-            if relevancy < self.select:
-                return 0
-        return relevancy
 
     def generateFileName(self, params, name):
         for param in params:

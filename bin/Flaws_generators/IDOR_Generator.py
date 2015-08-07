@@ -8,8 +8,8 @@ from Classes.FileManager import *
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorIDOR(Generator):
-    def __init__(self, date, select):
-        super(GeneratorIDOR, self).__init__(date, select, "IDOR")
+    def __init__(self, date):
+        super(GeneratorIDOR, self).__init__(date, "IDOR")
 
     def getType(self):
         return ["CWE_862_SQL_IDOR", "CWE_862_XPath_IDOR", "CWE_862_Fopen_IDOR"]
@@ -42,10 +42,6 @@ class GeneratorIDOR(Generator):
     # Generates final sample
     def generateWithType(self, IDOR, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         #Build constraints
         safe = None

@@ -20,8 +20,8 @@ errorSafe = "errorSafe"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorSM(Generator):
-    def __init__(self, date, select):
-        super(GeneratorSM, self).__init__(date, select, "SM")
+    def __init__(self, date):
+        super(GeneratorSM, self).__init__(date, "SM")
 
     def getType(self):
         return ['CWE_209_SM']
@@ -56,10 +56,6 @@ class GeneratorSM(Generator):
     # Generates final sample
     def generateWithType(self, sm, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         # retrieve parameters for safety test
         safe = None

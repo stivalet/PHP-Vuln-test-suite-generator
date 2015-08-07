@@ -10,8 +10,8 @@ copyright = header.readlines()
 
 
 class GeneratorXSS(Generator):
-    def __init__(self, date, select):
-        super(GeneratorXSS, self).__init__(date, select, "XSS")
+    def __init__(self, date):
+        super(GeneratorXSS, self).__init__(date, "XSS")
         self.z = 0
 
     def getType(self):
@@ -107,10 +107,6 @@ class GeneratorXSS(Generator):
     # Generates final sample
     def generate(self, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         # retrieve parameters for safety test
         safe = None

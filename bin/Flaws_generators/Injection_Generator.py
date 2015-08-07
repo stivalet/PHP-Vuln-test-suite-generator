@@ -19,8 +19,8 @@ safety = "safety"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorInjection(Generator):
-    def __init__(self, date, select):
-        super(GeneratorInjection, self).__init__(date, select, "Injection")
+    def __init__(self, date):
+        super(GeneratorInjection, self).__init__(date, "Injection")
 
     def getType(self):
         return ['CWE_89_Injection', 'CWE_91_Injection', 'CWE_90_Injection', 'CWE_78_Injection', 'CWE_95_Injection', 'CWE_98_Injection']
@@ -66,10 +66,6 @@ class GeneratorInjection(Generator):
     # Generates final sample
     def generateWithType(self, injection, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         # Coherence test
         for param in params:

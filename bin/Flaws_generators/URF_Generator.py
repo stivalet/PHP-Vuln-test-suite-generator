@@ -21,8 +21,8 @@ urlSafe = "urlSafe"
 
 # Manages final samples, by a combination of 3 initialSample
 class GeneratorURF(Generator):
-    def __init__(self, date, select):
-        super(GeneratorURF, self).__init__(date, select, "URF")
+    def __init__(self, date):
+        super(GeneratorURF, self).__init__(date, "URF")
 
     def getType(self):
         return ['CWE_601_URF']
@@ -67,10 +67,6 @@ class GeneratorURF(Generator):
     # Generates final sample
     def generateWithType(self, urf, params):
         file = File()
-
-        # test if the samples need to be generated
-        if self.revelancyTest(params) == 0:
-            return None
 
         # Coherence test
         for param in params:
