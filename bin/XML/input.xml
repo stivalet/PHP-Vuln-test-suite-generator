@@ -7,7 +7,6 @@
     <comment>input : backticks interpretation, reading the file /tmp/tainted.txt</comment>
     <code>$tainted = `cat /tmp/tainted.txt`;</code>
     <inputType>file : /tmp/tainted.txt</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -20,7 +19,6 @@ exec($script, $result, $return);
 
 $tainted = $result[0];</code>
     <inputType>script : /tmp/tainted.php</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -39,7 +37,6 @@ if ($handle) {
   $tainted = "";
 }</code>
     <inputType>file : /tmp/tainted.txt</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -49,7 +46,6 @@ if ($handle) {
     <comment>input : reads the field UserData from the variable $_GET</comment>
     <code>$tainted = $_GET['UserData'];</code>
     <inputType>variable : $_GET['UserData']</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -61,7 +57,6 @@ if ($handle) {
 $tainted = fread($handle, 4096);
 pclose($handle);</code>
     <inputType>file : /tmp/tainted.txt</inputType>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -71,7 +66,6 @@ pclose($handle);</code>
     <comment>input : get the field UserData from the variable $_POST</comment>
     <code>$tainted = $_POST['UserData'];</code>
     <inputType>variable : $_POST['UserData']</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -93,7 +87,6 @@ if (is_resource($process)) {
   $return_value = proc_close($process);
 }</code>
     <inputType>file : /tmp/tainted.txt</inputType>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -103,7 +96,6 @@ if (is_resource($process)) {
     <comment>input : get the UserData field of $_SESSION</comment>
     <code>$tainted = $_SESSION['UserData'];</code>
     <inputType>variable : $_SESSION['UserData']</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -113,7 +105,6 @@ if (is_resource($process)) {
     <comment>input : use shell_exec to cat /tmp/tainted.txt</comment>
     <code>$tainted = shell_exec('cat /tmp/tainted.txt');</code>
     <inputType>file : /tmp/tainted.txt</inputType>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -123,7 +114,6 @@ if (is_resource($process)) {
     <comment>input : execute a ls command using the function system, and put the last result in $tainted</comment>
     <code>$tainted = system('ls', $retval);</code>
     <inputType>variable : $retval</inputType>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -135,7 +125,6 @@ if (is_resource($process)) {
 $tainted = unserialize($string);
     </code>
     <inputType>serialized string in POST['UserData']</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -153,7 +142,6 @@ $tainted = unserialize($string);
 $temp = new Input();
 $tainted =  $temp->getInput();</code>
     <inputType>variable : $_GET['userData']</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -176,7 +164,6 @@ $tainted =  $temp->getInput();</code>
 $temp = new Input();
 $tainted =  $temp->getInput();</code>
     <inputType>variable : $_GET['userData']</inputType>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -202,7 +189,6 @@ $tainted =  $temp->getInput();</code>
 $temp = new Input();
 $tainted =  $temp->getInput();</code>
     <inputType>variable : $_GET['userData']</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -228,7 +214,6 @@ $tainted =  $temp->getInput();</code>
 $temp = new Input();
 $tainted =  $temp->getInput();</code>
     <inputType>variable : $_GET['userData']</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -243,6 +228,5 @@ $array[] = $_GET['userData'] ;
 $array[] = 'safe' ;
 $tainted = $array[1] ;</code>
     <inputType>variable : $_GET['userData']</inputType>
-    <relevancy>0.5</relevancy>
   </sample>
 </input>

@@ -21,7 +21,7 @@ needErrorSafe = "needErrorSafe"
 errorSafe = "errorSafe"
 
 
-class InitialSample:  # Initialize path,comment and relevancy parameters
+class InitialSample:  # Initialize path and comment
     # compatible with new structure
     def __init__(self, initialSample):  # XML tree in parameter
         self.path = []
@@ -30,7 +30,6 @@ class InitialSample:  # Initialize path,comment and relevancy parameters
             self.path.append(dir.text)
 
         self.comment = initialSample.find("comment").text
-        self.relevancy = float(initialSample.find("relevancy").text)
 
     def addSafetyAttributes(self, initialSample):
         # Classify XSS injection/sanitization by rule of OWASP

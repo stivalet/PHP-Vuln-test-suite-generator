@@ -21,7 +21,6 @@ $passeword = crypt($password, "$5$rounds=5000$usesomesillystringforsalt$");</cod
     <safeties>
       <safety flawType = "CWE_311_SDE" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -42,7 +41,6 @@ $username = “username”;</code>
     <safeties>
       <safety flawType = "CWE_311_SDE" safe = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -62,7 +60,6 @@ $username = “username”;</code>
     <safeties>
       <safety flawType = "CWE_209_SM" safe = "0" errorSafe = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -107,7 +104,6 @@ else{
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -152,7 +148,6 @@ else{
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
 <sample>
@@ -174,7 +169,6 @@ else{
     <safeties>
       <safety flawType = "CWE_78_Injection" safe = "1" needQuote = "0" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -219,7 +213,6 @@ else{
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -264,7 +257,6 @@ else{
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -311,7 +303,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -358,7 +349,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -405,7 +395,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -453,7 +442,6 @@ else
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -500,7 +488,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -547,7 +534,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -593,7 +579,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "0" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -618,7 +603,6 @@ else
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -643,7 +627,6 @@ else
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -689,7 +672,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -735,7 +717,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -778,7 +759,6 @@ else
       <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -820,7 +800,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -862,7 +841,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -910,7 +888,6 @@ else
       <safety flawType = "CWE_862_SQL_IDOR" safe = "0" />
       <safety flawType = "CWE_862_XPath_IDOR" safe = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -952,7 +929,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -994,7 +970,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1039,7 +1014,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1084,7 +1058,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1125,7 +1098,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" escape = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1177,7 +1149,6 @@ else
       <safety flawType = "CWE_209_SM" safe = "0"/>
       <safety flawType = "CWE_327_SDE" safe = "0"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1218,7 +1189,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1259,7 +1229,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -1300,7 +1269,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" />
     </safeties>
-    <relevancy>0.25</relevancy>
   </sample>
 
   <sample>
@@ -1341,7 +1309,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1382,7 +1349,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "0" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" escape = "1" doubleQuote = "1" scriptBlock = "0" simpleQuote = "1" rule1 = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1426,7 +1392,6 @@ else
       <safety flawType = "CWE_79_XSS" simpleQuote = "1" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "0"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1467,7 +1432,6 @@ else
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "1" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" safe = "1" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule2 = "1" rule3 = "1" rule4 = "1" rule5  = "1" />
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1493,7 +1457,6 @@ else
       <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
     <sample>
@@ -1543,7 +1506,6 @@ else
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1574,7 +1536,6 @@ if (in_array($tainted, $legal_table, true)) {
       <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0" />
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
     <sample>
@@ -1629,7 +1590,6 @@ if (in_array($tainted, $legal_table, true)) {
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1657,7 +1617,6 @@ if($ESAPI->validator->isValidNumber("Course ID", $tainted, 18, 25, false)) {
     <safeties>
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1698,7 +1657,6 @@ else {
     <safeties>
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1718,7 +1676,6 @@ else {
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1743,7 +1700,6 @@ $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tain
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "1" needQuote = "0"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1763,7 +1719,6 @@ $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tain
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "-1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1783,7 +1738,6 @@ $tainted = str_replace(array_keys($replace_tab),array_values($replace_tab),$tain
     <safeties>
       <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1813,7 +1767,6 @@ $tainted = $temp->sanitize($tainted);</code>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1"/>
       <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1851,7 +1804,6 @@ $tainted = $sanitizer->getData(); </code>
       <safety flawType = "CWE_89_Injection" safe = "0" needQuote = "1"/>
       <safety flawType = "CWE_91_Injection" safe = "0" needQuote = "1"/>
     </safeties>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1871,7 +1823,6 @@ $tainted = $sanitizer->getData(); </code>
     <safeties>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1891,7 +1842,6 @@ $tainted = $sanitizer->getData(); </code>
     <safeties>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1911,6 +1861,5 @@ $tainted = $sanitizer->getData(); </code>
     <safeties>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" rule1 = "1" rule5 = "1"/>
     </safeties>
-    <relevancy>0.5</relevancy>
   </sample>
 </sanitize>

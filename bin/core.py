@@ -7,9 +7,7 @@ import global_variables as g
 def main(argv):
     # List of flaws
     flaws = ["XSS", "IDOR", "Injection", "URF", "SM", "SDE"]
-
-    generation = []
-    rang = 0
+    flaw_list = []
 
     #Gets options & arguments
     try:
@@ -19,27 +17,30 @@ def main(argv):
         usage()
         sys.exit(2)
     for opt, arg in opts:
-        if opt in ("-f", "--flaws") and rang == 0:  #Selecting flaws to create
-            generation = arg.split(',')
-            rang = 1
-        elif opt in ("-c", "--cwe") and rang == 0:
+        if opt in ("-f", "--flaws"):  	#Select flaws
+            flaw_list = arg.split(',')
+        
+        elif opt in ("-c", "--cwe"):	#Select CWEs
             g.cwe_list = arg.split(',')
-            rang = 1
-        elif opt in ("-h", "--help"):  #Show usage
+        
+        elif opt in ("-h", "--help"):  	#Show usage
+            usage()
+            return 0
+        else:				#Default
             usage()
             return 0
 
-    for flaw in generation:
+    for flaw in flaw_list:
         if flaw not in flaws:
             usage()
-            return 1
+            return 0
 
     date = time.strftime("%m-%d-%Y_%Hh%Mm%S")
     root = ET.parse('output.xml').getroot()
 
-    if len(generation) == 0 or len(g.cwe_list) > 0:
-        generation=flaws
-    for flaw in generation:
+    if len(flaw_list) == 0 or len(g.cwe_list) > 0: #Select all flaws
+        flaw_list=flaws
+    for flaw in flaw_list:
         if flaw == "XSS":
             initialization(Generator_factory.makeXSS_Generator(date), root)
         if flaw == "Injection":

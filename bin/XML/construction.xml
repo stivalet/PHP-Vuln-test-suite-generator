@@ -19,7 +19,6 @@ $var = str_rot13("password");</code>
     <constraints>
       <constraint flawType="CWE_327_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -40,7 +39,6 @@ $var = md5("password");</code>
     <constraints>
       <constraint flawType="CWE_327_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -61,7 +59,6 @@ $var = sha1("password");</code>
     <constraints>
       <constraint flawType="CWE_327_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -82,7 +79,6 @@ $var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
     <constraints>
       <constraint flawType="CWE_327_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -103,7 +99,6 @@ $var = password_hash("passwod", PASSWORD_DEFAULT);</code>
     <constraints>
       <constraint flawType="CWE_327_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -125,7 +120,6 @@ $var = setcookie("userdata", $data);</code>
     <constraints>
       <constraint flawType="CWE_311_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -154,7 +148,6 @@ $result = pg_query($conn, $query);</code>
     <constraints>
       <constraint flawType="CWE_311_SDE" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -176,7 +169,6 @@ $file=fopen("welcome.txt","r");</code>
     <constraints>
       <constraint flawType="CWE_209_SM" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -202,7 +194,6 @@ $file=fopen("welcome.txt","r");</code>
     <constraints>
       <constraint flawType="CWE_209_SM" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -229,7 +220,6 @@ catch (Exception $e) {
     <constraints>
       <constraint flawType="CWE_209_SM" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -257,7 +247,6 @@ catch (Exception $e) {
     <constraints>
       <constraint flawType="CWE_209_SM" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -279,7 +268,6 @@ $var = header("'Location: " . $tainted ."'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -301,7 +289,6 @@ $var = http_redirect("'" . $tainted . "'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -323,7 +310,6 @@ $var = header("location: '$tainted'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -345,7 +331,6 @@ $var = http_redirect("'$tainted'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -367,7 +352,6 @@ $var = header(sprintf("Location: '%s'", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -389,7 +373,6 @@ $var = http_redirect(sprintf("'%s'", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -411,7 +394,6 @@ $var = header("'Location: " . $tainted .".php'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -433,7 +415,6 @@ $var = http_redirect("'" . $tainted . ".php'");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -455,7 +436,6 @@ $var = header("Location: '$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -477,7 +457,6 @@ $var = http_redirect("'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -499,7 +478,6 @@ $var = header(sprintf("Location: '%s'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -521,7 +499,6 @@ $var = http_redirect(sprintf("'%s'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -543,7 +520,6 @@ $var = header("Location: pages/'". $tainted . "'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -565,7 +541,6 @@ $var = http_redirect("pages/'". $tainted . "'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -587,7 +562,6 @@ $var = header("Location: pages/'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -609,7 +583,6 @@ $var = http_redirect("pages/'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -631,7 +604,6 @@ $var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -653,7 +625,6 @@ $var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_601_URF" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -675,7 +646,6 @@ $var = include("'". $tainted . ".php'");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -697,7 +667,6 @@ $var = require("'". $tainted . ".php'");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -719,7 +688,6 @@ $var = include("'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -741,7 +709,6 @@ $var = require("'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -763,7 +730,6 @@ $var = include(sprintf("'%s'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -785,7 +751,6 @@ $var = require(sprintf("'%s'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -807,7 +772,6 @@ $var = include("pages/'". $tainted . "'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -829,7 +793,6 @@ $var = require("pages/'". $tainted . "'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -851,7 +814,6 @@ $var = include("pages/'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -873,7 +835,6 @@ $var = require("pages/'$tainted'.php");</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -895,7 +856,6 @@ $var = include(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -917,7 +877,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_98_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -938,7 +897,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -959,7 +917,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -980,7 +937,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1001,7 +957,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1022,7 +977,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1043,7 +997,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_95_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1064,7 +1017,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1085,7 +1037,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1106,7 +1057,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
 <sample>
@@ -1127,7 +1077,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1148,7 +1097,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1169,7 +1117,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1190,7 +1137,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1211,7 +1157,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1232,7 +1177,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1253,7 +1197,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1274,7 +1217,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1295,7 +1237,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_78_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1316,7 +1257,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1337,7 +1277,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1358,7 +1297,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1379,7 +1317,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1400,7 +1337,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1421,7 +1357,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "name"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1442,7 +1377,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1463,7 +1397,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1484,7 +1417,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "cn"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1505,7 +1437,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1526,7 +1457,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1547,7 +1477,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_90_Injection" type = "string" field = "mail"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1568,7 +1497,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1589,7 +1517,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1610,7 +1537,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "FROM"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1631,7 +1557,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1652,7 +1577,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1673,7 +1597,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1697,7 +1620,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
       <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1718,7 +1640,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1739,7 +1660,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1760,7 +1680,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1781,7 +1700,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1802,7 +1720,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1823,7 +1740,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1844,7 +1760,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1865,7 +1780,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1886,7 +1800,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1907,7 +1820,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1928,7 +1840,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -1949,7 +1860,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1970,7 +1880,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -1991,7 +1900,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -2012,7 +1920,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2033,7 +1940,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2054,7 +1960,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2075,7 +1980,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2096,7 +2000,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2117,7 +2020,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -2138,7 +2040,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2159,7 +2060,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2180,7 +2080,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "int" field = "WHERE"/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -2201,7 +2100,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2222,7 +2120,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2243,7 +2140,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_89_Injection" type = "string" field = "WHERE"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2264,7 +2160,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2285,7 +2180,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2306,7 +2200,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2330,7 +2223,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
       <constraint flawType="CWE_862_XPath_IDOR"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2351,7 +2243,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2372,7 +2263,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2393,7 +2283,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2414,7 +2303,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2435,7 +2323,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2456,7 +2343,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2477,7 +2363,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2498,7 +2383,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "string" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2519,7 +2403,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2540,7 +2423,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2561,7 +2443,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2582,7 +2463,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2603,7 +2483,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2624,7 +2503,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -2645,7 +2523,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2666,7 +2543,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2687,7 +2563,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     <constraints>
       <constraint flawType="CWE_91_Injection" type = "int" field = ""/>
     </constraints>
-    <relevancy>0.5</relevancy>
   </sample>
 
   <sample>
@@ -2708,7 +2583,6 @@ $var = fopen($tainted, "r");</code>
     <constraints>
       <constraint flawType="CWE_862_Fopen_IDOR" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2730,7 +2604,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_862_SQL_IDOR" prepared = "0"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2751,7 +2624,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2773,7 +2645,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_862_SQL_IDOR" prepared = "1"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2794,7 +2665,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_862_XPath_IDOR" />
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2816,7 +2686,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2838,7 +2707,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2860,7 +2728,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>  
   </sample>
 
   <sample>
@@ -2882,7 +2749,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2904,7 +2770,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy> 
   </sample>
 
   <sample>
@@ -2926,7 +2791,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2948,7 +2812,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2970,7 +2833,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -2992,7 +2854,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3014,7 +2875,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3036,7 +2896,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3058,7 +2917,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3080,7 +2938,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3102,7 +2959,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3124,7 +2980,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3146,7 +3001,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3168,7 +3022,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3190,7 +3043,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3212,7 +3064,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3234,7 +3085,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
   <sample>
@@ -3256,7 +3106,6 @@ $query .= "AND course.allowed=$_SESSION[userid]";</code>
     <constraints>
       <constraint flawType="CWE_79_XSS"/>
     </constraints>
-    <relevancy>1</relevancy>
   </sample>
 
 </construction>
