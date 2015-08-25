@@ -61,6 +61,46 @@ $var = sha1("password");</code>
     </constraints>
   </sample>
 
+ <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>des_crypt_function</dir>
+    </path>
+    <comment>construction : encrypt the data using DES with crypt function</comment>
+    <codes>
+      <code> // Flaw
+$var = crypt("password", "rl");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+  </sample>
+
+<sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>md5_crypt_function</dir>
+    </path>
+    <comment>construction : encrypt the data using MD5 with crypt function</comment>
+    <codes>
+      <code> // Flaw
+$var = crypt("password", "$1$rasmusle$");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "0" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+  </sample>
+
   <sample>
     <flaws>
       <flaw>CWE_327_SDE</flaw>
@@ -70,8 +110,28 @@ $var = sha1("password");</code>
     </path>
     <comment>construction : encrypt the data using sha256 with crypt function</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
+    </codes>
+    <safeties>
+      <safety flawType="CWE_327_SDE" safe = "1" />
+    </safeties>
+    <constraints>
+      <constraint flawType="CWE_327_SDE" />
+    </constraints>
+  </sample>
+
+ <sample>
+    <flaws>
+      <flaw>CWE_327_SDE</flaw>
+    </flaws>
+    <path>
+      <dir>sha512_crypt_function</dir>
+    </path>
+    <comment>construction : encrypt the data using sha512 with crypt function</comment>
+    <codes>
+      <code>
+$var = crypt("password", "$6$rounds=5000$usesomesillystringforsalt$");</code>
     </codes>
     <safeties>
       <safety flawType="CWE_327_SDE" safe = "1" />
@@ -90,7 +150,7 @@ $var = crypt("password", "$5$rounds=5000$usesomesillystringforsalt$");</code>
     </path>
     <comment>construction : encrypt the data using password_hash function</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = password_hash("passwod", PASSWORD_DEFAULT);</code>
     </codes>
     <safeties>
@@ -184,7 +244,6 @@ $file=fopen("welcome.txt","r");</code>
       <code>if(!file_exists("welcome.txt")) {
   die("File not found");
 } else {
-  //flaw
   $file=fopen("welcome.txt","r");
 }</code>
     </codes>
@@ -210,7 +269,6 @@ $file=fopen("welcome.txt","r");</code>
   openDbConnection();
 }
 catch (Exception $e) {
-  //flaw
   echo 'Safe error message\n';
 }</code>
     </codes>

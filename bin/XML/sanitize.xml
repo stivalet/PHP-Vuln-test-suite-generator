@@ -76,7 +76,7 @@ $username = “username”;</code>
       <dir>func_preg_match</dir>
       <dir>only_letters</dir>
     </path>
-    <comment>sanitize : check if there only letters</comment>
+    <comment>sanitize : check if there is only letters</comment>
     <codes>
       <code>$re = "/^[a-zA-Z]*$/";
 if(preg_match($re, $tainted) == 1){
@@ -120,7 +120,7 @@ else{
       <dir>func_preg_match</dir>
       <dir>only_numbers</dir>
     </path>
-    <comment>sanitize : check if there only letters</comment>
+    <comment>sanitize : check if there is only numbers</comment>
     <codes>
       <code>$re = "/^[0-9]*$/";
 if(preg_match($re, $tainted) == 1){
@@ -185,7 +185,7 @@ else{
       <dir>func_preg_match</dir>
       <dir>letters_numbers</dir>
     </path>
-    <comment>sanitize : check if there only letters</comment>
+    <comment>sanitize : check if there is only letters and/or numbers</comment>
     <codes>
       <code>$re = "/^[a-zA-Z0-9]*$/";
 if(preg_match($re, $tainted) == 1){
@@ -229,7 +229,7 @@ else{
       <dir>func_preg_match</dir>
       <dir>no_filtering</dir>
     </path>
-    <comment>sanitize : check if there only letters</comment>
+    <comment>sanitize : regular expression accepts everything</comment>
     <codes>
       <code>$re = "/^.*$/";
 if(preg_match($re, $tainted) == 1){
@@ -324,10 +324,8 @@ else
     <comment>Uses a full_special_chars_filter via filter_var function</comment>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
   $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
+     </code>
     </codes>
     <constraints>
       <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
@@ -370,10 +368,8 @@ else
     <comment>Uses a magic_quotes_filter via filter_var function</comment>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_MAGIC_QUOTES);
-if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
   $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
+      </code>
     </codes>
     <constraints>
       <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
@@ -416,7 +412,7 @@ else
     <comment>Uses a number_float_filter via filter_var function</comment>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_FLOAT);
-if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
+if (filter_var($sanitized, FILTER_VALIDATE_FLOAT))
   $tainted = $sanitized ;
 else
   $tainted = "" ;</code>
@@ -463,7 +459,7 @@ else
     <comment>Uses a number_int_filter via filter_var function</comment>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_NUMBER_INT);
-if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
+if (filter_var($sanitized, FILTER_VALIDATE_INT))
   $tainted = $sanitized ;
 else
   $tainted = "" ;</code>
@@ -509,10 +505,8 @@ else
     <comment>Uses a special_chars_filter via filter_var function</comment>
     <codes>
       <code>$sanitized = filter_var($tainted, FILTER_SANITIZE_SPECIAL_CHARS);
-if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
   $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
+      </code>
     </codes>
     <constraints>
       <constraint flawType = "CWE_89_Injection" type = "string" field = ""/>
@@ -583,54 +577,6 @@ else
 
   <sample>
     <flaws>
-      <flaw>CWE_90_Injection</flaw>
-    </flaws>
-    <path>
-      <dir>func_FILTER</dir>
-      <dir>VALIDATION</dir>
-      <dir>full_special_chars_filter</dir>
-    </path>
-    <comment>Flushes content of $sanitized if the filter full_special_chars__filter is not applied</comment>
-    <codes>
-      <code>if (filter_var($sanitized, FILTER_VALIDATE_FULL_SPECIAL_CHARS))
-  $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
-    </codes>
-    <constraints>
-      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
-    </constraints>
-    <safeties>
-      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
-    </safeties>
-  </sample>
-
-  <sample>
-    <flaws>
-      <flaw>CWE_90_Injection</flaw>
-    </flaws>
-    <path>
-      <dir>func_FILTER</dir>
-      <dir>VALIDATION</dir>
-      <dir>magic_quotes_filter</dir>
-    </path>
-    <comment>Flushes content of $sanitized if the filter magic_quotes_filter is not applied</comment>
-    <codes>
-      <code>if (filter_var($sanitized, FILTER_VALIDATE_MAGIC_QUOTES))
-  $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
-    </codes>
-    <constraints>
-      <constraint flawType = "CWE_90_Injection" type = "string" field = ""/>
-    </constraints>
-    <safeties>
-      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0"/>
-    </safeties>
-  </sample>
-
-  <sample>
-    <flaws>
       <flaw>CWE_89_Injection</flaw>
       <flaw>CWE_91_Injection</flaw>
       <flaw>CWE_90_Injection</flaw>
@@ -647,7 +593,7 @@ else
     </path>
     <comment>Flushes content of $sanitized if the filter number_float_filter is not applied</comment>
     <codes>
-      <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_FLOAT))
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_FLOAT))
   $tainted = $sanitized ;
 else
   $tainted = "" ;</code>
@@ -692,7 +638,7 @@ else
     </path>
     <comment>Flushes content of $sanitized if the filter number_int_filter is not applied</comment>
     <codes>
-      <code>if (filter_var($sanitized, FILTER_VALIDATE_NUMBER_INT))
+      <code>if (filter_var($sanitized, FILTER_VALIDATE_INT))
   $tainted = $sanitized ;
 else
   $tainted = "" ;</code>
@@ -716,48 +662,6 @@ else
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
       <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
-    </safeties>
-  </sample>
-
-  <sample>
-    <flaws>
-      <flaw>CWE_89_Injection</flaw>
-      <flaw>CWE_91_Injection</flaw>
-      <flaw>CWE_90_Injection</flaw>
-      <flaw>CWE_78_Injection</flaw>
-      <flaw>CWE_95_Injection</flaw>
-      <flaw>CWE_98_Injection</flaw>
-      <flaw>CWE_601_URF</flaw>
-    </flaws>
-    <path>
-      <dir>func_FILTER</dir>
-      <dir>VALIDATION</dir>
-      <dir>special_chars_filter</dir>
-    </path>
-    <comment>Flushes content of $sanitized if the filter special_chars_filter is not applied</comment>
-    <codes>
-      <code>if (filter_var($sanitized, FILTER_VALIDATE_SPECIAL_CHARS))
-  $tainted = $sanitized ;
-else
-  $tainted = "" ;</code>
-    </codes>
-    <constraints>
-      <constraint flawType = "CWE_89_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_91_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_90_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_78_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_95_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_98_Injection" type = "int" field = ""/>
-      <constraint flawType = "CWE_601_URF" type = "int" field = ""/>
-    </constraints>
-    <safeties>
-      <safety flawType = "CWE_89_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "CWE_91_Injection" safe = "1" needQuote = "0" />
-      <safety flawType = "CWE_90_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "CWE_78_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "CWE_95_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "CWE_98_Injection" safe = "0" needQuote = "0" />
-      <safety flawType = "CWE_601_URF" safe = "0" needQuote = "0" urlSafe = "0"/>
     </safeties>
   </sample>
 
