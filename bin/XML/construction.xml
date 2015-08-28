@@ -10,7 +10,7 @@
     </path>
     <comment>construction : encrypt the data using str_rot13</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = str_rot13("password");</code>
     </codes>
     <safeties>
@@ -30,7 +30,7 @@ $var = str_rot13("password");</code>
     </path>
     <comment>construction : encrypt the data using md5</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = md5("password");</code>
     </codes>
     <safeties>
@@ -50,7 +50,7 @@ $var = md5("password");</code>
     </path>
     <comment>construction : encrypt the data using sha1</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = sha1("password");</code>
     </codes>
     <safeties>
@@ -171,7 +171,7 @@ $var = password_hash("passwod", PASSWORD_DEFAULT);</code>
     <comment>construction : store sensitive data in a cookie</comment>
     <codes>
       <code>$data = array("username" => $username, "password"=> $password);
-//flaw
+
 $var = setcookie("userdata", $data);</code>
     </codes>
     <safeties>
@@ -199,7 +199,7 @@ if (!$conn) {
 $query  = sprintf("INSERT INTO users(name,pwd) VALUES('%s','%s');",
             pg_escape_string($username),
             pg_escape_string($password));
-//flaw
+
 $result = pg_query($conn, $query);</code>
     </codes>
     <safeties>
@@ -220,7 +220,7 @@ $result = pg_query($conn, $query);</code>
     </path>
     <comment>construction : fopen</comment>
     <codes>
-      <code>//flaw
+      <code>
 $file=fopen("welcome.txt","r");</code>
     </codes>
     <safeties>
@@ -294,7 +294,7 @@ catch (Exception $e) {
   openDbConnection();
 }
 catch (Exception $e) {
-  //flaw
+  
   echo 'Caught exception: ', $e->getMessage(), '\n';
   echo 'Check credentials in config file at: ', $Mysql_config_location, '\n';
 }</code>
@@ -317,7 +317,7 @@ catch (Exception $e) {
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("'Location: " . $tainted ."'");</code>
     </codes>
     <safeties>
@@ -338,7 +338,7 @@ $var = header("'Location: " . $tainted ."'");</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("'" . $tainted . "'");</code>
     </codes>
     <safeties>
@@ -359,7 +359,7 @@ $var = http_redirect("'" . $tainted . "'");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("location: '$tainted'");</code>
     </codes>
     <safeties>
@@ -380,7 +380,7 @@ $var = header("location: '$tainted'");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("'$tainted'");</code>
     </codes>
     <safeties>
@@ -401,7 +401,7 @@ $var = http_redirect("'$tainted'");</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header(sprintf("Location: '%s'", $tainted));</code>
     </codes>
     <safeties>
@@ -422,7 +422,7 @@ $var = header(sprintf("Location: '%s'", $tainted));</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect(sprintf("'%s'", $tainted));</code>
     </codes>
     <safeties>
@@ -443,7 +443,7 @@ $var = http_redirect(sprintf("'%s'", $tainted));</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("'Location: " . $tainted .".php'");</code>
     </codes>
     <safeties>
@@ -464,7 +464,7 @@ $var = header("'Location: " . $tainted .".php'");</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("'" . $tainted . ".php'");</code>
     </codes>
     <safeties>
@@ -485,7 +485,7 @@ $var = http_redirect("'" . $tainted . ".php'");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("Location: '$tainted'.php");</code>
     </codes>
     <safeties>
@@ -506,7 +506,7 @@ $var = header("Location: '$tainted'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -527,7 +527,7 @@ $var = http_redirect("'$tainted'.php");</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header(sprintf("Location: '%s'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -548,7 +548,7 @@ $var = header(sprintf("Location: '%s'.php", $tainted));</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -569,7 +569,7 @@ $var = http_redirect(sprintf("'%s'.php", $tainted));</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("Location: pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
@@ -590,7 +590,7 @@ $var = header("Location: pages/'". $tainted . "'.php");</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
@@ -611,7 +611,7 @@ $var = http_redirect("pages/'". $tainted . "'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header("Location: pages/'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -632,7 +632,7 @@ $var = header("Location: pages/'$tainted'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -653,7 +653,7 @@ $var = http_redirect("pages/'$tainted'.php");</code>
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -674,7 +674,7 @@ $var = header(sprintf("Location: pages/'%d'.php", $tainted));</code>
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -695,7 +695,7 @@ $var = http_redirect(sprintf("pages/'%d'.php", $tainted));</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include("'". $tainted . ".php'");</code>
     </codes>
     <safeties>
@@ -716,7 +716,7 @@ $var = include("'". $tainted . ".php'");</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require("'". $tainted . ".php'");</code>
     </codes>
     <safeties>
@@ -737,7 +737,7 @@ $var = require("'". $tainted . ".php'");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include("'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -758,7 +758,7 @@ $var = include("'$tainted'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require("'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -779,7 +779,7 @@ $var = require("'$tainted'.php");</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -800,7 +800,7 @@ $var = include(sprintf("'%s'.php", $tainted));</code>
     </path>
     <comment>construction : use of sprintf via a %s with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require(sprintf("'%s'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -821,7 +821,7 @@ $var = require(sprintf("'%s'.php", $tainted));</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
@@ -842,7 +842,7 @@ $var = include("pages/'". $tainted . "'.php");</code>
     </path>
     <comment>construction : concatenation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require("pages/'". $tainted . "'.php");</code>
     </codes>
     <safeties>
@@ -863,7 +863,7 @@ $var = require("pages/'". $tainted . "'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -884,7 +884,7 @@ $var = include("pages/'$tainted'.php");</code>
     </path>
     <comment>construction : interpretation with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require("pages/'$tainted'.php");</code>
     </codes>
     <safeties>
@@ -905,7 +905,7 @@ $var = require("pages/'$tainted'.php");</code>
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = include(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -926,7 +926,7 @@ $var = include(sprintf("pages/'%d'.php", $tainted));</code>
     </path>
     <comment>construction : use of sprintf via a %d with simple quote</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     </codes>
     <safeties>
@@ -2632,7 +2632,7 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
     </path>
     <comment>construction : fopen</comment>
     <codes>
-      <code>//flaw
+      <code>
 $var = fopen($tainted, "r");</code>
     </codes>
     <safeties>
