@@ -1,2 +1,0 @@
-//flaw
-$res = eval($query);

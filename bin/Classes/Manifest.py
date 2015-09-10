@@ -26,7 +26,7 @@ class Manifest:
         date = time.strftime('%d/%m/%y', time.localtime())
         metaData = ("\t<testcase> \n" +
                     "\t\t<meta-data> \n" +
-                    "\t\t\t<author>H. Bühler, D. Lucas, F. Nollet, A. Reszetko</author> \n" +
+                    "\t\t\t<author>Bertrand STIVALET, Aurelien DELAITRE</author> \n" +
                     "\t\t\t<date>" + date + "</date> \n" +
                     "\t\t\t<input>" + Input + "</input>\n" +
                     "\t\t</meta-data> \n \n")

@@ -1,2 +1,0 @@
-//flaw
-$ret = system($query);
