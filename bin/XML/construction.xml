@@ -1182,66 +1182,6 @@ $var = require(sprintf("pages/'%d'.php", $tainted));</code>
       <flaw>CWE_78_Injection</flaw>
     </flaws>
     <path>
-      <dir>find_size</dir>
-      <dir>concatenation_simple_quote</dir>
-    </path>
-    <comment>construction : concatenation with simple quote</comment>
-    <codes>
-      <code>$query = "find / size '". $tainted . "'";</code>
-    </codes>
-    <safeties>
-      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
-    </safeties>
-    <constraints>
-      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
-    </constraints>
-  </sample>
-
-  <sample>
-    <flaws>
-      <flaw>CWE_78_Injection</flaw>
-    </flaws>
-    <path>
-      <dir>find_size</dir>
-      <dir>interpretation_simple_quote</dir>
-    </path>
-    <comment>construction : interpretation with simple quote</comment>
-    <codes>
-      <code>$query = "find / size ' $tainted '";</code>
-    </codes>
-    <safeties>
-      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
-    </safeties>
-    <constraints>
-      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
-    </constraints>
-  </sample>
-
-  <sample>
-    <flaws>
-      <flaw>CWE_78_Injection</flaw>
-    </flaws>
-    <path>
-      <dir>find_size</dir>
-      <dir>sprintf_%s_simple_quote</dir>
-    </path>
-    <comment>construction : use of sprintf via a %s with simple quote</comment>
-    <codes>
-      <code>$query = sprintf("find / size '%d'", $tainted);</code>
-    </codes>
-    <safeties>
-      <safety flawType="CWE_78_Injection" quote = "1" safe = "0" />
-    </safeties>
-    <constraints>
-      <constraint flawType="CWE_78_Injection" type = "int" field = "name"/>
-    </constraints>
-  </sample>
-
-  <sample>
-    <flaws>
-      <flaw>CWE_78_Injection</flaw>
-    </flaws>
-    <path>
       <dir>cat</dir>
       <dir>concatenation_simple_quote</dir>
     </path>
