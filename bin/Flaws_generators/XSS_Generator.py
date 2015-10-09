@@ -147,7 +147,7 @@ class GeneratorXSS(Generator):
                 out = tmp + out
                 tmp = ""
                 if not safe and isinstance(param, Construction) :
-                    tmp = "//flaw\n" #add this comment if not safe
+                    tmp = "//flaw" #add this comment if not safe
                 for line in open(param.code[1], "r").readlines():
                     tmp += line
             else:
