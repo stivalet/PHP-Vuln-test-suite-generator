@@ -1,6 +1,6 @@
 # PHP Vulnerability test suite Generator
 
-Collection of vulnerable and fixed PHP synthetic test cases expressing specific flaws.
+The PHP synthetic test cases generator produces vulnerable and fixed PHP synthetic test cases expressing specific flaws.
 
 ## Prerequisites
 
