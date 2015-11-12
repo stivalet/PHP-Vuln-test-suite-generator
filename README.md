@@ -1,4 +1,4 @@
-# PHP Vulnerability test suite
+# PHP Vulnerability test suite Generator
 
 Collection of vulnerable and fixed PHP synthetic test cases expressing specific flaws.
 
