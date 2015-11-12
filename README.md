@@ -1,6 +1,11 @@
 # PHP Vulnerability test suite Generator
 
-The PHP synthetic test cases generator produces vulnerable and fixed PHP synthetic test cases expressing specific flaws.
+The *PHP synthetic test cases generator* produces vulnerable and fixed PHP synthetic test cases expressing specific flaws (see below).
+To get the PHP test suite, you can either generate it with personnalized options or download it via the following links: 
+
+* [github.com/stivalet/PHP-Vulnerability-test-suite](https://github.com/stivalet/PHP-Vulnerability-test-suite "PHP Vulnerability Test Suite")
+
+* [samate.nist.gov/SARD/testsuite.php](https://samate.nist.gov/SARD/testsuite.php "PHP Vulnerability Test Suite")
 
 ## Prerequisites
 
