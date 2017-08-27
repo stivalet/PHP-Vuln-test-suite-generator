@@ -435,7 +435,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "0"/>
-      <safety flawType = "CWE_79_XSS" doubleQuote = "1" scriptBlock = "1" styleBlock = "1" simpleQuote = "1" URL_CSS_context = "1" property_CSS_context = "1" rule1  = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" needQuote="0" />
     </safeties>
     <safety safe = "1" needQuote = "0" />
   </sample>
@@ -1405,7 +1405,7 @@ else
       <safety flawType = "CWE_95_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_98_Injection" safe = "1" needQuote = "0" />
       <safety flawType = "CWE_601_URF" safe = "1" needQuote = "0" urlSafe = "1"/>
-      <safety flawType = "CWE_79_XSS" simpleQuote = "1" />
+      <safety flawType = "CWE_79_XSS" safe = "1" simpleQuote = "1" />
       <safety flawType = "CWE_862_Fopen_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_SQL_IDOR" safe = "1"/>
       <safety flawType = "CWE_862_XPath_IDOR" safe = "1"/>
