@@ -135,8 +135,9 @@ class GeneratorInjection(Generator):
         if injection != "CWE_98":
             #Gets query execution code
             if not safe :
-                file.addContent("//flaw\n") #add this comment if not safe
-            footer = open("./execQuery_" + flawCwe[injection] + ".txt", "r")
+                footer = open("./execQuery_" + flawCwe[injection] + "_unsafe.txt", "r")
+            else:
+                footer = open("./execQuery_" + flawCwe[injection] + ".txt", "r")
             execQuery = footer.readlines()
             footer.close()
 
